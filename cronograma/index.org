@@ -162,7 +162,7 @@ A mescla entre aulas teóricas e práticas é feita automaticamente.
 #+header: :colnames yes
 | Setor   | Descrição                                                      |
 |---------+----------------------------------------------------------------|
-| Prática | Introdução ao Moodle e ao compilador C                         |
+| Prática | Introdução ao sistema EAD e ao compilador C                    |
 | Prática | Programa sequencial e comandos de seleção simples              |
 | Prática | Exercicio if, if-else, switch                                  |
 | Prática | Comandos for, while                                            |
