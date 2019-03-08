@@ -1,0 +1,169 @@
+#+TITLE: Plano da Disciplina de Algoritmos e Programação (INF01202)
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+
+* Súmula
+
+Noção de algoritmo, dado, variável, instrução e programa. Construções
+básicas: atribuição, leitura e escrita. Estruturas de controle:
+seqüência, seleção e iteração. Tipos de dados escalares: inteiros,
+reais, caracteres, intervalos e enumerações. Tipos estruturados
+básicos: vetores, matrizes registros e strings. Subprogramas: funções,
+procedimentos e recursão. Arquivos.
+
+* Objetivos
+
+Esta disciplina tem por objetivo introduzir conhecimento e técnicas
+necessários para projeto e desenvolvimento de soluções de problemas,
+através da construção de algoritmos e programas que utilizam os
+princípios da programação estruturada. O aluno que cursou esta
+disciplina deve ser capaz de analisar problemas e elaborar programas
+que os solucionem, utilizando para isto a linguagem de programação
+C. Deve dominar os comando básicos, estruturar os dados em tipos
+simples e estruturados, utilizar conceitos de subprogramação e
+recursão, além de manipular arquivos.
+
+A disciplina abrange os seguintes tópicos: noção de algoritmo, dado,
+variável, instrução e programa; construções básicas: atribuição,
+leitura e escrita; estruturas de controle: seqüência, seleção e
+iteração; tipos de dados escalares: inteiros, reais, caracteres,
+strings; tipos estruturados básicos: vetores, matrizes, registros e
+strings; subprogramas: funções com e sem retorno; recursão; arquivos.
+
+* Conteúdo Programático
+
+A original do conteúdo programático desta disciplina pode ser
+encontrado no site no portal desta universidade, na seção de /Consultar
+Planos de Ensino/. Para a distribuição do conteúdo ao longo deste
+semestre veja o cronograma da disciplina, disponível no sistema
+EAD. Abaixo, uma cópia do conteúdo programático.
+
+| 1       | 1. Noção de algoritmo      | Introdução: paradigmas de programação, programa, algoritmo.  |
+|         |                            | Algoritmo: atribuição, entrada e saída.                      |
+|---------+----------------------------+--------------------------------------------------------------|
+| 2       | Estrutura de programa C    | Elementos de um programa                                     |
+|         |                            | Tipos de Dados. Declaração de variáveis, tipos de variáveis. |
+|---------+----------------------------+--------------------------------------------------------------|
+| 2 a 4   | Comandos de seleção        | Operadores e expressão aritmética e lógica.                  |
+|         |                            | Comando condicional if .                                     |
+|         |                            | Comando condicional if-else                                  |
+|         |                            | Operador condicional ?.                                      |
+|         |                            | Aninhamento de comandos.                                     |
+|         |                            | Estrutura de seleção múltipla - comando switch .             |
+|---------+----------------------------+--------------------------------------------------------------|
+| 4 a 6   | Comandos iterativos        | Comando FOR                                                  |
+|         |                            | Comando WHILE                                                |
+|         |                            | Comando DO-WHILE                                             |
+|---------+----------------------------+--------------------------------------------------------------|
+| 6 a 9   | Tipos estruturados básicos | Arranjos de uma dimensão - vetores                           |
+|         |                            | Classificacao de vetores                                     |
+|         |                            | Strings: arranjos de caracteres                              |
+|         |                            | Arranjos de duas dimensoes :Matrizes                         |
+|         |                            | Arranjos multidimensionais                                   |
+|---------+----------------------------+--------------------------------------------------------------|
+| 10 a 12 | Subprogramação e ponteiros | Subprogramas                                                 |
+|         |                            | Parâmetros formais e reais                                   |
+|         |                            | Variáveis locais e globais                                   |
+|         |                            | Funcao sem retorno                                           |
+|         |                            | Ponteiros                                                    |
+|         |                            | Parametros por valor e por referência                        |
+|         |                            | Funcoes com retorno                                          |
+|---------+----------------------------+--------------------------------------------------------------|
+| 12 a 13 | Estruturas                 | Tipos estruturados basicos do tipo estruturas                |
+|---------+----------------------------+--------------------------------------------------------------|
+| 13 a 14 | Arquivos                   | Stream                                                       |
+|         |                            | Arquivos binários                                            |
+|         |                            | Arquivos texto                                               |
+|---------+----------------------------+--------------------------------------------------------------|
+| 14 a 15 | Recursividade              | Programas recursivos em linguagens imperativas               |
+
+* Metodologia
+
+As 60 horas previstas para atividades teóricas e práticas indicadas no
+item "Carga Horária" deste Plano de Ensino incluem 45 encontros de 100
+minutos de duração (2 períodos de 50 minutos por encontro, 3 encontros
+por semana, durante 15 semanas), num total de 3.000 minutos. Além
+destas, estão previstas mais 15 horas (900 minutos) de atividades
+autônomas, realizadas sem contato direto com o professor,
+correspondentes a exercícios e trabalhos extraclasse, conforme
+Resolução 11/2013 do CEPE/UFRGS.
+
+Os 3 encontros por semana são divididas em 2 encontros/semana em sala
+de aula (aulas teórico-práticas) e 1 encontro/semana em laboratório
+(aula prática). Os procedimentos didáticos a serem adotados nestas
+aulas são, respectivamente:
+
+1. aulas teórico-práticas:
+   - exposições teóricas dos conteúdos;
+   - exercícios realizados pelos alunos individualmente ou em pequenos grupos;
+2. aulas práticas:
+   - exercícios realizados pelos alunos diretamente nos computadores, avaliados a cada aula.
+3. trabalho final realizado extra-classe agrega os conteudos da disciplina. 
+
+* Carga-Horária
+Teórica: 60 horas
+Prática: 30 horas
+
+* Experiências de Aprendizagem
+
+Lista de exercicios para cada um dos topicos listados estao
+disponíveis para resolucao extra-classe com apoio de monitores do
+conjunto da disciplina.
+
+Trabalho final de implementação a ser realizado extra-classe e
+apresentado em aula agrega todos os conteudos vistos na disciplina.
+ 
+* Critérios de Avaliação
+
+SISTEMA DE AVALIAÇÃO
+
+O conceito final será obtido da seguinte forma:
+
+Se a nota final ficar entre: 8,5 e 10,0 ---> A
+
+Se a nota final ficar entre: 7,5 e 8,4 ---> B
+
+Se a nota final ficar entre: 6,0 e 7,4 ---> C
+
+Se a nota final ficar entre: 0,0 e 5,9 ---> D
+
+Se o aluno não alcançar a frequência mínima (75%) ---> FF
+
+A avaliação será feita a partir de duas notas de provas escritas (P1 e
+P2), a apresentação dos trabalhos das aulas práticas (AP) e a nota do
+Trabalho Final (TF). A prova P1 será realizada na metade do semestre e
+a prova P2 no final, considerando todo o conteúdo desenvolvido até a
+data das provas. A média final será obtida considerando a seguinte
+ponderação:
+
+Média Final = 0,3 * P1 + 0,45 * P2 + 0,15 * AP + 0,10 TF 
+
+* Atividades de Recuperação Previstas
+
+Se o aluno não atingir nota 6,0 na Média Final, poderá realizar uma
+prova de recuperação sobre toda a matéria. Se a média entre a prova de
+recuperação e a nota final da disciplina for maior ou igual a 6,0, o
+aluno será aprovado com C.
+
+(Media Final + Prova Recuperacao) /2 >= 6,0 => Conceito C
+
+A apresentação do Trabalho Final, mesmo que não execute perfeitamente,
+é pré-requisito para a realização da recuperação. 
+
+* Referências
+
+** Básica e Essencial
+
+- Damas, Luis. Linguagem C. Rio de Janeiro: LTC, c2007. ISBN 9788521615194.
+- Nina Edelweiss e Maria Aparecida Castro Livi.. Algoritmos e Programação: com exemplos em Pascal e C. Série de Livros Didáticos Informática UFRGS. Porto Alegre: Bookman, 2014. ISBN 9788582601891.
+- Salvetti, Dirceu Douglas; Barbosa, Lisbete Madsen. Algoritmos. Sao Paulo: Makron Books, c1998. ISBN 853460715X. 
+
+** Básica
+
+- Deitel, Harvey M.. C How to Program. Estados Unidos: Prentice-Hall, 2007. ISBN 9780132404167.
+- Goodrich, Michael T.; Tamassia, Roberto. Projeto de algoritmos :fundamentos, análise e exemplos da internet. Porto Alegre: Bookman, 2004. ISBN 8536303034.
+- Harbison, Samuel P., III. Steele, Guy L., Jr.. C: manual de referência. Rio de Janeiro: Ciência Moderna, 2002. ISBN 8573932295.
+- Kernighan, Brian W.; Ritchie, Dennis M.. The C programming language. Englewood Cliffs: Prentice Hall, c1988. ISBN 0131103628.
+- Orth, Afonso Inacio. Algoritmos e programação :com resumo das linguagens pascal e C. Porto Alegre: AIO, c2001.
+- Senne, Edson Luiz França. Curso de programação em C. São Paulo: Visual Books, 2009. ISBN 9788575022450.
+- Ziviani, N.. Projeto de Algoritmos Com Implementações em Pascal e C. THOMSON PIONEIRA, 2004. ISBN 8522103909. 
