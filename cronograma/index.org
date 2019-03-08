@@ -21,7 +21,7 @@
 #+TAGS: noexport(n) deprecated(d)
 
 * Planejamento                                                     :noexport:
-** Preparação baseada em ODS                                        :ATTACH:
+** Preparação baseada em ODS                             :deprecated:ATTACH:
 :PROPERTIES:
 :Attachments: inf01202-cronograma.ods
 :ID:       9848b48e-de8e-4fa3-8ac0-1a22ec9f9d39
