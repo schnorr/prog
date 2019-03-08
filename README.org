@@ -49,12 +49,9 @@ disciplina.
     - (Turmas I, Sextas, 13:30 – 15:10)
     - (Turmas J, Sextas, 15:30 – 17:10)
 
-* Conteúdo
+* Conteúdo e Avaliação
 
 - [[./conteudo/][Acesse o conteúdo da disciplina]]
-
-* Avaliações
-
 - [[./avaliacao/][Acompanhamento das Avaliações]]
    
 * Contato
