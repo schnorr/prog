@@ -55,7 +55,7 @@ disciplina.
 
 * Avaliações
 
-- (por ser atualizado) [[./acompanhamento.org][Acompanhamento das Avaliações]]
+- [[./avaliacao/][Acompanhamento das Avaliações]]
    
 * Bibliografia
 * Contato
