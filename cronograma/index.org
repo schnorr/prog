@@ -30,7 +30,7 @@
 #+begin_src R :results table :session :exports both :colnames yes
 suppressMessages(library(tidyverse))
 library(readODS)
-FILE <- "data/98/48b48e-de8e-4fa3-8ac0-1a22ec9f9d39/inf01202-cronograma.ods"
+FILE <- "data/98/48b48e-de8e-4fa3-8ac0-1a22ec9f9d39/inf01202-cronograma-2.ods"
 read_ods(FILE, col_types=cols(
                    AULA = col_character(),
                    DATA = col_character(),
@@ -38,68 +38,74 @@ read_ods(FILE, col_types=cols(
                )) %>%
     filter(AULA != "") %>%
     select(-DATA) %>%
-    mutate(Setor = ifelse(grepl("Prática", CONTEÚDO), "Prática", "Teórica")) %>%
-    mutate(Local = ifelse(Setor == "Prática", "43413.104", "43425.112")) %>%
-    select(AULA, Setor, Local, everything()) %>%
-    rename(Descrição = CONTEÚDO) -> df.legacy;
-df.legacy %>% filter(Setor == "Teórica")
+    mutate(Setor = ifelse(grepl("P", AULA), "Prática", "Teórica")) %>%
+#    mutate(Local = ifelse(Setor == "Prática", "43413.104", "43425.112")) %>%
+    select(AULA, Setor, everything()) %>%
+    rename(Descrição = CONTEÚDO) %>%
+    mutate(Descrição = gsub("Prática: ", "", Descrição)) -> df.legacy;
+df.legacy %>%
+    filter(Setor == "Teórica") %>%
+    select(-AULA)
 #+end_src
 
 #+RESULTS:
-| AULA | Setor   |     Local | Descrição                                                                                                                                   |
-|------+---------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------|
-|    1 | Teórica | 43425.112 | Introdução: paradigmas de programação, programa, algoritmo. Algoritmo: atribuição, entrada e saída. Estrutura de programa C: scanf, printf. |
-|    2 | Teórica | 43425.112 | Tipos de Dados. Declaração de variáveis, tipos de variáveis. Operadores e expressão aritmética e lógica.                                    |
-|    3 | Teórica | 43425.112 | Comando de Seleção If                                                                                                                       |
-|    4 | Teórica | 43425.112 | Aninhamento de comandos if-else                                                                                                             |
-|    5 | Teórica | 43425.112 | Estrutura de seleção múltipla - comando switch .                                                                                            |
-|    6 | Teórica | 43425.112 | Comando iterativo for.                                                                                                                      |
-|    7 | Teórica | 43425.112 | Comando iterativo for.                                                                                                                      |
-|    8 | Teórica | 43425.112 | Comandos iterativos while e do-while.                                                                                                       |
-|    9 | Teórica | 43425.112 | Comandos iterativos while e do-while. Exemplos.                                                                                             |
-|   10 | Teórica | 43425.112 | Comandos iterativos: desenvolvimento de algoritmos eficientes. Exercícios                                                                   |
-|   11 | Teórica | 43425.112 | Tipos estruturados básicos – arranjos de uma dimensão                                                                                       |
-|   13 | Teórica | 43425.112 | Busca e classificação de vetores. Strings: arranjos de caracteres.                                                                          |
-|   14 | Teórica | 43425.112 | Arranjos com mais de uma dimensão: matrizes.                                                                                                |
-|   15 | Teórica | 43425.112 | Busca e classificação em matrizes                                                                                                           |
-|   16 | Teórica | 43425.112 | 1ª Prova.                                                                                                                                   |
-|   17 | Teórica | 43425.112 | Subprogramação - variáveis locais e globais, parâmetros.                                                                                    |
-|   18 | Teórica | 43425.112 | Função sem retorno (void): parâmetros formais e reais.                                                                                      |
-|   19 | Teórica | 43425.112 | Parâmetros por valor e por referência, Ponteiros                                                                                            |
-|   20 | Teórica | 43425.112 | Ponteiros                                                                                                                                   |
-|   21 | Teórica | 43425.112 | Estruturas e Definição de Tipos                                                                                                             |
-|   22 | Teórica | 43425.112 | Estruturas e parâmetros.                                                                                                                    |
-|   23 | Teórica | 43425.112 | Stream. Arquivos binários: acesso sequencial e randomico.                                                                                   |
-|   24 | Teórica | 43425.112 | Arquivos binários: exercicios                                                                                                               |
-|   25 | Teórica | 43425.112 | Arquivo texto.                                                                                                                              |
-|   26 | Teórica | 43425.112 | Arquivos texto exemplos                                                                                                                     |
-|   27 | Teórica | 43425.112 | Recursividade                                                                                                                               |
-|   28 | Teórica | 43425.112 | Exercícios Recursividade                                                                                                                    |
-|   29 | Teórica | 43425.112 | Revisão para prova                                                                                                                          |
-|   30 | Teórica | 43425.112 | 2ª Prova                                                                                                                                    |
+| Setor   | Descrição                                                                                                                               |
+|---------+-----------------------------------------------------------------------------------------------------------------------------------------|
+| Teórica | Apresentação  do  curso  e  da  disciplina  Aula  inaugural  dos  calouros Introdução:  paradigmas de programação, programa,  algoritmo |
+| Teórica | Algoritmo: atribuição, entrada e saída Estrutura de programa C: scanf, printf                                                           |
+| Teórica | Tipos de Dados, Declaração de variáveis, Operadores e expressão aritmética e lógica                                                     |
+| Teórica | Comando de Seleção If                                                                                                                   |
+| Teórica | Aninhamento de comandos If Else                                                                                                         |
+| Teórica | Estrutura de seleção múltipla - comando switch                                                                                          |
+| Teórica | Comando iterativo for                                                                                                                   |
+| Teórica | Comandos iterativos while e do-while                                                                                                    |
+| Teórica | Comandos iterativos while e do-while Exemplos                                                                                           |
+| Teórica | Tipos estruturados básicos – arranjos de uma dimensão                                                                                   |
+| Teórica | Classificação de vetores Strings: arranjos de caracteres                                                                                |
+| Teórica | Arranjos com mais de uma dimensão: matrizes                                                                                             |
+| Teórica | Busca e classificação em matrizes                                                                                                       |
+| Teórica | Revisão Geral para Prova                                                                                                                |
+| Teórica | 1ª Prova                                                                                                                                |
+| Teórica | Subprogramação - variáveis locais e globais, parâmetros                                                                                 |
+| Teórica | Função sem retorno (void): parâmetros formais e reais                                                                                   |
+| Teórica | Parâmetros por valor e por referência, Ponteiros                                                                                        |
+| Teórica | Ponteiros                                                                                                                               |
+| Teórica | Funções com retorno.  Bubble sort                                                                                                       |
+| Teórica | Estruturas e Definição de Tipos                                                                                                         |
+| Teórica | Estruturas e parâmetros                                                                                                                 |
+| Teórica | Stream Arquivos binários: acesso sequencial                                                                                             |
+| Teórica | Arquivos binários: acesso randômico                                                                                                     |
+| Teórica | Arquivo texto                                                                                                                           |
+| Teórica | Arquivos texto exemplos                                                                                                                 |
+| Teórica | Recursividade                                                                                                                           |
+| Teórica | Estruturação de programas                                                                                                               |
+| Teórica | Revisão para a segunda  prova                                                                                                           |
+| Teórica | 2ª Prova                                                                                                                                |
 
 #+begin_src R :results table :session :exports both :colnames yes
-df.legacy %>% filter(Setor == "Prática")
+df.legacy %>%
+    filter(Setor == "Prática") %>%
+    select(-AULA)
 #+end_src
 
 #+RESULTS:
-| AULA | Setor   |     Local | Descrição                                                                         |
-|------+---------+-----------+-----------------------------------------------------------------------------------|
-| P1.  | Prática | 43413.104 | Prática: Introdução ao Moodle e ao compilador C                                   |
-| P2.  | Prática | 43413.104 | Prática: Programa sequencial  e comandos de seleção simples (aula não presencial) |
-| P3   | Prática | 43413.104 | Prática: Exercicio if  e if- else e switch extra-classe                           |
-| P4.  | Prática | 43413.104 | Prática: comandos for                                                             |
-| P5.  | Prática | 43413.104 | Prática sobre while e do-while                                                    |
-| P6.  | Prática | 43413.104 | Prática: comandos iterativos – Arranjos unidimensionais                           |
-| P7.  | Prática | 43413.104 | Prática: arranjos multidimensionais (aula não presencial)                         |
-| P8.  | Prática | 43413.104 | Prática: Apresentação do trabalho final                                           |
-| P9.  | Prática | 43413.104 | Prática: Funções                                                                  |
-| P10. | Prática | 43413.104 | Prática: funções com retorno, ponteiros, funções void com parâmetros              |
-| P11. | Prática | 43413.104 | Prática: estruturas                                                               |
-| P12. | Prática | 43413.104 | Prática: Arquivos binários                                                        |
-| P13. | Prática | 43413.104 | Prática: Arquivo texto                                                            |
-| P14. | Prática | 43413.104 | FERIADO  Prática(EAD): Recursividade                                              |
-| P15. | Prática | 43413.104 | Prática: Apresentação de Trabalhos Finais                                         |
+| Setor   | Descrição                                                     |
+|---------+---------------------------------------------------------------|
+| Prática | Introdução ao Moodle e ao compilador C                        |
+| Prática | Programa sequencial  e comandos de seleção simples            |
+| Prática | Exercicio if e if- else e switch extra-classe                 |
+| Prática | comandos for e while                                          |
+| Prática | comandos iterativos –– for e while com vetores                |
+| Prática | comandos iterativos – while e do-while com strings e matrizes |
+| Prática | Busca e classificação com matrizes                            |
+| Prática | Apresentação do trabalho final – Biblioteca Conio             |
+| Prática | Funções sem retorno                                           |
+| Prática | Funções parametrizadas com retorno e ponteiros                |
+| Prática | estruturas                                                    |
+| Prática | Arquivos binários                                             |
+| Prática | Arquivos texto                                                |
+| Prática | Recursividade                                                 |
+| Prática | Apresentação de Trabalhos Finais                              |
 
 ** Modelo do cronograma em TEX                                      :ATTACH:
 :PROPERTIES:
@@ -107,192 +113,225 @@ df.legacy %>% filter(Setor == "Prática")
 :ID:       be43e1ff-0a91-4c3f-9e17-1fa62e6795ce
 :END:
 
-** Aulas (em ORG, *COMECE AQUI*)
+** Configuração das Aulas (em ORG, *COMECE AQUI*)
 
 Toda e qualquer edição do ordenamento das aulas deve ser feito aqui.
 
-#+NAME: listagem_de_encontros_teoricos
-| Setor   | Descrição                                                                                                                                   |
-|---------+---------------------------------------------------------------------------------------------------------------------------------------------|
-| Teórica | Introdução: paradigmas de programação, programa, algoritmo. Algoritmo: atribuição, entrada e saída. Estrutura de programa C: scanf, printf. |
-| Teórica | Tipos de Dados. Declaração de variáveis, tipos de variáveis. Operadores e expressão aritmética e lógica.                                    |
-| Teórica | Comando de Seleção If                                                                                                                       |
-| Teórica | Aninhamento de comandos if-else                                                                                                             |
-| Teórica | Estrutura de seleção múltipla - comando switch .                                                                                            |
-| Teórica | Comando iterativo for.                                                                                                                      |
-| Teórica | Comando iterativo for.                                                                                                                      |
-| Teórica | Comandos iterativos while e do-while.                                                                                                       |
-| Teórica | Comandos iterativos while e do-while. Exemplos.                                                                                             |
-| Teórica | Comandos iterativos: desenvolvimento de algoritmos eficientes. Exercícios                                                                   |
-| Teórica | Tipos estruturados básicos – arranjos de uma dimensão                                                                                       |
-| Teórica | Busca e classificação de vetores. Strings: arranjos de caracteres.                                                                          |
-| Teórica | Arranjos com mais de uma dimensão: matrizes.                                                                                                |
-| Teórica | Busca e classificação em matrizes                                                                                                           |
-| Teórica | P1                                                                                                                                          |
-| Teórica | Subprogramação - variáveis locais e globais, parâmetros.                                                                                    |
-| Teórica | Função sem retorno (void): parâmetros formais e reais.                                                                                      |
-| Teórica | Parâmetros por valor e por referência, Ponteiros                                                                                            |
-| Teórica | Ponteiros                                                                                                                                   |
-| Teórica | Estruturas e Definição de Tipos                                                                                                             |
-| Teórica | Estruturas e parâmetros.                                                                                                                    |
-| Teórica | Stream. Arquivos binários: acesso sequencial e randomico.                                                                                   |
-| Teórica | Arquivos binários: exercícios                                                                                                               |
-| Teórica | Arquivo texto.                                                                                                                              |
-| Teórica | Arquivos texto exemplos                                                                                                                     |
-| Teórica | Recursividade                                                                                                                               |
-| Teórica | Exercícios Recursividade                                                                                                                    |
-| Teórica | Revisão para prova                                                                                                                          |
-| Teórica | P2                                                                                                                                          |
-| Teórica | PR                                                                                                                                          |
+A mescla entre aulas teóricas e práticas é feita automaticamente.
 
-#+NAME: listagem_de_encontros_pratica
-| Setor   | Descrição                                                                |
-|---------+--------------------------------------------------------------------------|
-| Prática | Introdução ao Moodle e ao compilador C                                   |
-| Prática | Programa sequencial  e comandos de seleção simples (aula não presencial) |
-| Prática | Exercicio if  e if- else e switch extra-classe                           |
-| Prática | comandos for                                                             |
-| Prática | while e do-while                                                         |
-| Prática | comandos iterativos – Arranjos unidimensionais                           |
-| Prática | arranjos multidimensionais (aula não presencial)                         |
-| Prática | Apresentação do trabalho final                                           |
-| Prática | Funções                                                                  |
-| Prática | funções com retorno, ponteiros, funções void com parâmetros              |
-| Prática | estruturas                                                               |
-| Prática | Arquivos binários                                                        |
-| Prática | Arquivo texto                                                            |
-| Prática | Recursividade                                                            |
-| Prática | Apresentação de Trabalhos Finais                                         |
+*** Teóricas
+
+#+NAME: listagem_de_encontros_teoricos
+#+header: :colnames yes
+| Setor   | Descrição                                                                                   |
+|---------+---------------------------------------------------------------------------------------------|
+| Teórica | Apresentação da disciplina, Introdução: paradigmas de programação, programa,  algoritmo     |
+| Teórica | Algoritmo: atribuição, entrada e saída Estrutura de programa C: scanf, printf               |
+| Teórica | Tipos de Dados, Declaração e tipos de variáveis, Operadores e expressão aritmética e lógica |
+| Teórica | Comando de Seleção If                                                                       |
+| Teórica | Aninhamento de comandos If Else                                                             |
+| Teórica | Estrutura de seleção múltipla - comando switch                                              |
+| Teórica | Comando iterativo for                                                                       |
+| Teórica | Comandos iterativos while e do-while                                                        |
+| Teórica | Comandos iterativos while e do-while Exemplos                                               |
+| Teórica | Tipos estruturados básicos – arranjos de uma dimensão                                       |
+| Teórica | Classificação de vetores Strings: arranjos de caracteres                                    |
+| Teórica | Arranjos com mais de uma dimensão: matrizes                                                 |
+| Teórica | Busca e classificação em matrizes                                                           |
+| Teórica | Revisão Geral para Prova                                                                    |
+| Teórica | 1ª Prova                                                                                    |
+| Teórica | Subprogramação - variáveis locais e globais, parâmetros                                     |
+| Teórica | Função sem retorno (void): parâmetros formais e reais                                       |
+| Teórica | Parâmetros por valor e por referência, Ponteiros                                            |
+| Teórica | Ponteiros                                                                                   |
+| Teórica | Funções com retorno.  Bubble sort                                                           |
+| Teórica | Estruturas e Definição de Tipos                                                             |
+| Teórica | Estruturas e parâmetros                                                                     |
+| Teórica | Stream Arquivos binários: acesso sequencial                                                 |
+| Teórica | Arquivos binários: acesso randômico                                                         |
+| Teórica | Arquivo texto                                                                               |
+| Teórica | Arquivos texto exemplos                                                                     |
+| Teórica | Recursividade                                                                               |
+| Teórica | Estruturação de programas                                                                   |
+| Teórica | Revisão para a segunda  prova                                                               |
+| Teórica | 2ª Prova                                                                                    |
+
+*** Práticas
+
+#+NAME: listagem_de_encontros_praticos
+#+header: :colnames yes
+| Setor   | Descrição                                                      |
+|---------+----------------------------------------------------------------|
+| Prática | Introdução ao Moodle e ao compilador C                         |
+| Prática | Programa sequencial e comandos de seleção simples              |
+| Prática | Exercicio if, if-else, switch                                  |
+| Prática | Comandos for, while                                            |
+| Prática | Comandos iterativos -- for e while com vetores                 |
+| Prática | Comandos iterativos -- while e do-while com strings e matrizes |
+| Prática | Busca e classificação com matrizes                             |
+| Prática | Apresentação do trabalho final -- Biblioteca Conio             |
+| Prática | Funções sem retorno                                            |
+| Prática | Funções parametrizadas com retorno e ponteiros                 |
+| Prática | Estruturas                                                     |
+| Prática | Arquivos binários                                              |
+| Prática | Arquivos texto                                                 |
+| Prática | Recursividade                                                  |
+| Prática | Apresentação de Trabalhos Finais                               |
 
 ** Cronograma (para TEX)
+*** Configurações
+**** Dias letivos e onde os professores estão disponíveis
 
-#+name: cronograma
-#+header: :var aulas=listagem_de_encontros
+#+name: def_daysoff
 #+begin_src R :results output :session :exports both
 suppressMessages(library(lubridate));
 suppressMessages(library(tidyverse));
 suppressMessages(library(xtable));
 
-aulas <- aulas %>% as_tibble();
-
 daysOff <- c(
-seq(ymd("2019-04-10"), ymd("2019-04-12"), by="days"), # ERAD
-ymd("2019-04-19"), # Religioso
-ymd("2019-04-20"), # Não letivo
-ymd("2019-04-21"), # Tiradentes
-ymd("2019-05-01"), # Trabalho
-ymd("2019-05-18"), # Portas Abert
-ymd("2019-06-20"), # Religioso
-ymd("2019-09-07"), # Independência
-ymd("2019-09-20"), # Farroupilha
-ymd("2019-10-12"), # Religioso
-ymd("2019-10-14"), # SEMAC
-ymd("2019-10-15"), # SEMAC
-ymd("2019-10-16"), # SEMAC
-ymd("2019-10-17"), # SEMAC
-ymd("2019-10-18"), # SEMAC
-ymd("2019-10-20"), # Não Letivo
-ymd("2019-11-02"), # Mortos
-ymd("2019-11-15")  # República
+    seq(ymd("2019-04-10"), ymd("2019-04-12"), by="days"), # ERAD
+    ymd("2019-04-19"), # Religioso
+    ymd("2019-04-20"), # Não letivo
+    ymd("2019-04-21"), # Tiradentes
+    ymd("2019-05-01"), # Trabalho
+    ymd("2019-05-18"), # Portas Abert
+    ymd("2019-06-20"), # Religioso
+    ymd("2019-09-07"), # Independência
+    ymd("2019-09-20"), # Farroupilha
+    ymd("2019-10-12"), # Religioso
+    ymd("2019-10-14"), # SEMAC
+    ymd("2019-10-15"), # SEMAC
+    ymd("2019-10-16"), # SEMAC
+    ymd("2019-10-17"), # SEMAC
+    ymd("2019-10-18"), # SEMAC
+    ymd("2019-10-20"), # Não Letivo
+    ymd("2019-11-02"), # Mortos
+    ymd("2019-11-15")  # República
 )
+#+end_src
+
+#+RESULTS: def_daysoff
+
+**** Data de recuperação
+
+#+name: def_recup
+#+begin_src R :results output :session :exports both
+suppressMessages(library(lubridate));
+suppressMessages(library(tidyverse));
+suppressMessages(library(xtable));
 
 dataDaRecuperação <- ymd("2019-07-01");
+#+end_src
+
+#+RESULTS: def_recup
+
+*** Geração
+**** Datas onde há potencialmente encontros
+
+#+name: def_dates
+#+header: :var dep0=def_daysoff
+#+begin_src R :results output :session :exports both
+suppressMessages(library(lubridate));
+suppressMessages(library(tidyverse));
+suppressMessages(library(xtable));
 
 dates <- tibble(Dia=seq(ymd("2019-03-11"), ymd("2019-07-20"), by="days")) %>%
     # Define o dia da semana
     mutate(DiaDaSemana = wday(Dia)) %>%
-    # Aulas de Compiladores em quais dias da semana (segunda = 2, terca = 3, ...)
-    filter(DiaDaSemana %in% c(2, 4)) %>%
     # Remove dias onde não haverá aula
-    filter(!(Dia %in% daysOff));
+    filter(!(Dia %in% daysOff)) -> dias_disponiveis;
 
-aulas %>%
+dias_disponiveis %>%    
+    # Aulas teóricas em quais dias da semana (segunda = 2, terca = 3, ...)
+    filter(DiaDaSemana %in% c(2, 4)) -> dates.teoricas;
+
+dias_disponiveis %>%
+    # Aulas teóricas em quais dias da semana (segunda = 2, terca = 3, ...)
+    filter(DiaDaSemana %in% c(6)) -> dates.praticas;
+#+end_src
+
+#+RESULTS: def_dates
+
+**** Junta aulas teóricas com práticas
+
+#+name: def_junta_praticas_teoricas
+#+header: :var teoricas=listagem_de_encontros_teoricos
+#+header: :var praticas=listagem_de_encontros_praticos
+#+begin_src R :results output :session :exports both
+suppressMessages(library(lubridate));
+suppressMessages(library(tidyverse));
+suppressMessages(library(xtable));
+
+teoricas %>%
+    mutate(Order = rep(1:15, each=2)) %>%
+    bind_rows(praticas %>%
+              mutate(Order = 1:15)) %>%
+    arrange(Order, desc(Setor)) %>%
+    select(-Order) %>%
+    as_tibble() -> aulas;
+#+end_src
+
+#+RESULTS: def_junta_praticas_teoricas
+
+**** Mapeamento das aulas sobre as datas
+
+#+name: def_cronograma
+#+header: :var dep0=def_recup
+#+header: :var dep1=def_dates
+#+header: :var dep2=def_junta_praticas_teoricas
+#+begin_src R :results output :session :exports both
+Sys.setlocale("LC_TIME","pt_BR.utf8") -> ignore
+teoricas %>%
     # Associa as datas
-    bind_cols(dates %>% slice(1:nrow(aulas))) %>%
-    # Altera a data da PR
-    mutate(Dia = case_when (grepl("PR", Descrição) ~ dataDaRecuperação,
-                            TRUE ~ Dia)) %>%
+    bind_cols(dates.teoricas %>% slice(1:nrow(teoricas))) %>%
+    bind_rows(
+        praticas %>%
+        # Associa as datas (práticas)
+        bind_cols(dates.praticas %>% slice(1:nrow(praticas)))) %>%
+    # Coloca na ordem das datas
+    arrange(Dia) %>%
     # Converte as datas para caracter
     mutate(Encontro = as.character(Dia)) %>%
     # Ordena as aulas
-    mutate(N = 1:nrow(.)) -> aulas;
+    mutate(N = 1:nrow(.)) %>%
+    group_by(Setor) %>%
+    mutate(O = 1:n()) %>%
+    ungroup %>%
+    mutate(DiaDaSemana = weekdays(as.Date(Encontro))) -> cronograma;
+Sys.setlocale("LC_TIME","en_US.utf8") -> ignore;
+#+end_src
 
-aulas %>%
-    select(N, Encontro, Local, Setor, Descrição, Projeto) %>%
+#+RESULTS: def_cronograma
+
+*** Exporta cronograma em TEX
+
+#+name: def_cronograma_tex
+#+header: :var dep0=def_cronograma
+#+begin_src R :results output :session :exports both
+cronograma %>%
+    select(O, N, DiaDaSemana, Encontro, Setor, Descrição) %>%
     as.data.frame() %>%
     xtable(.) %>%
     print (print.results=FALSE,
            booktabs = TRUE,
            include.rownames=FALSE) %>%
-    as.character -> cronograma;
+    as.character -> cronograma.tex;
 #+end_src
 
-#+RESULTS: cronograma
-
-#+begin_src R :results output :session :exports both
-aulas %>%
-    filter(!is.na(Local))
-#+end_src
-
-#+RESULTS:
-: 
-: # A tibble: 4 x 8
-:   Setor Descrição  Local Projeto          Dia        DiaDaSemana Encontro      N
-:   <chr> <chr>      <dbl> <chr>            <date>           <dbl> <chr>     <int>
-: 1 ""    ""        43413. Avaliação E1, E2 2019-04-17           4 2019-04-…    11
-: 2 ""    ""        43413. Avaliação E3     2019-05-08           4 2019-05-…    16
-: 3 ""    ""        43413. Avaliação E4     2019-05-22           4 2019-05-…    20
-: 4 ""    ""        43413. Avaliação E5     2019-06-10           2 2019-06-…    25
-
-** Dias por etapa do projeto (em R)
-
-#+name: dias_por_etapa
-#+header: :var dep=cronograma
-#+begin_src R :results output :session :exports both
-aulas %>%
-    select(Projeto, Dia) %>%
-    filter(grepl("Início", Projeto)) %>%
-    mutate(Projeto = gsub("Início ", "", Projeto)) %>%
-    mutate(Projeto = gsub(" \\(.*$", "", Projeto)) %>%
-    rename(Início = Dia) %>%
-    left_join(
-        aulas %>%
-        select(Projeto, Dia) %>%
-        filter(grepl("Avaliação", Projeto)) %>%
-        mutate(Projeto = gsub("Avaliação ", "", Projeto)) %>%
-        mutate(Projeto = strsplit(Projeto, ",")) %>%
-        unnest(Projeto) %>%
-        mutate(Projeto = trimws(Projeto)) %>%
-        rename(Fim = Dia) %>%
-        bind_rows(
-            tribble(~Projeto, ~Fim,
-                    "E6", (aulas %>%
-                           filter(Descrição == "P2") %>%
-                           pull(Encontro) %>%
-                           as.Date)))
-    ) %>%
-    mutate(Duração = as.integer(Fim - Início)) %>%
-    mutate(Texto = gsub("Início ", "", paste0(Projeto, " = ", Duração))) -> dias_por_etapa
-#+end_src
-
-#+RESULTS: dias_por_etapa
-: 
-: Joining, by = "Projeto"
+#+RESULTS: def_cronograma_tex
 
 ** Cronograma (em PDF)
 
 #+name: modelo_cronograma
-#+header: :var dep0=cronograma
-#+header: :var dep1=dias_por_etapa
+#+header: :var dep0=def_cronograma_tex
 #+begin_src R :results output :session :exports both
 cronograma.modelo.filename = "data/be/43e1ff-0a91-4c3f-9e17-1fa62e6795ce/layout-cronograma.tex"
 cronograma.modelo = readChar(cronograma.modelo.filename, file.info(cronograma.modelo.filename)$size);
-turma = "B";
+turma = "I e J";
 semestre = "2019/1 -- Outono";
 cronograma.modelo <- gsub("TURMA", turma, cronograma.modelo);
 cronograma.modelo <- gsub("SEMESTRE", semestre, cronograma.modelo);
-cronograma.modelo <- gsub("TABELA", gsub("\\\\", "\\\\\\\\", cronograma), cronograma.modelo);
-cronograma.modelo <- gsub("DIASPORETAPA", paste(dias_por_etapa$Texto, collapse=", "), cronograma.modelo);
+cronograma.modelo <- gsub("TABELA", gsub("\\\\", "\\\\\\\\", cronograma.tex), cronograma.modelo);
 write(cronograma.modelo, "cronograma.tex");
 system2("rm", "-f cronograma.pdf")
 system2("rubber", " --pdf cronograma.tex")
@@ -306,45 +345,60 @@ system2("rubber", " --pdf cronograma.tex")
 
 O cronograma também está [[./cronograma.pdf][disponível em formato PDF]].
 
-#+header: :var dep=cronograma
+#+header: :var dep=def_cronograma
 #+begin_src R :results value table :session :exports output :colnames yes
-aulas %>%
-    select(N, Encontro, Local, Setor, Descrição, Projeto) %>%
+cronograma %>%
+    select(N, Encontro, Setor, Descrição) %>%
+    mutate(Setor = case_when(Setor == "Prática" ~ "*Prática*",
+                             TRUE ~ .$Setor)) %>%
     as.data.frame
 #+end_src
 
 #+RESULTS:
-|  N |   Encontro |     Local | Setor      | Descrição                                                        | Projeto             |
-|----+------------+-----------+------------+------------------------------------------------------------------+---------------------|
-|  1 | 2019-03-11 |           |            | Definições, requisitos e posicionamento da disciplina            | Definições iniciais |
-|  2 | 2019-03-13 |           | Léxica     | Introdução, Expressões Regulares, =flex=                           | Início E1 (flex)    |
-|  3 | 2019-03-18 |           | Léxica     | Autômato Finito Determinístico, Conv. AFND para AFD, =flex= (demo) |                     |
-|  4 | 2019-03-20 |           | Sintática  | Intro., Gramáticas Livres de Contexto, Transformações            |                     |
-|  5 | 2019-03-25 |           | Sintática  | Desc., com Retrocesso, Preditivo (Primeiro, Sequência)           |                     |
-|  6 | 2019-03-27 |           | Sintática  | Parser e tabela LL(1), Exercício LL(1), =bison=                    | Início E2 (bison)   |
-|  7 | 2019-04-01 |           | Sintática  | Ascendente, Parser LR(0), SLR(1) , =bison= (demo)                  |                     |
-|  8 | 2019-04-03 |           | Sintática  | Exercícios LR(0), SLR(1)                                         |                     |
-|  9 | 2019-04-08 |           | Sintática  | Parser LR(1), LALR(1)                                            |                     |
-| 10 | 2019-04-15 |           | Sintática  | Exercícios LR(1), e LALR(1), AST e =bison= (ações)                 | Início E3 (Árvore)  |
-| 11 | 2019-04-17 | 43413-104 |            |                                                                  | Avaliação E1, E2    |
-| 12 | 2019-04-22 |           | Semântica  | Esquemas S e L-Atribuídos                                        |                     |
-| 13 | 2019-04-24 |           | Semântica  | Implementação de Esquemas S e L-Atribuídos                       | Início E4 (Tipos)   |
-| 14 | 2019-04-29 |           |            | Revisão                                                          |                     |
-| 15 | 2019-05-06 |           |            | P1                                                               |                     |
-| 16 | 2019-05-08 | 43413-104 |            |                                                                  | Avaliação E3        |
-| 17 | 2019-05-13 |           | Código     | Declarações, Escopos e Atribuição                                |                     |
-| 18 | 2019-05-15 |           | Código     | Expressões Lógicas com atalho, Controle de Fluxo                 |                     |
-| 19 | 2019-05-20 |           | Código     | Endereçamento de Arranjos multidimensionais                      | Início E5 (Código)  |
-| 20 | 2019-05-22 | 43413-104 |            |                                                                  | Avaliação E4        |
-| 21 | 2019-05-27 |           | Código     | Controle de Fluxo                                                |                     |
-| 22 | 2019-05-29 |           | Código     | Controle de Fluxo                                                |                     |
-| 23 | 2019-06-03 |           | Execução   | Introdução, Registro de Ativação                                 |                     |
-| 24 | 2019-06-05 |           | Execução   | Chamada e retorno de Função, Passagem de parâmetros              | Início E6 (Chamada) |
-| 25 | 2019-06-10 | 43413-104 |            |                                                                  | Avaliação E5        |
-| 26 | 2019-06-12 |           | Otimização | Introdução, Janela e Grafos de Fluxo                             |                     |
-| 27 | 2019-06-17 |           | Otimização | Grafos de Fluxo e Redução de potência                            |                     |
-| 28 | 2019-06-19 |           |            | Revisão                                                          |                     |
-| 29 | 2019-06-24 |           |            | P2                                                               |                     |
-| 30 | 2019-07-01 |           |            | PR                                                               |                     |
-
-
+|  N |   Encontro | Setor   | Descrição                                                                                   |
+|----+------------+---------+---------------------------------------------------------------------------------------------|
+|  1 | 2019-03-11 | Teórica | Apresentação da disciplina, Introdução: paradigmas de programação, programa,  algoritmo     |
+|  2 | 2019-03-13 | Teórica | Algoritmo: atribuição, entrada e saída Estrutura de programa C: scanf, printf               |
+|  3 | 2019-03-15 | *Prática* | Introdução ao Moodle e ao compilador C                                                      |
+|  4 | 2019-03-18 | Teórica | Tipos de Dados, Declaração e tipos de variáveis, Operadores e expressão aritmética e lógica |
+|  5 | 2019-03-20 | Teórica | Comando de Seleção If                                                                       |
+|  6 | 2019-03-22 | *Prática* | Programa sequencial e comandos de seleção simples                                           |
+|  7 | 2019-03-25 | Teórica | Aninhamento de comandos If Else                                                             |
+|  8 | 2019-03-27 | Teórica | Estrutura de seleção múltipla - comando switch                                              |
+|  9 | 2019-03-29 | *Prática* | Exercicio if, if-else, switch                                                               |
+| 10 | 2019-04-01 | Teórica | Comando iterativo for                                                                       |
+| 11 | 2019-04-03 | Teórica | Comandos iterativos while e do-while                                                        |
+| 12 | 2019-04-05 | *Prática* | Comandos for, while                                                                         |
+| 13 | 2019-04-08 | Teórica | Comandos iterativos while e do-while Exemplos                                               |
+| 14 | 2019-04-15 | Teórica | Tipos estruturados básicos – arranjos de uma dimensão                                       |
+| 15 | 2019-04-17 | Teórica | Classificação de vetores Strings: arranjos de caracteres                                    |
+| 16 | 2019-04-22 | Teórica | Arranjos com mais de uma dimensão: matrizes                                                 |
+| 17 | 2019-04-24 | Teórica | Busca e classificação em matrizes                                                           |
+| 18 | 2019-04-26 | *Prática* | Comandos iterativos -- for e while com vetores                                              |
+| 19 | 2019-04-29 | Teórica | Revisão Geral para Prova                                                                    |
+| 20 | 2019-05-03 | *Prática* | Comandos iterativos -- while e do-while com strings e matrizes                              |
+| 21 | 2019-05-06 | Teórica | 1ª Prova                                                                                    |
+| 22 | 2019-05-08 | Teórica | Subprogramação - variáveis locais e globais, parâmetros                                     |
+| 23 | 2019-05-10 | *Prática* | Busca e classificação com matrizes                                                          |
+| 24 | 2019-05-13 | Teórica | Função sem retorno (void): parâmetros formais e reais                                       |
+| 25 | 2019-05-15 | Teórica | Parâmetros por valor e por referência, Ponteiros                                            |
+| 26 | 2019-05-17 | *Prática* | Apresentação do trabalho final -- Biblioteca Conio                                          |
+| 27 | 2019-05-20 | Teórica | Ponteiros                                                                                   |
+| 28 | 2019-05-22 | Teórica | Funções com retorno.  Bubble sort                                                           |
+| 29 | 2019-05-24 | *Prática* | Funções sem retorno                                                                         |
+| 30 | 2019-05-27 | Teórica | Estruturas e Definição de Tipos                                                             |
+| 31 | 2019-05-29 | Teórica | Estruturas e parâmetros                                                                     |
+| 32 | 2019-05-31 | *Prática* | Funções parametrizadas com retorno e ponteiros                                              |
+| 33 | 2019-06-03 | Teórica | Stream Arquivos binários: acesso sequencial                                                 |
+| 34 | 2019-06-05 | Teórica | Arquivos binários: acesso randômico                                                         |
+| 35 | 2019-06-07 | *Prática* | Estruturas                                                                                  |
+| 36 | 2019-06-10 | Teórica | Arquivo texto                                                                               |
+| 37 | 2019-06-12 | Teórica | Arquivos texto exemplos                                                                     |
+| 38 | 2019-06-14 | *Prática* | Arquivos binários                                                                           |
+| 39 | 2019-06-17 | Teórica | Recursividade                                                                               |
+| 40 | 2019-06-19 | Teórica | Estruturação de programas                                                                   |
+| 41 | 2019-06-21 | *Prática* | Arquivos texto                                                                              |
+| 42 | 2019-06-24 | Teórica | Revisão para a segunda  prova                                                               |
+| 43 | 2019-06-26 | Teórica | 2ª Prova                                                                                    |
+| 44 | 2019-06-28 | *Prática* | Recursividade                                                                               |
+| 45 | 2019-07-05 | *Prática* | Apresentação de Trabalhos Finais                                                            |
