@@ -53,7 +53,7 @@ df.legacy %>%
 |---------+-----------------------------------------------------------------------------------------------------------------------------------------|
 | Teórica | Apresentação  do  curso  e  da  disciplina  Aula  inaugural  dos  calouros Introdução:  paradigmas de programação, programa,  algoritmo |
 | Teórica | Algoritmo: atribuição, entrada e saída Estrutura de programa C: scanf, printf                                                           |
-| Teórica | Tipos de Dados, Declaração de variáveis, Operadores e expressão aritmética e lógica                                                     |
+| Teórica | Tipos de Dados Declaração de variáveis, tipos de variáveis Operadores e expressão aritmética e lógica                                   |
 | Teórica | Comando de Seleção If                                                                                                                   |
 | Teórica | Aninhamento de comandos If Else                                                                                                         |
 | Teórica | Estrutura de seleção múltipla - comando switch                                                                                          |
@@ -127,7 +127,7 @@ A mescla entre aulas teóricas e práticas é feita automaticamente.
 |---------+---------------------------------------------------------------------------------------------|
 | Teórica | Apresentação da disciplina, Introdução: paradigmas de programação, programa,  algoritmo     |
 | Teórica | Algoritmo: atribuição, entrada e saída Estrutura de programa C: scanf, printf               |
-| Teórica | Tipos de Dados, Declaração e tipos de variáveis, Operadores e expressão aritmética e lógica |
+| Teórica | Tipos de Dados, Declaração e tipos de variáveis, Expressão aritmética e lógica    |
 | Teórica | Comando de Seleção If                                                                       |
 | Teórica | Aninhamento de comandos If Else                                                             |
 | Teórica | Estrutura de seleção múltipla - comando switch                                              |
