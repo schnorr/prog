@@ -170,7 +170,7 @@ A mescla entre aulas teóricas e práticas é feita automaticamente.
 | Prática | Comandos iterativos -- while e do-while com strings e matrizes |
 | Prática | Busca e classificação com matrizes                             |
 | Prática | Apresentação do trabalho final -- Biblioteca Conio             |
-| Prática | Funções sem retorno                                            |
+| Prática | Ponteiros e Funções sem retorno                                |
 | Prática | Funções parametrizadas com retorno e ponteiros                 |
 | Prática | Estruturas                                                     |
 | Prática | Arquivos binários                                              |
