@@ -42,7 +42,7 @@ disciplina.
 
 * Plano e Cronograma
 
-- Consulte o plano INF01202 no [[http://www1.ufrgs.br/graduacao/xInformacoesAcademicas/atividadesdeensino.php ][Portal da UFRGS]]
+- Consulte no Portal do Aluno da UFRGS, ou uma [[./plano/][cópia neste repositório]].
 - Cronograma Edição 2019/1
   - [[./cronograma/teorica.org][Aulas Teóricas]] (Turmas I/J, Segundas e Quartas, 13:30 – 15:10)
   - [[./cronograma/pratica.org][Aulas Práticas]], atenção, cada turma em horário diferente
