@@ -320,7 +320,9 @@ cronograma %>%
     xtable(.) %>%
     print (print.results=FALSE,
            booktabs = TRUE,
-           include.rownames=FALSE) %>%
+           include.rownames=FALSE,
+           tabular.environment = 'longtable',
+           floating = FALSE) %>%
     as.character -> cronograma.tex;
 #+end_src
 
