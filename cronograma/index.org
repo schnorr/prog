@@ -309,7 +309,13 @@ Sys.setlocale("LC_TIME","en_US.utf8") -> ignore;
 #+header: :var dep0=def_cronograma
 #+begin_src R :results output :session :exports both
 cronograma %>%
-    select(O, N, DiaDaSemana, Encontro, Setor, Descrição) %>%
+    group_by(Setor) %>%
+    mutate(O = case_when(Setor == "Prática" ~ paste0("P", 1:n()),
+                         TRUE ~ "")) %>%
+    ungroup %>%
+    mutate(Setor = case_when(Setor == "Teórica" ~ "",
+                             TRUE ~ .$Setor)) %>%
+    select(N, Encontro, O, Setor, Descrição) %>%
     as.data.frame() %>%
     xtable(.) %>%
     print (print.results=FALSE,
