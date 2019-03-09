@@ -317,7 +317,7 @@ cronograma %>%
                              TRUE ~ .$Setor)) %>%
     select(N, Encontro, O, Setor, Descrição) %>%
     as.data.frame() %>%
-    xtable(.) %>%
+    xtable(., align = "rrlllp{12cm}") %>%
     print (print.results=FALSE,
            booktabs = TRUE,
            include.rownames=FALSE,
