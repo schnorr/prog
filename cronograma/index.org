@@ -391,7 +391,7 @@ cronograma %>%
 | 24 | 2019-05-10 | *Prática* | Apresentação do trabalho final -- Biblioteca Conio                                          |
 | 25 | 2019-05-13 | Teórica | Função sem retorno (void): parâmetros formais e reais                                       |
 | 26 | 2019-05-15 | Teórica | Parâmetros por valor e por referência, Ponteiros                                            |
-| 27 | 2019-05-17 | *Prática* | Funções sem retorno                                                                         |
+| 27 | 2019-05-17 | *Prática* | Ponteiros e Funções sem retorno                                                             |
 | 28 | 2019-05-20 | Teórica | Ponteiros                                                                                   |
 | 29 | 2019-05-22 | Teórica | Funções com retorno.  Bubble sort                                                           |
 | 30 | 2019-05-24 | *Prática* | Funções parametrizadas com retorno e ponteiros                                              |
