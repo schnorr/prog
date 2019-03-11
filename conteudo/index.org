@@ -23,4 +23,10 @@
 #+EXPORT_SELECT_TAGS: export
 #+TAGS: noexport(n) deprecated(d)
 
-Por ser atualizado.
+* Teóricas
+
+| *Descrição*                                   |
+|---------------------------------------------|
+| [[][Apresentação da disciplina]             |
+| [[][Introdução de Algoritmos e Programação] |
+
