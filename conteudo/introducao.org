@@ -1,0 +1,71 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Introdução \linebreak Algoritmos e Programação
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS:   H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+
+* Programação
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula01-Introducao_slide_02.pdf}{Profa. Mara Abel}
+* Atuação do Computador
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula01_completa_slide_14.pdf}{Prof. Edison Pignaton de Freitas}
+* Uma receita (de cookies) com passos
+#+attr_latex: :width .5\linewidth
+[[./img/cookies.jpeg]]
+* Computador como máquina UNIVERSAL
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula01_completa_slide_15.pdf}{Prof. Edison Pignaton de Freitas}
+* Linguagens de Programação
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula01-_apresentacao_slide_05.pdf}{Prof. Claudio Jung}
+* Modelos e Paradigmas de Linguagens
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula01-Introducao_slide_04.pdf}{Profa. Mara Abel}
+* Modelo Imperativo
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula01-Introducao_slide_05.pdf}{Profa. Mara Abel}
+* Programação Estruturada
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula01-Introducao_slide_06.pdf}{Profa. Mara Abel}
+* O que a programação estruturada permite
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula01-Introducao_slide_07.pdf}{Profa. Mara Abel}
+* Elaboração de um Programa
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula01_completa_slide_22.pdf}{Prof. Edison Pignaton de Freitas}
+* Como _não_ elaborar um programa
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula01-Introducao_slide_09.pdf}{Profa. Mara Abel}
+* O papel do compilador (um tradutor de código)
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula01-Introducao_slide_10.pdf}{Profa. Mara Abel}
+* Ciclo de desenvolvimento de um programa
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula01-Introducao_slide_11.pdf}{Profa. Mara Abel}
+* Resumo da elaboração de programas
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula01_completa_slide_23.pdf}{Prof. Edison Pignaton de Freitas}
+* Passos na análise para criação de uma solução
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula01-_apresentacao_slide_12.pdf}{Prof. Claudio Jung}
+* Exemplo de um problema
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula01-_apresentacao_slide_25.pdf}{Prof. Claudio Jung}
+* Identificar objetivo, entradas e saídas
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula01-_apresentacao_slide_26.pdf}{Prof. Claudio Jung}
+* Linguagem Algorítmica e Fluxograma
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula01-Introducao_slide_14.pdf}{Profa. Mara Abel}
+* Programa em C
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula01-Introducao_slide_15.pdf}{Profa. Mara Abel}
+* Definição de algoritmo
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula01-_apresentacao_slide_13.pdf}{Prof. Claudio Jung}
+* Projeto do Algoritmo
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula01-_apresentacao_slide_14.pdf}{Prof. Claudio Jung}
+* Algoritmo para preparar o mate
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula01_completa_slide_25.pdf}{Prof. Edison Pignaton de Freitas}
+* A importância de aprender a criar _algoritmos_
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula01_completa_slide_26.pdf}{Prof. Edison Pignaton de Freitas}
+* Vamos trabalhar o *Pensamento Computacional*
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula01_completa_slide_18.pdf}{Prof. Edison Pignaton de Freitas}
+* Propriedades de algoritmos
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula01-_apresentacao_slide_15.pdf}{Prof. Claudio Jung}
+* Normas importantes para algoritmos
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula01_completa_slide_28.pdf}{Prof. Edison Pignaton de Freitas}

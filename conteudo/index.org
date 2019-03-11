@@ -25,8 +25,8 @@
 
 * Teóricas
 
-| *Descrição*                                   |
-|---------------------------------------------|
-| [[][Apresentação da disciplina]             |
-| [[][Introdução de Algoritmos e Programação] |
+| *Descrição*                              |
+|----------------------------------------|
+| [[http://www.inf.ufrgs.br/~schnorr/inf1202/apresentacao.pdf][Apresentação da disciplina]]             |
+| [[http://www.inf.ufrgs.br/~schnorr/inf1202/introducao.pdf][Introdução de Algoritmos e Programação]] |
 
