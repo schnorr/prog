@@ -31,7 +31,7 @@
 |    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/introducao.pdf][Introdução de Algoritmos e Programação]] |
 |----+----------------------------------------|
 | 02 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-01.pdf][Revisão]]                                |
-| 02 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/sequencial.pdf][Estrutura de um Programa em C]]          |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/sequencial.pdf][Estrutura de um Programa em C]]          |
 |----+----------------------------------------|
 | 03 |                                        |
 
