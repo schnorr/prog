@@ -1,0 +1,69 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Revisão Aula 01
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS:   H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+
+* Pensamento Computacional
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula02-v1_slide_02.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Elaboração de um Programa
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula02-Sequencial_slide_02.pdf}{Profa. Mara Abel}
+
+* A Importância de Algoritmos
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula02/aula02_slide_05.pdf}{Prof. Marcelo Walter}
+
+* Propriedades de um Algoritmo
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula02/aula02_slide_08.pdf}{Prof. Marcelo Walter}
+
+* Metodologia de Trabalho: Correções Sintática e Semântica
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula02-algor-estrutprogr_slide_03.pdf}{Prof. Claudio Jung}
+
+* Sintática e Semântica
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula02-algor-estrutprogr_slide_05.pdf}{Prof. Claudio Jung}
+
+* Lidando com a Definição do Problema
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula02/aula02_slide_07.pdf}{Prof. Marcelo Walter}
+
+* Exemplo de Algoritmo para Troca de Pneu
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula01_completa_slide_30.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Exemplo: analisar, definir, delimitar o problema
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula02-v1_slide_10.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Exemplo: uma solução profissional #1
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula02-v1_slide_11.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Exemplo: uma solução profissional #2
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula02-v1_slide_12.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Exemplo: o *algoritmo*
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula02-v1_slide_13.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Exemplo: notas importantes
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula02-v1_slide_14.pdf}{Prof. Edison Pignaton de Freitas}
