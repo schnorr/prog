@@ -180,7 +180,7 @@ Veja o algoritmo fornecido.
 
 * Solução do exercício
 
-#+BEGIN_SRC C :tangle conversao-real-dolar.c
+#+BEGIN_SRC C :tangle programa-conversao-real-dolar.c
 /* Calcula e conversão de Real para Dolar */
 #include <stdio.h> // biblioteca com operações de I/O
 int main()
