@@ -25,6 +25,8 @@
 
 * Teóricas
 
+Os PDFs gerados estão [[http://www.inf.ufrgs.br/~schnorr/inf1202/][disponíveis aqui]], ou na listagem abaixo.
+
 |  *N* | *Descrição*                              |
 |----+----------------------------------------|
 | 01 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/apresentacao.pdf][Apresentação da disciplina]]             |
