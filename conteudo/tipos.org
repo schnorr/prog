@@ -104,3 +104,49 @@ Caso não seja inicializada, a variável tem qual valor?
 
 #+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula03-SequencialExpressoes_slide_19.pdf}{Prof. Mara Abel}
 
+* O comando de atribuição ===
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula03-SequencialExpressoes_slide_17.pdf}{Prof. Mara Abel}
+
+#+BEGIN_CENTER
+Do lado direito da atribuição, temos uma *expressão*.
+#+END_CENTER
+
+* Expressões aritméticas
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula03/aula03_slide_18.pdf}{Prof. Marcelo Walter}
+
+* Operadores aritméticos sem utilizar bibliotecas externas
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula03_slide_21.pdf}{Prof. Edison Pignaton de Freitas}
+
+#+BEGIN_CENTER
+Todos estes operadores fazem parte da linguagem C.
+#+END_CENTER
+
+* Exemplo do uso de operadores aritméticos
+
+#+BEGIN_SRC C :tangle exemplo-operadores-aritmeticos.c
+/* Programa para ilustrar funcionamento dos operadores aritméticos */
+#include <stdio.h>
+int main ()
+{
+  int val_1, val_2;
+  int divisao, resto;
+
+  val_1 = 13;
+  val_2 = 5;
+  divisao = val_1 / val_2;
+  resto = val_1 % val_2;
+  printf("Divisão inteira = %d Resto = %d\n", divisao, resto);
+  return 0;
+}
+#+END_SRC
+
+#+begin_src shell :results output
+gcc exemplo-operadores-aritmeticos.c -o exemplo-operadores-aritmeticos
+./exemplo-operadores-aritmeticos
+#+end_src
+
+#+RESULTS:
+: Divisão inteira = 2 Resto = 3
