@@ -1,0 +1,106 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Tipos de Dados, Declaração e tipos de variáveis, Operadores e expressão aritmética e lógica
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS:   H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+
+* O que veremos hoje
+
+- Tipos de dados na declaração de variáveis
+- Expressões aritméticas e lógicas
+
+* Tipos de dados
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula03-SequencialExpressoes_slide_10.pdf}{Prof. Mara Abel}
+
+#+BEGIN_CENTER
+Melhor jeito de se saber o tamanho é com o comando =sizeof=
+#+END_CENTER
+
+* Vejamos um exemplo com sizeof
+
+#+BEGIN_SRC C :tangle exemplo-sizeof.c
+/* Programa que fornece o tamanho do tipo */
+#include <stdio.h>
+int main ()
+{
+  printf ("char     = %d\n", sizeof(char));
+  printf ("int      = %d\n", sizeof(int));
+  printf ("long int = %d\n", sizeof(long int));
+  printf ("float    = %d\n", sizeof(float));
+  printf ("double   = %d\n", sizeof(double));
+  return 0;
+}
+#+END_SRC
+
+A implementação destes tipos:
+- inteiros, do menor ao maior valor inteiro que cabe no tamanho
+- ponto-flutuante (=float=, =double=), veja a norma IEEE 754, em pt-br \\
+  https://pt.wikipedia.org/wiki/IEEE_754
+- Tabela ASCII para o tipo =char=
+
+* Tabela ASCII
+
+[[./img/asciifull.jpg]]
+
+#+attr_latex: :width .5\linewidth
+[[./img/extend.jpg]]
+* Presença do tipo na declaração de variáveis
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula03-SequencialExpressoes_slide_14.pdf}{Prof. Mara Abel}
+
+* Inicialização de variáveis na declaração
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula03-SequencialExpressoes_slide_20.pdf}{Prof. Mara Abel}
+
+* Vejamos um exemplo
+
+#+BEGIN_SRC C :tangle exemplo-inicializacao-variaveis.c
+/* Programa para realizar testes de inicialização de variáveis na declaração */
+#include <stdio.h>
+int main ()
+{
+  int v = 3;
+  printf ("O valor da variável v é %d.\n", v);
+  return 0;
+}
+#+END_SRC
+
+
+#+begin_src shell :results output
+gcc exemplo-inicializacao-variaveis.c -o exemplo-inicializacao-variaveis
+./exemplo-inicializacao-variaveis
+#+end_src
+
+#+BEGIN_CENTER
+Caso não seja inicializada, a variável tem qual valor?
+#+END_CENTER
+
+* Tipos no =scanf=
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula03-SequencialExpressoes_slide_15.pdf}{Prof. Mara Abel}
+
+* Tipos no =printf=
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula03-SequencialExpressoes_slide_16.pdf}{Prof. Mara Abel}
+
+* Contantes do pré-processador
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula03-SequencialExpressoes_slide_18.pdf}{Prof. Mara Abel}
+
+* Vejamos exemplos de constantes
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula03-SequencialExpressoes_slide_19.pdf}{Prof. Mara Abel}
+
