@@ -1,0 +1,78 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Revisão Aula 02
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS:   H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+
+* Configuração                                                     :noexport:
+
+#+BEGIN_SRC emacs-lisp
+(setq org-latex-listings 'minted
+      org-latex-packages-alist '(("" "minted"))
+      org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+(setq org-latex-minted-options
+       '(("frame" "lines")
+         ("fontsize" "\\scriptsize")))
+#+END_SRC
+
+#+RESULTS:
+| frame    | lines       |
+| fontsize | \scriptsize |
+
+* Revisitando o =scanf=
+
+Observar sempre o retorno da função =scanf=
+- Ele indica quantos elementos foram reconhecidos
+
+#+latex: \vfill
+
+#+BEGIN_SRC C :tangle programa-soma2_v2.c
+/*calcula a soma de 2 valores inteiros lidos do teclado */
+#include<stdio.h> // biblioteca com operações de entrada e saída
+int main( )
+{
+  int val_1, val_2; // declaração das variáveis de entrada
+  int soma;         // declaração da variável resultante
+  int nlidos;       // declaração de variável auxiliar
+
+  printf("Informe dois valores:\n"); // mensagem impressa na tela
+  nlidos = scanf("%d %d", &val_1, &val_2);   // leitura da informação digitada
+  soma = val_1 + val_2;   // armazena resultado em soma
+  printf("Resultado da soma: %d (%d)\n", soma, nlidos); // e mostra na tela
+  nlidos = scanf("%d", &val_1);
+  printf("Mais um elemento lido: %d (%d)\n", val_1, nlidos);
+  return 0; // encerra o programa de forma correta
+}
+#+END_SRC
+
+* Algoritmo deve ser claro nos comandos
+
+[[./img/robots_not_so_clear.pdf]]
+
+#+latex: \pause
+
+#+BEGIN_CENTER
+O que tem na sacola do C3PO após a ida ao armazém?
+#+END_CENTER
+
+* Comandos claros no algoritmo
+
+#+latex: \cortesia{./img/aula03_slide_04.pdf}{Adaptado do material do Prof. Edison Pignaton de Freitas}
+
+
+
+

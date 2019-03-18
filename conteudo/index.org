@@ -35,5 +35,8 @@ Os PDFs gerados estão [[http://www.inf.ufrgs.br/~schnorr/inf1202/][disponíveis
 | 02 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-01.pdf][Revisão]]                                |
 |    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/sequencial.pdf][Estrutura de um Programa em C]]          |
 |----+----------------------------------------|
-| 03 |                                        |
+| 03 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-02.pdf][Revisão]]                                |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/tipos.pdf][Tipos de variáveis]]                     |
+|----+----------------------------------------|
+| 04 |                                        |
 
