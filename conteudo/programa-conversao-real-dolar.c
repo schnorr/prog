@@ -8,7 +8,7 @@ int main()
   scanf("%f", &Preco);        // leitura da informação digitada
   printf("Taxa conversao :\n");
   scanf("%f", &Taxa);
-  PrecoEmDolar = Preco *Taxa;
+  PrecoEmDolar = Preco * Taxa;
   printf("Preco em dolar: %f\n", PrecoEmDolar); // mostra
   return 0; // encerra o programa e retorna zero ao Sist Op
 }
