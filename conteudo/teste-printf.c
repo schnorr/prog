@@ -3,11 +3,11 @@
 int main( )
 {
   float valor=99.7567892;
-  printf("Valor com 4f   = [%4f]\n", valor);
-  printf("Valor com 4.0f = [%4.0f]\n", valor);
-  printf("Valor com 4.1f = [%4.1f]\n", valor);
-  printf("Valor com 4.2f = [%4.2f]\n", valor);
-  printf("Valor com 4.3f = [%4.3f]\n", valor);
+  printf("Valor com 9f   = [%9f]\n", valor);
+  printf("Valor com 9.0f = [%9.0f]\n", valor);
+  printf("Valor com 9.1f = [%9.1f]\n", valor);
+  printf("Valor com 9.2f = [%9.2f]\n", valor);
+  printf("Valor com 9.3f = [%9.3f]\n", valor);
   printf("Valor com 1.2f = [%1.2f]\n", valor);
   return 0;
 }
