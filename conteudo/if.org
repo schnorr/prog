@@ -6,7 +6,7 @@
 #+EXPORT_EXCLUDE_TAGS: noexport
 #+EXPORT_SELECT_TAGS: export
 
-#+Title: Comando Condicional de Seleção \linebreak =if= e Expressões Lógicas
+#+Title: Comando Condicional de Seleção \linebreak =if-else= e Expressões Lógicas
 #+Subtitle: *INF01202*
 #+Author: Prof. Lucas Mello Schnorr
 #+Date: \copyleft
@@ -16,4 +16,65 @@
 #+OPTIONS:   H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
 #+LATEX_HEADER: \input{org-babel.tex}
 
+* Sumário
 
+- Expressões lógicas
+- Comando condicional =if-else=
+
+* Motivação
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula04/aula04_slide_11.pdf}{Prof. Marcelo Walter}
+
+* Expressões lógicas com operadores lógicos
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula04-If_else_slide_08.pdf}{Prof. Mara Abel}
+
+* Operadores relacionais
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula04-If_else_slide_09.pdf}{Prof. Mara Abel}
+
+* Exemplos do emprego de operadores relacionais
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula04/aula04_slide_14.pdf}{Prof. Marcelo Walter}
+
+* Mistura de operadores lógicos e relacionais
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula04-expressoes_e_if_slide_10.pdf}{Prof. Claudio Jung}
+
+* Vejamos um exemplo prático
+
+#+BEGIN_SRC C :tangle exemplo-logicos.c
+/* Programa que calcula algumas expressões lógicas */
+#include <stdio.h>
+int main() {
+  int a, b, c, d, valor;          //Entrada
+  a = 1;
+  b = 3;
+  c = 5;
+  d = 7;
+  valor = 9;
+  int e1, e2, e3, e4, e5, e6, e7; //Saída
+
+  e1 = (a > b) || (c < d);
+  e2 = valor > 10;
+  e3 = !(a + c < b);
+  e4 = (a == b);
+  e5 = (a == b) && (a>=c);
+  e6 = (a != b);
+  e7 = !((a >= b) || (a+c));
+
+  printf("Entradas: a=%d, b=%d, c=%d, d=%d, valor=%d\n",
+	 a, b, c, d, valor);
+  printf("Saídas: e1=%d, e2=%d, e3=%d, e4=%d, e5=%d, e6=%d, e7=%d\n",
+	 e1, e2, e3, e4, e5, e6, e7);
+  return 0;
+}
+#+END_SRC
+
+* Cuidados com inspirações da matemática
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula04-expressoes_e_if_slide_11.pdf}{Prof. Claudio Jung}
+
+* Outros exemplos de misturas
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula04-If_else_slide_12.pdf}{Prof. Mara Abel}

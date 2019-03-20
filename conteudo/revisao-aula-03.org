@@ -33,6 +33,10 @@
 | frame    | lines       |
 | fontsize | \scriptsize |
 
+* Revisão
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula04/aula04_slide_01.pdf}{Prof. Marcelo Walter}
+
 * Comando de *Atribuição*
 
 #+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula03-SequencialExpressoes_slide_17.pdf}{Prof. Mara Abel}
@@ -40,7 +44,6 @@
 #+BEGIN_CENTER
 Do lado direito da atribuição, temos uma *expressão*.
 #+END_CENTER
-
 
 * Vejamos um exemplo
 
@@ -77,7 +80,6 @@ gcc exemplo-problema-atribuicao.c -o exemplo-problema-atribuicao
 #+end_src
 
 #+RESULTS:
-
 
 * Exercício
 
@@ -142,8 +144,12 @@ int main( )
 }
 #+END_SRC
 
-* Exercício para casa
+* Exercício para casa #1
 
 #+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula03-algoritmo_e_estrutura_C_slide_22.pdf}{Prof. Claudio Jung}
+
+* Exercício para casa #2
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula04/aula04_slide_09.pdf}{Prof. Marcelo Walter}
 
 
