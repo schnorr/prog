@@ -124,11 +124,12 @@ int main() // programa principal
 int main( )
 {
   float valor=99.7567892;
-  printf("Valor com 4f   = [%4f]\n", valor);
-  printf("Valor com 4.0f = [%4.0f]\n", valor);
-  printf("Valor com 4.1f = [%4.1f]\n", valor);
-  printf("Valor com 4.2f = [%4.2f]\n", valor);
-  printf("Valor com 4.3f = [%4.3f]\n", valor);
+  int x = 23;
+  printf("Valor com 9f   = [%9.f]\n", valor);
+  printf("Valor com 9.0f = [%9.0f]\n", valor);
+  printf("Valor com 9.1f = [%9.1f]\n", valor);
+  printf("Valor com 9.2f = [%9.2f]\n", valor);
+  printf("Valor com 9.3f = [%9.3f]\n", valor);
   printf("Valor com 1.2f = [%1.2f]\n", valor);
   return 0;
 }
@@ -142,6 +143,14 @@ Compilando e executando (veja a saída no terminal)
 gcc teste-printf.c -o teste-printf
 ./teste-printf
 #+end_src
+
+#+RESULTS:
+: Valor com 9f   = [99.756790]
+: Valor com 9.0f = [      100]
+: Valor com 9.1f = [     99.8]
+: Valor com 9.2f = [    99.76]
+: Valor com 9.3f = [   99.757]
+: Valor com 1.2f = [99.76]
 
 * Para ir mais longe
 
