@@ -99,7 +99,7 @@ Vejamos como fica em _formato de árvore_, com regras de precedência.
 
 #+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula04_slide_22.pdf}{Prof. Edison Pignaton de Freitas}
 
-* Comando =if=
+* Comando =if= (condicional simples, com único comando)
 
 #+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula04-If_else_slide_22.pdf}{Prof. Mara Abel}
 
@@ -115,7 +115,7 @@ Vejamos como fica em _formato de árvore_, com regras de precedência.
 
 #+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula04-expressoes_e_if_slide_18.pdf}{Prof. Claudio Jung}
 
-* Exemplo #2 (Código)
+* Exemplo #2 (Código em C)
 
 #+BEGIN_SRC C :tangle exemplo-livros.c
 /* processa uma venda e avisa caso se mais de 10
@@ -203,3 +203,49 @@ gcc exemplo-coordenadas.c -o exemplo-coordenadas
 : 
 :  Coordenadas: x = e y = 
 :  Ponto na origem
+* Comando =if= (cond. composto, com múltiplos comandos)
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula04_slide_33.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Exemplo #4 (Livros, com desconto)
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula04-If_else_slide_34.pdf}{Prof. Mara Abel}
+
+* Exemplo #4 (Código em C)
+
+#+BEGIN_SRC C :tangle exemplo-livros-desconto.c
+/* processa uma venda e avisa caso se mais de 10
+unidades vendidas foram vendidas */
+#include<stdio.h>
+int main(void)
+{
+  char codigo;
+  int nro_livros;
+  float apagar;
+  printf("digite o codigo do produto e número de unidades:\n");
+  scanf(" %c %d",&codigo, &nro_livros);
+  if (codigo == 'a'|| codigo == 'A') {
+    apagar = nro_livros*10;
+    apagar = apagar * 0.90;
+  }
+  if (codigo == 'b'|| codigo == 'B')
+    apagar = nro_livros*20;
+  if (codigo == 'c' || codigo == 'C')
+    apagar = nro_livros*30;
+  printf("o valor a pagar é de R$ %6.2f.\n",apagar);
+  if (nro_livros > 10)
+    printf("Foram vendidas mais de 10 unidades do tipo %c.\n", codigo);
+  return 0;
+}
+#+END_SRC
+
+
+#+begin_src shell :results output
+gcc exemplo-livros-desconto.c -o exemplo-livros-desconto
+#./exemplo-livros-desconto
+#+end_src
+
+* Cuidados nos erros comuns
+
+- Confundir atribuição com comparação igual
+- Esquecer as chaves em comando condicional com múltiplos comandos
