@@ -27,16 +27,18 @@
 
 Os PDFs gerados estão [[http://www.inf.ufrgs.br/~schnorr/inf1202/][disponíveis aqui]], ou na listagem abaixo.
 
-|  *N* | *Descrição*                              |
-|----+----------------------------------------|
-| 01 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/apresentacao.pdf][Apresentação da disciplina]]             |
-|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/introducao.pdf][Introdução de Algoritmos e Programação]] |
-|----+----------------------------------------|
-| 02 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-01.pdf][Revisão]]                                |
-|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/sequencial.pdf][Estrutura de um Programa em C]]          |
-|----+----------------------------------------|
-| 03 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-02.pdf][Revisão]]                                |
-|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/tipos.pdf][Tipos de variáveis]]                     |
-|----+----------------------------------------|
-| 04 |                                        |
-
+|  *N* | *Descrição*                                  |
+|----+--------------------------------------------|
+| 01 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/apresentacao.pdf][Apresentação da disciplina]]                 |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/introducao.pdf][Introdução de Algoritmos e Programação]]     |
+|----+--------------------------------------------|
+| 02 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-01.pdf][Revisão]]                                    |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/sequencial.pdf][Estrutura de um Programa em C]]              |
+|----+--------------------------------------------|
+| 03 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-02.pdf][Revisão]]                                    |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/tipos.pdf][Tipos de variáveis, expressões aritméticas]] |
+|----+--------------------------------------------|
+| 04 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-03.pdf][Revisão]]                                    |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/if.pdf][Comandos =if= e expressões lógicas]]           |
+|----+--------------------------------------------|
+| 05 |                                            |
