@@ -75,6 +75,131 @@ int main() {
 
 #+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula04-expressoes_e_if_slide_11.pdf}{Prof. Claudio Jung}
 
-* Outros exemplos de misturas
+* Outros exemplos de misturas lógicas
 
 #+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula04-If_else_slide_12.pdf}{Prof. Mara Abel}
+
+* Precedência de operadores lógicos com exemplo
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula04-If_else_slide_13.pdf}{Prof. Mara Abel}
+
+* Testes com os exemplos
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula04_slide_19.pdf}{Prof. Edison Pignaton de Freitas}
+
+#+BEGIN_CENTER
+Vejamos como fica em _formato de árvore_, com regras de precedência.
+#+END_CENTER
+
+* Motivação para comandos de seleção condicional
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula04_slide_21.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Comandos de seleção condicional
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula04_slide_22.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Comando =if=
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula04-If_else_slide_22.pdf}{Prof. Mara Abel}
+
+* Exemplo #1
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula04-If_else_slide_23.pdf}{Prof. Mara Abel}
+
+* Exemplo #2 (Enunciado e Algoritmo)
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula04-expressoes_e_if_slide_17.pdf}{Prof. Claudio Jung}
+
+* Exemplo #2 (Enunciado e Algoritmo Completo)
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula04-expressoes_e_if_slide_18.pdf}{Prof. Claudio Jung}
+
+* Exemplo #2 (Código)
+
+#+BEGIN_SRC C :tangle exemplo-livros.c
+/* processa uma venda e avisa caso se mais de 10
+unidades vendidas foram vendidas */
+#include<stdio.h>
+int main(void)
+{
+  char codigo;
+  int nro_livros;
+  float apagar;
+  printf("digite o codigo do produto e número de unidades:\n");
+  scanf(" %c %d",&codigo, &nro_livros);
+  if (codigo == 'a'|| codigo == 'A')
+    apagar = nro_livros*10;
+  if (codigo == 'b'|| codigo == 'B')
+    apagar = nro_livros*20;
+  if (codigo == 'c' || codigo == 'C')
+    apagar = nro_livros*30;
+  printf("o valor a pagar é de R$ %6.2f.\n",apagar);
+  if (nro_livros > 10)
+    printf("Foram vendidas mais de 10 unidades do tipo %c.\n", codigo);
+  return 0;
+}
+#+END_SRC
+
+#+begin_src shell :results output
+gcc exemplo-livros.c -o exemplo-livros
+#./exemplo-livros
+#+end_src
+
+#+RESULTS:
+
+* Exemplo #3 (Enunciado)
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula04-If_else_slide_27.pdf}{Prof. Mara Abel}
+
+* Exemplo #3 (Ententendo o Enunciado)
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula04_slide_35.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Exemplo #3 (Pensamento Computacional \to Passos)
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula04-If_else_slide_29.pdf}{Prof. Mara Abel}
+
+* Exemplo #3 (Algoritmo)
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula04-If_else_slide_30.pdf}{Prof. Mara Abel}
+
+* Exemplo #3 (Código em C)
+
+#+BEGIN_SRC C :tangle exemplo-coordenadas.c
+/* Obtem coordenadas e informa localização */
+#include <stdio.h>
+int main() {
+  float x, y; //Entrada
+  printf("Coordenadas: x = ");
+  scanf("%f", &x);
+  printf("e y = ");
+  scanf("%f", &y);
+  if ( x == 0 && y == 0 )
+    printf("\n Ponto na origem");
+  if ( x > 0 && y > 0 )
+    printf("\n Ponto no quadrante 1");
+  if ( x < 0 && y > 0 )
+    printf("\n Ponto no quadrante 2");
+  if ( x < 0 && y < 0 )
+    printf("\n Ponto no quadrante 3");
+  if ( x > 0 && y < 0 )
+    printf("\n Ponto no quadrante 4");
+  if ( x == 0 && y != 0 )
+    printf("\n Ponto no eixo dos y");
+  if ( x != 0 && y == 0 )
+    printf("\n Ponto no eixo dos x");
+  printf("\n");
+  return 0;
+}
+#+END_SRC
+
+#+begin_src shell :results output
+gcc exemplo-coordenadas.c -o exemplo-coordenadas
+./exemplo-coordenadas
+#+end_src
+
+#+RESULTS:
+: 
+:  Coordenadas: x = e y = 
+:  Ponto na origem

@@ -144,6 +144,10 @@ int main( )
 }
 #+END_SRC
 
+* Atenção!
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula04-If_else_slide_20.pdf}{Prof. Mara Abel}
+
 * Exercício para casa #1
 
 #+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula03-algoritmo_e_estrutura_C_slide_22.pdf}{Prof. Claudio Jung}
