@@ -19,7 +19,13 @@
 * Sumário
 
 - Expressões lógicas
+  - Operadores lógicos
+  - Precedência de operadores
+  - Operadores relacionados
 - Comando condicional =if-else=
+  - Com um único comando
+  - Com múltiplos comandos
+- Exemplo
 
 * Motivação
 
