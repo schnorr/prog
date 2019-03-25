@@ -1,0 +1,215 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Revisão Aula 04
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS:   H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+
+* Configuração                                                     :noexport:
+
+#+BEGIN_SRC emacs-lisp
+(setq org-latex-listings 'minted
+      org-latex-packages-alist '(("" "minted"))
+      org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+(setq org-latex-minted-options
+       '(("frame" "lines")
+         ("fontsize" "\\scriptsize")))
+#+END_SRC
+
+#+RESULTS:
+| frame    | lines       |
+| fontsize | \scriptsize |
+
+* Revisão
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula05_slide_02.pdf}{Prof. Edison Pignaton de Freitas}
+
+* =if= Simples e Composto
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula05_slide_03.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Simples!
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula05_slide_04.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Composto
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula05_slide_05.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Exercício para casa #1
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula03-algoritmo_e_estrutura_C_slide_22.pdf}{Prof. Claudio Jung}
+
+* #1: Análise e Definição do Problema
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula04/aula04_slide_36.pdf}{Prof. Marcelo Walter}
+
+* #1: Projeto do Algoritmo
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula04/aula04_slide_37.pdf}{Prof. Marcelo Walter}
+
+* #1: Obtendo as partes inteira e decimal
+
+Testar com a entrada 159.83
+
+Veja em [[./rev-a04-inteiro-frac.c]]
+
+#+BEGIN_SRC C :tangle rev-a04-inteiro-frac.c
+// Converte valor real em dois valores inteiros: exemplos de soluções
+#include<stdio.h>
+#include<math.h> // para uso da função round
+int main( )
+{
+  float valor; // variável float
+  int pint, pdecimal; // parte inteira e parte decimal, convertidas para inteiro
+
+  // Extraindo números inteiros de um número decimal:
+  printf(" *** Conversoes de valores float ***\n ");
+  printf("Informe o valor a ser convertido:");
+  scanf("%f", &valor);
+  pint = (int) valor;
+  pdecimal = (int)((valor-pint)*100); //cast, para obter parte inteira
+  printf("parte inteira = %d, parte decimal = %d (aqui, sem o round!!!)\n",
+	 pint, pdecimal);
+  pdecimal = (int)(round((valor-pint)*100)); //função para obter parte inteira
+  printf("parte inteira = %d, parte decimal = %d (com o round!!!)\n",
+	 pint, pdecimal);
+  return 0;
+}
+#+END_SRC
+
+* (Explicação para a entrada 159.83)
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula04/aula04_slide_40.pdf}{Prof. Marcelo Walter}
+
+* #1: Problema Completo
+
+Veja no arquivo [[./rev-a04-notas-moedas.c]]
+
+#+attr_latex: :options fontsize=\tiny
+#+BEGIN_SRC C :tangle rev-a04-notas-moedas.c
+// Calcula menor número de notas e moedas correspondentes a um valor:
+#include<stdio.h>
+#include<math.h> // função round
+int main()
+{
+  float valor;
+  int pint, pdecimal;
+  int n100, n50, n20, n10, n5, n2, n1; // contadores de notas
+  int m50, m25, m10, m05, m01; // contadores de moedas
+
+  printf(" *** Conversoes de valores ***\n");
+  printf("Informe o valor a ser convertido: R$");
+  scanf("%f",&valor);
+  pint = (int) valor;
+  pdecimal = (int) (round((valor-pint)*100));
+
+  n100 = pint/100; // resultado da divisão inteira por 100
+  pint = pint % 100; // resto da divisão inteira por 100
+  n50 = pint / 50;
+  pint = pint%50;
+  n20 = pint/20;
+  pint = pint%20;
+  n10 = pint/10;
+  pint = pint%10;
+  n5 = pint/5;
+  pint = pint % 5;
+  n2 = pint/2; // resultado da divisão inteira por 2
+  n1 = pint%2; // resto da divisão inteira por 2
+
+  printf("\n\nValor lido: R$%d,00\n",valor); // insere vírgula zero
+  printf("notas de 100: %d\n",n100);
+  printf("notas de 50: %d\n",n50);
+  printf("notas de 20: %d\n",n20);
+  printf("notas de 10: %d\n",n10);
+  printf("notas de 5: %d\n",n5);
+  printf("notas de 2: %d\n",n2);
+  printf("notas de 1: %d\n",n1);
+
+  m50 = pdecimal/50;        // resultado da divisão inteira por 50
+  pdecimal = pdecimal % 50; // resto da divisão inteira por 50
+  m25 = pdecimal / 25;
+  pdecimal = pdecimal% 25;
+  m10 = pdecimal/10;
+  pdecimal = pdecimal%10;
+  m05 = pdecimal/5;
+  m01 = pdecimal%5;
+
+  printf(" Moedas de 50: %d\n",m50);
+  printf(" Moedas de 25: %d\n",m25);
+  printf(" Moedas de 10: %d\n",m10);
+  printf(" Moedas de 5: %d\n",m05);
+  printf(" Moedas de 1: %d\n",m01);
+  return 0
+}
+#+END_SRC
+
+* Exercício para casa #2
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula04/aula04_slide_09.pdf}{Prof. Marcelo Walter}
+
+* #2: Análise e Definição do Problema
+
+Entradas
+- Quantidade de passos no _primeiro_ minuto
+- Quantidade de passos no _último_ minuto
+- Duração da corrida (número de _horas_ e _minutos_)
+- Cada passo de John mede _70cm_
+
+#+latex: \pause
+
+Miolo
+- 70cm são 0.0007km
+- Horas devem ser convertidas em minutos
+- Devemos assumir uma média global de passos
+  - Calculada entre os passos do primeiro e do último minuto
+
+
+#+latex: \pause
+
+Saída
+- Distância percorrida em km
+
+* #2 Programa Completo
+
+Veja em [[./rev-a04-john-doe.c]]
+
+#+BEGIN_SRC C :tangle rev-a04-john-doe.c
+#include <stdio.h>
+int main (){
+  int pi, pf, h, min, total_minutos;
+  float mp, distancia;
+  printf("Entre com o nro de passo do primeiro minuto: ");
+  scanf("%d", &pi);
+  printf("Entre com o nro de passo do ultimo minuto: ");
+  scanf("%d", &pf);
+  printf("Entre com o nro de horas e minutos de corrida: ");
+  scanf("%d%d", &h, &min);
+
+  printf("Entrada reconhecida:\n"
+	 "Passos do primeiro minuto: %d\n"
+	 "Passos do último minuto: %d\n"
+	 "Duração, horas (%d) e minutos (%d).\n",
+	 pi, pf, h, min);
+
+  mp = (pi+pf)/2.0; // media dos passos
+  total_minutos = h*60+min;
+  distancia = total_minutos*mp*0.0007;
+  printf("Distancia total percorrida em km %f\n", distancia);
+  return 0;
+}
+#+END_SRC
+
