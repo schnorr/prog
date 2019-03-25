@@ -44,4 +44,11 @@ A coluna *N* se refere ao número global do encontro conforme o [[../cronograma/
 |    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/if.pdf][Comandos =if= e expressões lógicas]]           |
 |----+--------------------------------------------|
 | 07 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-04.pdf][Revisão]]                                    |
-|    |                                            |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/if-else.pdf][Comandos =if-else= aninhados]]                 |
+|----+--------------------------------------------|
+| 08 | Revisão                                    |
+|    | Estrutura de seleção múltipla =switch=       |
+|----+--------------------------------------------|
+| 10 |                                            |
+
+
