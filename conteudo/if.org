@@ -6,7 +6,7 @@
 #+EXPORT_EXCLUDE_TAGS: noexport
 #+EXPORT_SELECT_TAGS: export
 
-#+Title: Comando Condicional de Seleção \linebreak =if-else= e Expressões Lógicas
+#+Title: Comando Condicional de Seleção \linebreak =if= e Expressões Lógicas
 #+Subtitle: *INF01202*
 #+Author: Prof. Lucas Mello Schnorr
 #+Date: \copyleft
@@ -22,7 +22,7 @@
   - Operadores lógicos
   - Precedência de operadores
   - Operadores relacionados
-- Comando condicional =if-else=
+- Comando condicional =if=
   - Com um único comando
   - Com múltiplos comandos
 - Exemplo
