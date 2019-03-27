@@ -29,6 +29,9 @@ Os PDFs gerados estão [[http://www.inf.ufrgs.br/~schnorr/inf1202/][disponíveis
 
 A coluna *N* se refere ao número global do encontro conforme o [[../cronograma/index.org][cronograma]].
 
+A coluna *KR* se refere ao capítulo ou seção do livro:
+- C Programming Language. Kernighan & Ritchie.
+
 |  *N* | *PDF*                                        | *KR*       | *ORG*                   |
 |----+--------------------------------------------+----------+-----------------------|
 | 01 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/apresentacao.pdf][Apresentação da disciplina]]                 |          | [[./apresentacao.org]]    |
