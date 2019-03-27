@@ -8,9 +8,9 @@ int main()
   scanf("%d", &valor);
 
   //analisa resto da divisao inteira
-  if ( (valor%2) == 0)
-    printf(“Valor eh par!\n”);
+  if ( 0 == valor%2)
+    printf("Valor eh par!\n");
   else
-    printf(“Valor eh impar!\n”);
+    printf("Valor eh impar!\n");
   return 0;
 }
