@@ -130,7 +130,7 @@ int main()
   n2 = pint/2; // resultado da divisão inteira por 2
   n1 = pint%2; // resto da divisão inteira por 2
 
-  printf("\n\nValor lido: R$%d,00\n",valor); // insere vírgula zero
+  printf("\n\nValor lido: R$%.2f\n",valor); // insere vírgula zero
   printf("notas de 100: %d\n",n100);
   printf("notas de 50: %d\n",n50);
   printf("notas de 20: %d\n",n20);
@@ -153,7 +153,7 @@ int main()
   printf(" Moedas de 10: %d\n",m10);
   printf(" Moedas de 5: %d\n",m05);
   printf(" Moedas de 1: %d\n",m01);
-  return 0
+  return 0;
 }
 #+END_SRC
 
