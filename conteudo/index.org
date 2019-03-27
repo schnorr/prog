@@ -30,7 +30,7 @@ Os PDFs gerados estão [[http://www.inf.ufrgs.br/~schnorr/inf1202/][disponíveis
 A coluna *N* se refere ao número global do encontro conforme o [[../cronograma/index.org][cronograma]].
 
 A coluna *KR* se refere ao capítulo ou seção do livro:
-- C Programming Language. Kernighan & Ritchie.
+- The C Programming Language. Second Edition. Brian W. Kernighan/Dennis M. Ritchie
 
 |  *N* | *PDF*                                        | *KR*       | *ORG*                   |
 |----+--------------------------------------------+----------+-----------------------|
