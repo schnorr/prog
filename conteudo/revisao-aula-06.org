@@ -138,3 +138,6 @@ int main()
 }
 #+END_SRC
 
+* Resumo
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula07_slide_18.pdf}{Prof. Edison Pignaton de Freitas}
