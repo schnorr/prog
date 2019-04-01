@@ -9,7 +9,9 @@ if.pdf \
 revisao-aula-04.pdf \
 if-else.pdf \
 revisao-aula-05.pdf \
-switch.pdf"
+switch.pdf \
+revisao-aula-06.pdf \
+for.pdf"
 
 COMMAND="rsync -rv --progress $PDFS html.inf.ufrgs.br:./public_html/inf1202/"
 echo $COMMAND
