@@ -52,6 +52,6 @@ A coluna *KR* se refere ao capítulo ou seção do livro:
 | 08 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-05.pdf][Revisão]]                                    |          | [[./revisao-aula-05.org]] |
 |    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/switch.pdf][Estrutura de seleção múltipla switch-case]]  | S3.4     | [[./switch.org]]          |
 |----+--------------------------------------------+----------+-----------------------|
-| 10 |                                            |          |                       |
-
+| 09 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-06.pdf][Revisão]]                                    |          | [[./revisao-aula-06.org]] |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/for.pdf][Comando iterativo =for=]]                    | S3.5     | [[./for.org]]             |
 
