@@ -14,6 +14,6 @@ int main() {
     inic = inic + 1; // gera seq apenas com nros pares!
   for ( controle = inic; controle <= fim; controle = controle+2)
     printf("%d ", controle);
-  printf("\n")
+  printf("\n");
   return 0;
 }
