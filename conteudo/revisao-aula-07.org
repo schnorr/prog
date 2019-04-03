@@ -1,0 +1,227 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Revisão Aula 07
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS:   H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+
+* Configuração                                                     :noexport:
+
+#+BEGIN_SRC emacs-lisp
+(setq org-latex-listings 'minted
+      org-latex-packages-alist '(("" "minted"))
+      org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+(setq org-latex-minted-options
+       '(("frame" "lines")
+         ("fontsize" "\\scriptsize")))
+#+END_SRC
+
+#+RESULTS:
+| frame    | lines       |
+| fontsize | \scriptsize |
+* Revisão: =for=
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula008_slide_02.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Controle crescente e descrescente
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula09/aula09_slide_01.pdf}{Prof. Marcelo Walter}
+
+* Um *acumulador* de valor
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula07_slide_40.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Um *contador* de alguma coisa
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula07_slide_44.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Emprego de acumulador e valor
+
+#+attr_latex: :options fontsize=\small
+#+BEGIN_SRC C :tangle rev-a07-idades-18.c
+#include <stdio.h>
+int main () {
+  int i;    //contador para controlar o for
+  int soma; //acumulador de idade
+  int cont; //contador de idade < 18
+  soma = 0; // inicializa acumulador em 0
+  cont = 0; // inicializa contador em 0
+  for (i = 0; i < 5; i++) {
+    printf("informe idade: ");
+    scanf ("%d", &idade);
+    if (idade < 18){
+      cont++; // incrementa 1 no contador
+    }
+    soma += idade; //acumular as idades lidas
+  }
+  printf("O somatório das idades é %d.\n", soma);
+  printf("Existem %d pessoas menores de 18 anos.\n", cont);
+}
+#+END_SRC
+
+* Exercício #1 (Fatorial)
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula008_slide_03.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Planejamento para #1
+
+Entrada: número inteiro positivo informado
+
+Saída: o fatorial do número informado
+
+#+latex: \vfill
+
+Definição de fatorial de um número positivo
+
+#+BEGIN_EXPORT latex
+\[
+   fat(x) = 
+   \begin{cases}  
+   1         & \mbox{se } x = 0; \\
+   x * (x-1) & \mbox{se } n > 0.
+   \end{cases}
+\]
+#+END_EXPORT
+
+#+latex: \vfill
+
+Estratégia de algoritmo
+- Abordagem descrescente ou crescente?
+- Uso de acumulador ou contador?
+
+* Algoritmo para #1
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula008_slide_04.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Programa para #1
+
+Veja o acumulador =fat= e o contador descrescente =i=.
+
+#+BEGIN_SRC C :tangle rev-a07-fatorial.c
+/*calcula o fatorial de um numero inteiro
+Entrada: numero inteiro positivo
+Saida: fatorial do numero ou mensagem de erro */
+#include <stdio.h>
+int main () {
+  int num, fat, i;
+  printf("Entre um numero inteiro positivo: " );
+  scanf("%d", &num);
+  if (num < 0)
+    printf("Tsk tsk, o número informado é negativo, "
+	   "portanto fatorial não definido.\n");
+  else { //implementação como na fórmula
+    fat = 1; // se for zero, está pronto
+    for (i= num; i >= 1; i--)
+      fat = fat * i;
+    printf ("Fatorial de %d eh %d.\n", num, fat);
+  }
+  return 0;
+}
+#+END_SRC
+
+* Exercício #2 (Fibonacci)
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula07-For2017_slide_30.pdf}{Prof. Mara Abel}
+
+* Planejamento para #2
+
+Entrada: número inteiro positivo informado
+
+Saída: o valor Fibonacci correspondente à posição da sequência
+
+#+latex: \vfill
+
+Definição Fibonacci de um número positivo
+
+#+BEGIN_EXPORT latex
+\[
+   fib(pos) = 
+   \begin{cases}  
+   0         & \mbox{se } pos = 0; \\
+   1         & \mbox{se } pos = 1; \\
+   fib(pos-1) + fib(pos-2) & \mbox{se } pos > 1.
+   \end{cases}
+\]
+#+END_EXPORT
+
+#+latex: \vfill
+
+Estratégia de algoritmo
+- Precisamos ``lembrar'' os valores Fibonacci de pos-1 e pos-2
+  - Criamos duas variáveis para isso
+- Abordagem descrescente ou crescente?
+- Uso de acumulador ou contador?
+
+* Variáveis =t_1= (para guardar pos-1) e =t_2= (pos-2)
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula008_slide_34.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Algoritmo para #2
+
+Estratégia crescente em =i=, sem acumulador
+
+#+BEGIN_SRC sh
+{Calcula e informa o valor fibonacci de uma posição }
+Entrada: posição
+Saída: fib
+1. Início
+2. Lê posição
+3. Se posição < 0
+3.1. imprime "posição deve ser positivo"
+3. Senão
+3.1. Se posição == 0
+3.1.1. fib = 0
+3.1. Se posição == 1
+3.1.1. fib = 1
+3.1. Senão
+3.1.1. t_2 = 0
+3.1.2. t_1 = 1
+3.1.3. para (i = 2; i <= posição; i++)
+3.1.3.1.  fib = t_2 + t_1
+3.1.3.2.  t_2 = t_1
+3.1.3.2.  t_1 = fib
+4. imprime valor das variáveis posição e fib
+#+END_SRC
+
+* Programa para #2
+
+#+BEGIN_SRC C :tangle rev-a07-fibonacci.c
+#include<stdio.h>
+int main(){
+  int pos, fib, t_1, t_2, i;
+  printf("Entre um numero inteiro positivo: " );
+  scanf("%d", &pos);
+  if (pos < 0) printf("Tsk tsk, a posição informada é negativa\n");
+  else {
+    if (pos == 0)
+      fib = 0;
+    else if (pos == 1)
+      fib = 1;
+    else{
+      t_2 = 0;
+      t_1 = 1;
+      for (i = 2; i <= pos; i++){
+	   fib = t_2 + t_1;
+	   t_2 = t_1;
+	   t_1 = fib;
+      }
+    }
+    printf ("Fibonacci da posição %d eh %d.\n", pos, fib);
+  }
+  return 0;
+}
+#+END_SRC
+
