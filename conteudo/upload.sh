@@ -13,7 +13,9 @@ switch.pdf \
 revisao-aula-06.pdf \
 for.pdf \
 revisao-aula-07.pdf \
-maisfor.pdf"
+maisfor.pdf \
+revisao-aula-08.pdf \
+while.pdf"
 
 COMMAND="rsync -rv --progress $PDFS html.inf.ufrgs.br:./public_html/inf1202/"
 echo $COMMAND
