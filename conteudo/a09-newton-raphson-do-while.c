@@ -15,7 +15,7 @@ int main() {
   do {
     x2 = x1 - (x1*x1-2)/(2*x1);
     dif = fabs(x1 - x2);
-    printf("Iteração %d, %f valor aproximado é %1.15f\n", i, dif, x2);
+    printf("%f valor aproximado é %1.15f\n", dif, x2);
     x1 = x2;
   } while(dif > tol);
   printf("sqrt(2)         : %1.15f\n"
