@@ -58,7 +58,8 @@ A coluna *KR* se refere ao capítulo ou seção do livro:
 | 11 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-07.pdf][Revisão]]                                    |          | [[./revisao-aula-07.org]] |
 |    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/maisfor.pdf][Comando iterativo =for=]] (bis)              | S3.5     | [[./maisfor.org]]         |
 |----+--------------------------------------------+----------+-----------------------|
-| 13 |                                            |          |                       |
+| 13 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-08.pdf][Revisão]]                                    |          | [[./revisao-aula-08.org]] |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/while.pdf][Comando iterativo =while=]]                  |          | [[./while.org]]           |
 |----+--------------------------------------------+----------+-----------------------|
 | 15 |                                            |          |                       |
 |----+--------------------------------------------+----------+-----------------------|
