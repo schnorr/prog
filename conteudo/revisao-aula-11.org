@@ -1,0 +1,127 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Revisão Aula 08
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS:   H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+
+* Configuração                                                     :noexport:
+
+#+BEGIN_SRC emacs-lisp
+(setq org-latex-listings 'minted
+      org-latex-packages-alist '(("" "minted"))
+      org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+(setq org-latex-minted-options
+       '(("frame" "lines")
+         ("fontsize" "\\scriptsize")))
+#+END_SRC
+
+#+RESULTS:
+| frame    | lines       |
+| fontsize | \scriptsize |
+* Exercício #1 (Newton-Raphson com erro)
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula09/aula09_slide_14.pdf}{Prof. Marcelo Walter}
+* (#1 Newton-Raphson com erro) Uma solução possível
+
+#+attr_latex: :options fontsize=\tiny
+#+BEGIN_SRC C :tangle rev-a08-newton-raphson.c
+/* Programa para calcular raiz quadrada de 2 usando Newton-Raphson
+Entrada: numero de iteracoes (inteiro) e “chute” inicial
+Saida: valor aproximado de raiz de 2*/
+#include <stdio.h>
+#include <math.h>
+#include <float.h>
+int main() {
+  int niter; // Entrada: numero de iteracoes
+  int i;     // Variável auxiliar para contar as iterações
+  double xinic, x1, x2; // aproximacao inicial e valores usados na iteracao
+  double dif, tol; //diferença
+  printf("Entre o numero máximo de iteracoes:\n");
+  scanf("%d", &niter);
+  printf("Entre o erro tolerado:\n");
+  scanf("%lf", &tol);
+  printf("Entre a aproximacao inicial de raiz de 2:\n");
+  scanf("%lf", &xinic);
+
+  x1 = xinic;
+  dif = DBL_MAX;
+  for (i = 0; i < niter && dif > tol; i++) {
+    x2 = x1 - (x1*x1-2)/(2*x1);
+    dif = fabs(x1 - x2);
+    printf("Iteração %d, %f valor aproximado é %1.15f\n", i, dif, x2);
+    x1 = x2;
+  }
+  printf("sqrt(2)         : %1.15f\n"
+         "Valor aproximado: %1.15f\n", sqrt(2), x2);
+  return 0;
+}
+#+END_SRC
+
+* Exemplo da compilação e execução
+
+#+attr_latex: :options fontsize=\small
+#+begin_src shell :results output
+gcc rev-a08-newton-raphson.c # Compila
+
+echo "100 0.00000000001 5" | ./a.out # Executa com parâmetros
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Entre o numero máximo de iteracoes:
+Entre o erro tolerado:
+Entre a aproximacao inicial de raiz de 2:
+Iteração 0, 2.300000 valor aproximado é 2.700000000000000
+Iteração 1, 0.979630 valor aproximado é 1.720370370370370
+Iteração 2, 0.278915 valor aproximado é 1.441455368177650
+Iteração 3, 0.026984 valor aproximado é 1.414470981367771
+Iteração 4, 0.000257 valor aproximado é 1.414213585796884
+Iteração 5, 0.000000 valor aproximado é 1.414213562373095
+Iteração 6, 0.000000 valor aproximado é 1.414213562373095
+sqrt(2)         : 1.414213562373095
+Valor aproximado: 1.414213562373095
+#+end_example
+
+* Exercício #2 (Taxa de Crescimento)
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula09/aula09_slide_21.pdf}{Prof. Marcelo Walter}
+
+* (#2 Taxa de Crescimento Brazil /vs/ EUA)
+
+#+attr_latex: :options fontsize=\scriptsize
+#+BEGIN_SRC C :tangle rev-a08-taxa.c
+/* Programa para satisfazer o enunciado sobre a taxa de crescimento */
+#include <stdio.h>
+int main() {
+  int ano;   // Entrada: numero de iteracoes
+  double popBRA, popEUA;
+  double taxaBRA, taxaEUA;
+
+  popBRA = 203.0;
+  popEUA = 318.0;
+  taxaBRA = 1.5 / 100;
+  taxaEUA = 1.3 / 100;
+
+  for (ano = 0; popBRA < popEUA; ano++){
+    popBRA += popBRA * taxaBRA;
+    popEUA += popEUA * taxaEUA;
+    taxaEUA = taxaEUA - 0.1 / 100;
+    if (taxaEUA < 0) taxaEUA = 0;
+  }
+  printf("Anos: %d\n", ano);
+  return 0;
+}
+#+END_SRC
+

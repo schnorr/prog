@@ -6,7 +6,7 @@
 #+EXPORT_EXCLUDE_TAGS: noexport
 #+EXPORT_SELECT_TAGS: export
 
-#+Title: Revisão Aula 08
+#+Title: Revisão Aula 06
 #+Subtitle: *INF01202*
 #+Author: Prof. Lucas Mello Schnorr
 #+Date: \copyleft
@@ -32,96 +32,112 @@
 #+RESULTS:
 | frame    | lines       |
 | fontsize | \scriptsize |
-* Exercício #1 (Newton-Raphson com erro)
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula09/aula09_slide_14.pdf}{Prof. Marcelo Walter}
-* (#1 Newton-Raphson com erro) Uma solução possível
+* Revisão: =switch-case=
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula07_slide_02.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Dúvidas
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula07_slide_03.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Exercício #1: Problema da Tabela
+
+Faça somente usando =switch-case=.
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula06-Switch_slide_37.pdf}{Prof. Mara Abel}
+
+* Solução de #1
 
 #+attr_latex: :options fontsize=\tiny
-#+BEGIN_SRC C :tangle rev-a08-newton-raphson.c
-/* Programa para calcular raiz quadrada de 2 usando Newton-Raphson
-Entrada: numero de iteracoes (inteiro) e “chute” inicial
-Saida: valor aproximado de raiz de 2*/
+#+BEGIN_SRC C :tangle rev-a06-tabela.c
 #include <stdio.h>
-#include <math.h>
-#include <float.h>
-int main() {
-  int niter; // Entrada: numero de iteracoes
-  int i;     // Variável auxiliar para contar as iterações
-  double xinic, x1, x2; // aproximacao inicial e valores usados na iteracao
-  double dif, tol; //diferença
-  printf("Entre o numero máximo de iteracoes:\n");
-  scanf("%d", &niter);
-  printf("Entre o erro tolerado:\n");
-  scanf("%lf", &tol);
-  printf("Entre a aproximacao inicial de raiz de 2:\n");
-  scanf("%lf", &xinic);
-
-  x1 = xinic;
-  dif = DBL_MAX;
-  for (i = 0; i < niter && dif > tol; i++) {
-    x2 = x1 - (x1*x1-2)/(2*x1);
-    dif = fabs(x1 - x2);
-    printf("Iteração %d, %f valor aproximado é %1.15f\n", i, dif, x2);
-    x1 = x2;
+int main()
+{
+  int codigo;
+  int resultado = 20;
+  printf("Entre com o código: ");
+  scanf("%d", &codigo);
+  switch (codigo) {
+  case 1: resultado = resultado + 5;
+    break;
+  case 2:
+  case 4:
+  case 7: break; // 2, 4 e 7: não faz nada, apenas evita entrar no default
+  case 3:
+  case 5: resultado = resultado - 2;
+    break;
+  case 6: resultado = 2 * (resultado + 1);
+    break;
+  case 8:
+  case 9:
+  case 10: resultado = 0;
+    break;
+  case 11: resultado = 123;
+    break;
+  default: printf("Codigo informado invalido!\n"); // não precisa break
   }
-  printf("sqrt(2)         : %1.15f\n"
-         "Valor aproximado: %1.15f\n", sqrt(2), x2);
+  printf("O valor de resultado é %d.\n", resultado);
   return 0;
 }
 #+END_SRC
 
-* Exemplo da compilação e execução
+* Exercício #2: Ovos de Páscoa
 
-#+attr_latex: :options fontsize=\small
-#+begin_src shell :results output
-gcc rev-a08-newton-raphson.c # Compila
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula06/aula06_slide_17.pdf}{Prof. Marcelo Walter}
 
-echo "100 0.00000000001 5" | ./a.out # Executa com parâmetros
-#+end_src
+* Solução de #2
 
-#+RESULTS:
-#+begin_example
-Entre o numero máximo de iteracoes:
-Entre o erro tolerado:
-Entre a aproximacao inicial de raiz de 2:
-Iteração 0, 2.300000 valor aproximado é 2.700000000000000
-Iteração 1, 0.979630 valor aproximado é 1.720370370370370
-Iteração 2, 0.278915 valor aproximado é 1.441455368177650
-Iteração 3, 0.026984 valor aproximado é 1.414470981367771
-Iteração 4, 0.000257 valor aproximado é 1.414213585796884
-Iteração 5, 0.000000 valor aproximado é 1.414213562373095
-Iteração 6, 0.000000 valor aproximado é 1.414213562373095
-sqrt(2)         : 1.414213562373095
-Valor aproximado: 1.414213562373095
-#+end_example
-
-* Exercício #2 (Taxa de Crescimento)
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula09/aula09_slide_21.pdf}{Prof. Marcelo Walter}
-
-* (#2 Taxa de Crescimento Brazil /vs/ EUA)
-
-#+attr_latex: :options fontsize=\scriptsize
-#+BEGIN_SRC C :tangle rev-a08-taxa.c
-/* Programa para satisfazer o enunciado sobre a taxa de crescimento */
+#+attr_latex: :options fontsize=\tiny
+#+BEGIN_SRC C :tangle rev-a06-ovos.c
 #include <stdio.h>
-int main() {
-  int ano;   // Entrada: numero de iteracoes
-  double popBRA, popEUA;
-  double taxaBRA, taxaEUA;
+#include <ctype.h>
+int main()
+{
+  char tipo_de_ovo;
+  int quantidade;
+  float preco;
 
-  popBRA = 203.0;
-  popEUA = 318.0;
-  taxaBRA = 1.5 / 100;
-  taxaEUA = 1.3 / 100;
+  printf("Entre com o tipo de ovo: ");
+  scanf("%c", &tipo_de_ovo);
+  tipo_de_ovo = toupper(tipo_de_ovo);
+  printf("Entre com a quantidade: ");
+  scanf("%d", &quantidade);
+  printf("Ovo tipo [%c], quantidade [%d].\n", tipo_de_ovo, quantidade);
 
-  for (ano = 0; popBRA < popEUA; ano++){
-    popBRA += popBRA * taxaBRA;
-    popEUA += popEUA * taxaEUA;
-    taxaEUA = taxaEUA - 0.1 / 100;
-    if (taxaEUA < 0) taxaEUA = 0;
+  switch(tipo_de_ovo){
+  case 'A':
+    if (quantidade > 50){
+      printf("Quantidade maxima igual a 50!\n");
+      quantidade = 50;
+    }
+    preco = quantidade * 12.00;
+    break;
+  case 'B':
+    if (quantidade > 30){
+      printf("Quantidade maxima igual a 30!\n");
+      quantidade = 30;
+    }
+    preco = quantidade * 15.50;
+    break;
+  case 'C':
+    if (quantidade > 20){
+      printf("Quantidade maxima igual a 20!\n");
+      quantidade = 20;
+    }
+    preco = quantidade * 21.30;
+    break;
+  default:
+    printf("Tipo de ovo invalido!\n");
   }
-  printf("Anos: %d\n", ano);
+
+  if(tipo_de_ovo == 'A' || tipo_de_ovo == 'B' || tipo_de_ovo == 'C'){
+    printf("Venda de %d ovos do tipo %c com preco total %.2f\n",
+	   quantidade, tipo_de_ovo, preco);
+  }
   return 0;
 }
 #+END_SRC
 
+* Resumo
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula07_slide_18.pdf}{Prof. Edison Pignaton de Freitas}

@@ -6,7 +6,7 @@
 #+EXPORT_EXCLUDE_TAGS: noexport
 #+EXPORT_SELECT_TAGS: export
 
-#+Title: Revisão Aula 05
+#+Title: Revisão Aula 04
 #+Subtitle: *INF01202*
 #+Author: Prof. Lucas Mello Schnorr
 #+Date: \copyleft
@@ -32,168 +32,184 @@
 #+RESULTS:
 | frame    | lines       |
 | fontsize | \scriptsize |
-* Revisão rápida
 
-#+ATTR_LATEX: :options frame=leftline
-#+BEGIN_SRC C
-if (condição 1)
-  if (condição 2)
-    if (condição 3)
-      comando;
-  else
-    comando;
-#+END_SRC
+* Revisão
 
-O =else= se refere a qual =if=?
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula05_slide_02.pdf}{Prof. Edison Pignaton de Freitas}
 
-- [ ] Primeiro
-- [ ] Segundo
-- [ ] Terceiro
+* =if= Simples e Composto
 
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula05_slide_03.pdf}{Prof. Edison Pignaton de Freitas}
 
-#+latex: \vfill\pause
+* Simples!
 
-#+ATTR_LATEX: :options frame=leftline
-#+BEGIN_SRC C
-if (condição 1)
-  if (condição 2)
-    if (condição 3)
-      comando;
-  else if(condição 4)
-    comando;
-#+END_SRC
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula05_slide_04.pdf}{Prof. Edison Pignaton de Freitas}
 
+* Composto
 
-E agora, mudou alguma coisa?
-
-- [ ] Sim
-- [ ] Não
-
-* Cuidado com o encadeamento
-
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula06_slide_03.pdf}{Prof. Edison Pignaton de Freitas}
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula05_slide_05.pdf}{Prof. Edison Pignaton de Freitas}
 
 * Exercício para casa #1
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula05-If_Aninhado_slide_38.pdf}{Prof. Mara Abel}
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula03-algoritmo_e_estrutura_C_slide_22.pdf}{Prof. Claudio Jung}
 
-* Uma possível solução para o exercício #1
+* #1: Análise e Definição do Problema
 
-Veja o arquivo [[./rev-a05-raizes.c]].
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula04/aula04_slide_36.pdf}{Prof. Marcelo Walter}
 
-#+BEGIN_SRC C :tangle rev-a05-raizes.c
-/* Um programa de computador para averiguar se uma equação é de segundo grau */
+* #1: Projeto do Algoritmo
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula04/aula04_slide_37.pdf}{Prof. Marcelo Walter}
+
+* #1: Obtendo as partes inteira e decimal
+
+Testar com a entrada 159.83
+
+Veja em [[./rev-a04-inteiro-frac.c]]
+
+#+BEGIN_SRC C :tangle rev-a04-inteiro-frac.c
+// Converte valor real em dois valores inteiros: exemplos de soluções
 #include<stdio.h>
-#include<math.h>
-int main() {
-  float a, b, c;      //variáveis de entrada
-  float delta, r1, r2; //variáveis auxiliares
-  printf("Entre com os valores a, b, c, separados por espaço:\n");
-  scanf("%f%f%f", &a, &b, &c);
-  printf("Dados reconhecidos: a = [%f] b = [%f] c = [%f]\n", a, b, c);
-  printf("Vamos analisar a equação: %f * x^2 + %f * x + %f = 0\n", a, b, c);
-  if(a == 0){
-    printf("Resposta: Não é uma equação do segundo grau.\n");
-  }else{
-    delta = pow(b, 2) - 4 * a * c;
-    if (delta < 0){
-      printf("Resposta: raízes imaginárias %f (%f).\n", pow(b, 2), delta);
-    }else{
-      r1 = (-b + sqrt(delta)) / 2 * a;
-      r2 = (-b - sqrt(delta)) / 2 * a;
-      printf("Os resultados possíveis são: x = [%f] ou x = [%f]\n", r1, r2);
-    }
-  }
+#include<math.h> // para uso da função round
+int main( )
+{
+  float valor; // variável float
+  int pint, pdecimal; // parte inteira e parte decimal, convertidas para inteiro
+
+  // Extraindo números inteiros de um número decimal:
+  printf(" *** Conversoes de valores float ***\n ");
+  printf("Informe o valor a ser convertido:");
+  scanf("%f", &valor);
+  pint = (int) valor;
+  pdecimal = (int)((valor-pint)*100); //cast, para obter parte inteira
+  printf("parte inteira = %d, parte decimal = %d (aqui, sem o round!!!)\n",
+	 pint, pdecimal);
+  pdecimal = (int)(round((valor-pint)*100)); //função para obter parte inteira
+  printf("parte inteira = %d, parte decimal = %d (com o round!!!)\n",
+	 pint, pdecimal);
   return 0;
 }
-#+end_src
+#+END_SRC
+
+* (Explicação para a entrada 159.83)
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula04/aula04_slide_40.pdf}{Prof. Marcelo Walter}
+
+* #1: Problema Completo
+
+Veja no arquivo [[./rev-a04-notas-moedas.c]]
+
+#+attr_latex: :options fontsize=\tiny
+#+BEGIN_SRC C :tangle rev-a04-notas-moedas.c
+// Calcula menor número de notas e moedas correspondentes a um valor:
+#include<stdio.h>
+#include<math.h> // função round
+int main()
+{
+  float valor;
+  int pint, pdecimal;
+  int n100, n50, n20, n10, n5, n2, n1; // contadores de notas
+  int m50, m25, m10, m05, m01; // contadores de moedas
+
+  printf(" *** Conversoes de valores ***\n");
+  printf("Informe o valor a ser convertido: R$");
+  scanf("%f",&valor);
+  pint = (int) valor;
+  pdecimal = (int) (round((valor-pint)*100));
+
+  n100 = pint/100; // resultado da divisão inteira por 100
+  pint = pint % 100; // resto da divisão inteira por 100
+  n50 = pint / 50;
+  pint = pint%50;
+  n20 = pint/20;
+  pint = pint%20;
+  n10 = pint/10;
+  pint = pint%10;
+  n5 = pint/5;
+  pint = pint % 5;
+  n2 = pint/2; // resultado da divisão inteira por 2
+  n1 = pint%2; // resto da divisão inteira por 2
+
+  printf("\n\nValor lido: R$%.2f\n",valor); // insere vírgula zero
+  printf("notas de 100: %d\n",n100);
+  printf("notas de 50: %d\n",n50);
+  printf("notas de 20: %d\n",n20);
+  printf("notas de 10: %d\n",n10);
+  printf("notas de 5: %d\n",n5);
+  printf("notas de 2: %d\n",n2);
+  printf("notas de 1: %d\n",n1);
+
+  m50 = pdecimal/50;        // resultado da divisão inteira por 50
+  pdecimal = pdecimal % 50; // resto da divisão inteira por 50
+  m25 = pdecimal / 25;
+  pdecimal = pdecimal% 25;
+  m10 = pdecimal/10;
+  pdecimal = pdecimal%10;
+  m05 = pdecimal/5;
+  m01 = pdecimal%5;
+
+  printf(" Moedas de 50: %d\n",m50);
+  printf(" Moedas de 25: %d\n",m25);
+  printf(" Moedas de 10: %d\n",m10);
+  printf(" Moedas de 5: %d\n",m05);
+  printf(" Moedas de 1: %d\n",m01);
+  return 0;
+}
+#+END_SRC
 
 * Exercício para casa #2
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula05-If_Aninhado_slide_41.pdf}{Prof. Mara Abel}
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula04/aula04_slide_09.pdf}{Prof. Marcelo Walter}
 
-* Uma possível solução para o exercício #2
+* #2: Análise e Definição do Problema
 
-Veja o arquivo [[./rev-a05-ordem.c]].
+Entradas
+- Quantidade de passos no _primeiro_ minuto
+- Quantidade de passos no _último_ minuto
+- Duração da corrida (número de _horas_ e _minutos_)
+- Cada passo de John mede _70cm_
 
-#+BEGIN_SRC C :tangle rev-a05-ordem.c
-/* Um programa de computador para averiguar se uma equação é de segundo grau */
-#include<stdio.h>
-#include<math.h>
-int main() {
-  float a, b, c;            //variáveis de entrada
-  float menor, meio, maior; //variáveis de saída
-  printf("Entre com os três valores separados por espaço:\n");
-  scanf("%f%f%f", &a, &b, &c);
-  printf("Dados reconhecidos: [%f] [%f] [%f]\n", a, b, c);
+#+latex: \pause
 
-  //Descobre o menor
-  if (a < b && a < c)
-    menor = a;
-  else if (b < a && b < c)
-    menor = b;
-  else
-    menor = c;
+Miolo
+- 70cm são 0.0007km
+- Horas devem ser convertidas em minutos
+- Devemos assumir uma média global de passos
+  - Calculada entre os passos do primeiro e do último minuto
 
-  //Descobre o maior
-  if (a > b && a > c)
-    maior = a;
-  else if (b > a && b > c)
-    maior = b;
-  else
-    maior = c;
 
-  //Descobre o miolo
-  if (a != maior && a != menor) 
-    meio = a;
-  else if (b != maior && b != menor)
-    meio = b;
-  else
-    meio = c;
-  printf("Em ordem crescente: %f %f %f\n", menor, meio, maior);
-  return 0;
-}
-#+end_src
+#+latex: \pause
 
-* Uma solução melhorada para o exercício #2
+Saída
+- Distância percorrida em km
 
-Veja o arquivo [[./rev-a05-ordem-melhor.c]].
+* #2 Programa Completo
 
-#+BEGIN_SRC C :tangle  rev-a05-ordem-melhor.c
+Veja em [[./rev-a04-john-doe.c]]
+
+#+BEGIN_SRC C :tangle rev-a04-john-doe.c
 #include <stdio.h>
-int main()
-{
-  float v1, v2, v3;    //variáveis de entrada e saída
-  printf("Entre com os três valores separados por espaço:\n");
-  scanf("%f%f%f", &v1, &v2, &v3);
-  printf("Dados reconhecidos: [%f] [%f] [%f]\n", v1, v2, v3);
-  if ( v1 <= v2)
-    if( v1 <= v3 )
-      if(v2 <= v3)
-	printf("%f, %f, %f\n", v1, v2, v3);
-      else
-	printf("%f, %f, %f\n", v1, v3, v2);
-    else
-      printf("%f, %f, %f\n", v3, v1, v2);
-  else
-    if(v2 <= v3)
-      if(v1 <= v3)
-	printf("%f, %f, %f\n", v2, v1, v3);
-      else
-	printf("%f, %f, %f\n", v2, v3, v1);
-    else
-      printf("%f, %f, %f\n", v3, v2, v1);
+int main (){
+  int pi, pf, h, min, total_minutos;
+  float mp, distancia;
+  printf("Entre com o nro de passo do primeiro minuto: ");
+  scanf("%d", &pi);
+  printf("Entre com o nro de passo do ultimo minuto: ");
+  scanf("%d", &pf);
+  printf("Entre com o nro de horas e minutos de corrida: ");
+  scanf("%d%d", &h, &min);
+
+  printf("Entrada reconhecida:\n"
+	 "Passos do primeiro minuto: %d\n"
+	 "Passos do último minuto: %d\n"
+	 "Duração, horas (%d) e minutos (%d).\n",
+	 pi, pf, h, min);
+
+  mp = (pi+pf)/2.0; // media dos passos
+  total_minutos = h*60+min;
+  distancia = total_minutos*mp*0.0007;
+  printf("Distancia total percorrida em km %f\n", distancia);
   return 0;
 }
-#+end_src
-
-* Exercício para casa #3
-
-Suponha que a variável =resultado= se inicie com o valor =20=.
-
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula05-If_Aninhado_slide_44.pdf}{Prof. Mara Abel}
-
-* Uma possível solução para o exercício #3
-
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula06-Switch_slide_38.pdf}{Prof. Mara Abel}
+#+END_SRC
 
