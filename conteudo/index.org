@@ -43,22 +43,22 @@ A coluna *KR* se refere ao capítulo ou seção do livro:
 | 04 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-02.pdf][Revisão]]                                    |            | [[./revisao-aula-02.org]] |
 |    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/tipos.pdf][Tipos de variáveis, expressões aritméticas]] | C2         | [[./tipos.org]]           |
 |----+--------------------------------------------+------------+-----------------------|
-| 05 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-03.pdf][Revisão]]                                    |            | [[./revisao-aula-03.org]] |
+| 05 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-04.pdf][Revisão]]                                    |            | [[./revisao-aula-04.org]] |
 |    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/if.pdf][Comandos =if= e expressões lógicas]]           | C2, S3.2   | [[./if.org]]              |
 |----+--------------------------------------------+------------+-----------------------|
-| 07 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-04.pdf][Revisão]]                                    |            | [[./revisao-aula-04.org]] |
+| 07 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-05.pdf][Revisão]]                                    |            | [[./revisao-aula-05.org]] |
 |    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/if-else.pdf][Comandos =if-else= aninhados]]                 | S3.3       | [[./if-else.org]]         |
 |----+--------------------------------------------+------------+-----------------------|
-| 08 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-05.pdf][Revisão]]                                    |            | [[./revisao-aula-05.org]] |
+| 08 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-07.pdf][Revisão]]                                    |            | [[./revisao-aula-07.org]] |
 |    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/switch.pdf][Estrutura de seleção múltipla switch-case]]  | S3.4       | [[./switch.org]]          |
 |----+--------------------------------------------+------------+-----------------------|
-| 10 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-06.pdf][Revisão]]                                    |            | [[./revisao-aula-06.org]] |
+| 10 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-08.pdf][Revisão]]                                    |            | [[./revisao-aula-08.org]] |
 |    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/for.pdf][Comando iterativo =for=]]                    | S3.5       | [[./for.org]]             |
 |----+--------------------------------------------+------------+-----------------------|
-| 11 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-07.pdf][Revisão]]                                    |            | [[./revisao-aula-07.org]] |
+| 11 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-10.pdf][Revisão]]                                    |            | [[./revisao-aula-10.org]] |
 |    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/maisfor.pdf][Comando iterativo =for=]] (bis)              | S3.5       | [[./maisfor.org]]         |
 |----+--------------------------------------------+------------+-----------------------|
-| 13 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-08.pdf][Revisão]]                                    |            | [[./revisao-aula-08.org]] |
+| 13 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-11.pdf][Revisão]]                                    |            | [[./revisao-aula-11.org]] |
 |    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/while.pdf][Comando iterativo =while=]]                  | S3.5, S3.6 | [[./while.org]]           |
 |----+--------------------------------------------+------------+-----------------------|
 | 15 |                                            |            |                       |
