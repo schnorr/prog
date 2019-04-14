@@ -1,4 +1,21 @@
-all: apresentacao.pdf introducao.pdf revisao-aula-01.pdf sequencial.pdf revisao-aula-02.pdf revisao-aula-03.pdf revisao-aula-04.pdf revisao-aula-05.pdf revisao-aula-06.pdf revisao-aula-07.pdf revisao-aula-08.pdf if.pdf if-else.pdf switch.pdf for.pdf maisfor.pdf while.pdf
+revisao: revisao-aula-01.pdf \
+	 revisao-aula-02.pdf \
+	 revisao-aula-04.pdf \
+	 revisao-aula-05.pdf \
+	 revisao-aula-07.pdf \
+	 revisao-aula-08.pdf \
+	 revisao-aula-10.pdf \
+	 revisao-aula-11.pdf
+origina: apresentacao.pdf \
+	 introducao.pdf \
+	 sequencial.pdf \
+	 if.pdf \
+	 if-else.pdf \
+	 switch.pdf \
+	 for.pdf \
+	 maisfor.pdf \
+	 while.pdf
+all: revisao origina
 
 %.pdf: %.org
 	emacs -batch $^ --funcall org-babel-tangle
