@@ -1,7 +1,7 @@
 /* Programa para satisfazer o enunciado sobre a taxa de crescimento */
 #include <stdio.h>
 int main() {
-  int ano;   // Entrada: numero de iteracoes
+  int ano;
   double popBRA, popEUA;
   double taxaBRA, taxaEUA;
 
