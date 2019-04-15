@@ -1,0 +1,525 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Arranjos 1D
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS:   H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+
+* Configuração                                                     :noexport:
+
+#+BEGIN_SRC emacs-lisp
+(setq org-latex-listings 'minted
+      org-latex-packages-alist '(("" "minted"))
+      org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+(setq org-latex-minted-options
+       '(("frame" "lines")
+         ("fontsize" "\\scriptsize")))
+#+END_SRC
+
+#+RESULTS:
+| frame    | lines       |
+| fontsize | \scriptsize |
+* Motivação (Parte #1)
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula11/aula11_slide_02.pdf}{Prof. Marcelo Walter}
+
+* Código =a15-media.c=
+
+#+BEGIN_SRC C :tangle a15-media.c
+/*calcula media de uma turma
+Entradas: notas de 30 alunos
+Saida: media da turma */
+#include <stdio.h>
+#define NUMALUNOS 30
+int main () {
+  float nota; // nota de um aluno
+  float media, soma;
+  int aluno; //variável de controle da repeticao
+  soma = 0; // inicializa a soma das notas
+  for (aluno = 1; aluno <= NUMALUNOS; aluno++) { // para cada aluno da turma
+    scanf("%f", &nota); //obtem a nota do aluno
+    soma += nota;
+  }
+  media = soma / NUMALUNOS;
+  printf("Media da turma: %2.2f\n", media);
+  return 0;
+}
+#+END_SRC
+
+* Motivação (Parte #2)
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula11/aula11_slide_04.pdf}{Prof. Marcelo Walter}
+
+* Código =a15-maior.c=
+
+#+attr_latex: :options fontsize=\tiny
+#+BEGIN_SRC C :tangle a15-maior.c
+/*calcula media de uma turma. Entradas: notas de 30 alunos.  Saida: media da turma */
+#include <stdio.h>
+int main () {
+  // Nota dos 30 alunos
+  float n01, n02, n03, n04, n05, n06, n07, n08, n09, n10;
+  float n11, n12, n13, n14, n15, n16, n17, n18, n19, n20;
+  float n21, n22, n23, n24, n25, n26, n27, n28, n29, n30;
+  // Obtém a nota de cada aluno
+  scanf ("%f %f %f %f %f %f %f %f %f %f"
+	 "%f %f %f %f %f %f %f %f %f %f"
+	 "%f %f %f %f %f %f %f %f %f %f",
+	 &n01, &n02, &n03, &n04, &n05, &n06, &n07, &n08, &n09, &n10,
+	 &n11, &n12, &n13, &n14, &n15, &n16, &n17, &n18, &n19, &n20,
+	 &n21, &n22, &n23, &n24, &n25, &n26, &n27, &n28, &n29, &n30);
+  float media, soma;
+  soma = n01 + n02 + n03 + n04 + n05 + n06 + n07 + n08 + n09 + n10 +
+    n11 + n12 + n13 + n14 + n15 + n16 + n17 + n18 + n19 + n20 +
+    n21 + n22 + n23 + n24 + n25 + n26 + n27 + n28 + n29 + n30;
+  media = soma / 30;
+  printf("Media da turma: %2.2f\n", media);
+  if (n01 > media) printf("%f\n", n01);
+  if (n02 > media) printf("%f\n", n02);
+  if (n03 > media) printf("%f\n", n03);
+  if (n04 > media) printf("%f\n", n04);
+  if (n05 > media) printf("%f\n", n05);
+  if (n06 > media) printf("%f\n", n06);
+  if (n07 > media) printf("%f\n", n07);
+  if (n08 > media) printf("%f\n", n08);
+  if (n09 > media) printf("%f\n", n09);
+  if (n10 > media) printf("%f\n", n10);
+  if (n11 > media) printf("%f\n", n11);
+  if (n12 > media) printf("%f\n", n12);
+  if (n13 > media) printf("%f\n", n13);
+  if (n14 > media) printf("%f\n", n14);
+  if (n15 > media) printf("%f\n", n15);
+  if (n16 > media) printf("%f\n", n16);
+  if (n17 > media) printf("%f\n", n17);
+  if (n18 > media) printf("%f\n", n18);
+  if (n19 > media) printf("%f\n", n19);
+  if (n20 > media) printf("%f\n", n20);
+  if (n21 > media) printf("%f\n", n21);
+  if (n22 > media) printf("%f\n", n22);
+  if (n23 > media) printf("%f\n", n23);
+  if (n24 > media) printf("%f\n", n24);
+  if (n25 > media) printf("%f\n", n25);
+  if (n26 > media) printf("%f\n", n26);
+  if (n27 > media) printf("%f\n", n27);
+  if (n28 > media) printf("%f\n", n28);
+  if (n29 > media) printf("%f\n", n29);
+  if (n30 > media) printf("%f\n", n30);
+  return 0;
+}
+#+END_SRC
+* Motivação (Parte #3)
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula11-arrays1_slide_03.pdf}{Prof. Claudio Jung}
+* Sumário
+
+- Motivação
+- Arranjos Unidimensionais
+  - Conceito
+  - Inicialização
+  - Sintaxe
+  - Exemplo #1 (das notas dos alunos)
+  - Exemplo #2 (preços das mercadorias)
+  - Exemplo #3 (notas e códigos dos alunos)
+- Geração de números aleatórios para preenchimento de arranjos
+  - srand e /rand/
+- Exercício #1 (/aka/ desafio)
+  - Ordernar um arranjo unidimensional em ordem crescente/decrescente
+
+* Arranjo (/aka/ Vetor)
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula11_slide_09.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Características de Arranjos
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula11_slide_10.pdf}{Prof. Edison Pignaton de Freitas}
+
+* *Declaração* de arranjos na Linguagem C
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula11_slide_11.pdf}{Prof. Edison Pignaton de Freitas}
+
+* *Utilização* de arranjos na Linguagem C
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula11_slide_12.pdf}{Prof. Edison Pignaton de Freitas}
+
+* O índice do arranjo
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula11_slide_13.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Inicialização do arranjo
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula11_slide_14.pdf}{Prof. Edison Pignaton de Freitas}
+
+* #1 Inicialização (em tempo de compilação)
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula11_slide_15.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Onde ficam guardados esses dados de inicialização?
+
+#+BEGIN_CENTER
+Observe a diferença de tamanho do
+
+código compilado entre as duas versões.
+#+END_CENTER
+
+\to Arquivo =a15-init-arranjo-1.c=
+#+BEGIN_SRC C :tangle a15-init-arranjo-1.c
+int vetor[10] = {4, 7, 20, 31, 57, 21, 87, 12, 99, 34};
+#+END_SRC
+
+#+BEGIN_SRC bash
+gcc -c a15-init-arranjo-1.c
+wc -c a15-init-arranjo-1.o
+#+END_SRC
+
+#+RESULTS:
+: 1296 a15-init-arranjo-1.o
+
+\to Arquivo =a15-init-arranjo-2.c=
+#+BEGIN_SRC C :tangle a15-init-arranjo-2.c
+int vetor[10];
+#+END_SRC
+
+#+BEGIN_SRC bash
+gcc -c a15-init-arranjo-2.c
+wc -c a15-init-arranjo-2.o
+#+END_SRC
+
+#+RESULTS:
+: 1224 a15-init-arranjo-2.o
+
+* #2 Inicialização (por atribuição)
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula11_slide_16.pdf}{Prof. Edison Pignaton de Freitas}
+
+* #3 Inicialização (por leitura de dados do usuário)
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula11_slide_17.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Exemplo #1 (das notas dos alunos)
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula11_slide_18.pdf}{Prof. Edison Pignaton de Freitas}
+
+* (#1) Código =a15-maior-melhorado.c=
+
+#+BEGIN_SRC C :tangle a15-maior-melhorado.c
+/* Calcula media de uma turma e informa notas superiores a media
+Entradas: notas de 30 alunos
+Saidas: media da turma, e impressao das notas maiores do que a media*/
+#include <stdio.h>
+#define NUMALUNOS 30
+int main () {
+  float nota [NUMALUNOS] ; //arranjo para as notas
+  float media, soma;
+  int aluno; // variavel de controle da repeticao
+  soma = 0; // inicializa soma
+  for (aluno = 0; aluno < NUMALUNOS ; aluno++) { //para cada aluno
+    scanf ("%f", &nota[aluno]); // obtem nota
+    printf("Nota %2.2f colocada na posição %d\n", nota[aluno], aluno);
+    soma += nota[aluno]; // acumula a soma
+  }
+  media = soma / NUMALUNOS;
+  printf("Media da turma: %2.2f\n", media);
+  printf("Notas acima da media:\n");
+  for (aluno = 0; aluno < NUMALUNOS; aluno++) { // mostra notas > media
+    if (nota[aluno] > media)
+      printf ("%2.2f\n", nota[aluno]);
+  }
+  return 0;
+}
+#+END_SRC
+* Lembretes (é sempre bom enfatizar)
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula11_slide_20.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Exemplo #2 (preços das mercadorias)
+
+#+BEGIN_CENTER
+Ler os preços das mercadorias
+
+de uma loja (com códigos entre
+
+10 e 99), e informar o código da
+
+mercadoria cujo preço é R$ 123,00
+
+(supor todos os preços diferentes).
+#+END_CENTER
+
+#+latex: \pause\vfill
+
+Passos do algoritmo
+1. Declarar um arranjo unidimensional para registro dos preços
+   - O código da mercadoria será utilizado como indexação
+   - O valor da mercadoria será seu conteúdo
+2. Para cada um dos 90 códigos de mercadorias
+   1. Ler preço a partir de uma entrada manual do usuário
+   2. Registrar preço na posição do arranjo para aquele código
+3. Para cada posição do arranjo
+   1. Se o preço consultado foi 123 reais
+      1. Imprime na tela o código encontrado
+
+* (#2) Código =a15-precos-0.c=
+
+Quais são os problemas do código abaixo?
+
+#+BEGIN_SRC C :tangle a15-precos-0.c
+/*informar codigo da mercadoria com preco determinado
+Entrada: precos de 90 mercadorias
+Saida: impressao do codigo da mercadoria que vale R$ 123,00 */
+#include <stdio.h>
+#define CODMAX 99
+#define CODMIN 10
+int main () {
+  int cod;
+  // para usar indice 99, tem que declarar vetor com 100 elementos
+  float preco[CODMAX+1];
+  //obter preços
+  for (cod = CODMIN; cod <= CODMAX; cod++) {
+    printf("Entre o preco da mercadoria com codigo %d:", cod);
+    scanf("%f", &preco[cod]);
+  }
+  //procurar produto de preço R$ 123,00
+  for (cod = CODMIN; cod <= CODMAX; cod++)
+    if (preco[cod] == 123)
+      printf("Codigo desejado: %d \n", cod);
+  return 0;
+}
+#+END_SRC
+
+* (#2) Código melhorado =a15-precos-1.c=
+
+Quais é o problema remanscente do código abaixo?
+
+#+attr_latex: :options fontsize=\tiny
+#+BEGIN_SRC C :tangle a15-precos-1.c
+/*informar codigo da mercadoria com preco determinado
+Entrada: precos de 90 mercadorias
+Saida: impressao do codigo da mercadoria que vale R$ 123,00 */
+#include <stdio.h>
+#define CODMAX 99
+#define CODMIN 10
+int main () {
+  int cod;
+  int achou; // flag que indica se achou codigo (vale 0 ou 1)
+  // para usar indice 99, tem que declarar vetor com 100 elementos
+  float preco[CODMAX+1];
+  //obter preços
+  for (cod = CODMIN; cod <= CODMAX; cod++) {
+    printf("Entre o preco da mercadoria com codigo %d:", cod);
+    scanf("%f", &preco[cod]);
+  }
+  //procurar produto de preço R$ 123,00
+  achou = 0;
+  cod = CODMIN;
+  do {
+    if (preco[cod] == 123)
+      achou = 1;
+    cod++;
+  }while (cod <= CODMAX && achou == 0);
+
+  if (achou == 1){
+    printf("Codigo desejado: %d\n", cod-1);
+  }else{
+    printf("Codigo não encontrado!\n");
+  }
+  return 0;
+}
+#+END_SRC
+
+* (#2) Código =a15-precos-2.c= com melhor uso da memória
+
+#+attr_latex: :options fontsize=\tiny
+#+BEGIN_SRC C :tangle a15-precos-2.c
+/*informar codigo da mercadoria com preco determinado
+Entrada: precos de 90 mercadorias
+Saida: impressao do codigo da mercadoria que vale R$ 123,00 */
+#include <stdio.h>
+#define CODMAX 99
+#define CODMIN 10
+int main () {
+  int cod;
+  int achou; // flag que indica se achou codigo (vale 0 ou 1)
+  // para usar indice 99, tem que declarar vetor com 100 elementos
+  float preco[(CODMAX-CODMIN)+1];
+  //obter preços
+  for (cod = CODMIN; cod <= CODMIN+(CODMAX-CODMIN); cod++) {
+    printf("Entre o preco da mercadoria com codigo %d:", cod);
+    scanf("%f", &preco[cod-CODMIN]);
+  }
+
+  //procurar produto de preço R$ 123,00
+  achou = 0;
+  cod = CODMIN;
+  do {
+    if (preco[cod] == 123)
+      achou = 1;
+    cod++;
+  }while (cod <= CODMIN+(CODMAX-CODMIN) && achou == 0);
+
+  if (achou == 1){
+    printf("Codigo desejado: %d\n", CODMIN+cod-1);
+  }else{
+    printf("Codigo não encontrado!\n");
+  }
+  return 0;
+}
+#+END_SRC
+
+* Exemplo #3 (notas e códigos dos alunos)
+
+#+BEGIN_CENTER
+Ler do teclado o número de alunos de
+
+uma turma (assumir <= 60), ler a nota
+
+e o código de cada aluno, e informar
+
+os códigos e as notas dos alunos com nota
+
+menor do que a média.
+#+END_CENTER
+
+#+latex: \pause\vfill
+
+Passos do algoritmo
+1. Declarar um arranjo unidimensional para registro das notas
+2. Declarar um arranjo unidimensional para registro dos códigos
+3. Ler e validar a quantidade de alunos
+4. Para uma sequência de 0 até a quantidade de alunos menos um
+   1. Ler seu código, registrando-o no arranjo de códigos
+   2. Ler sua nota, registrando-a no arranjo de notas
+5. Calcular a média
+6. Para uma sequência de 0 até a quantidade de alunos menos um
+   1. Se a nota da posição do arranjo de notas for menor que a média
+      1. Imprime: (1) nota do arranjo de notas da posição
+      2. Imprime: (2) código do aluno do arranjo de códigos da posição
+
+* (#3) Código =a15-notas-codigos.c=
+
+#+attr_latex: :options fontsize=\tiny
+#+BEGIN_SRC C :tangle a15-notas-codigos.c
+/* Indicacao dos alunos com nota menor do que media da turma
+Entradas: numero de alunos da turma, codigos e nota dos alunos
+Saida: impressao dos numeros e notas dos alunos com nota menor do que media */
+#include <stdio.h>
+#define MAXTURMA 60
+int main() {
+  int numero[MAXTURMA];
+  float nota[MAXTURMA];
+  int tamturma, ind;
+  float media = 0;
+  do{ // validacao do numero de alunos
+    printf("Entre o numero de alunos na turma:");
+    scanf("%d", &tamturma);
+  }while ( tamturma < 1 || tamturma > 60);
+
+  for (ind = 0; ind < tamturma; ind++) { //leitura dos dados
+    printf("Entre o codigo do aluno %d:", ind+1);
+    scanf("%d", &numero[ind]);
+    printf("Entre a nota do aluno %d:", ind+1);
+    scanf("%f", &nota[ind]);
+    media += nota[ind];
+  }
+  media = media / tamturma;
+  for (ind = 0; ind < tamturma; ind++) //verificacao das notas
+    if (nota[ind] < media)
+      printf("Aluno %d com nota %0.2f, abaixo da media\n", numero[ind], nota[ind]);
+  return 0;
+}
+#+END_SRC
+* Geração de números aleatórios
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula11-arrays1_slide_26.pdf}{Prof. Claudio Jung}
+
+* Código =a15-aleatorio.c= com chamada para =rand()=
+
+#+BEGIN_SRC C :tangle a15-aleatorio.c
+/* Programa para exemplificar o uso do rand()
+Entradas: não há
+Saidas: Impressao de 3 numeros aleatorios */
+#include <stdio.h>
+#include <stdlib.h>
+int main() {
+  int cont;
+  for (cont = 0; cont < 3; cont++)
+    printf("%d ",rand());
+  printf("\n");
+  return 0;
+}
+#+END_SRC
+
+Vamos executar este código duas vezes:
+
+#+begin_src shell :results output
+gcc a15-aleatorio.c -o a15-aleatorio
+./a15-aleatorio; ./a15-aleatorio
+#+end_src
+
+#+RESULTS:
+: 1804289383 846930886 1681692777 
+: 1804289383 846930886 1681692777 
+
+As sequências aleatórias são as mesmas.
+* Potencial problema
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula11-arrays1_slide_28.pdf}{Prof. Claudio Jung}
+* Código =a15-aleatorio.c= com =rand()= e =srand()=
+
+#+BEGIN_SRC C :tangle a15-aleatorio-2.c
+/* Programa para exemplificar o uso do rand()
+Entradas: não há
+Saidas: Impressao de 3 numeros aleatorios */
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+int main() {
+  int cont;
+  srand(time(NULL));
+  for (cont = 0; cont < 3; cont++)
+    printf("%d ",rand());
+  printf("\n");
+  return 0;
+}
+#+END_SRC
+
+Vamos executar este código duas vezes:
+
+#+begin_src shell :results output
+gcc a15-aleatorio-2.c -o a15-aleatorio
+./a15-aleatorio; sleep 1; ./a15-aleatorio
+#+end_src
+
+#+RESULTS:
+: 821917571 1649127507 140706472 
+: 505583626 377294376 1851249366 
+
+As sequências aleatórias não são mais as mesmas.
+* Observação sobre números aleatórios
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula11-arrays1_slide_30.pdf}{Prof. Claudio Jung}
+* Exercício #1
+
+Faça um _algoritmo_ e um _programa em C_ para
+
+1. Preencher um arranjo de números inteiros com 20000 valores
+   - Os valores devem ser números aleatórios entre 1000 e 100000.
+   - Utilize as funções =srand()= e =rand()=
+2. Procure o /maior/ número
+   1. Informe o valor e a posição
+3. Procure o /menor/ número
+   1. Informe o valor e a posição
+4. Calcule o valor médio
+   1. Informe o valor médio
+5. Procure a posição que tem o valor mais próximo do valor médio
+   1. Informe a posição

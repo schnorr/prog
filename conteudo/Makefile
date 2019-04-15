@@ -5,7 +5,8 @@ revisao: revisao-aula-01.pdf \
 	 revisao-aula-07.pdf \
 	 revisao-aula-08.pdf \
 	 revisao-aula-10.pdf \
-	 revisao-aula-11.pdf
+	 revisao-aula-11.pdf \
+	 revisao-aula-13.pdf
 origina: apresentacao.pdf \
 	 introducao.pdf \
 	 sequencial.pdf \
@@ -14,7 +15,8 @@ origina: apresentacao.pdf \
 	 switch.pdf \
 	 for.pdf \
 	 maisfor.pdf \
-	 while.pdf
+	 while.pdf \
+	 arranjos.pdf
 all: revisao origina
 
 %.pdf: %.org

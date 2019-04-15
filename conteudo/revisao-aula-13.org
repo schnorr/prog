@@ -1,0 +1,68 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Revisão Aula 13
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS:   H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+
+* Configuração                                                     :noexport:
+
+#+BEGIN_SRC emacs-lisp
+(setq org-latex-listings 'minted
+      org-latex-packages-alist '(("" "minted"))
+      org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+(setq org-latex-minted-options
+       '(("frame" "lines")
+         ("fontsize" "\\scriptsize")))
+#+END_SRC
+
+#+RESULTS:
+| frame    | lines       |
+| fontsize | \scriptsize |
+* Exercício #1
+
+Refazer o exercício da taxa de crescimento com do-while ou while.
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula09/aula09_slide_21.pdf}{Prof. Marcelo Walter}
+* (#1 Taxa de Crescimento Brazil /vs/ EUA)
+
+#+attr_latex: :options fontsize=\scriptsize
+#+BEGIN_SRC C :tangle rev-a13-taxa.c
+/* Programa para satisfazer o enunciado sobre a taxa de crescimento com while */
+#include <stdio.h>
+int main() {
+  int qtdadeAnos;
+  double popBRA, popEUA;
+  double taxaBRA, taxaEUA;
+
+  popBRA = 203.0;
+  popEUA = 318.0;
+  taxaBRA = 1.5 / 100;
+  taxaEUA = 1.3 / 100;
+
+  qtdadeAnos = 0;
+
+  while (popBRA < popEUA) {
+    popBRA += popBRA * taxaBRA;
+    popEUA += popEUA * taxaEUA;
+    taxaEUA = taxaEUA - 0.1 / 100;
+    if (taxaEUA < 0) taxaEUA = 0;
+    qtdadeAnos += 1;
+  }
+  printf("Anos: %d\n", qtdadeAnos);
+  return 0;
+}
+#+END_SRC

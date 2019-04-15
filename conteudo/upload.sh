@@ -1,21 +1,24 @@
-PDFS="apresentacao.pdf \
-introducao.pdf \
-revisao-aula-01.pdf \
-sequencial.pdf \
-revisao-aula-02.pdf \
-tipos.pdf \
-revisao-aula-03.pdf \
-if.pdf \
-revisao-aula-04.pdf \
-if-else.pdf \
-revisao-aula-05.pdf \
-switch.pdf \
-revisao-aula-06.pdf \
-for.pdf \
-revisao-aula-07.pdf \
-maisfor.pdf \
-revisao-aula-08.pdf \
-while.pdf"
+REVISAO="revisao-aula-01.pdf \
+	 revisao-aula-02.pdf \
+	 revisao-aula-04.pdf \
+	 revisao-aula-05.pdf \
+	 revisao-aula-07.pdf \
+	 revisao-aula-08.pdf \
+	 revisao-aula-10.pdf \
+	 revisao-aula-11.pdf \
+	 revisao-aula-13.pdf"
+ORIGINA="apresentacao.pdf \
+	 introducao.pdf \
+	 sequencial.pdf \
+	 if.pdf \
+	 if-else.pdf \
+	 switch.pdf \
+	 for.pdf \
+	 maisfor.pdf \
+	 while.pdf \
+	 arranjos.pdf"
+
+PDFS="$REVISAO $ORIGINA"
 
 COMMAND="rsync -rv --progress $PDFS html.inf.ufrgs.br:./public_html/inf1202/"
 echo $COMMAND
