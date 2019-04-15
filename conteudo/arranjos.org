@@ -364,7 +364,7 @@ int main () {
   achou = 0;
   cod = CODMIN;
   do {
-    if (preco[cod] == 123)
+    if (preco[cod-CODMIN] == 123)
       achou = 1;
     cod++;
   }while (cod <= CODMIN+(CODMAX-CODMIN) && achou == 0);
