@@ -1,0 +1,471 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: /Strings/ ou Arranjos de Caracteres
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS:   H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+
+* Configuração                                                     :noexport:
+
+#+BEGIN_SRC emacs-lisp
+(setq org-latex-listings 'minted
+      org-latex-packages-alist '(("" "minted"))
+      org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+(setq org-latex-minted-options
+       '(("frame" "lines")
+         ("fontsize" "\\scriptsize")))
+#+END_SRC
+
+#+RESULTS:
+| frame    | lines       |
+| fontsize | \scriptsize |
+* Sumário
+
+- Arranjos de caracteres ou /strings/
+  - Motivação
+  - Função =getchar=
+  - Uso de =printf= com /strings/
+  - Como ler /strings/?
+    - Problema do =gets= e do =scanf=
+    - Uso do =fgets=
+  - Manuseio de /strings/: exemplo da cópia
+  - Funções para manusear /strings/ com a biblioteca =string.h=
+    - =strcpy=
+    - =strcat=
+    - =strlen=
+    - =strcmp=
+- Exercício #1 (Implementação de código de manuseio)
+- Exercício #2 (Procura por caractere)
+- Exercício #3 (Procura por /string/)
+* Motivação
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula12/aula12_slide_09.pdf}{Prof. Marcelo Walter}
+
+* Como ler um caractere?
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula12/aula12_slide_10.pdf}{Prof. Marcelo Walter}
+
+* Funcionamento da função =getchar()=
+
+Ler um caractere com =a16-getchar.c=
+#+BEGIN_SRC C :tangle a16-getchar.c
+#include <stdio.h>
+int main (){
+  char ch;
+  printf("Forneça um caractere: ");
+  ch = getchar();
+  printf("O caractere digitado: ->[%c]<-\n", ch);
+  return 0;
+}
+#+END_SRC
+
+#+latex: \vfill\pause
+
+Ler vários caracteres, um por um, com =a16-getchar-varios.c=
+
+#+BEGIN_SRC C :tangle a16-getchar-varios.c
+#include <stdio.h>
+int main (){
+  char ch;
+  do {
+    printf("Forneça um caractere: ");
+    ch = getchar();
+    printf("O caractere digitado: ->[%c]<-\n", ch);
+  }while(ch != 'p');
+  return 0;
+}
+#+END_SRC
+
+
+#+latex: %\cortesia{../../../Algoritmos/Marcelo/aulas/aula12/aula12_slide_11.pdf}{Prof. Marcelo Walter}
+
+* Sequência de caracteres
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula12/aula12_slide_12.pdf}{Prof. Marcelo Walter}
+
+* Declaração de /strings/ (similar a arranjos)
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula12/aula12_slide_13.pdf}{Prof. Marcelo Walter}
+
+* Literal /strings/
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula12/aula12_slide_14.pdf}{Prof. Marcelo Walter}
+
+* Inicialização de /strings/ (Exemplos P1)
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula12/aula12_slide_15.pdf}{Prof. Marcelo Walter}
+
+* Inicialização de /strings/ (Exemplos P2)
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula12/aula12_slide_16.pdf}{Prof. Marcelo Walter}
+
+* Utilização de =printf= com /strings/
+
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C :tangle a16-exemplo-printf.c
+#include <stdio.h>
+int main () {
+  char str0[15] = "Ana";
+  char str1[15] = {'A', 'n', 'a' };
+  char str2[] = "Maria";
+  char str3[3] = "Joao";
+  printf("->[%s]<-->[%s]<-->[%s]<-->[%s]<-\n",
+	 str0, str1, str2, str3);
+  return 0;
+}
+#+END_SRC
+
+#+latex: \pause
+
+Execução do exemplo
+
+#+begin_src shell :results output
+gcc a16-exemplo-printf.c -o a16-exemplo-printf
+./a16-exemplo-printf
+#+end_src
+
+#+RESULTS:
+: ->[Ana]<-->[Ana]<-->[Maria]<-->[JoaMaria]<-
+
+* Como ler /strings/?
+
+Nunca use estas funções: =scanf= e =gets= @@latex:\pause\hfill@@ Por quê?
+
+#+latex: \vfill
+
+=a16-problema-scanf.c=
+#+BEGIN_SRC C :tangle a16-problema-scanf.c
+#include <stdio.h>
+int main() {
+  char minha_string[5];
+  scanf("%s", minha_string);
+  printf("->[%s]<-\n", minha_string);
+  return 0;
+}
+#+END_SRC
+
+#+latex: \pause
+
+=a16-problema-get.c=
+#+BEGIN_SRC C :tangle a16-problema-gets.c
+#include <stdio.h>
+int main() {
+  char minha_string[5];
+  gets(minha_string);
+  printf("->[%s]<-\n", minha_string);
+  return 0;
+}
+#+END_SRC
+
+* Então como ler /strings/?
+
+Vamos usar a função =fgets= que é segura!
+
+#+BEGIN_EXAMPLE
+fgets(string, tamanho_da_string, stdin);
+#+END_EXAMPLE
+
+#+latex: \pause
+Exemplo
+
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C :tangle a16-fgets.c
+#include <stdio.h>
+int main(){
+  char minha_string[5];
+  fgets(minha_string, 5, stdin);
+  printf("->[%s]<-\n", minha_string);
+  fgets(minha_string, 5, stdin);
+  printf("->[%s]<-\n", minha_string);
+  return 0;
+}
+#+END_SRC
+
+* Impossível atribuição entre /strings/
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula12/aula12_slide_20.pdf}{Prof. Marcelo Walter}
+
+* Vamos mesmo assim tentar...
+
+#+BEGIN_SRC C :tangle a16-atribuir-strings.c
+int main(){
+  char str1[] = "Ana";
+  char str2[15];
+  str2 = str1;
+  return 0;
+}
+#+END_SRC
+
+#+latex: \pause
+
+Compilar:
+
+#+latex: {\small
+#+begin_src shell :results output
+gcc a16-atribuir-strings.c -o a16-atribuir-strings 2>&1 > x
+cat x
+#+end_src
+
+#+RESULTS:
+: a16-atribuir-strings.c: In function ‘main’:
+: a16-atribuir-strings.c:4:8: error: assignment to expression with array type
+:    str2 = str1;
+:         ^
+
+#+latex: }
+
+#+BEGIN_CENTER
+Realmente não dá...
+
+Mas como fazer para copiar uma string para outra, etc?
+#+END_CENTER
+
+* Manuseio de /strings/
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula12/aula12_slide_21.pdf}{Prof. Marcelo Walter}
+
+* Cópia: Exemplo em =a16-manuseio-copia-1.c=
+
+#+BEGIN_SRC C :tangle a16-manuseio-copia-1.c
+/* Copiar uma string para outra, e imprimir a string copia
+Entradas: string lida do teclado
+Saidas: copia da string lida e impressao na tela */
+#include<stdio.h>
+#define TAMSTRING 30
+int main()
+{
+  char str_in[TAMSTRING], str_out[TAMSTRING];
+  int cont = 0; // contador para caracteres das strings
+  printf("Entre o texto: ");
+  fgets(str_in, TAMSTRING, stdin);
+  printf("String lida foi ->[%s]<-\n", str_in);
+  // varre a string lida ate achar '\0'
+  while (str_in[cont]!='\0') {
+    str_out[cont] = str_in[cont];
+    cont++;
+  }
+  printf("->[%s]<-\n", str_out);
+  return 0;
+}
+#+END_SRC
+
+#+BEGIN_CENTER
+Vejamos o problema!
+#+END_CENTER
+
+* Cópia: Melhora em =a16-manuseio-copia-2.c=
+
+#+BEGIN_CENTER
+Faltava o =\0= para concluir a string.
+#+END_CENTER
+
+#+BEGIN_SRC C :tangle a16-manuseio-copia-2.c
+/* Copiar uma string para outra, e imprimir a string copia
+Entradas: string lida do teclado
+Saidas: copia da string lida e impressao na tela */
+#include<stdio.h>
+#define TAMSTRING 30
+int main()
+{
+  char str_in[TAMSTRING], str_out[TAMSTRING];
+  int cont = 0; // contador para caracteres das strings
+  printf("Entre o texto: ");
+  fgets(str_in, TAMSTRING, stdin);
+  printf("String lida foi ->[%s]<-\n", str_in);
+  // varre a string lida ate achar '\0'
+  while (str_in[cont]!='\0') {
+    str_out[cont] = str_in[cont];
+    cont++;
+  }
+  str_out[cont]='\0'; //<--- Veja a correção AQUI
+  printf("->[%s]<-\n", str_out);
+  return 0;
+}
+#+END_SRC
+
+* Funções para manuseio de /strings/ oriundas de =string.h=
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula12/aula12_slide_24.pdf}{Prof. Marcelo Walter}
+
+* Função =strcpy= (destino, origem) ~a16-exemplo-strcpy.c~
+
+Copia o conteúdo da variável =origem= para a variável =destino=
+- As variáveis =origem= e =destino= não podem se sobrepor
+- A variável =destino= tem que ser grande o suficiente
+
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C :tangle a16-exemplo-strcpy.c
+#include <stdio.h>
+#include <string.h>
+#define TAMANHO 10
+int main() {
+  char origem[TAMANHO];
+  char destino[TAMANHO];
+  printf("Forneça um nome de até %d caracteres: ", TAMANHO);
+  fgets(origem, TAMANHO, stdin);
+  strcpy(destino, origem); // <- AQUI
+  printf("destino ->[%s]<-\n", destino);
+  return 0;
+}
+#+END_SRC
+
+* Função =strcat= (destino, origem) ~a16-exemplo-strcat.c~
+
+Concatena o conteúdo da variável =origem= no final da variável =destino=
+- As variáveis =origem= e =destino= não podem se sobrepor
+- A variável =destino= tem que ser grande o suficiente
+
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C :tangle a16-exemplo-strcat.c
+#include <stdio.h>
+#include <string.h>
+#define TAMANHO 10
+int main() {
+  char origem[TAMANHO];
+  char destino[2*TAMANHO];
+  printf("Forneça um nome de até %d caracteres: ", TAMANHO);
+  fgets(origem, TAMANHO, stdin);
+  printf("Forneça outro nome de até %d caracteres: ", TAMANHO);
+  fgets(destino, TAMANHO, stdin);
+  strcat(destino, origem); // <- AQUI
+  printf("destino ->[%s]<-\n", destino);
+  return 0;
+}
+#+END_SRC
+
+* Função =strlen= (string) ~a16-exemplo-strlen.c~
+
+Retorna o tamanho da =string=, sem contar o '\0'
+
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C :tangle a16-exemplo-strlen.c
+#include <stdio.h>
+#include <string.h>
+#define TAMANHO 100
+int main() {
+  char origem[TAMANHO];
+  int tamanho;
+  printf("Forneça um nome de até %d caracteres: ", TAMANHO);
+  fgets(origem, TAMANHO, stdin);
+  tamanho = strlen(origem); // <- AQUI
+  printf("->[%s]<- com %d caracteres (bytes)\n",
+	 origem, tamanho);
+  return 0;
+}
+#+END_SRC
+
+* Função =strcmp= (s1, s2) \to =cmp= indica comparação
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula12/aula12_slide_28.pdf}{Prof. Marcelo Walter}
+
+* Exemplo de uso de =strcmp= em ~a16-exemplo-strcmp.c~
+
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C :tangle a16-exemplo-strcmp.c
+/* Programa que le um par de string, comparando cada par */
+#include <stdio.h>
+#include <string.h>
+#define TAMANHO 40
+int main() {
+  char string_primeiro[TAMANHO];
+  char string_segundo[TAMANHO];
+  printf("Forneca um texto: ");
+  fgets(string_primeiro, TAMANHO, stdin);
+  printf("Forneca um texto: ");
+  fgets(string_segundo, TAMANHO, stdin);
+  printf("Resultado da comparacao de %s com %s: %d\n\n",
+	 string_primeiro, string_segundo,
+	 strcmp(string_primeiro, string_segundo) );
+  return 0;
+}
+#+END_SRC
+
+#+latex: \vspace{-0.3cm}
+#+BEGIN_CENTER
+Teste com /Banana/ e /Abacate/, por exemplo.
+#+END_CENTER
+
+* Funções um pouco mais seguras
+
+Todas as funções de manuseio tem problemas...
+1. Elas não controlam se o destino tem tamanho adequado
+2. Elas copiam da origem até o =\0=
+
+#+latex: \vfill
+
+A solução para 2. é usar alternativas com limites explícitos
+
+#+BEGIN_CENTER
+=strncpy=
+
+=strncat=
+
+=strncmp=
+#+END_CENTER
+
+* Até agora, usamos fgets, mas vejamos um ``problema''
+
+~a16-fgets-2.c~
+#+BEGIN_SRC C :tangle a16-fgets-2.c
+#include <stdio.h>
+int main(){
+  char str[5];
+  fgets(str, 5, stdin);
+  printf("->[%s]<-\n", str);
+  return 0;
+}
+#+END_SRC
+
+#+BEGIN_CENTER
+Como resolver?
+#+END_CENTER
+
+#+latex: \pause
+
+~a16-fgets-3.c~
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C :tangle a16-fgets-3.c
+#include <stdio.h>
+int main(){
+  char str[5];
+  fgets(str, 5, stdin);
+  str[strlen(str)-1] = '\0'; // <- AQUI
+  printf("->[%s]<-\n", str);
+  return 0;
+}
+#+END_SRC
+
+* Exercício #1 (Implementação de código de manuseio)
+
+Implemente, empregando o comando =for=, a funcionalidade destas funções
+- =strcpy=
+- =strcat=
+- =strlen=
+- =strcmp=
+
+* Exercício #2 (Procura por caractere)
+
+Escreva um programa que lê um texto contendo até MAXIMO caracteres,
+depois lê 1 caractere e informa a primeira posição do texto onde este
+caractere ocorre (ou que não existe tal caractere no texto).
+
+* Exercício #3 (Procura por /string/)
+
+Escreva um programa que lê um texto contendo até MAXIMO caracteres,
+depois lê uma /string/ com até TAMANHO caracteres, e informa a posição
+do texto onde esta /string/ ocorre (ou que não existe tal caractere no
+texto). Caso a /string/ apareça mais de uma vez, todas as ocorrências
+devem ser informadas.
