@@ -6,7 +6,8 @@ REVISAO="revisao-aula-01.pdf \
 	 revisao-aula-08.pdf \
 	 revisao-aula-10.pdf \
 	 revisao-aula-11.pdf \
-	 revisao-aula-13.pdf"
+	 revisao-aula-13.pdf \
+	 revisao-aula-15.pdf"
 ORIGINA="apresentacao.pdf \
 	 introducao.pdf \
 	 sequencial.pdf \
@@ -16,7 +17,8 @@ ORIGINA="apresentacao.pdf \
 	 for.pdf \
 	 maisfor.pdf \
 	 while.pdf \
-	 arranjos.pdf"
+	 arranjos.pdf \
+	 strings.pdf"
 
 PDFS="$REVISAO $ORIGINA"
 
