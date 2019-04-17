@@ -130,7 +130,7 @@ int main ( )
 * Execução de teste
 
 #+begin_src shell :results output
-gcc a08-processa-notas.c; echo "10.0 9.2 2.2 3.2 4.5 2.1 11" | ./a.out 
+gcc a09-processa-notas.c; echo "10.0 9.2 2.2 3.2 4.5 2.1 11" | ./a.out 
 #+end_src
 
 #+RESULTS:
@@ -232,7 +232,7 @@ int main ( )
 * Execução de teste                                                :noexport:
 
 #+begin_src shell :results output
-gcc a08-processa-notas-dowhile.c; echo "10.0 9.2 2.2 3.2 4.5 2.1 11" | ./a.out 
+gcc a09-processa-notas-dowhile.c; echo "10.0 9.2 2.2 3.2 4.5 2.1 11" | ./a.out 
 #+end_src
 
 #+RESULTS:
