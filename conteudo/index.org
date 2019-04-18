@@ -62,9 +62,12 @@ A coluna *KR* se refere ao capítulo ou seção do livro:
 |    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/while.pdf][Comando iterativo =while=]]                  | S3.5, S3.6 | [[./while.org]]           |
 |----+--------------------------------------------+------------+-----------------------|
 | 15 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-13.pdf][Revisão]]                                    |            | [[./revisao-aula-13.org]] |
-|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/arranjos.pdf][Arranjos unidimensionais]]                   |            | [[./arranjos.org]]        |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/arranjos.pdf][Arranjos unidimensionais]]                   | S1.6, S5.3 | [[./arranjos.org]]        |
 |----+--------------------------------------------+------------+-----------------------|
-| 16 |                                            | S1.9       |                       |
+| 16 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-15.pdf][Revisão]]                                    |            | [[./revisao-aula-15.org]] |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/strings.pdf][Strings]]                                    | S1.9, S5.5 | [[./strings.org]]         |
+|----+--------------------------------------------+------------+-----------------------|
+| 16 |                                            |            |                       |
 |----+--------------------------------------------+------------+-----------------------|
 | 17 |                                            |            |                       |
 |----+--------------------------------------------+------------+-----------------------|
