@@ -128,6 +128,8 @@ Vamos codificar juntos!
 
 #+latex: \vfill
 
+#+latex: \begin{multicols}{2}
+#+attr_latex: :options fontsize=\scriptsize
 #+BEGIN_SRC C :tangle a17-notas.c
 #include <stdio.h>
 #define NALUNOS 10
@@ -135,8 +137,30 @@ Vamos codificar juntos!
 int main(){
   //10 alunos, cada um com 4 notas
   float notas[NALUNOS][NNOTAS];
+  int a, n, soma, contador = 0;
+  float media;
+  for (a = 0; a < NALUNOS; a++){
+    for (n = 0; n < NNOTAS; n++){
+      scanf("%f", &notas[a][n]);
+    }
+  }
+
+  soma = 0;
+  for (a = 0; a < NALUNOS; a++){
+    soma += notas[a][0];
+  }
+  media = (float)soma/NALUNOS;
+  //printf da media
+
+  contador = 0;
+  for (a = 0; a < NALUNOS; a++){
+    if (notas[a][0] > media) contador++;
+  }
+  //printf do contador
+  return 0;
 }
 #+END_SRC
+#+latex: \end{multicols}\vspace{-0.3cm}
 
 * Exemplo #2 (imprimir matriz na tela)
 
@@ -203,7 +227,6 @@ imprimir:
    ocorrencia, ou se o elemento não estiver presente na matriz
 
 * (#3) Code ~a17-init.c~
-
 
 #+latex: \vspace{-0.7cm}\begin{multicols}{3}
 #+attr_latex: :options fontsize=\tiny
