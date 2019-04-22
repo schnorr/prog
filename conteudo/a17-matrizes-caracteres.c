@@ -25,6 +25,7 @@ int main() {
     scanf("%d", &freq[i]);
   }
 
+
   printf("\n\n");
   // imprime os nomes dos alunos
   // e o conceito final
