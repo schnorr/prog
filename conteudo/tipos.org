@@ -16,6 +16,22 @@
 #+OPTIONS:   H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
 #+LATEX_HEADER: \input{org-babel.tex}
 
+* Configuração                                                     :noexport:
+
+#+BEGIN_SRC emacs-lisp
+(setq org-latex-listings 'minted
+      org-latex-packages-alist '(("" "minted"))
+      org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+(setq org-latex-minted-options
+       '(("frame" "lines")
+         ("fontsize" "\\scriptsize")))
+#+END_SRC
+
+#+RESULTS:
+| frame    | lines       |
+| fontsize | \scriptsize |
 * O que veremos hoje
 
 - Tipos de dados na declaração de variáveis
