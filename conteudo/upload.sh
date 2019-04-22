@@ -7,7 +7,8 @@ REVISAO="revisao-aula-01.pdf \
 	 revisao-aula-10.pdf \
 	 revisao-aula-11.pdf \
 	 revisao-aula-13.pdf \
-	 revisao-aula-15.pdf"
+	 revisao-aula-15.pdf \
+	 revisao-aula-16.pdf"
 ORIGINA="apresentacao.pdf \
 arranjos.pdf \
 for.pdf \
