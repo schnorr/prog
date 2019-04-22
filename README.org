@@ -54,6 +54,10 @@ disciplina.
 - [[./conteudo/][Acesse o conteúdo da disciplina]]
 - [[./avaliacao/][Acompanhamento das Avaliações]]
    
+* Monitor
+
+O Gustavo é o monitor das turmas I e J em 2019/1. Entre
+em contato com ele por e-mail: slemangustavo@gmail.com.
 * Contato
 
 Se você encontrar algum problema, e também no caso de dúvidas, entre em contato por e-mail:
