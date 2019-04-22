@@ -68,7 +68,7 @@ A coluna *KR* se refere ao capítulo ou seção do livro:
 |    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/strings.pdf][Strings]]                                    | S1.9, S5.5 | [[./strings.org]]         |
 |----+--------------------------------------------+------------+-----------------------|
 | 17 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-16.pdf][Revisão]]                                    |            | [[./revisao-aula-16.org]] |
-|    |                                            |            |                       |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/matriz.pdf][Matriz]]                                     |            | [[./matriz.org]]          |
 |----+--------------------------------------------+------------+-----------------------|
 | 18 |                                            |            |                       |
 |----+--------------------------------------------+------------+-----------------------|

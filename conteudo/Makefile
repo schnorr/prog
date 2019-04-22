@@ -19,7 +19,8 @@ origina: apresentacao.pdf \
 	 maisfor.pdf \
 	 while.pdf \
 	 arranjos.pdf \
-	 strings.pdf
+	 strings.pdf \
+	 matriz.pdf
 all: revisao origina
 
 %.pdf: %.org

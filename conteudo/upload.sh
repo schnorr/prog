@@ -20,7 +20,8 @@ sequencial.pdf \
 strings.pdf \
 switch.pdf \
 tipos.pdf \
-while.pdf"
+while.pdf \
+matriz.pdf"
 
 PDFS="$REVISAO $ORIGINA"
 
