@@ -44,6 +44,10 @@ sexta-feira). Veremos a solução na próxima aula.
 Foco apenas na parte de ordenamento de arranjos.
 #+END_CENTER
 
+* Estratégia
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula13/aula13_slide_03.pdf}{Prof. Marcelo Walter}
+
 * (#0) Code
 
 #+latex: \begin{multicols}{2}
@@ -85,6 +89,10 @@ int main() {
 }
 #+END_SRC
 #+latex: \end{multicols}\vspace{-0.3cm}
+
+* Notas sobre esta solução
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula13/aula13_slide_05.pdf}{Prof. Marcelo Walter}
 
 * Exercício #1 (Implementação de código de manuseio)
 
