@@ -9,16 +9,17 @@ REVISAO="revisao-aula-01.pdf \
 	 revisao-aula-13.pdf \
 	 revisao-aula-15.pdf"
 ORIGINA="apresentacao.pdf \
-	 introducao.pdf \
-	 sequencial.pdf \
-	 if.pdf \
-	 if-else.pdf \
-	 switch.pdf \
-	 for.pdf \
-	 maisfor.pdf \
-	 while.pdf \
-	 arranjos.pdf \
-	 strings.pdf"
+arranjos.pdf \
+for.pdf \
+if-else.pdf \
+if.pdf \
+introducao.pdf \
+maisfor.pdf \
+sequencial.pdf \
+strings.pdf \
+switch.pdf \
+tipos.pdf \
+while.pdf"
 
 PDFS="$REVISAO $ORIGINA"
 
