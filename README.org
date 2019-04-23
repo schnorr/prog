@@ -58,6 +58,16 @@ disciplina.
 
 O Gustavo é o monitor das turmas I e J em 2019/1. Entre
 em contato com ele por e-mail: slemangustavo@gmail.com.
+
+Horários de disponibilidade para monitoria:
+| *Dia da semana* | *Fatia de horário* |
+|---------------+------------------|
+| Terça         | 10h30 às 12h10   |
+| Terça         | 15h30 às 17h10   |
+| Quinta        | 10h30 às 12h10   |
+| Quinta        | 15h30 às 17h10   |
+| Sexta         | 10h30 às 12h10   |
+
 * Contato
 
 Se você encontrar algum problema, e também no caso de dúvidas, entre em contato por e-mail:
