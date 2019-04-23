@@ -68,6 +68,10 @@ Horários de disponibilidade para monitoria:
 | Quinta        | 15h30 às 17h10   |
 | Sexta         | 10h30 às 12h10   |
 
+O local dos encontros com o monitor é, salvo combinado contrário, na
+sala de monitorias: prédio 43425, sala 106 (é o mesmo prédio da sala
+habitual dos encontros teóricos).
+
 * Contato
 
 Se você encontrar algum problema, e também no caso de dúvidas, entre em contato por e-mail:
