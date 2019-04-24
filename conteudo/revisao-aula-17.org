@@ -1,0 +1,482 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Revisão Aula 17
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS:   H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{systeme}
+
+* Configuração                                                     :noexport:
+
+#+BEGIN_SRC emacs-lisp
+(setq org-latex-listings 'minted
+      org-latex-packages-alist '(("" "minted"))
+      org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+(setq org-latex-minted-options
+       '(("frame" "lines")
+         ("fontsize" "\\scriptsize")))
+#+END_SRC
+
+#+RESULTS:
+| frame    | lines       |
+| fontsize | \scriptsize |
+* Exercício #1 (Matriz transposta)
+
+Preencha (com números aleatórios de 1 a 99, supondo que a semente de
+números aleatórios seja 0) uma matriz quadrada (de inteiros) de ordem
+10 e obtenha a sua transposta. Imprima as duas matrizes para
+averiguação.
+
+* (#1) Code ~rev-a17-transposta.c~
+
+#+latex: \vspace{-0.3cm}\begin{multicols}{2}
+#+attr_latex: :options fontsize=\scriptsize
+#+BEGIN_SRC C :tangle rev-a17-transposta.c
+#include <stdio.h>
+#include <stdlib.h>
+//Limites da nossa matriz
+#define ORDEM 10
+//Limites de valores aleatórios
+#define MIN 1
+#define MAX 99
+
+int main(){
+  //A matriz m e seus índices
+  int m[ORDEM][ORDEM] = {0};
+  int mt[ORDEM][ORDEM] = {0};
+  int l, c;
+
+  // Define a semente para aleatórios
+  srand(0);
+
+  // inicializar a matriz
+  // com valores aleatórios
+  for (l = 0; l < ORDEM; l++)
+    for (c = 0; c < ORDEM; c++)
+      m[l][c] =
+	MIN+(rand()%(MAX-MIN+1));
+
+  // gera a transposta
+  for (l = 0; l < ORDEM; l++)
+    for (c = 0; c < ORDEM; c++)
+      mt[l][c] = m[c][l];
+
+  // imprime m
+  printf("Original:\n");
+  for (l = 0; l < ORDEM; l++){
+    for (c = 0; c < ORDEM; c++)
+      printf("%2d ", m[l][c]);
+    printf("\n");
+  }
+
+  // imprime mt
+  printf("Transposta:\n");
+  for (l = 0; l < ORDEM; l++){
+    for (c = 0; c < ORDEM; c++)
+      printf("%2d ", mt[l][c]);
+    printf("\n");
+  }
+  return 0;
+}
+#+END_SRC
+#+latex: \end{multicols}\vspace{-0.3cm}
+
+#+BEGIN_SRC gdb :tangle rev-a17-transposta.gdb
+break rev-a17-transposta.c:24
+command 1
+printf "l: %d | c: %d | posição: %d\n", l, c, m[l][c]
+list
+end
+#+END_SRC
+
+* Exercício #2 (Sistema de Equações Lineares)
+
+Suponha um =n= máximo.
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula13-matrizes_slide_29.pdf}{Prof. Claudio Jung}
+
+* (#2) Sistema linear
+
+#+BEGIN_CENTER
+Caso geral
+#+END_CENTER
+#+BEGIN_EXPORT latex
+\begin{equation*}
+\left \{\begin{align*}
+a_{11}x_{1} + a_{12} x_2 + ... + a_{13} x_n &= \,b_1 \\
+a_{21}x_{1} + a_{22} x_2 + ... + a_{23} x_n &= \,b_2 \\
+... \\
+a_{n1}x_{1} + a_{n2} x_2 + ... + a_{n3} x_n &= \,b_n \\
+\end{align*}
+\end{equation*}
+#+END_EXPORT
+
+#+latex: \pause\vfill\begin{multicols}{2}
+
+#+BEGIN_CENTER
+Exemplo com 3 incógnitas
+#+END_CENTER
+#+BEGIN_EXPORT latex
+\begin{equation*}
+\left \{\begin{align*}
+a_{11}x_{1} + a_{12} x_2 + a_{13} x_3 &= \,b_1 \\
+a_{21}x_{1} + a_{22} x_2 + a_{23} x_3 &= \,b_2 \\
+a_{31}x_{1} + a_{32} x_2 + a_{33} x_3 &= \,b_3 \\
+\end{align*}
+\end{equation*}
+#+END_EXPORT
+
+#+latex: \pause\vfill
+
+#+BEGIN_CENTER
+Caso triangular superior do exemplo
+#+END_CENTER
+#+BEGIN_EXPORT latex
+\begin{equation*}
+\left \{\begin{align*}
+a_{11}x_{1} + a_{12} x_2 + a_{13} x_3 &= \,b_1 \\
+             a_{22} x_2 + a_{23} x_3 &= \,b_2 \\
+                        a_{33} x_3 &= \,b_3 \\
+\end{align*}
+\end{equation*}
+#+END_EXPORT
+
+#+latex: \end{multicols}
+
+* (#2) Versão computacional
+
+#+BEGIN_CENTER
+Caso triangular superior do exemplo com 3 incógnitas
+#+END_CENTER
+#+BEGIN_EXPORT latex
+\begin{equation*}
+\left \{\begin{align*}
+a_{11}x_{1} + a_{12} x_2 + a_{13} x_3 &= \,b_1 \\
+             a_{22} x_2 + a_{23} x_3 &= \,b_2 \\
+                        a_{33} x_3 &= \,b_3 \\
+\end{align*}
+\end{equation*}
+#+END_EXPORT
+
+#+latex: \vfill
+
+#+BEGIN_CENTER
+Versão computacional (com matrizes e vetores)
+#+END_CENTER
+#+BEGIN_EXPORT latex
+$$
+\begin{bmatrix}
+a_{11} & a_{12} & a_{13} \\
+0.0 & a_{22} & a_{13} \\
+0.0 & 0.0 & a_{33}
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\
+x_2 \\
+x_3
+\end{bmatrix}
+=
+\begin{bmatrix}
+b_1 \\
+b_2 \\
+b_3
+\end{bmatrix}
+$$
+#+END_EXPORT
+
+#+BEGIN_CENTER
+Nomes para estes três elementos
+
+[ Matriz Coeficientes ] [ Vetor Solução ] = [ Vetor Termos Independentes ]
+#+END_CENTER
+
+* (#2) Estratégia + Planejamento
+
+Estratégia de retrossubstituição para resolução de sistemas triangulares
+
+#+BEGIN_CENTER
+Veja este video, procure extrair o algoritmo
+
+https://www.youtube.com/watch?v=53QVmZpZQ0M
+#+END_CENTER
+
+#+latex: \vfill
+
+#+BEGIN_CENTER
+Exemplo de teste com 4 incógnitas, do video acima
+#+END_CENTER
+#+BEGIN_EXPORT latex
+$$
+\begin{bmatrix}
+3.0000 & 1.0000 & 1.0000 &  1.0000 \\
+0.0000 & 1.6667 & 0.6667 &  1.6667 \\
+0.0000 & 0.0000 & 0.4000 &  0.0000 \\
+0.0000 & 0.0000 & 0.0000 & -1.0001 \\
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\
+x_2 \\
+x_3 \\
+x_4
+\end{bmatrix}
+=
+\begin{bmatrix}
+6.0000 \\
+4.0002 \\
+0.4001 \\
+-1.0003
+\end{bmatrix}
+#+END_EXPORT
+
+* (#2) Algoritmo de retrossubstituição
+
+#+BEGIN_CENTER
+Caso triangular superior de um exemplo com quatro incógnitas
+#+END_CENTER
+#+BEGIN_EXPORT latex
+\begin{equation*}
+\left \{\begin{align*}
+a_{11}x_{1} + a_{12} x_2 + a_{13} x_3 + a_{14} x_4 &= \,b_1 \\
+             a_{22} x_2 + a_{23} x_3 + a_{24} x_4 &= \,b_2 \\
+                        a_{33} x_3  + a_{34} x_4 &= \,b_3 \\
+                                     a_{44} x_4 &= \,b_4 \\
+\end{align*}
+\end{equation*}
+#+END_EXPORT
+
+Passo 1 \to
+#+BEGIN_EXPORT latex
+$$
+x_4 = \frac{b_4}{a_{44}}
+$$
+#+END_EXPORT
+
+Passo 2 \to
+#+BEGIN_EXPORT latex
+$$
+x_3 = \frac{b_3 - a_{34}x_4}{a_{33}}
+$$
+#+END_EXPORT
+
+Passo 3 \to
+#+BEGIN_EXPORT latex
+$$
+x_2 = \frac{b_2 - a_{23}x_3 - a_{24}x_4}{a_{22}}
+$$
+#+END_EXPORT
+
+Passo 4 \to
+#+BEGIN_EXPORT latex
+$$
+x_1 = \frac{b_1  - a_{12}x_2 - a_{13}x_3 - a_{14}x_4}{a_{11}}
+$$
+#+END_EXPORT
+
+* (#2) Algoritmo de retrossubstituição (Computacional)
+
+#+BEGIN_EXPORT latex
+$$
+\begin{bmatrix}
+a_{11} & a_{12} & a_{13} & a_{14} \\
+0.0 & a_{22} & a_{13} & a_{24}\\
+0.0 & 0.0 & a_{33} & a_{34} \\
+0.0 & 0.0 & 0.0 & a_{44} \\
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\
+x_2 \\
+x_3 \\
+x_4
+\end{bmatrix}
+=
+\begin{bmatrix}
+b_1 \\
+b_2 \\
+b_3 \\
+b_4
+\end{bmatrix}
+$$
+#+END_EXPORT
+
+#+latex: \vfill
+
+1. Para cada linha =l= do vetor solução (da linha =n= até =1=)
+   1. Calcula o numerador na variável =aux=
+      1. Inicializa variável =aux= da linha =l= do vetor independente
+      2. Para cada coluna =c= da matriz (do valor =l+1= até =n=)
+	 1. Subtrai de =aux= o termo ~a[l][c]*x[c]~;
+   2. Define a posição =l= do vetor solução como ~aux/a[l][l]~
+
+* (#2) Code ~rev-a17-sistema.c~
+
+#+latex: \vspace{-0.5cm}\begin{multicols}{2}
+#+attr_latex: :options fontsize=\scriptsize
+#+BEGIN_SRC C :tangle rev-a17-sistema.c
+#include <stdio.h>
+#define MAX 5
+int main () {
+  // Qtdade de incógnitas
+  int n;
+  // Matriz de Coeficientes
+  float a[MAX][MAX] = {0};
+  // Vetor de Termos Indep.
+  float b[MAX] = {0};
+  // Vetor solução
+  float x[MAX] = {0};
+  // Auxiliar (numerador)
+  float aux;
+  // Índices
+  int l, c;
+
+  // leitura de n
+  do {
+    printf("Entre o tamanho (n) do "
+	   "sistema (n <= %d): ", MAX);
+    scanf("%d", &n);
+  } while (n > 0 && n > MAX);
+
+
+
+  // Leitura dos dados de entrada
+  for (l = 0; l < n; l++) {
+    for (c = l; c < n; c++) {
+      printf("Coeficiente a(%d,%d): ",
+	     l+1, c+1);
+      scanf("%f", &a[l][c]);
+    }
+    printf("Termo independente b(%d): ",
+	   l+1);
+    scanf("%f", &b[l]);
+  }
+
+  // Resolucao por retrossubstituicao
+  for (l = n - 1; l >= 0; l--) {
+    aux = b[l];
+    for (c = l + 1; c < n; c++)
+      aux = aux - a[l][c] * x[c];
+    x[l] = aux / a[l][l];
+  }
+
+  // Impressao da solucao
+  printf("O vetor solucao é: \n");
+  for (l = 0; l < n; l++)
+    printf("x_%d = %f\n", l+1, x[l]);
+  return 0;
+}
+#+END_SRC
+#+latex: \end{multicols}
+* (#2) Zoom no Algoritmo /versus/ Programa
+
+1. Para cada linha =l= do vetor solução (da linha =n= até =1=)
+   1. Calcula o numerador na variável =aux=
+      1. Inicializa variável =aux= da linha =l= do vetor independente
+      2. Para cada coluna =c= da matriz (do valor =l+1= até =n=)
+	 1. Subtrai de =aux= o termo ~a[l][c]*x[c]~;
+   2. Define a posição =l= do vetor solução como ~aux/a[l][l]~
+
+#+latex: \vfill
+
+#+BEGIN_SRC C
+  // ...
+  // Resolucao por retrossubstituicao
+  for (l = n - 1; l >= 0; l--) {
+    aux = b[l];
+    for (c = l + 1; c < n; c++)
+      aux = aux - a[l][c] * x[c];
+    x[l] = aux / a[l][l];
+  }
+  // ...
+#+END_SRC
+
+#+latex: \vfill
+
+#+latex: \begin{multicols}{2}
+
+
+Elementos
+#+BEGIN_EXPORT latex
+{\scriptsize
+$$
+\begin{bmatrix}
+a_{11} & a_{12} & a_{13} & a_{14} \\
+0.0 & a_{22} & a_{13} & a_{24}\\
+0.0 & 0.0 & a_{33} & a_{34} \\
+0.0 & 0.0 & 0.0 & a_{44} \\
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\
+x_2 \\
+x_3 \\
+x_4
+\end{bmatrix}
+=
+\begin{bmatrix}
+b_1 \\
+b_2 \\
+b_3 \\
+b_4
+\end{bmatrix}
+$$
+}
+#+END_EXPORT
+
+
+Lembrete do último passo para $x_1$
+#+BEGIN_EXPORT latex
+$$
+x_1 = \frac{b_1  - a_{12}x_2 - a_{13}x_3 - a_{14}x_4}{a_{11}}
+$$
+#+END_EXPORT
+#+latex: \end{multicols}
+* (#2) Testes com o exemplo de video
+
+#+BEGIN_EXPORT latex
+$$
+\begin{bmatrix}
+3.0000 & 1.0000 & 1.0000 &  1.0000 \\
+0.0000 & 1.6667 & 0.6667 &  1.6667 \\
+0.0000 & 0.0000 & 0.4000 &  0.0000 \\
+0.0000 & 0.0000 & 0.0000 & -1.0001 \\
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\
+x_2 \\
+x_3 \\
+x_4
+\end{bmatrix}
+=
+\begin{bmatrix}
+6.0000 \\
+4.0002 \\
+0.4001 \\
+-1.0003
+\end{bmatrix}
+#+END_EXPORT
+
+Automatizando a entrada dos dados em /bash/ (terminal do Linux)
+
+#+begin_src bash :results output :session :exports both
+gcc rev-a17-sistema.c
+echo "4 3 1 1 1 6 1.6667 0.6667 1.6667 4.0002 0.4000 0 0.4001 -1.0001 -1.0003" | ./a.out
+#+END_SRC
+
+#+RESULTS:
+: Entre o tamanho (n) do sistema (n <= 5): Coeficiente a(1,1): Coeficiente a(1,2): Coeficiente a(1,3): Coeficiente a(1,4): Termo independente b(1): Coeficiente a(2,2): Coeficiente a(2,3): Coeficiente a(2,4): Termo independente b(2): Coeficiente a(3,3): Coeficiente a(3,4): Termo independente b(3): Coeficiente a(4,4): Termo independente b(4): O vetor solucao é: 
+: x_1 = 0.999930
+: x_2 = 0.999760
+: x_3 = 1.000250
+: x_4 = 1.000200
