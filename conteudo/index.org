@@ -71,7 +71,7 @@ A coluna *KR* se refere ao capítulo ou seção do livro:
 |    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/matriz.pdf][Matriz]]                                     |            | [[./matriz.org]]          |
 |----+--------------------------------------------+------------+-----------------------|
 | 18 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-17.pdf][Revisão]]                                    |            | [[./revisao-aula-17.org]] |
-|    |                                            |            |                       |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/maismatriz.pdf][Estudos de Caso com Matrizes]]               |            | [[./maismatriz.org]]      |
 |----+--------------------------------------------+------------+-----------------------|
 | 20 | Revisão Geral para a Prova                 |            |                       |
 
