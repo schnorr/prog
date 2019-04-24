@@ -74,3 +74,9 @@ A coluna *KR* se refere ao capítulo ou seção do livro:
 |    |                                            |            |                       |
 |----+--------------------------------------------+------------+-----------------------|
 | 20 | Revisão Geral para a Prova                 |            |                       |
+
+* Práticas
+
+O material das aulas práticas está disponível no [[https://moodle.ufrgs.br][Moodle Acadêmico]].
+- Turma I (clique [[https://moodle.ufrgs.br/course/view.php?id=65138][aqui]])
+- Turma J (clique [[https://moodle.ufrgs.br/course/view.php?id=65139][aqui]])
