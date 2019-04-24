@@ -22,7 +22,8 @@ strings.pdf \
 switch.pdf \
 tipos.pdf \
 while.pdf \
-matriz.pdf"
+matriz.pdf \
+maismatriz.pdf"
 
 PDFS="$REVISAO $ORIGINA"
 

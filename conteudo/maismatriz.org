@@ -34,11 +34,575 @@
 | fontsize | \scriptsize |
 * Sumário
 
-Exemplos
+Revisão
+
+Estudos de caso
 - #1 (turma, nome de alunos, suas notas, média e conceito)
 - #2 (matriz esparsa para condensada)
 - #3 (permutação de palavra)
 - #4 (percorrimentos em matrizes)
   - #4.1 (diagonal)
+
+Exercícios
+- #4 (percorrimentos em matrizes)
   - #4.2 (diferentes formas geométricas)
 - #5 (multiplicação de matrizes)
+
+Desafio
+- Campo minado
+
+* (Revisão) Arranjos multidimensionais
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula14_slide_02.pdf}{Prof. Edison Pignaton de Freitas}
+
+* (Revisão) Ainda sobre strings
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula14_slide_03.pdf}{Prof. Edison Pignaton de Freitas}
+
+* #1 (nome de alunos, 3\times notas, média)
+
+Para uma turma de NALUNOS alunos, para cada aluno: ler o nome do aluno
+(até 12 caracteres); ler as 3 notas obtidas por este aluno; calcular a
+média obtida.
+
+#+latex: \pause\vfill
+
+Vamos _simplificar_
+- Ler apenas os nomes dos NALUNOS (até 12 caracteres)
+  - Vamos usar uma /string/ auxiliar de validação e controle
+
+* (#1) Code ~a17-nomes.c~
+
+#+latex: \vspace{-0.3cm}\begin{multicols}{2}
+#+attr_latex: :options fontsize=\tiny
+#+BEGIN_SRC C :tangle a17-nomes.c
+#include <stdio.h>
+#include <string.h>
+#define NALUNOS 2
+#define NOME_MAX 12 //maior qtadade de caracteres
+#define AUXILIAR_MAX 200
+int main() {
+  //nome com tamanho máximo de 12 caracteres
+  char nome[NALUNOS][NOME_MAX+1];
+  //variável auxiliar na leitura da cada nome
+  char aux[AUXILIAR_MAX];
+  //índice para os nomes
+  int a;
+
+  // leitura dos dados
+  for (a = 0; a < NALUNOS; a++){
+    printf("Dados do aluno %d:\n" , a + 1);
+    printf("\t Nome: ");
+
+    //Vamos ler o nome na variável auxiliar
+    fgets(aux, AUXILIAR_MAX, stdin);
+    aux[strlen(aux)-1] = '\0'; //remove o \n
+    while(strlen(aux) > NOME_MAX){
+      printf("Nome muito longo (%d bytes), "
+	     "deve ser %d bytes no máximo.\n",
+	     strlen(aux), NOME_MAX);
+      printf("\t Nome: ");
+      fgets(aux, AUXILIAR_MAX, stdin);
+      aux[strlen(aux)-1] = '\0'; //remove o \n
+    }
+
+    //Vamos copiar para destino final
+    strncpy (nome[a], aux, NOME_MAX);
+  }
+
+  //imprimir todos os nomes lidos
+  for (a = 0; a < NALUNOS; a++){
+    printf("Aluno %d: \"%s\"\n", a+1, nome[a]);
+  }
+  return 0;
+}
+#+END_SRC
+#+latex: \end{multicols}
+
+* #1 (nome de alunos, 3\times notas, média)
+
+Para uma turma de NALUNOS alunos, para cada aluno: ler o nome do aluno
+(até 12 caracteres); ler as 3 notas obtidas por este aluno; calcular a
+média obtida.
+
+* (#1) Code ~a17-turma.c~
+
+#+latex: \vspace{-0.3cm}\begin{multicols}{2}
+#+attr_latex: :options fontsize=\tiny
+#+BEGIN_SRC C :tangle a17-turma.c
+#include <stdio.h>
+#include <string.h>
+#define NALUNOS 2
+#define NNOTAS 3 //quantidade de notas
+#define NOME_MAX 12 //maior qtadade de caracteres
+#define AUXILIAR_MAX 200
+int main() {
+  //com a média calculada na última coluna
+  float nota[NALUNOS][NNOTAS+1];
+  //nome com tamanho máximo de 12 caracteres
+  char nome[NALUNOS][NOME_MAX+1];
+  //variável para auxilair na leitura da cada nome
+  char aux[AUXILIAR_MAX];
+  //índice para os nomes e notas
+  int a, n;
+  //acumulador das notas para média
+  float soma;
+
+  // leitura de dados
+  for (a = 0; a < NALUNOS; a++){
+    printf("Dados do aluno %d:\n" , a + 1);
+    printf("\t Nome: ");
+
+    //Vamos ler o nome na variável auxiliar
+    fgets(aux, AUXILIAR_MAX, stdin);
+    aux[strlen(aux)-1] = '\0'; //remove o \n
+    while(strlen(aux) > NOME_MAX){
+      printf("Nome muito longo (%d bytes), "
+	     "deve ser %d bytes no máximo.\n",
+	     strlen(aux), NOME_MAX);
+      printf("\t Nome: ");
+      fgets(aux, AUXILIAR_MAX, stdin);
+      aux[strlen(aux)-1] = '\0'; //remove o \n
+    }
+
+    //Vamos copiar para destino final
+    strncpy (nome[a], aux, NOME_MAX);
+
+    //Vamos ler as três notas
+    soma = 0;
+    for (n = 0; n < NNOTAS; n++){
+      printf("\t Nota %d: ", n + 1);
+      scanf("%f", &nota[a][n]);
+      soma += nota[a][n];
+      //limpa o buffer de entrada
+      char c;
+      while ((c = getchar()) != '\n' && c != EOF);
+    }
+    nota[a][n] = soma / NNOTAS;
+  }
+
+  //imprimir todos os nomes lidos
+  for (a = 0; a < NALUNOS; a++){
+    printf("Aluno %d: \"%s\", com notas: ",
+	   a+1, nome[a]);
+    for (n = 0; n < NNOTAS; n++){
+      printf("%.2f ", nota[a][n]);
+    }
+    printf("e média %.2f.\n", nota[a][n]);
+  }
+  return 0;
+}
+#+END_SRC
+#+latex: \end{multicols}
+
+* (#1++) Code ~a17-conceito.c~ (com *conceito*)
+
+#+latex: \vspace{-0.3cm}\begin{multicols}{2}
+#+attr_latex: :options fontsize=\tiny
+#+BEGIN_SRC C :tangle a17-conceito.c
+#include <stdio.h>
+#include <string.h>
+#define NALUNOS 2
+#define NNOTAS 3 //quantidade de notas
+#define NOME_MAX 12 //maior qtadade de caracteres
+#define AUXILIAR_MAX 200
+int main() {
+  //vetor com os conceitos de cada aluno
+  char conceito[NALUNOS];
+  //com a média calculada na última coluna
+  float nota[NALUNOS][NNOTAS+1];
+  //nome com tamanho máximo de 12 caracteres
+  char nome[NALUNOS][NOME_MAX+1];
+  //variável para auxilair na leitura da cada nome
+  char aux[AUXILIAR_MAX];
+  //índice para os nomes e notas
+  int a, n;
+  //acumulador das notas para média
+  float soma;
+  // leitura de dados
+  for (a = 0; a < NALUNOS; a++){
+    printf("Dados do aluno %d:\n" , a + 1);
+    printf("\t Nome: ");
+    //Vamos ler o nome na variável auxiliar
+    fgets(aux, AUXILIAR_MAX, stdin);
+    aux[strlen(aux)-1] = '\0'; //remove o \n
+    while(strlen(aux) > NOME_MAX){
+      printf("Nome muito longo (%d bytes), "
+	     "deve ser %d bytes no máximo.\n",
+	     strlen(aux), NOME_MAX);
+      printf("\t Nome: ");
+      fgets(aux, AUXILIAR_MAX, stdin);
+      aux[strlen(aux)-1] = '\0'; //remove o \n
+    }
+    //Vamos copiar para destino final
+    strncpy (nome[a], aux, NOME_MAX);
+    //Vamos ler as três notas
+    soma = 0;
+    for (n = 0; n < NNOTAS; n++){
+      printf("\t Nota %d: ", n + 1);
+      scanf("%f", &nota[a][n]);
+      soma += nota[a][n];
+      //limpa o buffer de entrada
+      char c;
+      while ((c = getchar()) != '\n' && c != EOF);
+    }
+    nota[a][n] = soma / NNOTAS;
+    //Define conceito
+    if (nota[a][n] > 8.5) conceito[a] = 'A';
+    else if (nota[a][n] > 7.5) conceito[a] = 'B';
+    else if (nota[a][n] > 6.0) conceito[a] = 'C';
+    else conceito[a] = 'D';
+  }
+  //imprimir
+  for (a = 0; a < NALUNOS; a++){
+    printf("Aluno %d: \"%s\", com notas: ",
+	   a+1, nome[a]);
+    for (n = 0; n < NNOTAS; n++){
+      printf("%.2f ", nota[a][n]);
+    }
+    printf("média %f, conceito %c\n",
+	   nota[a][n], conceito[a]);
+  }
+  return 0;
+}
+#+END_SRC
+#+latex: \end{multicols}
+
+* #2 (matriz esparsa para condensada)
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula14_slide_12.pdf}{Prof. Edison Pignaton de Freitas}
+
+* (#2) Exemplo
+
+#+BEGIN_EXPORT latex
+\begin{bmatrix}
+0 & 0 & -1 & 0 & 2 \\
+-3 & 0 & 0 & 4 & 0 \\
+0 & -5 & 0 & 0 & 0 \\
+0 & 0 & 0 & 6 & 0 \\
+0 & -7 & 0 & 6 & 8 \\
+\end{bmatrix}\to
+\begin{bmatrix}
+-1 & 0 & 2 \\
+ 2 & 0 & 4 \\
+-3 & 1 & 0 \\
+ 4 & 1 & 3 \\
+-5 & 2 & 2 \\
+ 6 & 3 & 3 \\
+-7 & 4 & 1 \\
+ 6 & 4 & 3 \\
+ 8 & 4 & 4 \\
+\end{bmatrix}
+#+END_EXPORT
+
+* (#2) Code
+
+#+latex: \vspace{-0.3cm}\begin{multicols}{2}
+#+attr_latex: :options fontsize=\tiny
+#+BEGIN_SRC C :tangle a17-esparsa.c
+#include <stdio.h>
+#define MAXL 5 // número de linhas
+#define MAXC 5 // número de colunas
+int main() {
+  //a matriz esparsa
+  int esparsa[MAXL][MAXC] = {0};
+  //a matriz condensada com mais ou menos 1/3 dados
+  int condensada[(MAXL*MAXC)/3+1][3] = {0};
+  //índices da esparsa
+  int l, c;
+  //índice linha da condensada
+  int lc;
+
+  //leitura dos dados
+  for (l = 0; l < MAXL; l++) {
+    for (c = 0; c < MAXC; c++) {
+      printf("Elemento [%d][%d]: ", l, c);
+      scanf("%d", &esparsa[l][c]);
+    }
+  }
+
+  //percorre esparsa
+  lc = 0; //zero o índice da condensada
+  for (l = 0; l < MAXL; l++) {
+    for (c = 0; c < MAXC; c++) {
+      if(esparsa[l][c]){
+	  condensada[lc][0] = esparsa[l][c];
+	  condensada[lc][1] = l;
+	  condensada[lc][2] = c;
+	  lc++;
+      }
+    }
+  }
+
+  //imprime
+  printf("\n");
+  printf("Esparsa\n");
+  for (l = 0; l < MAXL; l++) {
+    for (c = 0; c < MAXC; c++) {
+      printf("%2d ", esparsa[l][c]);
+    }
+    printf("\n");
+  }
+
+  //imprime
+  printf("Condensada\n");
+  for (l = 0; l < (MAXL*MAXC)/3+1; l++) {
+    for (c = 0; c < 3; c++) {
+      printf("%2d ", condensada[l][c]);
+    }
+    printf("\n");
+  }
+  return 0;
+}
+#+END_SRC
+#+latex: \end{multicols}
+
+* (#2) Teste
+
+#+BEGIN_EXPORT latex
+\begin{tiny}
+\begin{bmatrix}
+0 & 0 & -1 & 0 & 2 \\
+-3 & 0 & 0 & 4 & 0 \\
+0 & -5 & 0 & 0 & 0 \\
+0 & 0 & 0 & 6 & 0 \\
+0 & -7 & 0 & 6 & 8 \\
+\end{bmatrix}\to
+\begin{bmatrix}
+-1 & 0 & 2 \\
+ 2 & 0 & 4 \\
+-3 & 1 & 0 \\
+ 4 & 1 & 3 \\
+-5 & 2 & 2 \\
+ 6 & 3 & 3 \\
+-7 & 4 & 1 \\
+ 6 & 4 & 3 \\
+ 8 & 4 & 4 \\
+\end{bmatrix}
+\end{tiny}
+#+END_EXPORT
+
+Vejamos
+
+#+attr_latex: :options fontsize=\tiny
+#+begin_src bash :results output :session :exports both
+gcc a17-esparsa.c
+echo "0 0 -1 0 2 -3 0 0 4 0 0 -5 0 0 0 0 0 0 6 0 0 -7 0 6 8" | ./a.out
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+Elemento [0][0]: Elemento [0][1]: Elemento [0][2]: Elemento [0][3]: Elemento [0][4]: Elemento [1][0]: Elemento [1][1]: Elemento [1][2]: Elemento [1][3]: Elemento [1][4]: Elemento [2][0]: Elemento [2][1]: Elemento [2][2]: Elemento [2][3]: Elemento [2][4]: Elemento [3][0]: Elemento [3][1]: Elemento [3][2]: Elemento [3][3]: Elemento [3][4]: Elemento [4][0]: Elemento [4][1]: Elemento [4][2]: Elemento [4][3]: Elemento [4][4]: 
+Esparsa
+ 0  0 -1  0  2 
+-3  0  0  4  0 
+ 0 -5  0  0  0 
+ 0  0  0  6  0 
+ 0 -7  0  6  8 
+Condensada
+-1  0  2 
+ 2  0  4 
+-3  1  0 
+ 4  1  3 
+-5  2  1 
+ 6  3  3 
+-7  4  1 
+ 6  4  3 
+ 8  4  4 
+#+end_example
+
+* #3 (permutação de palavra)
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula14_slide_16.pdf}{Prof. Edison Pignaton de Freitas}
+
+* (#3) Code
+
+#+latex: \vspace{-0.3cm}\begin{multicols}{2}
+#+attr_latex: :options fontsize=\scriptsize
+#+BEGIN_SRC C :tangle a17-permuta.c
+// Gera permutação circular
+#include <stdio.h>
+#include <string.h>
+#define SIZEPAL 16
+int main() {
+  //a palavra lida
+  char palavra[SIZEPAL+1];
+  //a palavra permutada
+  char permuta[SIZEPAL+1];
+  //para salvar tamanho
+  int tamanho;
+  //índice de percorrimento na string
+  int i;
+
+  //Vamos ler a palavra
+  printf("Palavra: ");
+  fgets(palavra, SIZEPAL, stdin);
+  tamanho = strlen(palavra);
+  //remove o \n
+  palavra[tamanho-1] = '\0';
+
+  //atualiza tamanho
+  tamanho = strlen(palavra);
+
+  printf("\n\nPalavra: [%s]\n",palavra);
+
+  // do 1 até penúltimo caractere
+  // recebem o da posição posterior
+  for (i = 0; i < (tamanho-1); i++){
+    permuta[i] = palavra[i+1];
+  }
+  // último caractere da permuta
+  // recebe primeiro da palavra
+  permuta[i] = palavra[0];
+  // inserir terminador
+  permuta[i+1] = '\0';
+
+  printf("Permuta: [%s]\n",permuta);
+  return 0;
+}
+#+END_SRC
+#+latex: \end{multicols}
+
+#+latex: \pause\vfill
+
+O que acontece se ~#define SIZEPAL 3~?
+
+* #4.1 (diagonal)
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula14_slide_19.pdf}{Prof. Edison Pignaton de Freitas}
+
+* (#4.1) Code
+
+#+latex: \vspace{-0.3cm}\begin{multicols}{2}
+#+attr_latex: :options fontsize=\scriptsize
+#+BEGIN_SRC C :tangle a17-diagonal.c
+#include <stdio.h>
+#include <stdlib.h>
+//Limites da nossa matriz
+#define ORDEM 15
+//Limites de valores aleatórios
+#define MIN 1
+#define MAX 99
+int main(){
+  //A matriz m e seus índices
+  int m[ORDEM][ORDEM] = {0};
+  int l, c;
+  //acumulador da soma
+  int soma;
+
+  // Define a semente para aleatórios
+  srand(0);
+
+  // inicializar a matriz
+  // com valores aleatórios
+  for (l = 0; l < ORDEM; l++)
+    for (c = 0; c < ORDEM; c++)
+      m[l][c] = MIN+(rand()%(MAX-MIN+1));
+
+  // somatório da diagonal principal
+  soma = 0;
+  for (l = 0; l < ORDEM; l++){
+    soma += m[l][l];
+  }
+
+  // imprimir a matriz
+  printf("Matriz\n");
+  for (l = 0; l < ORDEM; l++){
+    for (c = 0; c < ORDEM; c++)
+      printf("%2d ", m[l][c]);
+    printf("\n");
+  }
+  printf("Média da diagonal: %.2f\n",
+	 (float)soma/ORDEM);
+  return 0;
+}
+#+END_SRC
+#+latex: \end{multicols}
+
+* Exercício #1 (diferentes formas geométricas)
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula14_slide_22.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Exercício #2 (multiplicação de matrizes)
+
+Seja
+- A uma matriz de dimensão r x s
+- B uma matriz de dimensão s x t.
+
+Faça um programa que calcula o produto de A x B, resultando em uma
+matriz C de dimensão r x t.
+
+#+latex: \vfill
+
+Exemplo
+
+#+BEGIN_EXPORT latex
+\begin{scriptsize}
+$$
+\begin{bmatrix}
+1 & 2 & 3 & 4 \\
+5 & 6 & 7 & 8 \\
+\end{bmatrix}
+\times
+\begin{bmatrix}
+1 & 2 \\
+3 & 4 \\
+5 & 6 \\
+7 & 8 \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+1*1+2*3+3*5+4*7 & 1*2+2*4+3*6+4*8 \\
+5*1+6*3+7*5+8*7 & 5*2+6*4+7*6+8*8
+\end{bmatrix}
+\end{small}
+#+END_EXPORT
+
+* Estudo de caso para multiplicação de matrizes
+
+Uma pessoa preparou três receitas usando quatro ingredientes em
+proporções variadas, conforme a tabela 1.  Os preços unitários dos
+ingredientes constam da tabela 2.  Determine a matriz (tabela 3) que
+registra o preço total de cada Receita.
+
+#+latex: \vfill
+
+Tabela #1
+
+| Receita | A | B | C | D |
+|---------+---+---+---+---|
+|       1 | 3 | 6 | 1 | 3 |
+|       2 | 4 | 4 | 2 | 2 |
+|       3 | 0 | 1 | 1 | 6 |
+
+Tabela #2
+
+| Ingrediente | Valor |
+|-------------+-------|
+| A           |   0.2 |
+| B           |   0.8 |
+| C           |   1.2 |
+| D           |   2.8 |
+
+* Desafio (inspiração no campo minado)
+
+*Parte #1* (básica)
+
+Um campo minado regular pode ser representado por uma matriz. Faça um
+programa que distribua, em posições aleatórias, uma quantidade
+específica de minas. Em um segundo momento, para todas as posições
+onde não há minas, defina a quantidade de vizinhos (norte, sul, leste,
+oeste) com minas. A quantidade de minas deve ser definida como uma
+porcentagem da quantidade de posições possíveis da matriz.
+
+#+latex: \vfill
+
+*Parte #2* (avançado)
+
+Transforme em um jogo com interação do usuário.
+- As posições devem estar reveladas ou não
+- A cada passo, o usuário escolhe uma coordenada
+  - Programa revela aquela posição
+    - Se for mina, bum!, /game over/
+    - Se não for mina, revela o espaço livre de minas no entorno
+

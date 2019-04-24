@@ -8,7 +8,8 @@ revisao: revisao-aula-01.pdf \
 	 revisao-aula-11.pdf \
 	 revisao-aula-13.pdf \
 	 revisao-aula-15.pdf \
-	 revisao-aula-16.pdf
+	 revisao-aula-16.pdf \
+	 revisao-aula-17.pdf
 origina: apresentacao.pdf \
 	 introducao.pdf \
 	 sequencial.pdf \
@@ -20,7 +21,8 @@ origina: apresentacao.pdf \
 	 while.pdf \
 	 arranjos.pdf \
 	 strings.pdf \
-	 matriz.pdf
+	 matriz.pdf \
+	 maismatriz.pdf
 all: revisao origina
 
 %.pdf: %.org
