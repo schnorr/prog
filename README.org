@@ -53,6 +53,10 @@ disciplina.
 
 - [[./conteudo/][Acesse o conteúdo da disciplina]]
 - [[./avaliacao/][Acompanhamento das Avaliações]]
+
+* Dicas e Erros Frequentes
+
+- [[https://github.com/viniciusvgp/intro-prog-c/][Lista de Dicas e Erros Frequentes no Aprendizado da Linguagem C]]
    
 * Monitor
 
