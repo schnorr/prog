@@ -88,7 +88,7 @@
 |----+--------------------------------------------+------------|
 * Simulado #1
 
-#+BEGIN_SRC C :tangle simul-p1-q1.c
+#+BEGIN_SRC C :results output :tangle simul-p1-q1.c
 #include <stdio.h>
 int main ()
 {
@@ -114,6 +114,37 @@ como saída. (2) Reescreva o programa acima de forma identada, ao lado do códig
 substituindo o FOR pelo comando WHILE e o WHILE por um comando DOWHILE,
 gerando as mesmas saídas.
 
+- [X] Substituir o FOR pelo comando WHILE
+- [ ] substituir o WHILE pelo comando DO-WHILE
+
+#+BEGIN_SRC C :results output :tangle simul-p1-q1-substituir.c
+#include <stdio.h>
+int main ()
+{
+  int x, i, j;
+  x = 8;
+  i = 2;
+  while (i < 5){
+
+    j= 3;
+    do {
+      x = x+1;
+      j = j-1;
+    }while(j > 0);
+    printf( "X : %5d\n", x );
+    i++;
+  }
+  printf("- Fim - \n");
+  return 0;
+}  
+#+END_SRC
+
+#+RESULTS:
+: X :    11
+: X :    14
+: X :    17
+: - Fim -
+
 * Simulado #2
 
 Algoritmo e programa para identificar a maior subsequência de números
@@ -128,13 +159,76 @@ Deve ter como saída:
 - Tamanho 5
 - Sequência ~0 0 0 0 0~
 
+#+BEGIN_SRC C :results output :tangle simul-p1-q1.c
+#include <stdio.h>
+int main(){
+  int vet[] = {0, 0, 1, 1, 0, 1, 0, 1, 0, 0,
+	         1, 1, 1, 0, 0, 0, 0, 0, 1, 0,
+               1, 0};
+  int tam = 22;
+  int i;
+  int maior_tamanho = -1;
+  int maior_comeco = -1;
+  int comeco = 0;
+  int tamanho = 1;
+  int atual = vet[0];
+  for (i = 1; i < tam; i++){
+    if (vet[i] == atual){
+      tamanho++;
+      if (tamanho > maior_tamanho) {
+	  maior_tamanho = tamanho;
+    	  maior_comeco = comeco;
+      }
+    }else{
+      comeco = i;
+      tamanho = 1;
+      atual = vet[i];
+    }
+//    printf("%d %d %d %d\n", vet[i], atual, comeco, tamanho);
+  }
+  printf ("Posição %d\n", maior_comeco);
+  printf ("Tamanho %d\n", maior_tamanho);
+  printf ("Sequência ");
+  for (i = maior_comeco; i < (maior_comeco+maior_tamanho); i++){
+    printf("%d ", vet[i]);
+  }
+  printf ("\n");
+  return 0;
+}
+#+END_SRC
+
+#+RESULTS:
+: Posição 13
+: Tamanho 5
+: Sequência 0 0 0 0 0
+
 * Simulado #3
 
 Faça um programa que identifica se um número inteiro qualquer é um número
 perfeito. Número perfeito é aquele cuja soma de seus divisores, exceto ele próprio, é igual
 ao número. O programa recebe um inteiro como entrada e fornece como saída uma
 mensagem dizendo se é perfeito ou não. Para identificar se é divisor use o resto da
-divisao: numero % divisor = = 0
+divisao: ~numero % divisor == 0~
+
+#+BEGIN_SRC C :tangle simul-p1-q3.c
+#include <stdio.h>
+int main(){
+  int i;
+  int valor;
+  scanf("%d", &valor);
+  int soma = 0;
+  for (i = 0; i < valor; i++){
+    if (valor%i == 0){
+      soma += i; }
+  }
+  if (valor == soma){
+    printf("É número perfeito.\n");
+  }else{
+    printf("Não é número perfeito.\n");
+  }
+  return 0;
+}
+#+END_SRC
 
 * Simulado #4
 
