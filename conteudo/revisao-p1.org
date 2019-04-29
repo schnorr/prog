@@ -18,6 +18,22 @@
 #+LATEX_HEADER: \usepackage{amsmath}
 #+LATEX_HEADER: \usepackage{systeme}
 
+* Configuração                                                     :noexport:
+
+#+BEGIN_SRC emacs-lisp
+(setq org-latex-listings 'minted
+      org-latex-packages-alist '(("" "minted"))
+      org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+(setq org-latex-minted-options
+       '(("frame" "lines")
+         ("fontsize" "\\scriptsize")))
+#+END_SRC
+
+#+RESULTS:
+| frame    | lines       |
+| fontsize | \scriptsize |
 * Conteúdos até o presente momento (Cronograma)
 
 #+latex: \small
@@ -70,3 +86,113 @@
 |----+--------------------------------------------+------------|
 | 18 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/maismatriz.pdf][Estudos de Caso com Matrizes]]               |            |
 |----+--------------------------------------------+------------|
+* Simulado #1
+
+#+BEGIN_SRC C :tangle simul-p1-q1.c
+#include <stdio.h>
+int main ()
+{
+int x, i, j;
+x = 8;
+for (i = 2; i < 5; i++)
+{
+j= 3;
+while (j > 0)
+{
+x = x+1;
+j = j-1;
+}
+printf( "X : %5d\n", x );
+}
+printf("- Fim - \n");
+return 0;
+}
+#+END_SRC
+
+Dado o programa acima, não identado, (1) apresente os valores e formato apresentados
+como saída. (2) Reescreva o programa acima de forma identada, ao lado do código,
+substituindo o FOR pelo comando WHILE e o WHILE por um comando DOWHILE,
+gerando as mesmas saídas.
+
+* Simulado #2
+
+Algoritmo e programa para identificar a maior subsequência de números
+0 ou 1. Por exemplo, para a sequência
+
+#+BEGIN_SRC bash
+0 0 1 1 0 1 0 1 0 0 1 1 1 0 0 0 0 0 1 0 1 0
+#+END_SRC
+
+Deve ter como saída:
+- Posição 13
+- Tamanho 5
+- Sequência ~0 0 0 0 0~
+
+* Simulado #3
+
+Faça um programa que identifica se um número inteiro qualquer é um número
+perfeito. Número perfeito é aquele cuja soma de seus divisores, exceto ele próprio, é igual
+ao número. O programa recebe um inteiro como entrada e fornece como saída uma
+mensagem dizendo se é perfeito ou não. Para identificar se é divisor use o resto da
+divisao: numero % divisor = = 0
+
+* Simulado #4
+
+Dadas duas palavras (cadeia de caracteres) com no máximo 15
+caracteres, verificar se uma é a permutação circular da outra, não
+importando se os caracteres individuais são maiúsculos ou
+minúsculos. Para se obter a permutação circular de uma cadeia,
+transfere-se o primeiro caracter do início para o fim da mesma, o
+segundo caracter para a primeira posição e assim sucessivamente. Por
+exemplo, para a palavra AMORA, a permutação circular é MORAA.
+
+Exemplo de uso #1
+
+#+BEGIN_EXAMPLE
+Entre com a primeira palavra: Amora
+Entre com a segunda palavra: Moraa
+A segunda palavra eh permutação circular da primeira!
+#+END_EXAMPLE
+
+Exemplo de uso #2
+
+#+BEGIN_EXAMPLE
+Entre com a primeira palavra: Casa
+Entre com a segunda palavra: AMOR
+A segunda palavra nao eh permutação circular da primeira!
+#+END_EXAMPLE
+
+* Simulado #5
+
+
+Faça um programa que lê um conjunto de 20 valores inteiros e os armazena em 2 arrays
+unidimensionais conforme forem pares ou ímpares. Imprima o vetor com os elementos pares e em
+seguida aquele com os elementos ímpares. Cuide para imprimir somente os elementos válidos
+destes vetores. Lembre-se que o usuário tem liberdade de escolha para os 20 números, eles podem
+inclusive serem todos pares ou ímpares.
+
+Abaixo exemplo de execução:
+
+#+BEGIN_EXAMPLE
+Entre com os 20 valores:
+12 33 1 9 87 44 2 32 14 126 3 13 21 22 4 66 7 18 11 20
+Elementos do array com valores pares:
+12 44 2 32 14 126 22 4 66 18 20
+Elementos do array com valores impares:
+33 1 9 87 3 13 21 7 11
+#+END_EXAMPLE
+
+* Simulado #6
+
+Fazer um programa que leia o valor de X no intervalo (-0.5,0.75) e de
+Y no intervalo [-1,1] e calcule e imprima na tela o resultado do
+somatório abaixo. Faça consistência dos valores de entrada.
+
+#+latex: \vfill
+
+#+BEGIN_EXPORT latex
+$$
+S = \frac{X^{25} * Y^{1}}{1} + \frac{X^{24} * Y^{2}}{2} + ... + \frac{X^{2} * Y^{24}}{24} + \frac{X^{1} * Y^{25}}{25}
+$$
+#+END_EXPORT
+
