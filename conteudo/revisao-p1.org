@@ -1,0 +1,72 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Aula de Revisão da Parte #1
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS:   H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{systeme}
+
+* Conteúdos até o presente momento (Cronograma)
+
+#+latex: \small
+
+|  *N* |     *Quando* | *Assunto*                                                  |
+|----+------------+----------------------------------------------------------|
+|  1 | 2019-03-11 | Paradigmas de programação, programa,  algoritmo          |
+|  2 | 2019-03-13 | Algoritmo: atribuição, entrada e saída                   |
+|    |            | Estrutura de programa C: scanf, printf                   |
+|  4 | 2019-03-18 | Tipos de Dados, Declaração e tipos de variáveis          |
+|    |            | Operadores e expressão aritmética e lógica               |
+|  5 | 2019-03-20 | Comando de Seleção If                                    |
+|  7 | 2019-03-25 | Aninhamento de comandos If Else                          |
+|  8 | 2019-03-27 | Estrutura de seleção múltipla - comando switch           |
+| 10 | 2019-04-01 | Comando iterativo for                                    |
+| 11 | 2019-04-03 | Comandos iterativos while e do-while                     |
+| 13 | 2019-04-08 | Comandos iterativos while e do-while Exemplos            |
+| 15 | 2019-04-15 | Tipos estruturados básicos – arranjos de uma dimensão    |
+| 16 | 2019-04-17 | Classificação de vetores Strings: arranjos de caracteres |
+| 17 | 2019-04-22 | Arranjos com mais de uma dimensão: matrizes              |
+| 18 | 2019-04-24 | Busca e classificação em matrizes                        |
+
+* Conteúdos até o presente momento
+
+|  *N* | *PDF*                                        | *KR*         |
+|----+--------------------------------------------+------------|
+| 01 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/introducao.pdf][Introdução de Algoritmos e Programação]]     |            |
+|----+--------------------------------------------+------------|
+| 02 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/sequencial.pdf][Estrutura de um Programa em C]]              | C1         |
+|----+--------------------------------------------+------------|
+| 04 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/tipos.pdf][Tipos de variáveis, expressões aritméticas]] | C2         |
+|----+--------------------------------------------+------------|
+| 05 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/if.pdf][Comandos =if= e expressões lógicas]]           | C2, S3.2   |
+|----+--------------------------------------------+------------|
+| 07 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/if-else.pdf][Comandos =if-else= aninhados]]                 | S3.3       |
+|----+--------------------------------------------+------------|
+| 08 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/switch.pdf][Estrutura de seleção múltipla switch-case]]  | S3.4       |
+|----+--------------------------------------------+------------|
+| 10 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/for.pdf][Comando iterativo =for=]]                    | S3.5       |
+|----+--------------------------------------------+------------|
+| 11 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/maisfor.pdf][Comando iterativo =for=]] (bis)              | S3.5       |
+|----+--------------------------------------------+------------|
+| 13 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/while.pdf][Comando iterativo =while=]]                  | S3.5, S3.6 |
+|----+--------------------------------------------+------------|
+| 15 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/arranjos.pdf][Arranjos unidimensionais]]                   | S1.6, S5.3 |
+|----+--------------------------------------------+------------|
+| 16 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/strings.pdf][Strings]]                                    | S1.9, S5.5 |
+|----+--------------------------------------------+------------|
+| 17 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/matriz.pdf][Matriz]]                                     | S5.7       |
+|----+--------------------------------------------+------------|
+| 18 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/maismatriz.pdf][Estudos de Caso com Matrizes]]               |            |
+|----+--------------------------------------------+------------|

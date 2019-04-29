@@ -9,7 +9,8 @@ REVISAO="revisao-aula-01.pdf \
 	 revisao-aula-13.pdf \
 	 revisao-aula-15.pdf \
 	 revisao-aula-16.pdf \
-	 revisao-aula-17.pdf"
+	 revisao-aula-17.pdf \
+	 revisao-aula-18.pdf"
 ORIGINA="apresentacao.pdf \
 arranjos.pdf \
 for.pdf \
@@ -23,7 +24,8 @@ switch.pdf \
 tipos.pdf \
 while.pdf \
 matriz.pdf \
-maismatriz.pdf"
+maismatriz.pdf \
+revisao-p1.pdf"
 
 PDFS="$REVISAO $ORIGINA"
 
