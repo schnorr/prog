@@ -98,7 +98,7 @@ df.legacy %>%
 | Prática | comandos iterativos –– for e while com vetores                |
 | Prática | comandos iterativos – while e do-while com strings e matrizes |
 | Prática | Busca e classificação com matrizes                            |
-| Prática | Apresentação do trabalho final – Biblioteca Conio             |
+| Prática | Apresentação do trabalho final                                |
 | Prática | Funções sem retorno                                           |
 | Prática | Funções parametrizadas com retorno e ponteiros                |
 | Prática | estruturas                                                    |
@@ -169,7 +169,7 @@ A mescla entre aulas teóricas e práticas é feita automaticamente.
 | Prática | Comandos iterativos -- for e while com vetores                 |
 | Prática | Comandos iterativos -- while e do-while com strings e matrizes |
 | Prática | Busca e classificação com matrizes                             |
-| Prática | Apresentação do trabalho final -- Biblioteca Conio             |
+| Prática | Apresentação do trabalho final                                 |
 | Prática | Ponteiros e Funções sem retorno                                |
 | Prática | Funções parametrizadas com retorno e ponteiros                 |
 | Prática | Estruturas                                                     |
@@ -388,7 +388,7 @@ cronograma %>%
 | 21 | 2019-05-03 | *Prática* | Busca e classificação com matrizes                                                          |
 | 22 | 2019-05-06 | Teórica | 1ª Prova                                                                                    |
 | 23 | 2019-05-08 | Teórica | Subprogramação - variáveis locais e globais, parâmetros                                     |
-| 24 | 2019-05-10 | *Prática* | Apresentação do trabalho final -- Biblioteca Conio                                          |
+| 24 | 2019-05-10 | *Prática* | Apresentação do trabalho final                                                              |
 | 25 | 2019-05-13 | Teórica | Função sem retorno (void): parâmetros formais e reais                                       |
 | 26 | 2019-05-15 | Teórica | Parâmetros por valor e por referência, Ponteiros                                            |
 | 27 | 2019-05-17 | *Prática* | Ponteiros e Funções sem retorno                                                             |
