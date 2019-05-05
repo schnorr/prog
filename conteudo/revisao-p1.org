@@ -114,6 +114,8 @@ como saída. (2) Reescreva o programa acima de forma identada, ao lado do códig
 substituindo o FOR pelo comando WHILE e o WHILE por um comando DOWHILE,
 gerando as mesmas saídas.
 
+* (#1) Código
+
 - [X] Substituir o FOR pelo comando WHILE
 - [X] substituir o WHILE pelo comando DO-WHILE
 
@@ -159,7 +161,11 @@ Deve ter como saída:
 - Tamanho 5
 - Sequência ~0 0 0 0 0~
 
-#+BEGIN_SRC C :results output :tangle simul-p1-q1.c
+* (#2) Código
+
+#+latex: \vspace{-0.3cm}\begin{multicols}{2}
+#+attr_latex: :options fontsize=\tiny
+#+BEGIN_SRC C :results output :tangle simul-p1-q2.c
 #include <stdio.h>
 int main(){
   int vet[] = {0, 0, 1, 1, 0, 1, 0, 1, 0, 0,
@@ -184,18 +190,21 @@ int main(){
       tamanho = 1;
       atual = vet[i];
     }
-//    printf("%d %d %d %d\n", vet[i], atual, comeco, tamanho);
+//    printf("%d %d %d %d\n",
+//           vet[i], atual, comeco, tamanho);
   }
   printf ("Posição %d\n", maior_comeco);
   printf ("Tamanho %d\n", maior_tamanho);
   printf ("Sequência ");
-  for (i = maior_comeco; i < (maior_comeco+maior_tamanho); i++){
+  for (i = maior_comeco;
+       i < (maior_comeco+maior_tamanho); i++){
     printf("%d ", vet[i]);
   }
   printf ("\n");
   return 0;
 }
 #+END_SRC
+#+latex: \end{multicols}
 
 #+RESULTS:
 : Posição 13
@@ -209,6 +218,8 @@ perfeito. Número perfeito é aquele cuja soma de seus divisores, exceto ele pr�
 ao número. O programa recebe um inteiro como entrada e fornece como saída uma
 mensagem dizendo se é perfeito ou não. Para identificar se é divisor use o resto da
 divisao: ~numero % divisor == 0~
+
+* (#3) Código
 
 #+BEGIN_SRC C :tangle simul-p1-q3.c
 #include <stdio.h>
@@ -255,6 +266,10 @@ Entre com a primeira palavra: Casa
 Entre com a segunda palavra: AMOR
 A segunda palavra nao eh permutação circular da primeira!
 #+END_EXAMPLE
+
+#+begin_src shell :results output
+
+#+end_src
 
 * Simulado #5
 
