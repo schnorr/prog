@@ -396,3 +396,43 @@ S = \frac{X^{25} * Y^{1}}{1} + \frac{X^{24} * Y^{2}}{2} + ... + \frac{X^{2} * Y^
 $$
 #+END_EXPORT
 
+* (#6) Código
+
+#+latex: \vspace{-0.3cm}\begin{multicols}{2}
+#+attr_latex: :options fontsize=\tiny
+#+BEGIN_SRC C :tangle simul-p1-q6.c
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+int main() {
+  double S, termo, x, y, numx, numy;
+  int den, expx, expy, sinal;
+
+  do{
+    printf("Valor de x: ");
+    scanf("%lf", &x);
+  }while (x <= -0.5 || x >= 0.75);
+  do{
+    printf("Valor de y:");
+    scanf("%lf", &y);
+  }while (y < -1 || y > 1);
+
+  expx = 25;
+  expy = 1;
+  sinal = 1;
+  S = 0;
+
+  for (den = 1; den < 26; den++)  {
+    numx = pow(x, expx);
+    numy = pow(y, expy);
+    termo = sinal*numx*numy/den;
+    S += termo;
+    expx -= 1;
+    expy += 1;
+  }
+  printf("Valor de S: %lf\n", S);
+  return 0;
+}
+
+#+END_SRC
+#+latex: \end{multicols}
