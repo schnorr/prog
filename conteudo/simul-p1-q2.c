@@ -22,12 +22,14 @@ int main(){
       tamanho = 1;
       atual = vet[i];
     }
-//    printf("%d %d %d %d\n", vet[i], atual, comeco, tamanho);
+//    printf("%d %d %d %d\n",
+//           vet[i], atual, comeco, tamanho);
   }
   printf ("Posição %d\n", maior_comeco);
   printf ("Tamanho %d\n", maior_tamanho);
   printf ("Sequência ");
-  for (i = maior_comeco; i < (maior_comeco+maior_tamanho); i++){
+  for (i = maior_comeco;
+       i < (maior_comeco+maior_tamanho); i++){
     printf("%d ", vet[i]);
   }
   printf ("\n");
