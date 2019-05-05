@@ -324,7 +324,6 @@ int main() {
 
 * Simulado #5
 
-
 Faça um programa que lê um conjunto de 20 valores inteiros e os armazena em 2 arrays
 unidimensionais conforme forem pares ou ímpares. Imprima o vetor com os elementos pares e em
 seguida aquele com os elementos ímpares. Cuide para imprimir somente os elementos válidos
@@ -341,6 +340,47 @@ Elementos do array com valores pares:
 Elementos do array com valores impares:
 33 1 9 87 3 13 21 7 11
 #+END_EXAMPLE
+
+* (#5) Código
+
+#+latex: \vspace{-0.3cm}\begin{multicols}{2}
+#+attr_latex: :options fontsize=\tiny
+#+BEGIN_SRC C :tangle simul-p1-q5.c
+#include <stdio.h>
+#define NVAL 20
+int main(){
+  int pares[NVAL];
+  int impares[NVAL];
+  int n_pares = 0;
+  int n_impares = 0;
+  int i;
+  int valor;
+
+  printf("Entre com os 20 valores:\n");
+  for (i = 0; i < NVAL; i++){
+    scanf("%d", &valor);
+    if (valor % 2 == 0){
+      pares[n_pares] = valor;
+      n_pares++;
+    }else{
+      impares[n_impares] = valor;
+      n_impares++;
+    }
+  }
+  printf("Elementos do array com valores pares:\n");
+  for (i = 0; i < n_pares; i++){
+    printf("%d ", pares[i]);
+  }
+  printf("\n");
+  printf("Elementos do array com valores impares:\n");
+  for (i = 0; i < n_impares; i++){
+    printf("%d ", impares[i]);
+  }
+  printf("\n");
+  return 0;
+}
+#+END_SRC
+#+latex: \end{multicols}
 
 * Simulado #6
 
