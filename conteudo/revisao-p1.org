@@ -115,7 +115,7 @@ substituindo o FOR pelo comando WHILE e o WHILE por um comando DOWHILE,
 gerando as mesmas saídas.
 
 - [X] Substituir o FOR pelo comando WHILE
-- [ ] substituir o WHILE pelo comando DO-WHILE
+- [X] substituir o WHILE pelo comando DO-WHILE
 
 #+BEGIN_SRC C :results output :tangle simul-p1-q1-substituir.c
 #include <stdio.h>
