@@ -1,0 +1,184 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Questões e Comentários da P1
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS:   H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{systeme}
+#+LATEX_HEADER: \usepackage{boxedminipage}
+
+* Configuração                                                     :noexport:
+
+#+BEGIN_SRC emacs-lisp
+(setq org-latex-listings 'minted
+      org-latex-packages-alist '(("" "minted"))
+      org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+(setq org-latex-minted-options
+       '(("frame" "lines")
+         ("fontsize" "\\scriptsize")))
+#+END_SRC
+
+#+RESULTS:
+| frame    | lines       |
+| fontsize | \scriptsize |
+
+* Sumário
+
+P1 teve quatro questões
+- Entender programas já construídos (/1.5 pontos/)
+- Cálculo da constante de Euler (/2.5 pontos/)
+- Cálculo do Minimax (/3.0 pontos/)
+- Criptografia por transposição (/3.0 pontos/)
+
+* Entender programas já construídos
+
+a) Apresente o código indentado.
+
+b) Apresente a saída em tela gerada pela execução do programa.
+
+c) Escreva uma nova versão, *com semântica idêntica*, apenas com =for=.
+
+#+latex: \vfill
+
+#+latex: {\begin{boxedminipage}{.85\textwidth}
+#+attr_latex: :options fontsize=\large
+#+begin_src C :results output :session :exports both
+#include <stdio.h>
+int main(){ int a=5;
+int i=0,k=1,j; do {
+for(j=1;j<k+1;j++) if (i % 2)
+a += 10; else a += 5;
+i++; } while(i<4 && k != 0);
+printf("%d, %d, %d, %d \n", i, j, k, a);
+return 0; }
+#+END_SRC
+#+latex: \end{boxedminipage} }
+
+* Cálculo da constante de Euler
+
+Dado
+
+#+BEGIN_EXPORT latex
+{\large
+$$e = \sum_{n=0}^{\infty}{\frac{1}{n!}}$$
+}
+#+END_EXPORT
+
+Escreva um programa em C
+- leia um valor de tolerância
+- calcule o valor aproximado de /e/, informando-o na saída
+
+Requisitos
+- A aproximação avança até que o erro <= tolerância informada
+- O erro é o valor absoluto do último termo calculado
+
+* Cálculo do Minimax
+
+#+BEGIN_CENTER
+O elemento minimax é o menor elemento da linha
+
+em que se encontra o maior elemento da matriz.
+#+END_CENTER
+
+Requisitos
+- Um programa em C
+- Preencha uma matriz quadrada de ordem ~ORDEM~, por coluna
+  - com valores inteiros aleatórios de ~MIN~ até ~MAX~
+  - utilizando o valor ~0~ como semente da sequência aleatória
+- Determine o seu elemento minimax, imprimindo-o na tela com local
+
+* Criptografia por transposição
+
+A cifragem empregada
+pelas crianças funciona da seguinte forma.
+
+#+latex: \bigskip
+
+Dada uma frase:
+
+#+BEGIN_EXPORT latex
+\newcounter{row}
+\newcounter{col}
+\begin{center}
+\textsc{\begin{tikzpicture}[scale=.5]
+  \begin{scope}
+    %\draw (0, 0) grid (12, 1);
+    \setcounter{col}{1}
+    \setcounter{row}{1}
+    \foreach \n in {O, N, u, m, e, r, o, E, h, 4, 2, !} {
+       \edef\x{\value{col} - 0.5}
+       \edef\y{1.5 - \value{row}}
+       \node[anchor=center] at (\x, \y) {\n};
+       \stepcounter{col}
+    }
+  \end{scope}
+\end{tikzpicture}}
+\end{center}
+#+END_EXPORT
+
+Para criptografar, as crianças combinaram de transpor da seguinte forma:
+
+#+BEGIN_EXPORT latex
+\begin{center}
+\textsc{\begin{tikzpicture}[scale=.5]
+  \begin{scope}
+    %\draw (0, 0) grid (12, 2);
+    \setcounter{col}{1}
+    \setcounter{row}{1}
+    \foreach \n in {O,  , u,  , e,  , o,  , h,  , 2,  } {
+       \edef\x{\value{col} - 0.5}
+       \edef\y{1.5 - \value{row}}
+       \node[anchor=center] at (\x, \y) {\n};
+       \stepcounter{col}
+    }
+    \setcounter{col}{1}
+    \setcounter{row}{0}
+    \foreach \n in { , N,  , m,  , r,  , E,  , 4,  , !} {
+       \edef\x{\value{col} - 0.5}
+       \edef\y{1.5 - \value{row}}
+       \node[anchor=center] at (\x, \y) {\n};
+       \stepcounter{col}
+    }
+  \end{scope}
+\end{tikzpicture}}
+\end{center}
+#+END_EXPORT
+
+Em seguida, as crianças pegam a parte de cima e concatenam com a parte
+de baixo, obtendo a seguinte frase:
+
+#+BEGIN_EXPORT latex
+\begin{center}
+\textsc{\begin{tikzpicture}[scale=.5]
+  \begin{scope}
+    %\draw (0, 0) grid (12, 1);
+    \setcounter{col}{1}
+    \setcounter{row}{1}
+    \foreach \n in {N, m, r, E, 4, !, O, u, e, o, h, 2} {
+       \edef\x{\value{col} - 0.5}
+       \edef\y{1.5 - \value{row}}
+       \node[anchor=center] at (\x, \y) {\n};
+       \stepcounter{col}
+    }
+  \end{scope}
+\end{tikzpicture}}
+\end{center}
+#+END_EXPORT
+
+Requisitos
+- Programa em C que implementa este tipo de cifragem
+- String de no máximo ~TAMANHO~ caracteres.

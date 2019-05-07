@@ -10,7 +10,8 @@ revisao: revisao-aula-01.pdf \
 	 revisao-aula-15.pdf \
 	 revisao-aula-16.pdf \
 	 revisao-aula-17.pdf \
-	 revisao-aula-18.pdf
+	 revisao-aula-18.pdf \
+	 comentarios-p1.pdf
 origina: apresentacao.pdf \
 	 introducao.pdf \
 	 sequencial.pdf \
