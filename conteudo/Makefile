@@ -25,7 +25,8 @@ origina: apresentacao.pdf \
 	 strings.pdf \
 	 matriz.pdf \
 	 maismatriz.pdf \
-	 revisao-p1.pdf
+	 revisao-p1.pdf \
+	 funcoes.pdf
 all: revisao origina
 
 %.pdf: %.org

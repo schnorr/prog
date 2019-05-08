@@ -74,7 +74,14 @@ A coluna *KR* se refere ao capítulo ou seção do livro:
 |    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/maismatriz.pdf][Estudos de Caso com Matrizes]]               |            | [[./maismatriz.org]]      |
 |----+--------------------------------------------+------------+-----------------------|
 | 20 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-18.pdf][Revisão]]                                    |            | [[./revisao-aula-18.org]] |
-|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-p1.pdf][Revisão Geral P1 + Simulado]]                |            | [[./revisao-p1.org]]      |          
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-p1.pdf][Revisão Geral P1 + Simulado]]                |            | [[./revisao-p1.org]]      |
+|----+--------------------------------------------+------------+-----------------------|
+| 23 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/comentarios-p1.pdf][Questões e Comentários da P1]]               |            | [[./comentarios-p1.org]]  |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/funcoes.pdf][Subprogramas e Funções]]                     |            | [[./funcoes.org]]         |
+|----+--------------------------------------------+------------+-----------------------|
+| 25 | Revisão                                    |            | [[./revisao-aula-23.org]] |
+|    |                                            |            |                       |
+
 
 * Práticas
 
