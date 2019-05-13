@@ -1,17 +1,16 @@
 #include <stdio.h>
 
-void menu_de_opcoes(void);
+void menu_de_opcoes(void);  //protótipo
 
 int main() {
   int opcao;
-  menu_de_opcoes();
+  menu_de_opcoes(); //chamada da função
   scanf("%d", &opcao);
   printf("A opção selecionada foi a '%d'.\n", opcao);
   return 0;
 }
 
-void menu_de_opcoes (void)
-{
+void menu_de_opcoes (void) { //implementação
   printf("Opções disponíveis:\n"
 	 "------------------\n\n"
 	 "   1 - soma de dois valores reais\n"

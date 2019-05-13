@@ -340,7 +340,7 @@ O que é impresso em #2?
 
 #+latex: \pause
 
-#+begin_src shell :results output
+#+begin_src shell :results output :exports both
 gcc a25-troca.c; ./a.out
 #+end_src
 
