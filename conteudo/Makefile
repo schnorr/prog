@@ -1,4 +1,4 @@
-revisao: revisao-aula-01.pdf \
+REVISAO= revisao-aula-01.pdf \
 	 revisao-aula-02.pdf \
 	 revisao-aula-04.pdf \
 	 revisao-aula-05.pdf \
@@ -11,8 +11,10 @@ revisao: revisao-aula-01.pdf \
 	 revisao-aula-16.pdf \
 	 revisao-aula-17.pdf \
 	 revisao-aula-18.pdf \
+	 revisao-aula-23.pdf \
 	 comentarios-p1.pdf
-origina: apresentacao.pdf \
+
+ORIGINA= apresentacao.pdf \
 	 introducao.pdf \
 	 sequencial.pdf \
 	 if.pdf \
@@ -27,8 +29,14 @@ origina: apresentacao.pdf \
 	 maismatriz.pdf \
 	 revisao-p1.pdf \
 	 funcoes.pdf
+
+revisao: $(REVISAO)
+origina: $(ORIGINA)
 all: revisao origina
 
 %.pdf: %.org
 	emacs -batch $^ --funcall org-babel-tangle
-	emacs -batch $^ --funcall org-beamer-export-to-pdf
+	emacs -batch $^ --eval "(setq org-latex-listings 'minted org-latex-packages-alist '((\"\" \"minted\")) org-latex-pdf-process '(\"pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f\" \"pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f\"))" --eval "(setq org-latex-minted-options '((\"frame\" \"lines\") (\"fontsize\" \"\\\\scriptsize\")))" --funcall org-beamer-export-to-pdf
+
+clean:
+	rm -f $(REVISAO) $(ORIGINA)
