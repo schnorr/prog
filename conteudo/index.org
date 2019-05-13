@@ -79,7 +79,7 @@ A coluna *KR* se refere ao capítulo ou seção do livro:
 | 23 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/comentarios-p1.pdf][Questões e Comentários da P1]]               |            | [[./comentarios-p1.org]]  |
 |    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/funcoes.pdf][Subprogramas e Funções]]                     |            | [[./funcoes.org]]         |
 |----+--------------------------------------------+------------+-----------------------|
-| 25 | Revisão                                    |            | [[./revisao-aula-23.org]] |
+| 25 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-23.pdf][Revisão]]                                    |            | [[./revisao-aula-23.org]] |
 |    |                                            |            |                       |
 
 
