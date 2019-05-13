@@ -27,7 +27,8 @@ while.pdf \
 matriz.pdf \
 maismatriz.pdf \
 revisao-p1.pdf \
-funcoes.pdf"
+funcoes.pdf \
+parametros.pdf"
 
 PDFS="$REVISAO $ORIGINA"
 

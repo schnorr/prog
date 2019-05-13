@@ -38,8 +38,11 @@
 * Revisão
 
 Funções
-- Tipos (com ou sem retorno)
-- Parametrizáveis ou não
+- Múltiplos níveis de chamada
+- Tipos (com ou /sem/ retorno)
+  - Vimos especialmente funções sem valor de retorno (void)
+- Parametrizáveis ou /não/
+  - Vimos especialmente funções sem parâmetros
 - Protótipo de funções
 - Regras de escopo estático
 - Variáveis locais e globais

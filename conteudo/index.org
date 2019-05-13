@@ -80,8 +80,10 @@ A coluna *KR* se refere ao capítulo ou seção do livro:
 |    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/funcoes.pdf][Subprogramas e Funções]]                     |            | [[./funcoes.org]]         |
 |----+--------------------------------------------+------------+-----------------------|
 | 25 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-23.pdf][Revisão]]                                    |            | [[./revisao-aula-23.org]] |
-|    |                                            |            |                       |
-
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/parametros.pdf][Funções e seus Parâmetros]]                  |            | [[./parametros.org]]      |
+|----+--------------------------------------------+------------+-----------------------|
+| 26 | Revisão                                    |            |                       |
+|    | Referências e Ponteiros                    |            |                       |
 
 * Práticas
 
