@@ -27,9 +27,9 @@ Funções que somente retornam valores
 
 Funções que somente recebem valores como parâmetros
 - #2 Imprime n vezes c
-- #2 "Desafio"
+  - #2++ "Desafio"
 - #3 Imprime intervalo ASCII
-Funções que recebem e retornam valores (caso mais completo)
+Funções que recebem e retornam valores (caso entrada/saída)
 - #4 Sequência de Fibonacci
 - #5 Combinação de n elements, p a p
 Forma de passagem de parâmetros
@@ -216,7 +216,7 @@ void imprime_ascii(int inicio, int fim) { //implementação
 * (Exemplo #4) Sequência de Fibonnaci
 
 Construa uma função que imprima todos os números da sequência de
-fibonacci, retornando o último valor calculado (a posição que foi
+fibonacci, retornando o último valor calculado (da posição que foi
 pedida).
 
 * (#4) Código ~a25-fibonacci.c~
