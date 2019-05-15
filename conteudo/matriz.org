@@ -130,7 +130,7 @@ Vamos codificar juntos!
 
 #+latex: \begin{multicols}{2}
 #+attr_latex: :options fontsize=\scriptsize
-#+BEGIN_SRC C :tangle a17-notas.c
+#+BEGIN_SRC C :tangle e/a17-notas.c
 #include <stdio.h>
 #define NALUNOS 10
 #define NNOTAS 4
@@ -170,7 +170,7 @@ int main(){
 
 #+latex: \begin{multicols}{2}
 #+attr_latex: :options fontsize=\scriptsize
-#+BEGIN_SRC C :tangle a17-imprime-matriz.c
+#+BEGIN_SRC C :tangle e/a17-imprime-matriz.c
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -230,7 +230,7 @@ imprimir:
 
 #+latex: \vspace{-0.7cm}\begin{multicols}{3}
 #+attr_latex: :options fontsize=\tiny
-#+BEGIN_SRC C :tangle a17-init.c
+#+BEGIN_SRC C :tangle e/a17-init.c
 #include <stdio.h>
 #include <stdlib.h>
 //Limites da nossa matriz
@@ -361,7 +361,7 @@ int main(){
 
 #+latex: \vspace{-0.7cm}\begin{multicols}{2}
 #+attr_latex: :options fontsize=\scriptsize
-#+BEGIN_SRC C :tangle a17-matrizes-caracteres.c
+#+BEGIN_SRC C :tangle e/a17-matrizes-caracteres.c
 #include <stdio.h>
 #include<string.h>
 #define TAM_TURMA 40

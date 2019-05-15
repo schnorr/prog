@@ -52,7 +52,7 @@ Foco apenas na parte de ordenamento de arranjos.
 
 #+latex: \begin{multicols}{2}
 #+attr_latex: :options fontsize=\scriptsize
-#+BEGIN_SRC C :tangle rev-a16-ordenamento.c
+#+BEGIN_SRC C :tangle e/rev-a16-ordenamento.c
 #include <stdio.h>
 #include <stdlib.h>
 #define LIM_ARRANJO 4
@@ -105,7 +105,7 @@ Implemente, empregando o comando =for=, a funcionalidade destas funções
 * (#1) =rev-a16-strcpy.c=
 
 #+attr_latex: :options fontsize=\scriptsize
-#+BEGIN_SRC C :tangle rev-a16-strcpy.c
+#+BEGIN_SRC C :tangle e/rev-a16-strcpy.c
 /* Programa que copia caracteres da string o para a string d */
 #include <stdio.h>
 #include <string.h>
@@ -134,7 +134,7 @@ int main(){
 
 #+latex: \begin{multicols}{2}
 #+attr_latex: :options fontsize=\scriptsize
-#+BEGIN_SRC C :tangle rev-a16-strcat.c
+#+BEGIN_SRC C :tangle e/rev-a16-strcat.c
 /* Programa que concatena caracteres
    da string d no final da string o */
 #include <stdio.h>
@@ -186,7 +186,7 @@ int main(){
 * (#1) =rev-a16-strlen.c=
 
 #+attr_latex: :options fontsize=\scriptsize
-#+BEGIN_SRC C :tangle rev-a16-strlen.c
+#+BEGIN_SRC C :tangle e/rev-a16-strlen.c
 /* Programa que conta quantos caracteres tem em uma string */
 #include <stdio.h>
 #include <string.h>
@@ -215,7 +215,7 @@ int main(){
 
 #+latex: \begin{multicols}{2}
 #+attr_latex: :options fontsize=\scriptsize
-#+BEGIN_SRC C :tangle rev-a16-strcmp.c
+#+BEGIN_SRC C :tangle e/rev-a16-strcmp.c
 /* Programa que compara duas strings,
    definindo a diferença entre as duas
    que pode ser: 0 (se iguais),
@@ -270,7 +270,7 @@ caractere ocorre (ou que não existe tal caractere no texto).
 
 #+latex: \begin{multicols}{2}
 #+attr_latex: :options fontsize=\scriptsize
-#+BEGIN_SRC C :tangle rev-a16-procura-caractere.c
+#+BEGIN_SRC C :tangle e/rev-a16-procura-caractere.c
 /* Procura por caractere */
 #include <stdio.h>
 #include <string.h>
@@ -320,7 +320,7 @@ devem ser informadas.
 
 #+latex: \begin{multicols}{2}
 #+attr_latex: :options fontsize=\scriptsize
-#+BEGIN_SRC C :tangle rev-a16-procura-string.c
+#+BEGIN_SRC C :tangle e/rev-a16-procura-string.c
 /* Procura por s2 em s1 */
 #include <stdio.h>
 #include <string.h>
@@ -370,7 +370,7 @@ int main(){
 
 Veja em [[./rev-a16-procura-string-brun.c]].
 
-#+BEGIN_SRC C :tangle rev-a16-procura-string-brun.c
+#+BEGIN_SRC C :tangle e/rev-a16-procura-string-brun.c
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

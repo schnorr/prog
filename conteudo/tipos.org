@@ -47,7 +47,7 @@ Melhor jeito de se saber o tamanho é com o comando =sizeof=
 
 * Vejamos um exemplo com sizeof
 
-#+BEGIN_SRC C :tangle exemplo-sizeof.c
+#+BEGIN_SRC C :tangle e/exemplo-sizeof.c
 /* Programa que fornece o tamanho do tipo */
 #include <stdio.h>
 int main ()
@@ -83,7 +83,7 @@ A implementação destes tipos:
 
 * Vejamos um exemplo
 
-#+BEGIN_SRC C :tangle exemplo-inicializacao-variaveis.c
+#+BEGIN_SRC C :tangle e/exemplo-inicializacao-variaveis.c
 /* Programa para realizar testes de inicializacao de variaveis na declaracao */
 #include <stdio.h>
 int main ()
@@ -142,7 +142,7 @@ Todos estes operadores fazem parte da linguagem C.
 
 * Exemplo do uso de operadores aritméticos
 
-#+BEGIN_SRC C :tangle exemplo-operadores-aritmeticos.c
+#+BEGIN_SRC C :tangle e/exemplo-operadores-aritmeticos.c
 /* Programa para ilustrar funcionamento dos operadores aritmeticos */
 #include <stdio.h>
 int main ()
@@ -205,7 +205,7 @@ printf("%d %d\n",
 
 * Exemplo de operações matemáticas
 
-#+BEGIN_SRC C :tangle exemplo-com-biblioteca-math.c
+#+BEGIN_SRC C :tangle e/exemplo-com-biblioteca-math.c
 /* Programa para ilustrar funcionamento de algumas
    operacoes aritmeticas mais complexas. */
 #include <stdio.h>
@@ -252,7 +252,7 @@ Exemplo ilustrativo: =a + b + c=
 
 Vejams um exemplo representativo
 
-#+BEGIN_SRC C :tangle exemplo-tipos-expressoes-aritmeticas.c
+#+BEGIN_SRC C :tangle e/exemplo-tipos-expressoes-aritmeticas.c
 /* Exemplo para ilustrar um problema com expressoes aritmeticas */
 #include<stdio.h>
 int main()
@@ -285,7 +285,7 @@ gcc exemplo-tipos-expressoes-aritmeticas.c -o exemplo-tipos-expressoes-aritmetic
 
 * Modeladores (/casts/) para explicitamente trocar o tipo
 
-#+BEGIN_SRC C :tangle exemplo-tipos-expressoes-aritmeticas-cast.c
+#+BEGIN_SRC C :tangle e/exemplo-tipos-expressoes-aritmeticas-cast.c
 /* Exemplo para ilustrar um problema com expressoes aritmeticas */
 #include <stdio.h>
 int main()
@@ -344,7 +344,7 @@ gcc exemplo-tipos-expressoes-aritmeticas-cast.c -o exemplo-tipos-expressoes-arit
 * Testes
 
 #+attr_latex: :options fontsize=\tiny
-#+BEGIN_SRC C :tangle exemplo-notas.c
+#+BEGIN_SRC C :tangle e/exemplo-notas.c
 /* Calcula quantidade de cada cédula (ou moeda) tal que a soma dos
    valores totalize um valor inteiro dado.
    Entrada: valor inteiro

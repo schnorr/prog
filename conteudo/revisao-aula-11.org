@@ -37,7 +37,7 @@
 * (#1 Newton-Raphson com erro) Uma solução possível
 
 #+attr_latex: :options fontsize=\tiny
-#+BEGIN_SRC C :tangle rev-a08-newton-raphson.c
+#+BEGIN_SRC C :tangle e/rev-a08-newton-raphson.c
 /* Programa para calcular raiz quadrada de 2 usando Newton-Raphson
 Entrada: numero de iteracoes (inteiro) e “chute” inicial
 Saida: valor aproximado de raiz de 2*/
@@ -101,7 +101,7 @@ Valor aproximado: 1.414213562373095
 * (#2 Taxa de Crescimento Brazil /vs/ EUA)
 
 #+attr_latex: :options fontsize=\scriptsize
-#+BEGIN_SRC C :tangle rev-a08-taxa.c
+#+BEGIN_SRC C :tangle e/rev-a08-taxa.c
 /* Programa para satisfazer o enunciado sobre a taxa de crescimento */
 #include <stdio.h>
 int main() {

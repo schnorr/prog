@@ -40,7 +40,7 @@ Refazer o exercício da taxa de crescimento com do-while ou while.
 * (#1 Taxa de Crescimento Brazil /vs/ EUA)
 
 #+attr_latex: :options fontsize=\scriptsize
-#+BEGIN_SRC C :tangle rev-a13-taxa.c
+#+BEGIN_SRC C :tangle e/rev-a13-taxa.c
 /* Programa para satisfazer o enunciado sobre a taxa de crescimento com while */
 #include <stdio.h>
 int main() {

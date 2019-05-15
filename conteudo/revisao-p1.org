@@ -88,7 +88,7 @@
 |----+--------------------------------------------+------------|
 * Simulado #1
 
-#+BEGIN_SRC C :results output :tangle simul-p1-q1.c
+#+BEGIN_SRC C :results output :tangle e/simul-p1-q1.c
 #include <stdio.h>
 int main ()
 {
@@ -119,7 +119,7 @@ gerando as mesmas saídas.
 - [X] Substituir o FOR pelo comando WHILE
 - [X] substituir o WHILE pelo comando DO-WHILE
 
-#+BEGIN_SRC C :results output :tangle simul-p1-q1-substituir.c
+#+BEGIN_SRC C :results output :tangle e/simul-p1-q1-substituir.c
 #include <stdio.h>
 int main ()
 {
@@ -165,7 +165,7 @@ Deve ter como saída:
 
 #+latex: \vspace{-0.3cm}\begin{multicols}{2}
 #+attr_latex: :options fontsize=\tiny
-#+BEGIN_SRC C :results output :tangle simul-p1-q2.c
+#+BEGIN_SRC C :results output :tangle e/simul-p1-q2.c
 #include <stdio.h>
 int main(){
   int vet[] = {0, 0, 1, 1, 0, 1, 0, 1, 0, 0,
@@ -221,7 +221,7 @@ divisao: ~numero % divisor == 0~
 
 * (#3) Código
 
-#+BEGIN_SRC C :tangle simul-p1-q3.c
+#+BEGIN_SRC C :tangle e/simul-p1-q3.c
 #include <stdio.h>
 int main(){
   int i;
@@ -271,7 +271,7 @@ A segunda palavra nao eh permutação circular da primeira!
 
 #+latex: \vspace{-0.3cm}\begin{multicols}{2}
 #+attr_latex: :options fontsize=\tiny
-#+BEGIN_SRC C :tangle simul-p1-q4.c
+#+BEGIN_SRC C :tangle e/simul-p1-q4.c
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
@@ -345,7 +345,7 @@ Elementos do array com valores impares:
 
 #+latex: \vspace{-0.3cm}\begin{multicols}{2}
 #+attr_latex: :options fontsize=\tiny
-#+BEGIN_SRC C :tangle simul-p1-q5.c
+#+BEGIN_SRC C :tangle e/simul-p1-q5.c
 #include <stdio.h>
 #define NVAL 20
 int main(){
@@ -400,7 +400,7 @@ $$
 
 #+latex: \vspace{-0.3cm}\begin{multicols}{2}
 #+attr_latex: :options fontsize=\tiny
-#+BEGIN_SRC C :tangle simul-p1-q6.c
+#+BEGIN_SRC C :tangle e/simul-p1-q6.c
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>

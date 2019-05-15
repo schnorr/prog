@@ -53,7 +53,7 @@ Funções
 
 * (#1) Código ~rev-a23-menu.c~
 
-#+BEGIN_SRC C :tangle rev-a23-menu.c
+#+BEGIN_SRC C :tangle e/rev-a23-menu.c
 #include <stdio.h>
 
 void menu_de_opcoes(void);  //protótipo

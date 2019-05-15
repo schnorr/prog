@@ -75,7 +75,7 @@ Vamos _simplificar_
 
 #+latex: \vspace{-0.3cm}\begin{multicols}{2}
 #+attr_latex: :options fontsize=\tiny
-#+BEGIN_SRC C :tangle a17-nomes.c
+#+BEGIN_SRC C :tangle e/a17-nomes.c
 #include <stdio.h>
 #include <string.h>
 #define NALUNOS 2
@@ -129,7 +129,7 @@ média obtida.
 
 #+latex: \vspace{-0.3cm}\begin{multicols}{2}
 #+attr_latex: :options fontsize=\tiny
-#+BEGIN_SRC C :tangle a17-turma.c
+#+BEGIN_SRC C :tangle e/a17-turma.c
 #include <stdio.h>
 #include <string.h>
 #define NALUNOS 2
@@ -199,7 +199,7 @@ int main() {
 
 #+latex: \vspace{-0.3cm}\begin{multicols}{2}
 #+attr_latex: :options fontsize=\tiny
-#+BEGIN_SRC C :tangle a17-conceito.c
+#+BEGIN_SRC C :tangle e/a17-conceito.c
 #include <stdio.h>
 #include <string.h>
 #define NALUNOS 2
@@ -299,7 +299,7 @@ int main() {
 
 #+latex: \vspace{-0.3cm}\begin{multicols}{2}
 #+attr_latex: :options fontsize=\tiny
-#+BEGIN_SRC C :tangle a17-esparsa.c
+#+BEGIN_SRC C :tangle e/a17-esparsa.c
 #include <stdio.h>
 #define MAXL 5 // número de linhas
 #define MAXC 5 // número de colunas
@@ -419,7 +419,7 @@ Condensada
 
 #+latex: \vspace{-0.3cm}\begin{multicols}{2}
 #+attr_latex: :options fontsize=\scriptsize
-#+BEGIN_SRC C :tangle a17-permuta.c
+#+BEGIN_SRC C :tangle e/a17-permuta.c
 // Gera permutação circular
 #include <stdio.h>
 #include <string.h>
@@ -475,7 +475,7 @@ O que acontece se ~#define SIZEPAL 3~?
 
 #+latex: \vspace{-0.3cm}\begin{multicols}{2}
 #+attr_latex: :options fontsize=\scriptsize
-#+BEGIN_SRC C :tangle a17-diagonal.c
+#+BEGIN_SRC C :tangle e/a17-diagonal.c
 #include <stdio.h>
 #include <stdlib.h>
 //Limites da nossa matriz

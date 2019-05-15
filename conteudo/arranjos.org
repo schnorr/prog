@@ -38,7 +38,7 @@
 
 * Código =a15-media.c=
 
-#+BEGIN_SRC C :tangle a15-media.c
+#+BEGIN_SRC C :tangle e/a15-media.c
 /*calcula media de uma turma
 Entradas: notas de 30 alunos
 Saida: media da turma */
@@ -66,7 +66,7 @@ int main () {
 * Código =a15-maior.c=
 
 #+attr_latex: :options fontsize=\tiny
-#+BEGIN_SRC C :tangle a15-maior.c
+#+BEGIN_SRC C :tangle e/a15-maior.c
 /*calcula media de uma turma. Entradas: notas de 30 alunos.  Saida: media da turma */
 #include <stdio.h>
 int main () {
@@ -175,7 +175,7 @@ código compilado entre as duas versões.
 #+END_CENTER
 
 \to Arquivo =a15-init-arranjo-1.c=
-#+BEGIN_SRC C :tangle a15-init-arranjo-1.c
+#+BEGIN_SRC C :tangle e/a15-init-arranjo-1.c
 int vetor[10] = {4, 7, 20, 31, 57, 21, 87, 12, 99, 34};
 #+END_SRC
 
@@ -188,7 +188,7 @@ wc -c a15-init-arranjo-1.o
 : 1296 a15-init-arranjo-1.o
 
 \to Arquivo =a15-init-arranjo-2.c=
-#+BEGIN_SRC C :tangle a15-init-arranjo-2.c
+#+BEGIN_SRC C :tangle e/a15-init-arranjo-2.c
 int vetor[10];
 #+END_SRC
 
@@ -214,7 +214,7 @@ wc -c a15-init-arranjo-2.o
 
 * (#1) Código =a15-maior-melhorado.c=
 
-#+BEGIN_SRC C :tangle a15-maior-melhorado.c
+#+BEGIN_SRC C :tangle e/a15-maior-melhorado.c
 /* Calcula media de uma turma e informa notas superiores a media
 Entradas: notas de 30 alunos
 Saidas: media da turma, e impressao das notas maiores do que a media*/
@@ -275,7 +275,7 @@ Passos do algoritmo
 
 Quais são os problemas do código abaixo?
 
-#+BEGIN_SRC C :tangle a15-precos-0.c
+#+BEGIN_SRC C :tangle e/a15-precos-0.c
 /*informar codigo da mercadoria com preco determinado
 Entrada: precos de 90 mercadorias
 Saida: impressao do codigo da mercadoria que vale R$ 123,00 */
@@ -304,7 +304,7 @@ int main () {
 Quais é o problema remanscente do código abaixo?
 
 #+attr_latex: :options fontsize=\tiny
-#+BEGIN_SRC C :tangle a15-precos-1.c
+#+BEGIN_SRC C :tangle e/a15-precos-1.c
 /*informar codigo da mercadoria com preco determinado
 Entrada: precos de 90 mercadorias
 Saida: impressao do codigo da mercadoria que vale R$ 123,00 */
@@ -342,7 +342,7 @@ int main () {
 * (#2) Código =a15-precos-2.c= com melhor uso da memória
 
 #+attr_latex: :options fontsize=\tiny
-#+BEGIN_SRC C :tangle a15-precos-2.c
+#+BEGIN_SRC C :tangle e/a15-precos-2.c
 /*informar codigo da mercadoria com preco determinado
 Entrada: precos de 90 mercadorias
 Saida: impressao do codigo da mercadoria que vale R$ 123,00 */
@@ -410,7 +410,7 @@ Passos do algoritmo
 * (#3) Código =a15-notas-codigos.c=
 
 #+attr_latex: :options fontsize=\tiny
-#+BEGIN_SRC C :tangle a15-notas-codigos.c
+#+BEGIN_SRC C :tangle e/a15-notas-codigos.c
 /* Indicacao dos alunos com nota menor do que media da turma
 Entradas: numero de alunos da turma, codigos e nota dos alunos
 Saida: impressao dos numeros e notas dos alunos com nota menor do que media */
@@ -446,7 +446,7 @@ int main() {
 
 * Código =a15-aleatorio.c= com chamada para =rand()=
 
-#+BEGIN_SRC C :tangle a15-aleatorio.c
+#+BEGIN_SRC C :tangle e/a15-aleatorio.c
 /* Programa para exemplificar o uso do rand()
 Entradas: não há
 Saidas: Impressao de 3 numeros aleatorios */
@@ -477,7 +477,7 @@ As sequências aleatórias são as mesmas.
 #+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula11-arrays1_slide_28.pdf}{Prof. Claudio Jung}
 * Código =a15-aleatorio.c= com =rand()= e =srand()=
 
-#+BEGIN_SRC C :tangle a15-aleatorio-2.c
+#+BEGIN_SRC C :tangle e/a15-aleatorio-2.c
 /* Programa para exemplificar o uso do rand()
 Entradas: não há
 Saidas: Impressao de 3 numeros aleatorios */

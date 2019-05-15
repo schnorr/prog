@@ -81,7 +81,7 @@ E agora, mudou alguma coisa?
 
 Veja o arquivo [[./rev-a05-raizes.c]].
 
-#+BEGIN_SRC C :tangle rev-a05-raizes.c
+#+BEGIN_SRC C :tangle e/rev-a05-raizes.c
 /* Um programa de computador para averiguar se uma equação é de segundo grau */
 #include<stdio.h>
 #include<math.h>
@@ -116,7 +116,7 @@ int main() {
 
 Veja o arquivo [[./rev-a05-ordem.c]].
 
-#+BEGIN_SRC C :tangle rev-a05-ordem.c
+#+BEGIN_SRC C :tangle e/rev-a05-ordem.c
 /* Um programa de computador para averiguar se uma equação é de segundo grau */
 #include<stdio.h>
 #include<math.h>
@@ -159,7 +159,7 @@ int main() {
 
 Veja o arquivo [[./rev-a05-ordem-melhor.c]].
 
-#+BEGIN_SRC C :tangle  rev-a05-ordem-melhor.c
+#+BEGIN_SRC C :tangle e/ rev-a05-ordem-melhor.c
 #include <stdio.h>
 int main()
 {

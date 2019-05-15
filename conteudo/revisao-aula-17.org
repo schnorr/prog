@@ -45,7 +45,7 @@ averiguação.
 
 #+latex: \vspace{-0.3cm}\begin{multicols}{2}
 #+attr_latex: :options fontsize=\scriptsize
-#+BEGIN_SRC C :tangle rev-a17-transposta.c
+#+BEGIN_SRC C :tangle e/rev-a17-transposta.c
 #include <stdio.h>
 #include <stdlib.h>
 //Limites da nossa matriz
@@ -95,7 +95,7 @@ int main(){
 #+END_SRC
 #+latex: \end{multicols}\vspace{-0.3cm}
 
-#+BEGIN_SRC gdb :tangle rev-a17-transposta.gdb
+#+BEGIN_SRC gdb :tangle e/rev-a17-transposta.gdb
 break rev-a17-transposta.c:24
 command 1
 printf "l: %d | c: %d | posição: %d\n", l, c, m[l][c]
@@ -325,7 +325,7 @@ $$
 
 #+latex: \vspace{-0.5cm}\begin{multicols}{2}
 #+attr_latex: :options fontsize=\scriptsize
-#+BEGIN_SRC C :tangle rev-a17-sistema.c
+#+BEGIN_SRC C :tangle e/rev-a17-sistema.c
 #include <stdio.h>
 #define MAX 5
 int main () {

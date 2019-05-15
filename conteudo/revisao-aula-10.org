@@ -51,7 +51,7 @@
 * Emprego de acumulador e valor
 
 #+attr_latex: :options fontsize=\small
-#+BEGIN_SRC C :tangle rev-a07-idades-18.c
+#+BEGIN_SRC C :tangle e/rev-a07-idades-18.c
 #include <stdio.h>
 int main () {
   int i;    //contador para controlar o for
@@ -110,7 +110,7 @@ Estratégia de algoritmo
 
 Veja o acumulador =fat= e o contador descrescente =i=.
 
-#+BEGIN_SRC C :tangle rev-a07-fatorial.c
+#+BEGIN_SRC C :tangle e/rev-a07-fatorial.c
 /*calcula o fatorial de um numero inteiro
 Entrada: numero inteiro positivo
 Saida: fatorial do numero ou mensagem de erro */
@@ -198,7 +198,7 @@ Saída: fib
 
 * Programa para #2
 
-#+BEGIN_SRC C :tangle rev-a07-fibonacci.c
+#+BEGIN_SRC C :tangle e/rev-a07-fibonacci.c
 #include<stdio.h>
 int main(){
   int pos, fib, t_1, t_2, i;

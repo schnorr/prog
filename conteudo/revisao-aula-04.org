@@ -47,7 +47,7 @@ Do lado direito da atribuição, temos uma *expressão*.
 
 * Vejamos um exemplo
 
-#+BEGIN_SRC C :tangle exemplo-problema-atribuicao.c
+#+BEGIN_SRC C :tangle e/exemplo-problema-atribuicao.c
 /* Program que calcula o número mínimo de notas baseado em um valor */
 #include <stdio.h>
 int main() {
@@ -104,7 +104,7 @@ gcc exemplo-problema-atribuicao.c -o exemplo-problema-atribuicao
 * Testes
 
 #+attr_latex: :options fontsize=\tiny
-#+BEGIN_SRC C :tangle exemplo-notas.c
+#+BEGIN_SRC C :tangle e/exemplo-notas.c
 /* Calcula quantidade de cada cédula (ou moeda) tal que a soma dos
    valores totalize um valor inteiro dado.
    Entrada: valor inteiro

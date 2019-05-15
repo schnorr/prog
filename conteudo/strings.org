@@ -61,7 +61,7 @@
 * Funcionamento da função =getchar()=
 
 Ler um caractere com =a16-getchar.c=
-#+BEGIN_SRC C :tangle a16-getchar.c
+#+BEGIN_SRC C :tangle e/a16-getchar.c
 #include <stdio.h>
 int main (){
   char ch;
@@ -76,7 +76,7 @@ int main (){
 
 Ler vários caracteres, um por um, com =a16-getchar-varios.c=
 
-#+BEGIN_SRC C :tangle a16-getchar-varios.c
+#+BEGIN_SRC C :tangle e/a16-getchar-varios.c
 #include <stdio.h>
 int main (){
   char ch;
@@ -115,7 +115,7 @@ int main (){
 * Utilização de =printf= com /strings/
 
 #+attr_latex: :options fontsize=\normalsize
-#+BEGIN_SRC C :tangle a16-exemplo-printf.c
+#+BEGIN_SRC C :tangle e/a16-exemplo-printf.c
 #include <stdio.h>
 int main () {
   char str0[15] = "Ana";
@@ -147,7 +147,7 @@ Nunca use estas funções: =scanf= e =gets= @@latex:\pause\hfill@@ Por quê?
 #+latex: \vfill
 
 =a16-problema-scanf.c=
-#+BEGIN_SRC C :tangle a16-problema-scanf.c
+#+BEGIN_SRC C :tangle e/a16-problema-scanf.c
 #include <stdio.h>
 int main() {
   char minha_string[5];
@@ -160,7 +160,7 @@ int main() {
 #+latex: \pause
 
 =a16-problema-get.c=
-#+BEGIN_SRC C :tangle a16-problema-gets.c
+#+BEGIN_SRC C :tangle e/a16-problema-gets.c
 #include <stdio.h>
 int main() {
   char minha_string[5];
@@ -182,7 +182,7 @@ fgets(string, tamanho_da_string, stdin);
 Exemplo
 
 #+attr_latex: :options fontsize=\normalsize
-#+BEGIN_SRC C :tangle a16-fgets.c
+#+BEGIN_SRC C :tangle e/a16-fgets.c
 #include <stdio.h>
 int main(){
   char minha_string[5];
@@ -200,7 +200,7 @@ int main(){
 
 * Vamos mesmo assim tentar...
 
-#+BEGIN_SRC C :tangle a16-atribuir-strings.c
+#+BEGIN_SRC C :tangle e/a16-atribuir-strings.c
 int main(){
   char str1[] = "Ana";
   char str2[15];
@@ -239,7 +239,7 @@ Mas como fazer para copiar uma string para outra, etc?
 
 * Cópia: Exemplo em =a16-manuseio-copia-1.c=
 
-#+BEGIN_SRC C :tangle a16-manuseio-copia-1.c
+#+BEGIN_SRC C :tangle e/a16-manuseio-copia-1.c
 /* Copiar uma string para outra, e imprimir a string copia
 Entradas: string lida do teclado
 Saidas: copia da string lida e impressao na tela */
@@ -272,7 +272,7 @@ Vejamos o problema!
 Faltava o =\0= para concluir a string.
 #+END_CENTER
 
-#+BEGIN_SRC C :tangle a16-manuseio-copia-2.c
+#+BEGIN_SRC C :tangle e/a16-manuseio-copia-2.c
 /* Copiar uma string para outra, e imprimir a string copia
 Entradas: string lida do teclado
 Saidas: copia da string lida e impressao na tela */
@@ -307,7 +307,7 @@ Copia o conteúdo da variável =origem= para a variável =destino=
 - A variável =destino= tem que ser grande o suficiente
 
 #+attr_latex: :options fontsize=\normalsize
-#+BEGIN_SRC C :tangle a16-exemplo-strcpy.c
+#+BEGIN_SRC C :tangle e/a16-exemplo-strcpy.c
 #include <stdio.h>
 #include <string.h>
 #define TAMANHO 10
@@ -329,7 +329,7 @@ Concatena o conteúdo da variável =origem= no final da variável =destino=
 - A variável =destino= tem que ser grande o suficiente
 
 #+attr_latex: :options fontsize=\normalsize
-#+BEGIN_SRC C :tangle a16-exemplo-strcat.c
+#+BEGIN_SRC C :tangle e/a16-exemplo-strcat.c
 #include <stdio.h>
 #include <string.h>
 #define TAMANHO 10
@@ -351,7 +351,7 @@ int main() {
 Retorna o tamanho da =string=, sem contar o '\0'
 
 #+attr_latex: :options fontsize=\normalsize
-#+BEGIN_SRC C :tangle a16-exemplo-strlen.c
+#+BEGIN_SRC C :tangle e/a16-exemplo-strlen.c
 #include <stdio.h>
 #include <string.h>
 #define TAMANHO 100
@@ -374,7 +374,7 @@ int main() {
 * Exemplo de uso de =strcmp= em ~a16-exemplo-strcmp.c~
 
 #+attr_latex: :options fontsize=\normalsize
-#+BEGIN_SRC C :tangle a16-exemplo-strcmp.c
+#+BEGIN_SRC C :tangle e/a16-exemplo-strcmp.c
 /* Programa que le um par de string, comparando cada par */
 #include <stdio.h>
 #include <string.h>
@@ -419,7 +419,7 @@ A solução para 2. é usar alternativas com limites explícitos
 * Até agora, usamos fgets, mas vejamos um ``problema''
 
 ~a16-fgets-2.c~
-#+BEGIN_SRC C :tangle a16-fgets-2.c
+#+BEGIN_SRC C :tangle e/a16-fgets-2.c
 #include <stdio.h>
 int main(){
   char str[5];
@@ -437,7 +437,7 @@ Como resolver?
 
 ~a16-fgets-3.c~
 #+attr_latex: :options fontsize=\normalsize
-#+BEGIN_SRC C :tangle a16-fgets-3.c
+#+BEGIN_SRC C :tangle e/a16-fgets-3.c
 #include <stdio.h>
 int main(){
   char str[5];

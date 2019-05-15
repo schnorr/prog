@@ -58,7 +58,7 @@ O próximo passo é a codificação em uma linguagem de programação.
 
 * Esqueleto de um Programa (vazio) escrito em C
 
-#+BEGIN_SRC C :tangle programa-vazio.c
+#+BEGIN_SRC C :tangle e/programa-vazio.c
 /* comentário inicial, descrevendo objetivos do programa */
 #include<stdlib.h> // para usar comandos do sistema
 #include<stdio.h> // para entrada e saída de dados
@@ -88,7 +88,7 @@ int main() // função principal e obrigatória
 
 * Codificação do projeto da soma
 
-#+BEGIN_SRC C :tangle programa-soma2.c
+#+BEGIN_SRC C :tangle e/programa-soma2.c
 /*calcula a soma de 2 valores inteiros lidos do teclado */
 #include<stdio.h> // biblioteca com operações de entrada e saída
 int main( )
@@ -180,7 +180,7 @@ Veja o algoritmo fornecido.
 
 * Solução do exercício
 
-#+BEGIN_SRC C :tangle programa-conversao-real-dolar.c
+#+BEGIN_SRC C :tangle e/programa-conversao-real-dolar.c
 /* Calcula e conversão de Real para Dolar */
 #include <stdio.h> // biblioteca com operações de I/O
 int main()

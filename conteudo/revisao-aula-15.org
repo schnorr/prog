@@ -79,7 +79,7 @@ Faça um _algoritmo_ e um _programa em C_ para
 
 #+latex: \begin{multicols}{2}
 #+attr_latex: :options fontsize=\scriptsize
-#+BEGIN_SRC C :tangle rev-a15-exercicio.c
+#+BEGIN_SRC C :tangle e/rev-a15-exercicio.c
 /* Programa que implementa
    o exercício da aula 15 */
 #include <stdio.h>

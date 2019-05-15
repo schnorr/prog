@@ -55,7 +55,7 @@ Comando =if-else=
 
 Veja em [[./a05-par-impar.c]]
 
-#+begin_src C :tangle a05-par-impar.c
+#+begin_src C :tangle e/a05-par-impar.c
 // Programa para verificar se um nro natural lido é par ou impar
 // Analisa o resto da divisao inteira por 2
 #include<stdio.h>
@@ -92,7 +92,7 @@ Veja código em [[./a05-exemplo-livros.c]]
 E se o código for inválido com mais de 10 unidades?
 
 #+attr_latex: :options fontsize=\tiny
-#+BEGIN_SRC C :tangle a05-exemplo-livros.c
+#+BEGIN_SRC C :tangle e/a05-exemplo-livros.c
 /* processa uma venda e avisa caso se mais de 10
 unidades vendidas foram vendidas */
 #include <stdio.h>
@@ -124,7 +124,7 @@ int main(){
 Veja código em [[./a05-exemplo-livros-melhor.c]]
 
 #+attr_latex: :options fontsize=\tiny
-#+BEGIN_SRC C :tangle a05-exemplo-livros-melhor.c
+#+BEGIN_SRC C :tangle e/a05-exemplo-livros-melhor.c
 /* processa uma venda e avisa caso se mais de 10
 unidades vendidas foram vendidas */
 #include <stdio.h>
@@ -188,7 +188,7 @@ O que fazem exatamente estas funções?
 
 Veja em [[./a05-toupper.c]]
 
-#+BEGIN_SRC C :tangle a05-toupper.c
+#+BEGIN_SRC C :tangle e/a05-toupper.c
 #include <stdio.h>
 #include <ctype.h>
 int main()
@@ -217,7 +217,7 @@ Conclusão
 Veja em [[./exemplo-coordenadas.c]]
 
 #+attr_latex: :options fontsize=\tiny
-#+BEGIN_SRC C :tangle exemplo-coordenadas.c
+#+BEGIN_SRC C :tangle e/exemplo-coordenadas.c
 /* Obtem coordenadas e informa localização */
 #include <stdio.h>
 int main() {
@@ -250,7 +250,7 @@ int main() {
 Veja em [[./a05-coordenadas-else.c]]
 
 #+attr_latex: :options fontsize=\tiny
-#+BEGIN_SRC C :tangle a05-coordenadas-else.c
+#+BEGIN_SRC C :tangle e/a05-coordenadas-else.c
 /* Obtem coordenadas e informa localização */
 #include <stdio.h>
 int main() {
@@ -283,7 +283,7 @@ int main() {
 Veja em [[./a05-coordenadas-else-v2.c]]
 
 #+attr_latex: :options fontsize=\tiny
-#+BEGIN_SRC C :tangle a05-coordenadas-else-v2.c
+#+BEGIN_SRC C :tangle e/a05-coordenadas-else-v2.c
 /* Obtem coordenadas e informa localização */
 #include <stdio.h>
 int main() {

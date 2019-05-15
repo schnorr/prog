@@ -60,7 +60,7 @@ Exercício
 
 #+latex: \vspace{-0.3cm}\begin{multicols}{2}
 #+attr_latex: :options fontsize=\large
-#+BEGIN_SRC C :tangle a23-motivacao.c
+#+BEGIN_SRC C :tangle e/a23-motivacao.c
 #include <stdio.h>
 #define MAX 10
 int main() {
@@ -171,7 +171,7 @@ mas que fazem parte do mesmo programa.
 ** Arquivo 1 ~a23-modulo-1.c~
 
 #+attr_latex: :options fontsize=\tiny
-#+BEGIN_SRC C :tangle a23-modulo-1.c
+#+BEGIN_SRC C :tangle e/a23-modulo-1.c
 #include <stdio.h>
 int minha_funcao(); //declaração da existência da função com seu protótipo (sem a implementação entre chaves)
 int main() {
@@ -183,7 +183,7 @@ int main() {
 ** Arquivo 2 ~a23-modulo-2.c~
 
 #+attr_latex: :options fontsize=\tiny
-#+BEGIN_SRC C :tangle a23-modulo-2.c :main no
+#+BEGIN_SRC C :tangle e/a23-modulo-2.c :main no
 #include <stdio.h>
 int minha_funcao() { //implementação da funcao minha_funcao no seu próprio arquivo
   return 0;
@@ -208,7 +208,7 @@ _Esta é a parte principal desta aula_!
 
 #+latex: \vspace{-0.3cm}\begin{multicols}{2}
 #+attr_latex: :options fontsize=\normalsize
-#+BEGIN_SRC C :tangle a23-motivacao-funcao.c :main no
+#+BEGIN_SRC C :tangle e/a23-motivacao-funcao.c :main no
 #include <stdio.h>
 #define MAX 10
 int a[MAX]; //global
@@ -260,7 +260,7 @@ Funções podem ser conhecidas também por _subprogramas_.
 
 Quais são as funções já existentes que foram invocadas?
 
-#+BEGIN_SRC C :tangle a23-area-circulo.c
+#+BEGIN_SRC C :tangle e/a23-area-circulo.c
 // Calcula a área de um circulo, utilizando a função pow.
 #include <stdio.h>
 #include <math.h>
@@ -293,7 +293,7 @@ int main() {
 Quais partes do código estão repetidas?
 
 #+attr_latex: :options fontsize=\small
-#+BEGIN_SRC C :tangle a23-apresenta-numeros-inteiros.c
+#+BEGIN_SRC C :tangle e/a23-apresenta-numeros-inteiros.c
 #include <stdio.h>
 int main() {
   int i;

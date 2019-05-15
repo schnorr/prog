@@ -49,7 +49,7 @@ Faça somente usando =switch-case=.
 * Solução de #1
 
 #+attr_latex: :options fontsize=\tiny
-#+BEGIN_SRC C :tangle rev-a06-tabela.c
+#+BEGIN_SRC C :tangle e/rev-a06-tabela.c
 #include <stdio.h>
 int main()
 {
@@ -88,7 +88,7 @@ int main()
 * Solução de #2
 
 #+attr_latex: :options fontsize=\tiny
-#+BEGIN_SRC C :tangle rev-a06-ovos.c
+#+BEGIN_SRC C :tangle e/rev-a06-ovos.c
 #include <stdio.h>
 #include <ctype.h>
 int main()

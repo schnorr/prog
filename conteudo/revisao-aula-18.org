@@ -142,7 +142,7 @@ $$
 
 #+latex: \vspace{-0.3cm}\begin{multicols}{2}
 #+attr_latex: :options fontsize=\tiny
-#+BEGIN_SRC C :tangle rev-a18-mult.c
+#+BEGIN_SRC C :tangle e/rev-a18-mult.c
 #include <stdio.h>
 #define MAX 100
 // Multiplicação de matrizes

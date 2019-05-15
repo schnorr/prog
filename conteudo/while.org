@@ -67,7 +67,7 @@
 * Code
 
 #+attr_latex: :options fontsize=\tiny
-#+BEGIN_SRC C :tangle a09-newton-raphson.c
+#+BEGIN_SRC C :tangle e/a09-newton-raphson.c
 /* Programa para calcular raiz quadrada de 2 usando Newton-Raphson
 Entrada: numero de iteracoes (inteiro) e “chute” inicial
 Saida: valor aproximado de raiz de 2*/
@@ -101,7 +101,7 @@ int main() {
 
 * Code
 
-#+BEGIN_SRC C :tangle a09-processa-notas.c
+#+BEGIN_SRC C :tangle e/a09-processa-notas.c
 //Processa notas dos alunos de uma turma
 #include <stdio.h>
 int main ( )
@@ -167,7 +167,7 @@ gcc a09-processa-notas.c; echo "10.0 9.2 2.2 3.2 4.5 2.1 11" | ./a.out
 * Code
 
 #+attr_latex: :options fontsize=\scriptsize
-#+BEGIN_SRC C :tangle a09-newton-raphson-do-while.c
+#+BEGIN_SRC C :tangle e/a09-newton-raphson-do-while.c
 /* Programa para calcular raiz quadrada de 2 usando Newton-Raphson
 Entrada: numero de iteracoes (inteiro) e “chute” inicial
 Saida: valor aproximado de raiz de 2*/
@@ -200,7 +200,7 @@ int main() {
 
 * Code
 
-#+BEGIN_SRC C :tangle a09-processa-notas-dowhile.c
+#+BEGIN_SRC C :tangle e/a09-processa-notas-dowhile.c
 //Processa notas dos alunos de uma turma
 #include <stdio.h>
 int main ( )
@@ -247,7 +247,7 @@ gcc a09-processa-notas-dowhile.c; echo "10.0 9.2 2.2 3.2 4.5 2.1 11" | ./a.out
 
 Lembrando que caso o número seja negativo, o programa termina.
 
-#+BEGIN_SRC C :tangle a09-fatorial.c
+#+BEGIN_SRC C :tangle e/a09-fatorial.c
 /*calcula o fatorial de um numero inteiro
 Entrada: numero inteiro positivo
 Saida: fatorial do numero ou mensagem de erro */
@@ -271,7 +271,7 @@ int main () {
 
 * Validando a entrada
 
-#+BEGIN_SRC C :tangle a09-fatorial-valida.c
+#+BEGIN_SRC C :tangle e/a09-fatorial-valida.c
 /*calcula o fatorial de um numero inteiro
 Entrada: numero inteiro positivo
 Saida: fatorial do numero */
@@ -294,7 +294,7 @@ int main () {
 
 Ao invés de terminar após o cálculo, pede outro número.
 
-#+BEGIN_SRC C :tangle a09-fatorial-valida-multiplos.c
+#+BEGIN_SRC C :tangle e/a09-fatorial-valida-multiplos.c
 /*Repete várias vezes o cálculo do fatorial
 Entradas: numeros inteiros positivos
 Saida: fatorial do numero ou mensagem de erro */

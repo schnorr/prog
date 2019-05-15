@@ -75,7 +75,7 @@ Uma solução mais eficiente.
 
 Veja em [[./a06-mensagem.c]], uma solução ineficiente.
 
-#+begin_src C :tangle a06-mensagem.c
+#+begin_src C :tangle e/a06-mensagem.c
 /* Imprime uma mensagem, de acordo com um código lido - solução usando if simples
    Entrada: valor (inteiro) lido do teclado; Saida: Mensagem na tela */
 #include <stdio.h>
@@ -118,7 +118,7 @@ Veja em [[./a06-mensagem-switch-case_v1.c]].
 
 Vamos testar!
 
-#+BEGIN_SRC C :tangle a06-mensagem-switch-case_v1.c
+#+BEGIN_SRC C :tangle e/a06-mensagem-switch-case_v1.c
 #include <stdio.h>
 int main () {
   int cod;
@@ -152,7 +152,7 @@ int main () {
 
 Veja em [[./a06-mensagem-switch-case_v2.c]].
 
-#+BEGIN_SRC C :tangle a06-mensagem-switch-case_v2.c
+#+BEGIN_SRC C :tangle e/a06-mensagem-switch-case_v2.c
 #include <stdio.h>
 int main () {
   int cod;
@@ -192,7 +192,7 @@ int main () {
 # Veja em [[./a06-calculadora.c]].
 
 #+attr_latex: :options fontsize=\scriptsize
-#+BEGIN_SRC C :tangle a06-calculadora.c
+#+BEGIN_SRC C :tangle e/a06-calculadora.c
 //a06-calculadora.c - executa uma das quatro operações aritméticas sobre dois operandos
 #include <stdio.h>
 int main ( )
@@ -231,7 +231,7 @@ Análise do enunciado, definição de entradas e saídas.
 Veja em  [[./a06-preco.c]].
 
 #+attr_latex: :options fontsize=\scriptsize
-#+BEGIN_SRC C :tangle a06-preco.c
+#+BEGIN_SRC C :tangle e/a06-preco.c
 /*Calcula preco a ser cobrado por um servico
   Entrada: tempo de produção e tempo de projeto
   Saida: valor do servico */
@@ -266,7 +266,7 @@ int main ( )
 Veja em [[./a06-estado-civil.c]].
 
 #+attr_latex: :options fontsize=\tiny
-#+BEGIN_SRC C :tangle a06-estado-civil.c
+#+BEGIN_SRC C :tangle e/a06-estado-civil.c
 /*Apresenta o estado civil correspondente ao caractere informado
   Entrada: abreviacao (caracter) do estado civil
   Saida: impressao na tela do estado civil (por extenso) */
@@ -304,7 +304,7 @@ int main ()
 Veja em [[./a06-notas.c]].
 
 #+attr_latex: :options fontsize=\tiny
-#+BEGIN_SRC C :tangle a06-notas.c
+#+BEGIN_SRC C :tangle e/a06-notas.c
 // Recebida uma nota, fornecer uma das seguintes mensagens:
 //0 a 6: Reprovado; 7 a 9: Aprovado; 10: Aprovado com louvor.
 #include <stdio.h>

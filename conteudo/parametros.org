@@ -44,7 +44,7 @@ Exercício
 
 Como podemos fazer com que o próprio menu retornasse a opção?
 
-#+BEGIN_SRC C :tangle a25-menu.c
+#+BEGIN_SRC C :tangle e/a25-menu.c
 #include <stdio.h>
 
 void menu_de_opcoes(void);
@@ -71,7 +71,7 @@ void menu_de_opcoes (void) {
 
 * (#1) Possível solução em ~a25-menu-retorno.c~
 
-#+BEGIN_SRC C :tangle a25-menu-retorno.c
+#+BEGIN_SRC C :tangle e/a25-menu-retorno.c
 #include <stdio.h>
 
 int menu_de_opcoes(void);   //protótipo
@@ -105,7 +105,7 @@ Vejamos com um exemplo simples
 - A função ~main~ chama ~calcula_media~ com três argumentos (reais)
 - Vinculação entre argumentos e parâmetros é pela _posição_
 
-#+BEGIN_SRC C :tangle a25-calcula-media-tres.c
+#+BEGIN_SRC C :tangle e/a25-calcula-media-tres.c
 #inlude <stdio.h>
 void calcula_media(float n1, float n2, float n3) {
   float m;
@@ -131,7 +131,7 @@ int main() {
 * (#2) Código ~a25-imprime-parametros.c~
 
 #+attr_latex: :options fontsize=\small
-#+BEGIN_SRC C :tangle a25-imprime-parametros.c
+#+BEGIN_SRC C :tangle e/a25-imprime-parametros.c
 #include <stdio.h>
 //protótipo da função (apenas sua declaração)
 void imprime(char c, int n);
@@ -188,7 +188,7 @@ x
 
 * (#3) Código ~a25-ascii-parametros.c~
 
-#+BEGIN_SRC C :tangle a25-ascii-parametros.c
+#+BEGIN_SRC C :tangle e/a25-ascii-parametros.c
 #include <stdio.h>
 void imprime_ascii(int inicio, int fim);   //protótipo
 
@@ -222,7 +222,7 @@ pedida).
 * (#4) Código ~a25-fibonacci.c~
 
 #+latex: \vspace{-0.3cm}\begin{multicols}{2}
-#+BEGIN_SRC C :tangle a25-fibonacci.c
+#+BEGIN_SRC C :tangle e/a25-fibonacci.c
 #include<stdio.h>
 //protótipo
 int fibonacci (int posicao);
@@ -283,7 +283,7 @@ Em três funções
 
 * (#5) Código ~a25-combinacoes.c~
 
-#+BEGIN_SRC C :tangle a25-combinacoes.c
+#+BEGIN_SRC C :tangle e/a25-combinacoes.c
 #include<stdio.h>
 int fatorial (int n); //protótipo
 int combinacoes (int n, int p); //protótipo
@@ -316,7 +316,7 @@ int combinacoes(int n, int p) {
 * Vejamos um exemplo com o código ~a25-troca.c~
 
 #+attr_latex: :options fontsize=\scriptsize
-#+BEGIN_SRC C :tangle a25-troca.c
+#+BEGIN_SRC C :tangle e/a25-troca.c
 #include <stdio.h>
 void troca (int x, int y) {
   int temp;

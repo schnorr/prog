@@ -97,7 +97,7 @@ alg. = algoritmo
 Com comando de incremento
 - Do valor 1 até menor igual que 5
 
-#+BEGIN_SRC C :tangle a07-for-aprovado-reprovado.c
+#+BEGIN_SRC C :tangle e/a07-for-aprovado-reprovado.c
 // Determina se 5 alunos foram aprovados ou reprovados
 #include <stdio.h>
 int main() {
@@ -123,7 +123,7 @@ int main() {
 Com comando de _decremento_
 - Do valor 5 até o maior que 0
 
-#+BEGIN_SRC C :tangle a07-for-aprovado-reprovado-dec.c
+#+BEGIN_SRC C :tangle e/a07-for-aprovado-reprovado-dec.c
 // Determina se 5 alunos foram aprovados ou reprovados
 #include <stdio.h>
 int main() {
@@ -164,7 +164,7 @@ Planejamento
 
 Perceba o incremento de 2 em 2.
 
-#+BEGIN_SRC C :tangle a07-pares.c
+#+BEGIN_SRC C :tangle e/a07-pares.c
 // Imprime numeros pares de um intervalo dado
 // garante que o primeiro nro é menor do que o segundo
 #include <stdio.h>
@@ -209,7 +209,7 @@ em caractere e em bases octal, decimal e hexadecimal.
 
 #+latex:\pause\vfill
 
-#+BEGIN_SRC C :tangle a07-ascii.c
+#+BEGIN_SRC C :tangle e/a07-ascii.c
 #include <stdio.h>
 int main() {
   char letra;
@@ -225,7 +225,7 @@ Qual o valor da variável ``letra'' antes no comando =return 0;=?
 
 #+latex: \vfill\pause
 
-#+BEGIN_SRC C :tangle a07-ascii-v2.c
+#+BEGIN_SRC C :tangle e/a07-ascii-v2.c
 #include <stdio.h>
 int main() {
   char letra;
@@ -250,7 +250,7 @@ int main() {
 
 * Exemplo #4 (código)
 
-#+BEGIN_SRC C :tangle a07-idades.c
+#+BEGIN_SRC C :tangle e/a07-idades.c
 // Calcula a idade média de 5 pessoas
 # include <stdio.h>
 int main () {
@@ -279,7 +279,7 @@ int main () {
 
 * Exemplo #5 (código)
 
-#+BEGIN_SRC C :tangle a07-idades-18.c
+#+BEGIN_SRC C :tangle e/a07-idades-18.c
 /* Calcula a idade média de 5 pessoas e conta menores de idade do grupo: */
 # include <stdio.h>
 int main () {
@@ -312,7 +312,7 @@ int main () {
 
 * Exemplo #6 (código)
 
-#+BEGIN_SRC C :tangle a07-idades-contante.c
+#+BEGIN_SRC C :tangle e/a07-idades-contante.c
 // Calcula a idade média de NUMPESSOAS pessoas
 #include <stdio.h>
 #define NUMPESSOAS 5

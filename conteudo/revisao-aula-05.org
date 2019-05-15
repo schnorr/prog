@@ -67,7 +67,7 @@ Testar com a entrada 159.83
 
 Veja em [[./rev-a04-inteiro-frac.c]]
 
-#+BEGIN_SRC C :tangle rev-a04-inteiro-frac.c
+#+BEGIN_SRC C :tangle e/rev-a04-inteiro-frac.c
 // Converte valor real em dois valores inteiros: exemplos de soluções
 #include<stdio.h>
 #include<math.h> // para uso da função round
@@ -100,7 +100,7 @@ int main( )
 Veja no arquivo [[./rev-a04-notas-moedas.c]]
 
 #+attr_latex: :options fontsize=\tiny
-#+BEGIN_SRC C :tangle rev-a04-notas-moedas.c
+#+BEGIN_SRC C :tangle e/rev-a04-notas-moedas.c
 // Calcula menor número de notas e moedas correspondentes a um valor:
 #include<stdio.h>
 #include<math.h> // função round
@@ -187,7 +187,7 @@ Saída
 
 Veja em [[./rev-a04-john-doe.c]]
 
-#+BEGIN_SRC C :tangle rev-a04-john-doe.c
+#+BEGIN_SRC C :tangle e/rev-a04-john-doe.c
 #include <stdio.h>
 int main (){
   int pi, pf, h, min, total_minutos;

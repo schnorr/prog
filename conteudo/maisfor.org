@@ -76,7 +76,7 @@ Saída: fatorial de todos os números até um número informado na entrada
 Quais alterações são necessárias?
 - Repetir o cálculo para todos os números até o informado
 
-#+BEGIN_SRC C :tangle a08-fatorial-comeco.c
+#+BEGIN_SRC C :tangle e/a08-fatorial-comeco.c
 #include <stdio.h>
 int main () {
   int num, fat, i;
@@ -99,7 +99,7 @@ int main () {
 
 * Uma primeira possível solução
 
-#+BEGIN_SRC C :tangle a08-fatorial-solucao-1.c
+#+BEGIN_SRC C :tangle e/a08-fatorial-solucao-1.c
 #include <stdio.h>
 int main () {
   int num, fat, i, j;
@@ -131,7 +131,7 @@ Mas esta é uma boa solução?
 Para a entrada 10, o programa calcula 10\times9\times8\times7\times6\times5\times4\times3\times2\times1.
 - Em cada iteração, imprimir na tela
 
-#+BEGIN_SRC C :tangle a08-fatorial-solucao-2.c
+#+BEGIN_SRC C :tangle e/a08-fatorial-solucao-2.c
 #include <stdio.h>
 int main () {
   int num, fat, i, j;
@@ -170,7 +170,7 @@ Saída: valor de fibonacci de todas as posições até aquela informada
 Quais alterações são necessárias?
 - Repetir o cálculo para todos as posições até a informada
 
-#+BEGIN_SRC C :tangle a08-fibonacci-comeco.c
+#+BEGIN_SRC C :tangle e/a08-fibonacci-comeco.c
 #include<stdio.h>
 int main(){
   int pos, fib, t_1, t_2, i;
@@ -201,7 +201,7 @@ int main(){
 #+END_SRC
 * Uma possível solução
 
-#+BEGIN_SRC C :tangle a08-fibonacci-solucao.c
+#+BEGIN_SRC C :tangle e/a08-fibonacci-solucao.c
 #include<stdio.h>
 int main(){
   int pos, fib, t_1, t_2, i;
@@ -253,7 +253,7 @@ O que acontece se testarmos Fibonacci de 50?
 
 * Vejamos o exemplo
 
-#+BEGIN_SRC C :tangle a08-ka-ele.c
+#+BEGIN_SRC C :tangle e/a08-ka-ele.c
 #include <stdio.h>
 int main(){
   int ka, ele;
@@ -287,7 +287,7 @@ Façamos de 0 a 10.
 
 * (#1: Tabuada) Uma solução possível
 
-#+BEGIN_SRC C :tangle a08-tabuada.c
+#+BEGIN_SRC C :tangle e/a08-tabuada.c
 /* gera a tabuada dos números de 0 a 10:
 Entrada: não há
 Saida: impressão da tabuada na tela */
@@ -318,7 +318,7 @@ O que acontece se assim fizermos?
 
 * (#2 Newton-Raphson) Uma solução possível
 
-#+BEGIN_SRC C :tangle a08-newton-raphson.c
+#+BEGIN_SRC C :tangle e/a08-newton-raphson.c
 /* Programa para calcular raiz quadrada de 2 usando Newton-Raphson
 Entrada: numero de iteracoes (inteiro) e “chute” inicial
 Saida: valor aproximado de raiz de 2*/
@@ -351,7 +351,7 @@ int main() {
 
 * (#3 Maior-Menor) Uma solução possível com 4 números
 
-#+BEGIN_SRC C :tangle a08-maior-menor.c
+#+BEGIN_SRC C :tangle e/a08-maior-menor.c
 #include <stdio.h>
 #include <limits.h>
 #define ELEM 4
@@ -390,7 +390,7 @@ gcc a08-maior-menor.c; echo "282 93912187 2 -12292" | ./a.out
 * (#4 Série de potência) Uma solução possível
 
 #+attr_latex: :options fontsize=\tiny
-#+BEGIN_SRC C :tangle a08-serie-potencia.c
+#+BEGIN_SRC C :tangle e/a08-serie-potencia.c
 /* Programa para calcular exp(x) de forma aproximada, via series de
 potencias
 Entradas: valor de x e numero de termos a serem usados na série
