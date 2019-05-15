@@ -239,11 +239,17 @@ long long fatorial (int n) {
 
 * (#1) Compilação e testes
 
+Para compilar, passamos ao compilador os três módulos (arquivos ~.c~):
+
 #+BEGIN_SRC bash :results output :exports both :dir e
-gcc -Wall \
-    rev-a25-main.c \
-    rev-a25-enax.c \
-    rev-a25-aux.c
+gcc -Wall rev-a25-main.c rev-a25-enax.c rev-a25-aux.c
+#+END_SRC
+
+#+RESULTS:
+
+Teste
+
+#+BEGIN_SRC bash :results output :exports both :dir e
 echo "3" | ./a.out
 #+END_SRC
 
