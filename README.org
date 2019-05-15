@@ -51,8 +51,8 @@ disciplina.
 
 * Conteúdo e Avaliação
 
-- [[./conteudo/][Acesse o conteúdo da disciplina]]
-- [[./avaliacao/][Acompanhamento das Avaliações]]
+- [[./conteudo/index.org][Acesse o conteúdo da disciplina]]
+- [[./avaliacao/index.org][Acompanhamento das Avaliações]]
 
 * Dicas e Erros Frequentes
 
