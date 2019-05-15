@@ -82,7 +82,7 @@ A coluna *KR* se refere ao capítulo ou seção do livro:
 | 25 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-23.pdf][Revisão]]                                    |            | [[./revisao-aula-23.org]] |
 |    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/parametros.pdf][Funções e seus Parâmetros]]                  |            | [[./parametros.org]]      |
 |----+--------------------------------------------+------------+-----------------------|
-| 26 | Revisão                                    |            |                       |
+| 26 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-25.pdf][Revisão]]                                    |            | [[./revisao-aula-25.org]] |
 |    | Referências e Ponteiros                    |            |                       |
 
 * Práticas
