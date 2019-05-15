@@ -1,0 +1,40 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Referências e Ponteiros
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS:   H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{systeme}
+
+* Sumário
+
+Referências e Ponteiros
+- O que são ponteiros?
+- Declaração e operadores
+
+Exemplos
+- (#1) Ponteiros e conteúdo
+- (#2) O que será impresso na tela?
+
+Cuidados essenciais
+- Problemas comuns
+- Depurando problemas com ~gdb~
+
+#+latex: \vfill
+
+Passagem por referência
+- Caso com variáveis simples
+- Como passar um vetor (arranjo) como argumento?
+
