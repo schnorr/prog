@@ -30,7 +30,8 @@ matriz.pdf \
 maismatriz.pdf \
 revisao-p1.pdf \
 funcoes.pdf \
-parametros.pdf"
+parametros.pdf \
+referencias.pdf"
 
 PDFS="$REVISAO $ORIGINA"
 

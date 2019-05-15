@@ -30,7 +30,8 @@ ORIGINA= apresentacao.pdf \
 	 maismatriz.pdf \
 	 revisao-p1.pdf \
 	 funcoes.pdf \
-	 parametros.pdf
+	 parametros.pdf \
+	 referencias.pdf
 
 revisao: $(REVISAO)
 origina: $(ORIGINA)
