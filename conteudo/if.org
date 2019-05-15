@@ -147,7 +147,7 @@ int main(void)
 }
 #+END_SRC
 
-#+begin_src shell :results output
+#+begin_src shell :results output :dir e
 gcc exemplo-livros.c -o exemplo-livros
 #./exemplo-livros
 #+end_src
@@ -200,7 +200,7 @@ int main() {
 }
 #+END_SRC
 
-#+begin_src shell :results output
+#+begin_src shell :results output :dir e
 gcc exemplo-coordenadas.c -o exemplo-coordenadas
 ./exemplo-coordenadas
 #+end_src
@@ -246,7 +246,7 @@ int main(void)
 #+END_SRC
 
 
-#+begin_src shell :results output
+#+begin_src shell :results output :dir e
 gcc exemplo-livros-desconto.c -o exemplo-livros-desconto
 #./exemplo-livros-desconto
 #+end_src

@@ -469,7 +469,7 @@ x_4
 
 Automatizando a entrada dos dados em /bash/ (terminal do Linux)
 
-#+begin_src bash :results output :session :exports both
+#+begin_src bash :results output :session :exports both :dir e
 gcc rev-a17-sistema.c
 echo "4 3 1 1 1 6 1.6667 0.6667 1.6667 4.0002 0.4000 0 0.4001 -1.0001 -1.0003" | ./a.out
 #+END_SRC

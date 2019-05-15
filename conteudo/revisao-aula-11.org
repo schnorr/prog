@@ -73,7 +73,7 @@ int main() {
 * Exemplo da compilação e execução
 
 #+attr_latex: :options fontsize=\small
-#+begin_src shell :results output
+#+begin_src shell :results output :dir e
 gcc rev-a08-newton-raphson.c # Compila
 
 echo "100 0.00000000001 5" | ./a.out # Executa com parâmetros

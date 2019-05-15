@@ -95,7 +95,7 @@ int main ()
 #+END_SRC
 
 
-#+begin_src shell :results output
+#+begin_src shell :results output :dir e
 gcc exemplo-inicializacao-variaveis.c -o exemplo-inicializacao-variaveis
 ./exemplo-inicializacao-variaveis
 #+end_src
@@ -159,7 +159,7 @@ int main ()
 }
 #+END_SRC
 
-#+begin_src shell :results output
+#+begin_src shell :results output :dir e
 gcc exemplo-operadores-aritmeticos.c -o exemplo-operadores-aritmeticos
 ./exemplo-operadores-aritmeticos
 #+end_src
@@ -225,7 +225,7 @@ int main(void)
 #+END_SRC
 
 
-#+begin_src shell :results output
+#+begin_src shell :results output :dir e
 gcc exemplo-com-biblioteca-math.c -o exemplo-com-biblioteca-math -lm
 ./exemplo-com-biblioteca-math
 #+end_src
@@ -271,7 +271,7 @@ Qual é o resultado?
 
 #+latex: \pause
 
-#+begin_src shell :results output
+#+begin_src shell :results output :dir e
 gcc exemplo-tipos-expressoes-aritmeticas.c -o exemplo-tipos-expressoes-aritmeticas
 ./exemplo-tipos-expressoes-aritmeticas
 #+end_src
@@ -309,7 +309,7 @@ int main()
 
 #+latex: \pause\scriptsize
 
-#+begin_src shell :results output
+#+begin_src shell :results output :dir e
 gcc exemplo-tipos-expressoes-aritmeticas-cast.c -o exemplo-tipos-expressoes-aritmeticas-cast
 ./exemplo-tipos-expressoes-aritmeticas-cast
 #+end_src

@@ -74,7 +74,7 @@ Qual é o _problema_ do programa acima?
 
 #+latex: \pause
 
-#+begin_src shell :results output
+#+begin_src shell :results output :dir e
 gcc exemplo-problema-atribuicao.c -o exemplo-problema-atribuicao
 ./exemplo-problema-atribuicao
 #+end_src

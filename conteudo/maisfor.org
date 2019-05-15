@@ -263,7 +263,7 @@ int main(){
 }
 #+END_SRC
 
-#+begin_src shell :results output
+#+begin_src shell :results output :dir e
 gcc a08-ka-ele.c; ./a.out
 #+end_src
 
@@ -372,7 +372,7 @@ int main (){
 
 #+latex: \tiny\pause
 
-#+begin_src shell :results output
+#+begin_src shell :results output :dir e
 gcc a08-maior-menor.c; echo "282 93912187 2 -12292" | ./a.out
 #+end_src
 
@@ -427,7 +427,7 @@ int main() {
 
 #+latex: \tiny
 
-#+begin_src shell :results output
+#+begin_src shell :results output :dir e
 gcc a08-serie-potencia.c -lm; echo "2 14" | ./a.out
 #+end_src
 
@@ -452,7 +452,7 @@ Valor calculado : 7.389056
 Valor de exp( 2): 7.389056
 #+end_example
 
-#+begin_src shell :results output
+#+begin_src shell :results output :dir e
 gcc a08-serie-potencia.c -lm; echo "3 6" | ./a.out
 #+end_src
 

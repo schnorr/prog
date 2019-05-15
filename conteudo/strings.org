@@ -132,7 +132,7 @@ int main () {
 
 Execução do exemplo
 
-#+begin_src shell :results output
+#+begin_src shell :results output :dir e
 gcc a16-exemplo-printf.c -o a16-exemplo-printf
 ./a16-exemplo-printf
 #+end_src
@@ -214,7 +214,7 @@ int main(){
 Compilar:
 
 #+latex: {\small
-#+begin_src shell :results output
+#+begin_src shell :results output :dir e
 gcc a16-atribuir-strings.c -o a16-atribuir-strings 2>&1 > x
 cat x
 #+end_src

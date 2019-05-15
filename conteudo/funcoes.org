@@ -192,7 +192,7 @@ int minha_funcao() { //implementação da funcao minha_funcao no seu próprio ar
 
 ** Compilação conjunta
 
-#+begin_src shell :results output
+#+begin_src shell :results output :dir e
 gcc a23-modulo-1.c a23-modulo-2.c -o programa
 #+end_src
 

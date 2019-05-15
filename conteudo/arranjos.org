@@ -179,26 +179,26 @@ código compilado entre as duas versões.
 int vetor[10] = {4, 7, 20, 31, 57, 21, 87, 12, 99, 34};
 #+END_SRC
 
-#+BEGIN_SRC bash
+#+BEGIN_SRC bash :dir e
 gcc -c a15-init-arranjo-1.c
 wc -c a15-init-arranjo-1.o
 #+END_SRC
 
 #+RESULTS:
-: 1296 a15-init-arranjo-1.o
+: 1008 a15-init-arranjo-1.o
 
 \to Arquivo =a15-init-arranjo-2.c=
 #+BEGIN_SRC C :tangle e/a15-init-arranjo-2.c
 int vetor[10];
 #+END_SRC
 
-#+BEGIN_SRC bash
+#+BEGIN_SRC bash :dir e
 gcc -c a15-init-arranjo-2.c
 wc -c a15-init-arranjo-2.o
 #+END_SRC
 
 #+RESULTS:
-: 1224 a15-init-arranjo-2.o
+: 968 a15-init-arranjo-2.o
 
 * #2 Inicialização (por atribuição)
 
@@ -463,7 +463,7 @@ int main() {
 
 Vamos executar este código duas vezes:
 
-#+begin_src shell :results output
+#+begin_src shell :results output :dir e
 gcc a15-aleatorio.c -o a15-aleatorio
 ./a15-aleatorio; ./a15-aleatorio
 #+end_src
@@ -496,14 +496,14 @@ int main() {
 
 Vamos executar este código duas vezes:
 
-#+begin_src shell :results output
+#+begin_src shell :results output :dir e
 gcc a15-aleatorio-2.c -o a15-aleatorio
 ./a15-aleatorio; sleep 1; ./a15-aleatorio
 #+end_src
 
 #+RESULTS:
-: 821917571 1649127507 140706472 
-: 505583626 377294376 1851249366 
+: 1676783244 1916870555 691099145 
+: 1379384142 1735614581 271097401 
 
 As sequências aleatórias não são mais as mesmas.
 * Observação sobre números aleatórios

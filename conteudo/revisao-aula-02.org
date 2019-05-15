@@ -138,7 +138,7 @@ int main( )
 
 Compilando e executando (veja a saída no terminal)
 
-#+begin_src shell :results output
+#+begin_src shell :results output :dir e
 gcc teste-printf.c -o teste-printf
 ./teste-printf
 #+end_src
