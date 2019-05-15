@@ -12,6 +12,7 @@ REVISAO= revisao-aula-01.pdf \
 	 revisao-aula-17.pdf \
 	 revisao-aula-18.pdf \
 	 revisao-aula-23.pdf \
+	 revisao-aula-25.pdf \
 	 comentarios-p1.pdf
 
 ORIGINA= apresentacao.pdf \
