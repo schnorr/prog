@@ -1,0 +1,1 @@
+float enax (float x);

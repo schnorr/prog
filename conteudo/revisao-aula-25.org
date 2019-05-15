@@ -194,7 +194,7 @@ float enax (float x) {
     ret += termo;
     termo = potencia(x, i) / fatorial(i);
     i++;
-  }while (termo > 0.0001);
+  }while (fabs(termo) > 0.0001);
   return ret;
 }
 #+END_SRC
@@ -242,7 +242,7 @@ long long fatorial (int n) {
 Para compilar, passamos ao compilador os três módulos (arquivos ~.c~):
 
 #+BEGIN_SRC bash :results output :exports both :dir e
-gcc -Wall rev-a25-main.c rev-a25-enax.c rev-a25-aux.c
+gcc -Wall rev-a25-main.c rev-a25-enax.c rev-a25-aux.c -lm
 #+END_SRC
 
 #+RESULTS:
