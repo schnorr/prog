@@ -106,7 +106,7 @@ Vejamos com um exemplo simples
 - Vinculação entre argumentos e parâmetros é pela _posição_
 
 #+BEGIN_SRC C :tangle e/a25-calcula-media-tres.c
-#inlude <stdio.h>
+#include <stdio.h>
 void calcula_media(float n1, float n2, float n3) {
   float m;
   m = (n1 + n2 + n3) / 3;
