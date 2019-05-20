@@ -219,7 +219,7 @@ int main() {
 }
 #+END_SRC
 
-#+begin_src shell :results output :dir e
+#+begin_src shell :results output :dir e :exports both
 gcc -Wall a26-tipo_errado.c 2>&1
 #+end_src
 
