@@ -4,10 +4,10 @@ int main() {
   int *px;
 
   px = &x;
-  printf("1# *px = %d\n", *px);
+  printf("1# *px (%p) = %d\n", px, *px);
   px = px + 1;
-  printf("2# *px = %d\n", *px);
+  printf("2# *px (%p) = %d\n", px, *px);
   px = px + 1;
-  printf("3# *px = %d\n", *px);
+  printf("3# *px (%p) = %d\n", px, *px);
   return 0;
 }
