@@ -1,0 +1,44 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Revisão Aula 26
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS:   H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{systeme}
+
+* O que /essencialmente/ vimos na aula passada?
+
+Referências e Ponteiros
+- O que são ponteiros?
+- Declaração de ponteiros
+- Operadores de ponteiros
+
+Aritmética de ponteiros também, lembram?
+
+* O que são ponteiros?
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula19/aula19_slide_02.pdf}{Prof. Marcelo Walter}
+
+* Declaração de ponteiros
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula19/aula19_slide_03.pdf}{Prof. Marcelo Walter}
+
+* Existem dois operadores principais
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula19/aula19_slide_04.pdf}{Prof. Marcelo Walter}
+
+* Leque de opções com funções
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula19/aula19_slide_05.pdf}{Prof. Marcelo Walter}
