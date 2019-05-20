@@ -13,6 +13,7 @@ REVISAO= revisao-aula-01.pdf \
 	 revisao-aula-18.pdf \
 	 revisao-aula-23.pdf \
 	 revisao-aula-25.pdf \
+	 revisao-aula-26.pdf \
 	 comentarios-p1.pdf
 
 ORIGINA= apresentacao.pdf \
@@ -31,7 +32,8 @@ ORIGINA= apresentacao.pdf \
 	 revisao-p1.pdf \
 	 funcoes.pdf \
 	 parametros.pdf \
-	 referencias.pdf
+	 referencias.pdf \
+	 ponteiros.pdf
 
 revisao: $(REVISAO)
 origina: $(ORIGINA)
