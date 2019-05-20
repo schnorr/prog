@@ -188,7 +188,7 @@ int main() {
 #+BEGIN_SRC C :tangle e/a26-impresso.c :results output :exports both
 #include <stdio.h>
 int main() {
-  int x[] = {2.3, 4.5};
+  int x[] = {2, 4};
   int *px;
 
   px = &x;
