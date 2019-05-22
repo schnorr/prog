@@ -89,7 +89,7 @@ A coluna *KR* se refere ao capítulo ou seção do livro:
 |    | (Continuação 16/21) [[http://www.inf.ufrgs.br/~schnorr/inf1202/referencias.pdf][Referências e Ponteiros]] |            | [[./referencias.org]]     |
 |    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/ponteiros.pdf][Ponteiros]] (com passagem por referência)     |            | [[./ponteiros.org]]       |
 |----+---------------------------------------------+------------+-----------------------|
-| 29 | Revisão                                     |            |                       |
+| 29 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-28.pdf][Revisão]]                                     |            | [[./revisao-aula-28.org]] |
 |    | Passagem de matrizes + Ordenamento Bolha    |            |                       |
 
 
