@@ -91,7 +91,10 @@ A coluna *KR* se refere ao capítulo ou seção do livro:
 |----+---------------------------------------------+------------+-------------------------|
 | 29 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-28.pdf][Revisão]]                                     |            | [[./revisao-aula-28.org]]   |
 |    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/passagem-matrizes.pdf][Passagem de matrizes]]                        |            | [[./passagem-matrizes.org]] |
-|    | Ordenamento Bolha                           |            |                         |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/ordenamento-bolha.pdf][Ordenamento Bolha]]                           |            | [[./ordenamento-bolha.org]] |
+|----+---------------------------------------------+------------+-------------------------|
+| 31 | Revisão                                     |            |                         |
+|    | Estruturas                                  |            |                         |
 
 * Práticas
 

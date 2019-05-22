@@ -35,7 +35,8 @@ ORIGINA= apresentacao.pdf \
 	 parametros.pdf \
 	 referencias.pdf \
 	 ponteiros.pdf \
-	 passagem-matrizes.pdf
+	 passagem-matrizes.pdf \
+	 ordenamento-bolha.pdf
 
 revisao: $(REVISAO)
 origina: $(ORIGINA)
