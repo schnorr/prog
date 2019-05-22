@@ -1,7 +1,9 @@
 #include <stdio.h>
 int main() {
   int x = 10;
-  int *p = NULL;
+  int *p;
+
+  p = NULL;
 
   *p = x;
 
