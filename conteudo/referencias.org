@@ -301,7 +301,6 @@ Como usar?
    #+end_src
 
 
-
 * Passagem por referência ~a26-troca-ponteiro.c~
 
 #+attr_latex: :options fontsize=\scriptsize
