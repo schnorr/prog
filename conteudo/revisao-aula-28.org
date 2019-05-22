@@ -88,7 +88,7 @@ O que acontece se declararmos ~str~ assim:
 Ponteiros, vetores e *funções* (uma função pode retornar um ponteiro)
 #+BEGIN_SRC C :results output :session :exports both :includes "<stdio.h> <ctype.h>"
 int *maior (int *vetor, int tamanho) {
-  int *p = vet;
+  int *p = vetor;
   int i;
   for (i = 0; i < tamanho; i++)
     if (*(vetor+i) > *p)
