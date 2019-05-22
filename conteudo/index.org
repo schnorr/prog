@@ -93,7 +93,6 @@ A coluna *KR* se refere ao capítulo ou seção do livro:
 |    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/passagem-matrizes.pdf][Passagem de matrizes]]                        |            | [[./passagem-matrizes.org]] |
 |    | Ordenamento Bolha                           |            |                         |
 
-
 * Práticas
 
 O material das aulas práticas está disponível no [[https://moodle.ufrgs.br][Moodle Acadêmico]].
