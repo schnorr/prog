@@ -14,6 +14,7 @@ REVISAO= revisao-aula-01.pdf \
 	 revisao-aula-23.pdf \
 	 revisao-aula-25.pdf \
 	 revisao-aula-26.pdf \
+	 revisao-aula-28.pdf \
 	 comentarios-p1.pdf
 
 ORIGINA= apresentacao.pdf \
@@ -33,7 +34,8 @@ ORIGINA= apresentacao.pdf \
 	 funcoes.pdf \
 	 parametros.pdf \
 	 referencias.pdf \
-	 ponteiros.pdf
+	 ponteiros.pdf \
+	 passagem-matrizes.pdf
 
 revisao: $(REVISAO)
 origina: $(ORIGINA)
