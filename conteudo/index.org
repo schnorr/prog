@@ -77,20 +77,20 @@ A coluna *KR* se refere ao capítulo ou seção do livro:
 |    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-p1.pdf][Revisão Geral P1 + Simulado]]                 |            | [[./revisao-p1.org]]        |
 |----+---------------------------------------------+------------+-------------------------|
 | 23 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/comentarios-p1.pdf][Questões e Comentários da P1]]                |            | [[./comentarios-p1.org]]    |
-|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/funcoes.pdf][Subprogramas e Funções]]                      |            | [[./funcoes.org]]           |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/funcoes.pdf][Subprogramas e Funções]]                      | C4         | [[./funcoes.org]]           |
 |----+---------------------------------------------+------------+-------------------------|
 | 25 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-23.pdf][Revisão]]                                     |            | [[./revisao-aula-23.org]]   |
-|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/parametros.pdf][Funções e seus Parâmetros]]                   |            | [[./parametros.org]]        |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/parametros.pdf][Funções e seus Parâmetros]]                   | C4         | [[./parametros.org]]        |
 |----+---------------------------------------------+------------+-------------------------|
-| 26 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-25.pdf][Revisão]]                                     |            | [[./revisao-aula-25.org]]   |
-|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/referencias.pdf][Referências e Ponteiros]]                     |            | [[./referencias.org]]       |
+| 26 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-25.pdf][Revisão]]                                     | S4.5       | [[./revisao-aula-25.org]]   |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/referencias.pdf][Referências e Ponteiros]]                     | *C5*         | [[./referencias.org]]       |
 |----+---------------------------------------------+------------+-------------------------|
 | 28 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-26.pdf][Revisão]]                                     |            | [[./revisao-aula-26.org]]   |
-|    | (Continuação 16/21) [[http://www.inf.ufrgs.br/~schnorr/inf1202/referencias.pdf][Referências e Ponteiros]] |            | [[./referencias.org]]       |
-|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/ponteiros.pdf][Ponteiros]] (com passagem por referência)     |            | [[./ponteiros.org]]         |
+|    | (Continuação 16/21) [[http://www.inf.ufrgs.br/~schnorr/inf1202/referencias.pdf][Referências e Ponteiros]] | C5         | [[./referencias.org]]       |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/ponteiros.pdf][Ponteiros]] (com passagem por referência)     | C5         | [[./ponteiros.org]]         |
 |----+---------------------------------------------+------------+-------------------------|
 | 29 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-28.pdf][Revisão]]                                     |            | [[./revisao-aula-28.org]]   |
-|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/passagem-matrizes.pdf][Passagem de matrizes]]                        |            | [[./passagem-matrizes.org]] |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/passagem-matrizes.pdf][Passagem de matrizes]]                        | C5         | [[./passagem-matrizes.org]] |
 |    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/ordenamento-bolha.pdf][Ordenamento Bolha]]                           |            | [[./ordenamento-bolha.org]] |
 |----+---------------------------------------------+------------+-------------------------|
 | 31 | Revisão                                     |            |                         |
