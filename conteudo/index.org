@@ -94,7 +94,10 @@ A coluna *KR* se refere ao capítulo ou seção do livro:
 |    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/ordenamento-bolha.pdf][Ordenamento Bolha]]                           |            | [[./ordenamento-bolha.org]] |
 |----+---------------------------------------------+------------+-------------------------|
 | 31 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-29.pdf][Revisão]]                                     |            | [[./revisao-aula-29.org]]   |
-|    | Estruturas                                  |            |                         |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/estruturas.pdf][Estruturas]]                                  |            | [[./estruturas.org]]        |
+|----+---------------------------------------------+------------+-------------------------|
+| 32 | Revisão                                     |            |                         |
+|    | Estruturas (sim, de novo)                   |            |                         |
 
 Anotações aleatórias:
 - "To write a function that, when given an array of length n + 1
