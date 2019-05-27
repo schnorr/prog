@@ -332,10 +332,31 @@ struct {
 } professor;
 #+END_SRC
 
-* 
+* Exercício #1
 
-Declaração de variáveis tipo estrutura:
-em paralelo com a declaração do tipo
+*Parte #1*: Faça uma função que leia o nome (até 15 caracteres) e as 3
+notas de 1 aluno, calcule a média aritmética e o conceito obtido,
+armazenando todas estas informações em uma estrutura ~aluno~.
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula22/aula22_slide_35.pdf}{Prof. Marcelo Walter}
+*Parte #2:* Altere o programa anterior, de modo que armazene informações
+referentes a NRALUNOS alunos.
 
+Utilize o código abaixo para começar.
+#+BEGIN_SRC C
+#include <stdio.h>
+#include <string.h>
+#define NRALUNOS 3 // número de alunos da turma
+#define NRNOTAS 3  // número de notas
+struct aluno {
+  char nome[15 + 1];
+  float nota[NRNOTAS]; // vetor é um tipo de variável (indexada)
+  float media;
+  char conceito;
+};
+int main()
+{
+  struct aluno alunos[NRALUNOS];
+  //...
+  return 0;
+}
+#+END_SRC
