@@ -122,7 +122,7 @@ int *procura_valor (int *v, int tamanho, int valor) {
 }
 #+end_src
 
-~rev-a29-bolha-melhor.h~
+~rev-a29-procura.h~
 #+BEGIN_SRC C :tangle e/rev-a29-procura.h :main no
 int *procura_valor (int *v, int tamanho, int valor);
 #+END_SRC
