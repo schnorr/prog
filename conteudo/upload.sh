@@ -37,7 +37,8 @@ parametros.pdf \
 referencias.pdf \
 ponteiros.pdf \
 passagem-matrizes.pdf \
-ordenamento-bolha.pdf"
+ordenamento-bolha.pdf \
+estruturas.pdf"
 
 PDFS="$REVISAO $ORIGINA"
 
