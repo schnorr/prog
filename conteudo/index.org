@@ -94,7 +94,7 @@ A coluna *KR* se refere ao capítulo ou seção do livro:
 |    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/ordenamento-bolha.pdf][Ordenamento Bolha]]                           |            | [[./ordenamento-bolha.org]] |
 |----+---------------------------------------------+------------+-------------------------|
 | 31 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-29.pdf][Revisão]]                                     |            | [[./revisao-aula-29.org]]   |
-|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/estruturas.pdf][Estruturas]]                                  |            | [[./estruturas.org]]        |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/estruturas.pdf][Estruturas]]                                  | C6         | [[./estruturas.org]]        |
 |----+---------------------------------------------+------------+-------------------------|
 | 32 | Revisão                                     |            |                         |
 |    | Estruturas (sim, de novo)                   |            |                         |
@@ -104,7 +104,6 @@ Anotações aleatórias:
   containing integers 1 through n, find the duplicate integer in an
   array." from [[https://it.slashdot.org/story/19/05/25/0214208/how-i-cheated-on-my-microsoft-job-interview][How I Cheated On My Microsoft Job Interview]].
   
-
 
 * Práticas
 
