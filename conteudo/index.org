@@ -96,8 +96,13 @@ A coluna *KR* se refere ao capítulo ou seção do livro:
 | 31 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-29.pdf][Revisão]]                                     |            | [[./revisao-aula-29.org]]   |
 |    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/estruturas.pdf][Estruturas]]                                  | C6         | [[./estruturas.org]]        |
 |----+---------------------------------------------+------------+-------------------------|
-| 32 | Revisão                                     |            |                         |
-|    | Estruturas (sim, de novo)                   |            |                         |
+| 32 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-31.pdf][Revisão]]                                     |            | [[./revisao-aula-31.org]]   |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/typedef.pdf][Estruturas (sim, de novo)]]                   | C6         | [[./typedef.org]]           |
+|----+---------------------------------------------+------------+-------------------------|
+| 34 | Revisão                                     |            |                         |
+|    | Arquivos                                    |            |                         |
+|----+---------------------------------------------+------------+-------------------------|
+|    |                                             |            |                         |
 
 Anotações aleatórias:
 - "To write a function that, when given an array of length n + 1
