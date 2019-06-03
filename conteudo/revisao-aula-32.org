@@ -108,6 +108,7 @@ int main()
   return 0;
 }
 #+END_SRC
+
 * (#1) Módulo aluno, cabeçalho (~rev-a32-aluno.h~)
 #+attr_latex: :options fontsize=\normalsize
 #+BEGIN_SRC C :tangle e/rev-a32-aluno.h :main no
@@ -195,5 +196,141 @@ void def_conceito (aluno_t *aluno) {
     aluno->conceito = '\0';
   }
   return;
+}
+#+END_SRC
+* Exercício #2
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula23-estruturas2_slide_27.pdf}{Prof. Claudio Jung}
+
+* (#2) Módulo Principal (~rev-a32-jogo~)
+
+Cabeçalho
+
+#+BEGIN_SRC C :tangle e/rev-a32-jogo.h :main no
+#ifndef JOGO_H
+#define JOGO_H
+#include <stdio.h>
+#define NTIMES 3
+typedef struct {
+  char nome[15]; // nome da equipe
+  int pontos;    // qtdade de pontos
+} time_t;
+typedef struct {
+  int local;     // qtdade de gols do time local
+  int visitante; // qtdade de gols do time visitante
+} resultado_t;
+#endif
+#+END_SRC
+
+* (#2) Módulo Principal (~rev-a32-jogo~)
+
+Implementação
+
+#+BEGIN_SRC C :tangle e/rev-a32-jogo.c
+#include "rev-a32-jogo.h"
+#include "rev-a32-jogo-leitura.h"
+#include "rev-a32-jogo-pontos.h"
+int main() {
+  time_t times[NTIMES] = {{"Alemanha", 0}, {"Franca", 0}, {"Brasil", 0}};
+  resultado_t jogos[NTIMES][NTIMES];
+  le_todos_os_resultados (jogos, times);
+  calcula_pontos (jogos, times);
+  imprime_pontos (times);
+  return 0;
+}
+#+END_SRC
+
+* (#2) Módulo Leitura (~rev-a32-jogo-leitura~)
+
+Cabeçalho
+
+#+BEGIN_SRC C :tangle e/rev-a32-jogo-leitura.h :main no
+#ifndef JOGO_LEITURA_H
+#define JOGO_LEITURA_H
+#include <stdio.h>
+#include "rev-a32-jogo.h"
+void le_todos_os_resultados (resultado_t jo[][NTIMES], time_t times[]);
+#endif
+#+END_SRC
+
+* (#2) Módulo Leitura (~rev-a32-jogo-leitura~)
+
+Implementação
+
+#+BEGIN_SRC C :tangle e/rev-a32-jogo-leitura.c :main no
+#include "rev-a32-jogo-leitura.h"
+static void le_um_resultado (resultado_t *res, time_t *local, time_t *visitante) {
+  printf("Jogo: %s (Local) vs %s (Visitante):\n", local->nome, visitante->nome);
+  printf("\tQtdade de gols de %s (Local): ", local->nome);
+  scanf("%d", &res->local);
+  printf("\tQtdade de gols de %s (Visitante): ", visitante->nome);
+  scanf("%d", &res->visitante);
+}
+void le_todos_os_resultados (resultado_t jo[][NTIMES], time_t times[]) {
+  int i, j;
+  for (i = 0; i < NTIMES; i++){
+    for (j = 0; j < NTIMES; j++){
+      if (i != j) {
+	 le_um_resultado(&jo[i][j], &times[i], &times[j]);
+      }
+    }
+  }
+}
+#+END_SRC
+
+* (#2) Módulo Pontos (~rev-a32-jogo-pontos~)
+
+Cabeçalho
+
+#+BEGIN_SRC C :tangle e/rev-a32-jogo-pontos.h :main no
+#ifndef JOGO_PONTOS_H
+#define JOGO_PONTOS_H
+#include <stdio.h>
+#include "rev-a32-jogo.h"
+void calcula_pontos (resultado_t jo[][NTIMES], time_t times[]);
+void imprime_pontos (time_t times[]);
+#endif
+#+END_SRC
+
+* (#2) Módulo Pontos (~rev-a32-jogo-pontos~) P1
+
+Implementação
+
+#+BEGIN_SRC C :tangle e/rev-a32-jogo-pontos.c :main no
+#include "rev-a32-jogo-pontos.h"
+void calcula_pontos (resultado_t jo[][NTIMES], time_t times[]) {
+  int i, j;
+  for (i = 0; i < NTIMES; i++){
+    for (j = 0; j < NTIMES; j++){
+      if (i != j) {
+	  resultado_t *res = &jo[i][j];
+	  time_t *local = &times[i];
+	  time_t *visitante = &times[j];
+	  if (res->local > res->visitante) {
+	    local->pontos += 3;
+	  }else if (res->local < res->visitante) {
+	    visitante->pontos += 3;
+	  }else{
+	    local->pontos += 1;
+	    visitante->pontos += 1;
+	  }
+      }
+    }
+  }
+}
+#+END_SRC
+
+* (#2) Módulo Pontos (~rev-a32-jogo-pontos~) P2
+
+Implementação
+
+#+BEGIN_SRC C :tangle e/rev-a32-jogo-pontos.c :main no
+#include "rev-a32-jogo-pontos.h"
+void imprime_pontos (time_t times[]) {
+  int i;
+  for (i = 0; i < NTIMES; i++){
+    time_t *t = &times[i];
+    printf("Time %s, %d pontos.\n", t->nome, t->pontos);
+  }
 }
 #+END_SRC
