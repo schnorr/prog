@@ -114,7 +114,7 @@ A coluna *KR* se refere ao capítulo ou seção do livro:
 | 40 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-38.pdf][Revisão]]                                     |            | [[./revisao-aula-38.org]]   |
 |    | Recursividade                               |            |                         |
 |----+---------------------------------------------+------------+-------------------------|
-|    |                                             |            |                         |
+| 41 |                                             |            |                         |
 |    | Estruturação de programas                   |            |                         |
 
 Anotações aleatórias:
