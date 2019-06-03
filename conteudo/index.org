@@ -99,10 +99,23 @@ A coluna *KR* se refere ao capítulo ou seção do livro:
 | 32 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-31.pdf][Revisão]]                                     |            | [[./revisao-aula-31.org]]   |
 |    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/typedef.pdf][Estruturas (sim, de novo)]]                   | C6         | [[./typedef.org]]           |
 |----+---------------------------------------------+------------+-------------------------|
-| 34 | Revisão                                     |            |                         |
-|    | Arquivos                                    |            |                         |
+| 34 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-32.pdf][Revisão]]                                     |            | [[./revisao-aula-32.org]]   |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/arquivo.pdf][Arquivo]]                                     |            | [[./arquivo.org]]           |
+|----+---------------------------------------------+------------+-------------------------|
+| 35 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-34.pdf][Revisão]]                                     |            | [[./revisao-aula-34.org]]   |
+|    | Arquivo Binários (acesso aleatório)         |            |                         |
+|----+---------------------------------------------+------------+-------------------------|
+| 37 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-35.pdf][Revisão]]                                     |            | [[./revisao-aula-35.org]]   |
+|    | Arquivo Texto                               |            |                         |
+|----+---------------------------------------------+------------+-------------------------|
+| 38 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-37.pdf][Revisão]]                                     |            | [[./revisao-aula-37.org]]   |
+|    | Exemplos de arquivo Texto                   |            |                         |
+|----+---------------------------------------------+------------+-------------------------|
+| 40 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-38.pdf][Revisão]]                                     |            | [[./revisao-aula-38.org]]   |
+|    | Recursividade                               |            |                         |
 |----+---------------------------------------------+------------+-------------------------|
 |    |                                             |            |                         |
+|    | Estruturação de programas                   |            |                         |
 
 Anotações aleatórias:
 - "To write a function that, when given an array of length n + 1
