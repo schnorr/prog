@@ -42,7 +42,8 @@ ORIGINA= apresentacao.pdf \
 	 passagem-matrizes.pdf \
 	 ordenamento-bolha.pdf \
 	 estruturas.pdf \
-	 typedef.pdf
+	 typedef.pdf \
+	 arquivo.pdf
 
 revisao: $(REVISAO)
 origina: $(ORIGINA)

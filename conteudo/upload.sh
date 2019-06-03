@@ -42,7 +42,8 @@ ponteiros.pdf \
 passagem-matrizes.pdf \
 ordenamento-bolha.pdf \
 estruturas.pdf \
-typedef.pdf"
+typedef.pdf \
+arquivo.pdf"
 
 PDFS="$REVISAO $ORIGINA"
 
