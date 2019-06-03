@@ -17,6 +17,8 @@ REVISAO="revisao-aula-01.pdf \
 	 revisao-aula-28.pdf \
 	 revisao-aula-29.pdf \
 	 revisao-aula-31.pdf \
+	 revisao-aula-32.pdf \
+	 revisao-aula-34.pdf \
 	 comentarios-p1.pdf"
 ORIGINA="apresentacao.pdf \
 arranjos.pdf \
