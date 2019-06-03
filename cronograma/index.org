@@ -246,7 +246,7 @@ dias_disponiveis %>%
     filter(DiaDaSemana %in% c(2, 4)) -> dates.teoricas;
 
 dias_disponiveis %>%
-    # Aulas teóricas em quais dias da semana (segunda = 2, terca = 3, ...)
+    # Aulas práticas em quais dias da semana (sexta = 6, ...)
     filter(DiaDaSemana %in% c(6)) -> dates.praticas;
 #+end_src
 
