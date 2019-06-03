@@ -122,7 +122,6 @@ Anotações aleatórias:
   containing integers 1 through n, find the duplicate integer in an
   array." from [[https://it.slashdot.org/story/19/05/25/0214208/how-i-cheated-on-my-microsoft-job-interview][How I Cheated On My Microsoft Job Interview]].
   
-
 * Práticas
 
 O material das aulas práticas está disponível no [[https://moodle.ufrgs.br][Moodle Acadêmico]].
