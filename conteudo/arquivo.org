@@ -35,9 +35,6 @@ Em C (lidar com o conteúdo de arquivos)
 - Testar fim de arquivo ~feof~
 - Avaliar condição de erro ~ferror~
 
-Em C (lidar com arquivos)
-- Renomear ~rename~ e remover ~remove~
-- Outras funções de ~stdio.h~
 * Arquivos                                                         :noexport:
 Arquivos são *repositórios permanentes* de dados
 - Permitem /perenizar/ informações de um programa
