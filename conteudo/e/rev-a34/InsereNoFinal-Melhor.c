@@ -2,24 +2,42 @@
 #include "GeraSalva-Nomes.h"
 #include "GeraSalva.h"
 int main() {
-  int natletas;
-  atleta_t um_atleta;
-  gera_nome_aleatorio(um_atleta.nome, 20);
-  um_atleta.idade = gera_idade_aleatoria(18, 25);
-  um_atleta.altura = gera_altura_aleatoria(180, 185);
+  FILE *arquivo = NULL;
+  int natletas = 0;
+  atleta_t atleta = {0};
+  gera_nome_aleatorio(atleta.nome, 20);
+  atleta.idade = gera_idade_aleatoria(18, 25);
+  atleta.altura = gera_altura_aleatoria(180, 185);
 
-  FILE *arquivo = fopen(FATLETAS, "a");
+  //1. 
+  arquivo = fopen(FATLETAS, "r");
   if (arquivo){
-    fwrite(&um_atleta, sizeof(atleta_t), 1, arquivo);
+    fread(&natletas, sizeof(int), 1, arquivo);
+    fclose(arquivo);
+  }else{
+    printf("Impossível abrir arquivo "
+	   "[%s] para leitura. Fatal.\n", FATLETAS);
+    return 0;
+  }
+
+
+
+
+  //2. 
+  arquivo = fopen(FATLETAS, "a");
+  if (arquivo){
+    fwrite(&atleta, sizeof(atleta_t), 1, arquivo);
     fclose(arquivo);
   }else{
     printf("Impossível abrir arquivo [%s] para concatenar. Fatal.\n", FATLETAS);
+    return 0;
   }
 
-  arquivo = fopen(FATLETAS, "r");
-  fread(&natletas, sizeof(int), 1, arquivo);
-  printf("%d\n", natletas);
-  fclose(arquivo);
 
+  //3. 
+  natletas++;
+  arquivo = fopen(FATLETAS, "r+");
+  fwrite(&natletas, sizeof(int), 1, arquivo);
+  fclose(arquivo);
   return 0;
 }

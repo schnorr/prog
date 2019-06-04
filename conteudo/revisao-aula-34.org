@@ -193,6 +193,18 @@ int main() {
 }
 #+END_SRC
 
+* (#1) GeraSalva: Compilação e Testes
+
+#+begin_src shell :results output :exports both
+rm -f GeraSalva
+gcc -Wall -g \
+    e/rev-a34/GeraSalva-Nomes.c \
+    e/rev-a34/GeraSalva.c \
+    -o e/rev-a34/LeMostra
+#+end_src
+
+#+RESULTS:
+
 * (#1) Organização P2
 
 #+BEGIN_CENTER
@@ -237,6 +249,18 @@ int main() {
   return 0;
 }
 #+END_SRC
+* (#1) LeMostra: Compilação e Testes
+
+#+begin_src shell :results output :exports both
+rm -f LeMostra
+gcc -Wall -g \
+    e/rev-a34/GeraSalva-Nomes.c \
+    e/rev-a34/LeMostra.c \
+    -o e/rev-a34/LeMostra
+#+end_src
+
+#+RESULTS:
+
 * (#1) Organização P3
 
 #+BEGIN_CENTER
@@ -279,6 +303,7 @@ Programa _InsereNoFinal_, com os seguintes módulos
 
 * (#1) InsereNoFinal (Implementação)
 
+~InsereNoFinal.c~
 #+BEGIN_SRC C :tangle e/rev-a34/InsereNoFinal.c
 #include <stdio.h>
 #include "GeraSalva-Nomes.h"
@@ -304,3 +329,85 @@ int main() {
 
 Qual o problema dessa abordagem?
 
+* (#1) InsereNoFinal: Compilação e Testes
+
+#+begin_src shell :results output :exports both
+rm -f InsereNoFinal
+gcc -Wall -g \
+    e/rev-a34/GeraSalva-Nomes.c \
+    e/rev-a34/InsereNoFinal.c \
+    -o e/rev-a34/InsereNoFinal
+#+end_src
+
+#+RESULTS:
+
+* (#1) InsereNoFinal-Melhor
+
+Resolvendo o problema da abordagem anterior?
+1. Ler a quantidade de atletas no início do arquivo
+2. Escrever o novo atleta no final
+3. Escrever a nova quantidade de atletas no início
+
+#+latex: \vfill
+
+
+#+latex: \begin{multicols}{2}
+~InsereNoFinal-Melhor.c~
+#+attr_latex: :options fontsize=\tiny
+#+BEGIN_SRC C :tangle e/rev-a34/InsereNoFinal-Melhor.c
+#include <stdio.h>
+#include "GeraSalva-Nomes.h"
+#include "GeraSalva.h"
+int main() {
+  FILE *arquivo = NULL;
+  int natletas = 0;
+  atleta_t atleta = {0};
+  gera_nome_aleatorio(atleta.nome, 20);
+  atleta.idade = gera_idade_aleatoria(18, 25);
+  atleta.altura = gera_altura_aleatoria(180, 185);
+
+  //1. 
+  arquivo = fopen(FATLETAS, "r");
+  if (arquivo){
+    fread(&natletas, sizeof(int), 1, arquivo);
+    fclose(arquivo);
+  }else{
+    printf("Impossível abrir arquivo "
+	   "[%s] para leitura. Fatal.\n", FATLETAS);
+    return 0;
+  }
+
+
+
+
+  //2. 
+  arquivo = fopen(FATLETAS, "a");
+  if (arquivo){
+    fwrite(&atleta, sizeof(atleta_t), 1, arquivo);
+    fclose(arquivo);
+  }else{
+    printf("Impossível abrir arquivo [%s] para concatenar. Fatal.\n", FATLETAS);
+    return 0;
+  }
+
+
+  //3. 
+  natletas++;
+  arquivo = fopen(FATLETAS, "r+");
+  fwrite(&natletas, sizeof(int), 1, arquivo);
+  fclose(arquivo);
+  return 0;
+}
+#+END_SRC
+#+latex: \end{multicols}
+* (#1) InsereNoFinal: Compilação e Testes
+
+#+begin_src shell :results output :exports both
+rm -f InsereNoFinal-Melhor
+gcc -Wall -g \
+    e/rev-a34/GeraSalva-Nomes.c \
+    e/rev-a34/InsereNoFinal-Melhor.c \
+    -o e/rev-a34/InsereNoFinal-Melhor
+#+end_src
+
+#+RESULTS:
