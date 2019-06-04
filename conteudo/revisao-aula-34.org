@@ -18,6 +18,21 @@
 #+LATEX_HEADER: \usepackage{amsmath}
 #+LATEX_HEADER: \usepackage{systeme}
 
+* Propaganda
+
+#+BEGIN_CENTER
+Dia da Saúde Mental Discente
+
+12 de junho, 4a. feira, 09:00 - 12:00
+
+Auditório do prédio 43413
+#+END_CENTER
+
+Programa: Panorama das universidades brasileiras; Condições de acesso;
+Permanência e conclusão; Identificação de sinais de risco em si mesmo
+e em colegas; Iniciativas autoaplicáveis de gerenciamento de estresse.
+
+
 * O que vimos na última aula?
 
 Em C (lidar com o conteúdo de arquivos)
