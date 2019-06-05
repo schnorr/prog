@@ -1,0 +1,38 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Arquivos (Texto)
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS:   H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{systeme}
+
+* Sumário
+
+Introdução e Motivação 
+- Conceito, peculiaridade
+- Comparação com arquivos binários
+- Organização interna
+
+Funções habituais em C para lidar com o conteúdo de arquivos texto
+- Abrir ~fopen~ e fechar ~fclose~
+- +Ler fread+ \to usaremos ~fscanf~, ~fgetc~ / ~getc~, ~fgets~
+- +Escrever fwrite+ \to usaremos ~fprintf~, ~fputc~ / ~putc~, ~fputs~
+- Descarregar ~fflush~, testar fim de arquivo ~feof~, ver erros ~ferror~
+- Gerenciar a cabeça de leitura/escrita
+  - Rebobinar ~rewind~
+  - Repositionar ~fseek~
+  - Revelar posição ~ftell~
+
+Exemplos e Exercício

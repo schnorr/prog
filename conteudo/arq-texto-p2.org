@@ -1,0 +1,39 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Arquivos Texto (Conversão/Tokens)
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS:   H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{systeme}
+
+* Sumário
+
+#+BEGIN_COMMENT
+Veremos funções auxiliares para lidar com texto (/strings/).
+#+END_COMMENT
+
+Conversão de /strings/ para tipos de dados (parte de ~stdlib.h~)
+- ~char*~ para ~int~ (~atoi~)
+- ~char*~ para ~long~ (~atol~)
+- ~char*~ para ~long long~ (~atoll~)
+- ~char*~ para ~float~ (~atof~)
+- Outras funções
+  - ~strtod~ (double), ~stdtof~ (float), ~strtold~ (long double)
+
+Funções para análise, divisão em /tokens/ (pedaços) (~string.h~)
+- Leitura caractere por caractere
+- ~strtok~
+
+Exemplos e Exercício
