@@ -109,7 +109,7 @@ A coluna *KR* se refere ao capítulo ou seção do livro:
 |    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/arq-texto.pdf][Arquivo Texto]]                               |            | [[./arq-texto.org]]         |
 |----+---------------------------------------------+------------+-------------------------|
 | 38 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-37.pdf][Revisão]]                                     |            | [[./revisao-aula-37.org]]   |
-|    | Exemplos de arquivo Texto                   |            |                         |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/arq-texto-p2.pdf][Arquivo Texto e Conversão/Tokens]]            |            | [[./arq-texto-p2.org]]      |
 |----+---------------------------------------------+------------+-------------------------|
 | 40 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-38.pdf][Revisão]]                                     |            | [[./revisao-aula-38.org]]   |
 |    | Recursividade                               |            |                         |
