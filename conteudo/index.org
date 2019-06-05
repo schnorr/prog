@@ -103,7 +103,7 @@ A coluna *KR* se refere ao capítulo ou seção do livro:
 |    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/arquivo.pdf][Arquivo]]                                     |            | [[./arquivo.org]]           |
 |----+---------------------------------------------+------------+-------------------------|
 | 35 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-34.pdf][Revisão]]                                     |            | [[./revisao-aula-34.org]]   |
-|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/arquivo.pdf][Arquivo binário (acesso aleatório)]]          |            | [[./aleatorio.org]]         |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/aleatorio.pdf][Arquivo binário (acesso aleatório)]]          |            | [[./aleatorio.org]]         |
 |----+---------------------------------------------+------------+-------------------------|
 | 37 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-35.pdf][Revisão]]                                     |            | [[./revisao-aula-35.org]]   |
 |    | Arquivo Texto                               |            |                         |
