@@ -1,0 +1,440 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Acesso Aleatório em Arquivos
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS:   H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{systeme}
+
+* Sumário
+
+Em C (lidar com o conteúdo de arquivos)
+- Habituais funções de abertura, leitura, escrita, fechamento
+- Retornar ~rewind~
+- Reposicionar ~fseek~
+- Dizer ~ftell~
+
+Em C (lidar com arquivos)
+- Renomear ~rename~ e remover ~remove~
+- Outras funções de ~stdio.h~
+
+* Cabeçote de leitura/gravação
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula25-arquivos_binarios_slide_07.pdf}{Prof. Claudio Jung}
+* Rebobinar ~rewind~ (rebobina a posição do cabeçote)
+
+Protótipo
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C
+void rewind(FILE *stream);
+#+END_SRC
+
+A função ~rewind~ seta o indicador de posição (o cabeçote de
+leitura/gravação) apontado por ~stream~ para o início do arquivo.
+
+#+latex: \pause\vfill
+
+Exemplo
+#+attr_latex: :options fontsize=\normalsize
+#+begin_src shell :results output
+FILE *arquivo;
+arquivo = fopen("atletas.bin", "r");
+fread(&atletas, sizeof(atleta_t), natletas, arquivo);
+rewind(arquivo);
+#+end_src
+* Reposicionar ~fseek~ (mudar a posição do cabeçote)
+ 
+Protótipo
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C
+int fseek(FILE *stream, long offset, int whence);
+#+END_SRC
+
+A função ~fseek~ define a posição do cabeçote de leitura do ~stream~. A
+nova posição, medidas em /bytes/, é obtida adicionando ~offset~ /bytes/ para
+a posição especificada por ~whence~.
+
+#+latex: \pause
+
+| ~whence~   | Significado                                               |
+|----------+-----------------------------------------------------------|
+| ~SEEK_SET~ | deslocamento /offset/ em relação ao _início_ do arquivo       |
+| ~SEEK_CUR~ | deslocamento /offset/ em relação à posição _atual_ do arquivo |
+| ~SEEK_END~ | deslocamento /offset/ em relação ao _final_ do arquivo        |
+
+#+latex: \pause\vfill
+
+Exemplo
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C
+FILE *arquivo;
+arquivo = fopen("atletas.bin", "r");
+fseek(arquivo, 4, SEEK_CUR);
+fseek(arquivo, -sizeof(atleta_t), SEEK_END);
+fseek(arquivo, 0, SEEK_SET);
+#+END_SRC
+* Revelar ~ftell~ (revela a posição do cabeçote)
+
+Protótipo
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C
+long ftell(FILE *stream);
+#+END_SRC
+
+A função obtém o valor atual da posição do cabeçote de
+leitura/gravação apontado por ~stream~.
+
+#+latex: \vfill\pause
+
+Exemplo
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C
+FILE *arquivo;
+arquivo = fopen("atletas.bin", "r");
+fseek(arquivo, 0, SEEK_END);
+printf("Posição atual: %ld\n", ftell(arquivo));
+#+END_SRC
+* Funções de manipulação externa de arquivos 
+
+Protótipos
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C
+int rename(const char *oldpath, const char *newpath);
+int remove(const char *pathname);
+#+END_SRC
+
+#+latex: \vfill\pause
+
+Outras funções de ~stdio.h~
+- Procure no DuckDuckGo: man stdio
+
+* Acesso *não sequencial* no arquivo
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula25-arquivos_binarios_slide_11.pdf}{Prof. Claudio Jung}
+
+* Exemplo #1: InsereNoFim-AindaMelhor
+
+Resolvendo o problema de uma maneira mais elegante:
+1. Ler a quantidade de atletas no início do arquivo
+2. ~fseek~ para o fim do arquivo
+3. Escrever o novo atleta
+4. ~rewind~ (reboninar para o início do arquivo)
+5. Escrever a nova quantidade de atletas
+
+#+latex: \vfill\pause
+
+#+latex: \begin{multicols}{2}
+~InsereNoFinal-AindaMelhor.c~
+#+attr_latex: :options fontsize=\tiny
+#+BEGIN_SRC C :tangle e/rev-a34/InsereNoFinal-AindaMelhor.c
+#include <stdio.h>
+#include "GeraSalva-Nomes.h"
+#include "GeraSalva.h"
+int main() {
+  FILE *arquivo = NULL;
+  int natletas = 0;
+  atleta_t atleta = {0};
+  gera_nome_aleatorio(atleta.nome, 20);
+  atleta.idade = gera_idade_aleatoria(18, 25);
+  atleta.altura = gera_altura_aleatoria(180, 185);
+  printf("%s, %d, %d\n",
+	 atleta.nome, atleta.idade, atleta.altura);
+
+  //1. 
+  arquivo = fopen(FATLETAS, "r+");
+  if (arquivo){
+    fread(&natletas, sizeof(int), 1, arquivo);
+  }else{
+    printf("Impossível abrir arquivo "
+	   "[%s] para leitura/escrita. "
+	   "Fatal.\n", FATLETAS);
+    return 0;
+  }
+
+  //2.
+  fseek(arquivo, 0L, SEEK_END);
+
+  //3.
+  fwrite(&atleta, sizeof(atleta_t), 1, arquivo);
+  fflush(arquivo);
+
+  //4.
+  rewind(arquivo);
+  natletas++;
+  fwrite(&natletas, sizeof(int), 1, arquivo);
+  fclose(arquivo);
+  return 0;
+}
+#+END_SRC
+#+latex: \end{multicols}
+
+* Exemplo #1: Compilação e Testes
+
+#+begin_src shell :results output :exports both
+rm -f InsereNoFinal-AindaMelhor
+gcc -Wall -g \
+    e/rev-a34/GeraSalva-Nomes.c \
+    e/rev-a34/InsereNoFinal-AindaMelhor.c \
+    -o e/rev-a34/InsereNoFinal-AindaMelhor
+#+end_src
+
+#+RESULTS:
+* Exemplo #2: Cria um arquivo de índice
+
+Um programa que varre o arquivo de atletas ~atletas.bin~, criando um
+outro arquivo chamado ~index.bin~ que terá o nome do atleta seguido de
+um valor long que contenha a posição daquele atleta no arquivo.
+
+#+latex: \pause\vfill
+
+Nova estrutura de dados ~index_t~, com dois campos
+#+BEGIN_SRC C
+typedef struct {
+  char nome[32];
+  long posicao;
+} index_t;
+#+END_SRC
+
+#+latex: \pause\vfill
+
+Programa _CriaIndex_, com os seguintes módulos
+- *Index*, funções para preencher ~index_t~ a partir de um ~atleta_t~
+- *Programa*, abre ~atletas.bin~ e cria o arquivo ~index.bin~.
+* (#2) Index: Cabeçalho e Implementação
+
+~Index.h~
+#+BEGIN_SRC C :tangle e/rev-a34/Index.h :main no
+#ifndef INDEX_H
+#define INDEX_H
+#include <stdio.h>
+#include "GeraSalva.h"
+#define FINDEX "index.bin"
+typedef struct {
+  char nome[32];
+  long posicao;
+} index_t;
+index_t cria_index (atleta_t *a, long posicao);
+#endif
+#+END_SRC
+
+#+latex: \pause\vfill
+
+~Index.c~
+#+BEGIN_SRC C :tangle e/rev-a34/Index.c :main no
+#include "Index.h"
+index_t cria_index (atleta_t *a, long posicao) {
+  index_t ret;
+  strncpy(ret.nome, a->nome, 32);
+  ret.posicao = posicao;
+  return ret;
+}
+#+END_SRC
+
+* (#2) Programa: Implementação
+
+#+latex: \begin{multicols}{2}
+~CriaIndex.c~
+#+attr_latex: :options fontsize=\tiny
+#+BEGIN_SRC C :tangle e/rev-a34/CriaIndex.c
+#include "Index.h"
+int main() {
+  atleta_t atleta;
+  index_t index;
+
+  // Abre o arquivo dos atletas para leitura
+  FILE *arq0 = fopen(FATLETAS, "r");
+  if (!arq0) {
+    printf("Impossível de abrir arquivo [%s] "
+	   "para leitura. Fatal.\n", FATLETAS);
+    return 0;
+  }
+
+  // Abre o arquivo dos índices para escrita
+  FILE *arq1 = fopen(FINDEX, "w");
+  if (!arq1) {
+    printf("Impossível de abrir arquivo [%s] "
+	   "para escrita. Fatal.\n", FINDEX);
+    return 0;
+  }
+
+
+
+
+
+
+  // Ignora os 4 bytes iniciais com fseek
+  fseek(arq0, sizeof(int), SEEK_CUR);
+
+  // Enquanto o arquivo não chegar ao fim
+  while(!feof(arq0)){
+    // Salva a posição
+    long posicao = ftell(arq0);
+
+    // Le os dados de um atleta
+    fread(&atleta, sizeof(atleta_t), 1, arq0);
+
+    // Cria o índice correspondente
+    index = cria_index(&atleta, posicao);
+
+    // Escreve o índice no arquivo de saída
+    fwrite(&index, sizeof(index_t), 1, arq1);
+  }
+  fclose(arq0);
+  fclose(arq1);
+  return 0;
+}
+#+END_SRC
+#+latex: \end{multicols}
+
+#+latex: \pause
+Compilação e testes
+
+#+begin_src shell :results output :exports both
+rm -f CriaIndex
+gcc -Wall -g  e/rev-a34/Index.c e/rev-a34/CriaIndex.c -o e/rev-a34/CriaIndex
+#+end_src
+
+#+RESULTS:
+* Exemplo #3: Atualiza a idade de um atleta
+
+Um programa que atualiza a idade de um determinado atleta, cujo nome e
+idade corrigida foram lidos do teclado. O nome deve ser procurado no
+arquivo ~index.bin~ para obter sua posição no arquivo ~atletas.bin~. Em
+seguida, o arquivo ~atletas.bin~ deve ser atualizado com a idade
+corrigida.
+
+#+latex: \vfill\pause
+
+Passos
+1. Abrir arquivos ~index.bin~ e ~atletas.bin~
+2. Ler ~procurado~ e sua ~nova_idade~ corrigida
+3. Procurar o ~procurado~ no ~index.bin~
+4. Se encontrar, obter a posição do procurado no ~atletas.bin~
+5. Posicionar cabeçote de leitura para posição encontrada
+6. Ler o registro
+7. Confirmar que realmente encontramos o registro
+8. Atualizar campo idade com ~nova_idade~
+9. Reposicionar cabeçote de leitura para posição encontrada
+10. Escrever o registro atualizado
+
+* (#3) Atualiza: Implementação
+
+#+latex: \begin{multicols}{2}
+~Atualiza.c~
+#+attr_latex: :options fontsize=\tiny
+#+BEGIN_SRC C :tangle e/rev-a34/Atualiza.c
+#include "Index.h"
+#include "GeraSalva.h"
+int main() {
+  atleta_t atleta = {0};
+  index_t index = {0};
+  char procurado[32] = {0};
+  int nova_idade = 0;
+  // 1. Abre o arquivo dos atletas para atualização
+  FILE *arq0 = fopen(FATLETAS, "r+");
+  if (!arq0) {
+    printf("Impossível de abrir arquivo [%s] "
+	   "para atualização. Fatal.\n", FATLETAS);
+    return 0;
+  }
+  // 1. Abre o arquivo dos índices para leitura
+  FILE *arq1 = fopen(FINDEX, "r");
+  if (!arq1) {
+    printf("Impossível de abrir arquivo [%s] "
+	   "para leitura. Fatal.\n", FINDEX);
+    return 0;
+  }
+  // 2. Le o procurado e sua idade corrigida
+  printf("Nome do procurado: ");
+  fgets(procurado, 32, stdin);
+  procurado[strlen(procurado)-1] = '\0';
+  printf("Nova idade do procurado [%s]: ", procurado);
+  scanf("%d", &nova_idade);
+  printf("Atualizar [%s] com a idade [%d]!\n",
+	 procurado, nova_idade);
+
+  // 3, 4. Enquanto o arquivo não chegar ao fim
+  int encontrei = 0;
+  while(!feof(arq1) && encontrei == 0){
+    // Le os dados de um index_t
+    fread(&index, sizeof(index_t), 1, arq1);
+    if (strcmp(index.nome, procurado) == 0){
+      encontrei = 1;
+    }
+  }
+  fclose(arq1);
+  if (encontrei == 0){
+    printf("Nome não encontrado no índice. Fatal.\n");
+    return 0;
+  }
+  // 5. Vamos posiciar a cabeça de leitura
+  fseek(arq0, index.posicao, SEEK_SET);
+  // 6. Ler
+  fread(&atleta, sizeof(atleta_t), 1, arq0);
+  // 7. Confirmar que é bem o atleta que estamos procurando
+  if (strcmp(atleta.nome, index.nome) != 0){
+    printf("Erro, o indice está corrompido.\n");
+    return 0;
+  }
+  // 8. Atualizar a idade (em memória)
+  atleta.idade = nova_idade;
+  // 9. Reposicionar na posição correta
+  fseek(arq0, index.posicao, SEEK_SET);
+  // 10. Escrever
+  fwrite(&atleta, sizeof(atleta_t), 1, arq0);
+  fclose(arq0);
+  return 0;
+}
+#+END_SRC
+#+latex: \end{multicols}
+* (#3) Compilação e testes
+
+#+begin_src shell :results output :exports both
+rm -f Atualiza
+gcc -Wall -g  e/rev-a34/Atualiza.c -o e/rev-a34/Atualiza
+#+end_src
+
+#+RESULTS:
+
+Vamos gerar a base e criar índices:
+#+begin_src shell :results output :dir e/rev-a34/
+./GeraSalva
+./CriaIndex
+#+end_src
+
+#+RESULTS:
+
+Atualizar a idade do ~muvucofasido~ para 31.
+
+* Exercício #1: Calcular estatísticas
+
+Faça um programa de computador que leia ~atletas.bin~ e calcule a idade
+mínima, idade máxima e idade média dentre todos os atletas
+envolvidos. Faça o mesmo (ao mesmo tempo) para a altura dos atletas.
+
+#+latex: \pause\vfill
+
+Implemente este algoritmo
+
+1. Posicione no início do primeiro atleta (4 /bytes/ do início do arquivo)
+2. Enquanto o arquivo não terminar
+   1. Avance até a posição da idade (sabendo que o nome ocupa 32 /bytes/)
+   2. Leia a idade
+   3. Atualize estatísticas da idade
+   4. Leia a altura
+   5. Atualize estatísticas da altura
+3. Apresente as estatísticas
+   
+E lembre-se:
+- A idade média e a altura média são números reais.
+- Utilize o programa ~GeraSalva~ para criar ~atletas.bin~

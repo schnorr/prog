@@ -19,6 +19,7 @@ REVISAO= revisao-aula-01.pdf \
 	 revisao-aula-31.pdf \
 	 revisao-aula-32.pdf \
 	 revisao-aula-34.pdf \
+	 revisao-aula-35.pdf \
 	 comentarios-p1.pdf
 
 ORIGINA= apresentacao.pdf \
@@ -43,7 +44,8 @@ ORIGINA= apresentacao.pdf \
 	 ordenamento-bolha.pdf \
 	 estruturas.pdf \
 	 typedef.pdf \
-	 arquivo.pdf
+	 arquivo.pdf \
+	 aleatorio.pdf
 
 revisao: $(REVISAO)
 origina: $(ORIGINA)

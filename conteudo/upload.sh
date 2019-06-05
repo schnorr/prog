@@ -19,6 +19,7 @@ REVISAO="revisao-aula-01.pdf \
 	 revisao-aula-31.pdf \
 	 revisao-aula-32.pdf \
 	 revisao-aula-34.pdf \
+	 revisao-aula-35.pdf \
 	 comentarios-p1.pdf"
 ORIGINA="apresentacao.pdf \
 arranjos.pdf \
@@ -43,6 +44,7 @@ passagem-matrizes.pdf \
 ordenamento-bolha.pdf \
 estruturas.pdf \
 typedef.pdf \
+aleatorio.pdf \
 arquivo.pdf"
 
 PDFS="$REVISAO $ORIGINA"
