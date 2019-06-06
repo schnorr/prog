@@ -36,3 +36,348 @@ Funções habituais em C para lidar com o conteúdo de arquivos texto
   - Revelar posição ~ftell~
 
 Exemplos e Exercício
+
+* Arquivos
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula26/aula26_slide_02.pdf}{Prof. Marcelo Walter}
+* Diferenças
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula26/aula26_slide_03.pdf}{Prof. Marcelo Walter}
+* Diferenças na representação de números ~float~
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula26/aula26_slide_04.pdf}{Prof. Marcelo Walter}
+* Organização interna
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula26/aula26_slide_05.pdf}{Prof. Marcelo Walter}
+* Marcadores especiais
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula26/aula26_slide_06.pdf}{Prof. Marcelo Walter}
+* Arquivos binários: características
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula26/aula26_slide_07.pdf}{Prof. Marcelo Walter}
+* Arquivos texto: características
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula26/aula26_slide_08.pdf}{Prof. Marcelo Walter}
+* Operações comuns
+Idênticas àquelas já vistas:
+- Abrir ~fopen~ e fechar ~fclose~
+- Descarregar ~fflush~, testar fim de arquivo ~feof~, ver erros ~ferror~
+- Gerenciar a cabeça de leitura/escrita
+  - Rebobinar ~rewind~
+  - Repositionar ~fseek~
+  - Revelar posição ~ftell~
+
+#+latex: \vfill
+
+O que tem de diferente?
+
+Leitura e/ou gravação de arquivos texto!
+- +Escrever fwrite+ \to usaremos ~fprintf~, ~fputc~ / ~putc~, ~fputs~
+  - Lembra do ~printf~? Pois é, é igual, só que de arquivo.
+- +Ler fread+ \to usaremos ~fscanf~, ~fgetc~ / ~getc~, ~fgets~
+  - Lembra do ~scanf~? Pois é, é igual, só que de arquivo.
+
+* Escrever ~fprintf~, ~fputc~ / ~putc~, ~fputs~
+
+Protótipos de funções que escrevem /strings/
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C
+int fprintf(FILE *stream, const char *format, ...);
+int fputs(const char *s, FILE *stream);
+#+END_SRC
+
+*Nota*: ambas escrevem a /string/ sem o caractere ~\0~ terminador
+
+#+latex: \pause\vfill
+
+Protótipos de funções que escrevem um caractere
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C
+int fputc(int c, FILE *stream);
+int putc(int c, FILE *stream);
+#+END_SRC
+* Exemplo #1: Emprego do ~fprintf~
+
+*Objetivo*: salva em arquivo texto NUMEL valores inteiros, um por linha
+
+#+BEGIN_SRC C :tangle e/a37-fprintf.c
+#include <stdio.h>
+#define MIN 345  // número mínimo para geração aleatório de valor inteiro
+#define MAX 567  // número máximo para geração aleatório de valor inteiro
+#define NUMEL 23 // número de elementos
+int main() {
+  int i, numero;
+  FILE *arq;
+  arq = fopen("meu_arquivo_texto.txt", "w");
+  if (arq == NULL) {
+    printf("Problema ao abrir o arquivo para escrita. Fatal.\n");
+    return 0;
+  }
+  for (i = 0; i < NUMEL; i++){
+    numero = MIN+(rand()%(MAX-MIN));
+    fprintf(arq, "%d\n", numero);
+  }
+  fclose(arq);
+  return 0;
+}
+#+END_SRC
+
+#+RESULTS:
+* Exemplo #2: Emprego do ~fputs~
+
+*Objetivo*: salvar em arquivo o valor de uma /string/
+- A função ~fputs~ não permite usar formatação
+
+#+BEGIN_SRC C :tangle e/a37-fputs.c
+#include <stdio.h>
+int main() {
+  char str[] = "Oi Mundo, veja como eu sei criar arquivos texto.";
+  FILE *arq;
+  arq = fopen("meu_arquivo_texto.txt", "w");
+  if (arq == NULL) {
+    printf("Problema ao abrir o arquivo para escrita. Fatal.\n");
+    return 0;
+  }
+  fputs(str, arq);
+  fputs("\n", arq);
+  fputs("Outra string na segunda linha.", arq);
+  fclose(arq);
+  return 0;
+}
+#+END_SRC
+
+#+RESULTS:
+* Exemplo #3: Emprego do ~fputc~ e ~putc~
+ 
+*Objetivo*: escrever caractere por caractere no arquivo
+- E escrever uma string, caractere por caractere
+
+#+BEGIN_SRC C :tangle e/a37-fputc.c
+#include <stdio.h>
+int main() {
+  char meu_caractere = 'L';
+  FILE *arq = fopen("meu_arquivo_texto.txt", "w");
+  if (arq == NULL) {
+    printf("Problema ao abrir o arquivo para escrita. Fatal.\n");
+    return 0;
+  }
+  fputc(meu_caractere, arq);
+  fputc('[', arq);
+  //escrever uma string, caractere por caractere
+  char str[] = "INF1202", *p = str;
+  while(*p != '\0'){
+    fputc(*p, arq);
+    p++;
+  }
+  putc(']', arq);  //<- veja o uso do putc
+  putc('\n', arq); //<- veja o uso do putc
+  fclose(arq);
+  return 0;
+}
+#+END_SRC
+
+#+RESULTS:
+* Ler ~fscanf~, ~fgetc~ / ~getc~, ~fgets~
+Protótipos de funções para ler strings
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C
+int fscanf(FILE *stream, const char *format, ...);
+char *fgets(char *s, int size, FILE *stream);
+#+END_SRC
+*Nota*: Veja aí o ~fgets~ que nós temos usado faz tempo!
+
+#+latex: \pause\vfill
+
+Protótipos de funções que leem um caractere
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C
+int fgetc(FILE *stream);
+int getc(FILE *stream);
+#+END_SRC
+* Exemplo #1: Emprego de ~fscanf~
+
+*Objetivo*: ler de um arquivo texto NUMEL valores inteiros, um por linha
+- Imprimir na tela o número lido
+
+#+BEGIN_SRC C :tangle e/a37-fscanf.c
+#include <stdio.h>
+#define NUMEL 23 // número de elementos
+int main() {
+  int i, numero;
+  FILE *arq;
+  arq = fopen("meu_arquivo_texto.txt", "r");
+  if (arq == NULL) {
+    printf("Problema ao abrir o arquivo para escrita. Fatal.\n");
+    return 0;
+  }
+  for (i = 0; i < NUMEL; i++){
+    fscanf(arq, "%d", &numero);
+    printf("%d\n", numero);
+  }
+  fclose(arq);
+  return 0;
+}
+#+END_SRC
+* Exemplo #2: Emprego do ~fgets~
+
+*Objetivo*: ler de arquivo o valor de uma /string/
+- A função ~fgets~ não permite usar formatação!
+- Perceba como o ~fgets~ captura o terminador da linha ~\n~
+
+#+BEGIN_SRC C :tangle e/a37-fputs.c :results output 
+#include <stdio.h>
+#define TAMANHO 30
+int main() {
+  char str[TAMANHO] = {0};
+  FILE *arq;
+  arq = fopen("meu_arquivo_texto.txt", "r");
+  if (arq == NULL) {
+    printf("Problema ao abrir o arquivo para escrita. Fatal.\n");
+    return 0;
+  }
+  fgets(str, TAMANHO, arq);
+  printf("[%s]\n", str);
+  fclose(arq);
+  return 0;
+}
+#+END_SRC
+
+#+RESULTS:
+: [490
+: ]
+* Exemplo #3: Emprego do ~fgetc~ e ~getc~
+ 
+*Objetivo*: ler caractere por caractere no arquivo
+
+#+BEGIN_SRC C :tangle e/a37-fgetc.c :results output 
+#include <stdio.h>
+int main() {
+  char c;
+  FILE *arq = fopen("meu_arquivo_texto.txt", "r");
+  if (arq == NULL) {
+    printf("Problema ao abrir o arquivo para escrita. Fatal.\n");
+    return 0;
+  }
+  while(feof(arq) == 0) {
+    c = fgetc(arq);
+    if (c == EOF){
+      printf("Encontramos o EOF!!\n");
+    }
+    printf("[%c]", c);
+  }
+  fclose(arq);
+  return 0;
+}
+#+END_SRC
+* Exemplo ``Avançado'' #1: Criar arquivo ~CSV~
+
+Programa que cria arquivo CSV registros com nome, idade e altura.
+- Em um arquivo CSV, campos são separados por vírgula
+- Um registro por linha, sendo que a primeira é o cabeçalho
+
+#+BEGIN_SRC C :tangle e/a37-cria-csv.c
+#include <stdio.h>
+#define NATLETAS 3
+#define TAMANHO
+int main() {
+  char *nomes[TAMANHO] = {"Solar", "Alpha", "Centauri"};
+  int idades[NATLETAS] = {32, 45, 43};
+  int alturas[NATLETAS] = {155, 162, 175};
+
+  FILE *arq = fopen("registros.csv", "w");
+  if (arq == NULL) {
+    printf("Problema ao abrir o arquivo para escrita. Fatal.\n");
+    return 0;
+  }
+  fputs("Nome,Idade,Altura\n", arq);
+  for (int i = 0; i < NATLETAS; i++){
+    fprintf(arq, "%s,%d,%d\n", nomes[i], idades[i], alturas[i]);
+  }
+  fclose(arq);
+  return 0;
+}
+#+END_SRC
+
+#+RESULTS:
+* Exemplo ``Avançado'' #2: Ler arquivo ~CSV~
+
+Programa que lê um CSV com registros com nome, idade e altura.
+
+#+BEGIN_SRC C :tangle e/a37-atleta-texto-leitura.c :results output 
+#include <stdio.h>
+#define TAMANHO 32
+int main() {
+  char nome[TAMANHO];
+  int idade;
+  int altura;
+  FILE *arq = fopen("registros.csv", "r");
+  if (arq == NULL) {
+    printf("Problema ao abrir o arquivo para leitura. Fatal.\n");
+    return 0;
+  }
+  // Le o cabeçalho
+  fgets(nome, TAMANHO, arq);
+  while(feof(arq) == 0){
+    int lidos = fscanf(arq, "%s,%d,%d", nome, &idade, &altura);
+    printf("Dados %d lidos: [%s] [%d] [%d]\n", lidos, nome, idade, altura);
+  }
+  fclose(arq);
+  return 0;
+}
+#+END_SRC
+
+#+RESULTS:
+: Dados 1 lidos: [Solar,32,155] [21977] [-1872207195]
+: Dados 1 lidos: [Alpha,45,162] [21977] [-1872207195]
+: Dados 1 lidos: [Centauri,43,175] [21977] [-1872207195]
+: Dados -1 lidos: [Centauri,43,175] [21977] [-1872207195]
+* Discussão
+
+Exemplo ``Avançado'' #2: Ler arquivo ~CSV~
+- Não funciona! Por quê?
+- Como resolver?
+- Mas e como ler arquivos CSV então?
+
+* Comparar ~fscanf~ com ~fgets~
+
+Entrada
+#+BEGIN_SRC txt :tangle Teste.txt
+Palavra 1
+Palavra 2
+Esta eh uma longa linha
+#+END_SRC
+
+#+BEGIN_SRC C :tangle e/a37-compara-fscanf-fgets.c
+#include <stdio.h>
+#define NUMCHAR 256
+int main(){
+  char buffer[NUMCHAR] = {0};
+  FILE *arq = fopen("Teste.txt","r");
+  if (arq == NULL) {
+    printf("Erro na abertura\n");
+    return 0;
+  }
+  printf("Imprimindo conteudo do arquivo com fscanf\n");
+  while(!feof(arq)){
+    if (fscanf(arq,"%s",buffer) != -1)
+      printf("[%s]",buffer);
+  }
+  rewind(arq);
+  printf("\n\nImprimindo conteudo do arquivo com fgets\n");
+  while(!feof(arq)){
+    if (fgets(buffer,256, arq) != NULL)
+      printf("[%s]",buffer);
+  }
+  fclose(arq);
+  return 0;
+}
+#+END_SRC
+
+* Marca de fim de linha
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula26/aula26_slide_32.pdf}{Prof. Marcelo Walter}
+* Exercícios
+
+1. Considere um arquivo texto já existente ~entrada.txt~. Faça um
+   programa que faça uma cópia desse arquivo texto para outro
+   (copiando todo texto do primeiro arquivo para o segundo), chamado
+   ~saida.txt~.
+
+2. Faça um programa, para incluir uma nova linha de texto (fornecida
+   pelo usuário) no final de um arquivo texto já existente.
+
+3. Faça um programa para substituir um determinado caractere em um
+   arquivo texto existente por outro. As alterações devem ser gravadas
+   no mesmo arquivo!
