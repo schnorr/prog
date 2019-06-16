@@ -17,3 +17,19 @@
 #+LATEX_HEADER: \input{org-babel.tex}
 #+LATEX_HEADER: \usepackage{amsmath}
 #+LATEX_HEADER: \usepackage{systeme}
+
+* Exercícios
+
+1. Considere um arquivo texto já existente ~entrada.txt~. Faça um
+   programa que faça uma cópia desse arquivo texto para outro
+   (copiando todo texto do primeiro arquivo para o segundo), chamado
+   ~saida.txt~.
+
+2. Faça um programa, para incluir uma nova linha de texto (fornecida
+   pelo usuário) no final de um arquivo texto já existente.
+
+3. Faça um programa para substituir um determinado caractere em um
+   arquivo texto existente por outro. As alterações devem ser gravadas
+   no mesmo arquivo!
+
+
