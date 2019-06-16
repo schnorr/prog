@@ -112,10 +112,15 @@ A coluna *KR* se refere ao capítulo ou seção do livro:
 |    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/arq-texto-p2.pdf][Arquivo Texto e Conversão/Tokens]]            |            | [[./arq-texto-p2.org]]      |
 |----+---------------------------------------------+------------+-------------------------|
 | 40 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-38.pdf][Revisão]]                                     |            | [[./revisao-aula-38.org]]   |
-|    | Recursividade                               |            |                         |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/recursividade.pdf][Recursividade]]                               |            | [[./recursividade.org]]     |
 |----+---------------------------------------------+------------+-------------------------|
-| 41 |                                             |            |                         |
-|    | Estruturação de programas                   |            |                         |
+| 41 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-40.pdf][Revisão]]                                     |            | [[./revisao-aula-40.org]]   |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/estruturacao.pdf][Estruturação de programas]]                   |            | [[./estruturacao.org]]      |
+|----+---------------------------------------------+------------+-------------------------|
+| 43 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-40.pdf][Revisão]]                                     |            | [[./revisao-aula-41.org]]   |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-p2.pdf][Revisão Geral P2 + Simulado]]                 |            | [[./revisao-p2.org]]        |
+|----+---------------------------------------------+------------+-------------------------|
+
 
 Anotações aleatórias:
 - "To write a function that, when given an array of length n + 1
