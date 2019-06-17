@@ -220,7 +220,7 @@ suppressMessages(library(lubridate));
 suppressMessages(library(tidyverse));
 suppressMessages(library(xtable));
 
-dataDaRecuperação <- ymd("2019-07-01");
+dataDaRecuperação <- ymd("2019-07-08");
 #+end_src
 
 #+RESULTS: def_recup
