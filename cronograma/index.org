@@ -413,11 +413,11 @@ cronograma %>%
 
 #+header: :var dep0=def_recup
 #+begin_src R :results value table :session :exports output :colnames yes
-tribble(~"Prova de Recuperação (PR)",
+tribble(~"*Prova de Recuperação (PR)*",
         dataDaRecuperação)
 #+end_src
 
 #+RESULTS:
-| Prova de Recuperação (PR) |
+| *Prova de Recuperação (PR)* |
 |---------------------------|
 |                2019-07-08 |
