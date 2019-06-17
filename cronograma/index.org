@@ -355,7 +355,7 @@ O cronograma também está [[./cronograma.pdf][disponível em formato PDF]].
 
 A prova de recuperação será realizada em:
 #+header: :var dep0=def_recup
-#+begin_src R :results table :session :exports output
+#+begin_src R :results value table :session :exports output
 dataDaRecuperação
 #+end_src
 
