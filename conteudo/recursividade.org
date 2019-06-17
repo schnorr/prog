@@ -303,9 +303,9 @@ Linguagens funcionais
   - Quantidade de caracteres de uma /string/
 - Busca binária recursiva em arranjo ordenado
 
-* Exercício #1
+* Exercícios #1
 
-Exercício: escrever uma função recursiva que testa se uma palavra é
-palíndroma. Exemplo de palíndroma: REVIVER. Ideia: comparar a primeira
-e a última letras. Se forem iguais, testar a substring central,
-recursivamente.
+Implemente com funções recursivas
+1. Contagenm: número de dígitos de um número inteiro
+2. Contagem: quantidade de caracteres de uma /string/
+3. Busca binária recursiva em arranjo ordenado
