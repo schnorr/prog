@@ -353,18 +353,6 @@ system2("rubber", " --pdf cronograma.tex")
 
 O cronograma também está [[./cronograma.pdf][disponível em formato PDF]].
 
-A prova de recuperação será realizada em:
-#+header: :var dep0=def_recup
-#+begin_src R :results value table :session :exports output :colnames yes
-tribble(~"Prova de Recuperação (PR)",
-        dataDaRecuperação)
-#+end_src
-
-#+RESULTS:
-| Prova de Recuperação (PR) |
-|---------------------------|
-|                2019-07-08 |
-
 #+header: :var dep=def_cronograma
 #+begin_src R :results value table :session :exports output :colnames yes
 cronograma %>%
@@ -422,3 +410,15 @@ cronograma %>%
 | 43 | 2019-06-24 | Teórica | Revisão para a segunda  prova                                                               |
 | 44 | 2019-06-26 | Teórica | 2ª Prova                                                                                    |
 | 45 | 2019-06-28 | *Prática* | Apresentação de Trabalhos Finais                                                            |
+
+A prova de recuperação será realizada em:
+#+header: :var dep0=def_recup
+#+begin_src R :results value table :session :exports output :colnames yes
+tribble(~"Prova de Recuperação (PR)",
+        dataDaRecuperação)
+#+end_src
+
+#+RESULTS:
+| Prova de Recuperação (PR) |
+|---------------------------|
+|                2019-07-08 |
