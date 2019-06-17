@@ -355,12 +355,15 @@ O cronograma também está [[./cronograma.pdf][disponível em formato PDF]].
 
 A prova de recuperação será realizada em:
 #+header: :var dep0=def_recup
-#+begin_src R :results value table :session :exports output
-dataDaRecuperação
+#+begin_src R :results value table :session :exports output :colnames yes
+tribble(~"Prova de Recuperação (PR)",
+        dataDaRecuperação)
 #+end_src
 
 #+RESULTS:
-| 2019-07-08 |
+| Prova de Recuperação (PR) |
+|---------------------------|
+|                2019-07-08 |
 
 #+header: :var dep=def_cronograma
 #+begin_src R :results value table :session :exports output :colnames yes
