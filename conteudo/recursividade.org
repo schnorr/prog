@@ -306,6 +306,6 @@ Linguagens funcionais
 * Exercícios #1
 
 Implemente com funções recursivas
-1. Contagenm: número de dígitos de um número inteiro
+1. Contagem: número de dígitos de um número inteiro
 2. Contagem: quantidade de caracteres de uma /string/
 3. Busca binária recursiva em arranjo ordenado
