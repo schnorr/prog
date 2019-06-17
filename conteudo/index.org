@@ -100,19 +100,19 @@ A coluna *KR* se refere ao capítulo ou seção do livro:
 |    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/typedef.pdf][Estruturas (sim, de novo)]]                   | C6         | [[./typedef.org]]           |
 |----+---------------------------------------------+------------+-------------------------|
 | 34 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-32.pdf][Revisão]]                                     |            | [[./revisao-aula-32.org]]   |
-|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/arquivo.pdf][Arquivo]]                                     |            | [[./arquivo.org]]           |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/arquivo.pdf][Arquivo]]                                     | C7, C8     | [[./arquivo.org]]           |
 |----+---------------------------------------------+------------+-------------------------|
 | 35 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-34.pdf][Revisão]]                                     |            | [[./revisao-aula-34.org]]   |
-|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/aleatorio.pdf][Arquivo binário (acesso aleatório)]]          |            | [[./aleatorio.org]]         |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/aleatorio.pdf][Arquivo binário (acesso aleatório)]]          | C8         | [[./aleatorio.org]]         |
 |----+---------------------------------------------+------------+-------------------------|
 | 37 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-35.pdf][Revisão]]                                     |            | [[./revisao-aula-35.org]]   |
-|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/arq-texto.pdf][Arquivo Texto]]                               |            | [[./arq-texto.org]]         |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/arq-texto.pdf][Arquivo Texto]]                               | C7         | [[./arq-texto.org]]         |
 |----+---------------------------------------------+------------+-------------------------|
 | 38 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-37.pdf][Revisão]]                                     |            | [[./revisao-aula-37.org]]   |
 |    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/arq-texto-p2.pdf][Arquivo Texto e Conversão/Tokens]]            |            | [[./arq-texto-p2.org]]      |
 |----+---------------------------------------------+------------+-------------------------|
 | 40 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-38.pdf][Revisão]]                                     |            | [[./revisao-aula-38.org]]   |
-|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/recursividade.pdf][Recursividade]]                               |            | [[./recursividade.org]]     |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/recursividade.pdf][Recursividade]]                               | S4.10      | [[./recursividade.org]]     |
 |----+---------------------------------------------+------------+-------------------------|
 | 41 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-40.pdf][Revisão]]                                     |            | [[./revisao-aula-40.org]]   |
 |    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/estruturacao.pdf][Estruturação de programas]]                   |            | [[./estruturacao.org]]      |
