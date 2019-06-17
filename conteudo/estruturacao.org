@@ -25,7 +25,14 @@ Boas práticas de programação
 
 Exemplos
 - Identificadores de variáveis
+- Valores constantes
+- Nome de funções
+- Tipos de dados
+- Comparação com zero e NULL
 - Identação
+
+Bom princípio geral
+- KIS + SWYM
 
 * Legibilidade?
 #+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula30/aula30_slide_02.pdf}{Prof. Ingrid Nunes}
@@ -51,5 +58,5 @@ Exemplos
 #+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula30/aula30_slide_33.pdf}{Prof. Ingrid Nunes}
 * Convenção de identação #2
 #+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula30/aula30_slide_34.pdf}{Prof. Ingrid Nunes}
-* Bom princípio geral: KISS + SWYM
+* Bom princípio geral: KIS + SWYM
 #+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula30/aula30_slide_36.pdf}{Prof. Ingrid Nunes}
