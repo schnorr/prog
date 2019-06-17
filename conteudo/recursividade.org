@@ -19,3 +19,20 @@
 #+LATEX_HEADER: \usepackage{systeme}
 
 * Sumário
+
+- Recursividade com funções: o que é?
+  - Condição de parada!
+- Exemplos de definições recursivas
+  - Fatorial
+  - Fibonacci
+  - Contagens
+    - Número de dígitos de um número inteiro
+    - Quantidade de caracteres de uma /string/
+  - Busca binária recursiva em arranjo ordenado
+- Funcionamento
+- Eliminação da recursão
+
+#+latex: \vfill
+
+Linguagens imperativas /vs/ Linguagens Funcionais
+- Diferenças e uso da recursão como recurso de repetição
