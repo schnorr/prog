@@ -411,7 +411,6 @@ cronograma %>%
 | 44 | 2019-06-26 | Teórica | 2ª Prova                                                                                    |
 | 45 | 2019-06-28 | *Prática* | Apresentação de Trabalhos Finais                                                            |
 
-A prova de recuperação será realizada em:
 #+header: :var dep0=def_recup
 #+begin_src R :results value table :session :exports output :colnames yes
 tribble(~"Prova de Recuperação (PR)",
