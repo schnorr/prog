@@ -171,3 +171,22 @@ Exemplo ilustrativo:
 Entre com uma string: O rato roeu a roupa do rei de roma.
 String invertida: .amor ed ier od apuor a ueor otar O
 #+END_EXAMPLE
+* Funções auxiliares
+
+| strcmp(<s1>, <s2>)                              | // retorna 0 se os strings forem iguais.           |
+| strcpy(<str_destino>, <str_origem>)             | // copia string origem no string destino           |
+| strlen(<string>)                                | // retorna tamanho da string                       |
+| feof()                                          | // retorna 1 se o cabeçote está no fim do arquivo  |
+| fread(<&buffer>, <tamelem>, <quant>, <FILE *>)  | // arquivo binario                                 |
+| fwrite(<&buffer>, <tamelem>, <quant>, <FILE *>) | // arquivo binario                                 |
+| fgets(<&strbuffer>,<tamanho>,<FILE*>)           | // arquivo texto                                   |
+| fputs(<&strbuffer>,<FILE*>)                     | // arquivo texto                                   |
+| fprintf(<FILE *>,<formato>,<var1,var2,...>)     | // arquivo texto                                   |
+| fscanf(<FILE *>,<formato>,<&var1,&var2,...>)    | // arquivo texto                                   |
+| atoi(vetorchar)                                 | // converte string para inteiro                    |
+| atof(vetorchar)                                 | // converte string para real                       |
+| strtok(<string>, <separador>)                   | // separa a string em partes                       |
+| fopen(<nome>, <modo>)                           | // abre o arquivo no modo desejado                 |
+| fclose(<FILE*>)                                 | // fecha o arquivo                                 |
+| fseek(<FILE *>, <desl>, <origem>)               | // reposiciona o cabeçote a <desl> bytes da origem |
+|                                                 | // (origem: SEEK_SET, SEEK_CUR ou SEEK_END)        |
