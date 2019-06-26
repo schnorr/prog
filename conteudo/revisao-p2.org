@@ -232,7 +232,7 @@ b) Uma função ~void esc_texto(FILE *fp, char nome[], float preco)~ que
 
 *Uma solução:*
 
-#+BEGIN_SRC C
+#+BEGIN_SRC C :tangle e/p2-simul-4.c
 #include <stdio.h>
 
 typedef struct {
