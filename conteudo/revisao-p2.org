@@ -94,7 +94,7 @@ Utilizando a notação de ponteiro:
    3o elemento do vetor
 
    #+BEGIN_SRC C
-   printf("%d", *x);
+   printf("%d", *(vet+2));
    #+END_SRC
 
 2. Escreva um comando printf para imprimir diretamente o endereço do
