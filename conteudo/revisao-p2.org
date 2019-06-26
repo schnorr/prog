@@ -241,15 +241,30 @@ typedef struct {
   float preco;
 } eletro_t;
 
+void limpa_buffer() {
+  char c;
+  while ((c = getchar()) != '\n' && c != EOF);
+}
+
 void esc_bin(FILE *fp) {
-  eletro_t eletro;
-  int enquanto_quiser_ler = 1;
-  do {
-    //ler codigo em &eletro.codigo
-    //ler nome de no máximo 31 bytes em eletro.nome
-    //ler preço em &eletro.preco
-    fwrite(&eletro, sizeof(eletro_t), 1, fp);
-  }while(enquanto_quiser_ler);
+    eletro_t eletro = {0};
+    int enquanto_quiser_ler = 1;
+    char escolha;
+    do {
+      printf("Codigo: ");
+      scanf("%d", &eletro.codigo); //ler codigo em &eletro.codigo
+      limpa_buffer();
+      printf("Nome: ");
+      fgets(eletro.nome, 32, stdin); //ler nome de no máximo 31 bytes em eletro.nome
+      printf("Preco: ");
+      scanf("%f", &eletro.preco); //ler preço em &eletro.preco
+      fwrite(&eletro, sizeof(eletro_t), 1, fp);
+      printf("Continuar? (s ou n): ");
+      scanf(" %c", &escolha);
+      if(escolha == 'n') {
+         enquanto_quiser_ler = 0;
+      }
+    } while(enquanto_quiser_ler);
 }
 
 void esc_texto(FILE *fp, char nome[], float preco) {
@@ -257,23 +272,27 @@ void esc_texto(FILE *fp, char nome[], float preco) {
 }
 
 int main() {
-  FILE *fp = fopen("eletro.bin", "w");
+  FILE *fp = fopen("eletro.bin", "r+");
+  if(fp == NULL){
+    printf("Erro fatal.\n");
+    return 0;
+  }
   esc_bin(fp);
   fseek(fp, 0L, SEEK_SET); // como um rewind(fp)
   FILE *caro = fopen("caro.txt", "w");
   FILE *barato = fopen("barato.txt", "w");
   eletro_t eletro;
-  int bytes_lidos;
+  int elementos_lidos;
   do {
-    bytes_lidos = fread(&eletro, sizeof(eletro_t), 1, fp);
-    if (bytes_lidos == sizeof(eletro_t)){
+    elementos_lidos = fread(&eletro, sizeof(eletro_t), 1, fp);
+    if (elementos_lidos == 1){
       if(eletro.preco > 500) {
 	   esc_texto(caro, eletro.nome, eletro.preco);
       }else{
 	   esc_texto(barato, eletro.nome, eletro.preco);
 	}
     }
-  }while(bytes_lidos == sizeof(eletro_t));
+  }while(elementos_lidos == 1);
   fclose(caro);
   fclose(barato);
   fclose(fp);
