@@ -36,6 +36,184 @@ Aguarde.
 Aguarde.
 
 * P2
+** Peso
+| E    | Peso |
+|------+------|
+| E1   |  2.0 |
+| E2   |  2.0 |
+| E3.1 |  1.0 |
+| E3.2 |  1.0 |
+| E3.3 |  1.0 |
+| E4   |  3.0 |
+** Gabarito
+*** E1
+#+BEGIN_EXAMPLE
+n = 4, vet[1] = -1, z = 24.00
+n = 4, vet[2] = 7, z = -120.00
+#+END_EXAMPLE
+*** E2
+Uma solução possível
+#+begin_src C :results output :session :exports both
+int fun (char *s, char c) {
+  if (*s == '\0') {
+    // Este é o critério de parada
+    return 0;
+  }else if (*s == c) {
+    return 1 + fun(s+1, c);
+  }else{
+    return 0 + fun(s+1, c);
+  }
+}
+int main() {
+  char str[] = "A expansão acelerada do universo.";
+  char c = 'e';
+  int resposta = fun(str, c);
+  printf("%d\n", resposta);
+  return 0;
+}
+#+end_src
+
+#+RESULTS:
+: 4
+*** E3
+Uma solução possível
+#+begin_src C :results output :session :exports both
+typedef struct{
+  float r;  // parte real
+  float i;  // parte imaginária
+}complex_t;
+
+void soma1(complex_t *c1, complex_t c2) {
+  c1->r = c1->r + c2.r;
+  c1->i = c1->i + c2.i;
+}
+
+complex_t soma2(complex_t c1, complex_t c2) {
+  complex_t ret;
+  ret.r = c1.r + c2.r;
+  ret.i = c1.i + c2.i;
+  return ret;
+}
+
+complex_t *soma3(complex_t c1, complex_t c2, complex_t *res) {
+  res->r = c1.r + c2.r;
+  res->i = c1.i + c2.i;
+  return res;
+}
+
+void imprime(complex_t c) {
+  printf("[%.2f,%.2f]\n", c.r, c.i);
+}
+
+int main() {
+  complex_t co1 = {2.3, 3.4};
+  complex_t co2 = {4.3, 5.4};
+  complex_t co3;
+  complex_t *co4;
+  imprime(co1);
+  imprime(co2);
+  soma1(&co1, co2);
+  imprime(co1);
+  co3 = soma2(co1, co2);
+  imprime(co3);
+  co4 = soma3(co3, co1, &co3);
+  imprime(*co4);
+  return 0;
+}
+#+end_src
+
+#+RESULTS:
+: [2.30,3.40]
+: [4.30,5.40]
+: [6.60,8.80]
+: [10.90,14.20]
+: [17.50,23.00]
+
+*** E4
+**** Uma solução possível
+#+begin_src C :results output :session :exports both
+#include <stdio.h>
+typedef struct{
+  int codigo;      // código do atleta
+  char nome[44];   // nome do atleta
+  int idade;       // idade do atleta
+  char esporte[4]; // código do esporte
+  float pad;       // espaço não utilizado
+}atleta_t;
+
+int main() {
+  FILE *fp = fopen("atletas.bin", "r+");
+  atleta_t atleta;
+  int flag;
+  flag = fread(&atleta, sizeof(atleta_t), 1, fp);
+  while (flag == 1) {
+    if (strcmp(atleta.esporte, "ESP") == 0) {
+      atleta.idade += 2;
+      fseek(fp, -sizeof(atleta_t), SEEK_CUR);
+      fwrite(&atleta, sizeof(atleta_t), 1, fp);
+    }
+    flag = fread(&atleta, sizeof(atleta_t), 1, fp);
+  }
+  fclose(fp);
+  return 0;
+}
+#+end_src
+
+#+RESULTS:
+
+**** Programas auxiliares
+Não era esperado que estes programas fossem implementados na prova.
+
+Programa que cria um arquivo ~atletas.bin~.
+#+begin_src C :results output :session :exports both
+#include <stdio.h>
+typedef struct{
+  int codigo;      // código do atleta
+  char nome[44];   // nome do atleta
+  int idade;       // idade do atleta
+  char esporte[4]; // código do esporte
+  float pad;       // espaço não utilizado
+}atleta_t;
+#define TT 10
+int main() {
+    atleta_t atletas[TT] = {0};
+    FILE *fp = fopen("atletas.bin", "w");
+    for (int i = 0; i < TT; i++){
+      atletas[i].idade = 2;
+      strcpy(atletas[i].esporte, "ESP");
+    }
+    fwrite(&atletas, sizeof(atleta_t), TT, fp);
+    fclose(fp);
+}
+#+end_src
+
+Programa que imprime o campo ~idade~ de um arquivo ~atletas.bin~.
+#+begin_src C :results output :session :exports both
+#include <stdio.h>
+typedef struct{
+  int codigo;      // código do atleta
+  char nome[44];   // nome do atleta
+  int idade;       // idade do atleta
+  char esporte[4]; // código do esporte
+  float pad;       // espaço não utilizado
+}atleta_t;
+#define TT 10
+int main() {
+    atleta_t atletas[TT] = {0};
+    FILE *fp = fopen("atletas.bin", "r");
+    fread(&atletas, sizeof(atleta_t), TT, fp);
+    fclose(fp);
+    for (int i = 0; i < TT; i++){
+      printf("%d\n", atletas[i].idade);
+    }
+}
+#+end_src
+
+** Detalhamento por questão (sobre 10)
+
+Aguarde.
+
+** Final
 
 Aguarde.
 
