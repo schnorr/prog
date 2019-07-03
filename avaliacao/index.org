@@ -36,7 +36,9 @@ Detalhamento das colunas da tabela abaixo
     for (i = 0; i < n; i++) {
       if (p[i] > max) max = p[i];
     }
+    // Calcula o fator de correção
     fator = (10 - max)/max;
+    // Aplica o fator de correção nas notas
     for (i = 0; i < n; i++) {
       p[i] += p[i] * fator;
     }
