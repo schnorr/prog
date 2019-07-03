@@ -119,8 +119,34 @@ A apresentação do Trabalho Final, mesmo que não execute perfeitamente,
 é pré-requisito para a realização da recuperação. 
 #+END_EXAMPLE
 
+Tendo em vista que a apresentação do trabalho final é pré-requisito
+para a realização da recuperação, somente os alunos que tem o valor *S*
+na coluna *Recuperação* poderão fazer a prova de recuperação no dia
+estipulado no cronograma da disciplina. A coluna *Minimo* apresenta a
+nota mínima que o aluno deve tirar para ser aprovado na disciplina com
+o conceito C conforme o regramento do plano.
 
-
+| ID     | Turma |   P1 |   P2 |   AP |   TF | TF.A | FINAL | Freq | Conceito | Recuperação | Minimo |
+|--------+-------+------+------+------+------+------+-------+------+----------+-------------+--------|
+| ???762 | I     | 4.13 | 6.83 | 6.14 |    0 | N    |  5.23 |   76 | D        | N           |        |
+| ???934 | J     | 4.58 | 6.09 |  6.1 |    0 | N    |  5.03 |   78 | D        | N           |        |
+| ???001 | J     | 2.76 | 0.43 | 8.07 |    0 | N    |  2.23 |   93 | D        | N           |        |
+| ???524 | I     | 4.06 |    0 | 4.51 |    0 | N    |  1.89 |   76 | D        | N           |        |
+| ???108 | I     | 1.44 | 1.09 |  3.5 |    0 | N    |  1.45 |   78 | D        | N           |        |
+| ???091 | J     | 1.11 |    0 | 7.21 |    0 | N    |  1.41 |   87 | D        | N           |        |
+| ???114 | J     | 1.22 |    0 | 2.79 |    0 | N    |  0.78 |   78 | D        | N           |        |
+| ???845 | I     | 4.78 | 4.75 | 8.45 | 6.25 | S    |  5.46 |   89 | D        | S           |   6.54 |
+| ???616 | I     | 5.44 | 4.32 |  9.9 |  3.5 | S    |  5.41 |   84 | D        | S           |   6.59 |
+| ???351 | I     | 7.26 | 2.36 | 7.61 | 3.75 | S    |  4.76 |   89 | D        | S           |   7.24 |
+| ???057 | I     | 4.72 | 2.53 |   10 |  4.5 | S    |   4.5 |   78 | D        | S           |    7.5 |
+| ???846 | J     | 7.11 | 2.21 | 7.53 |  0.1 | S    |  4.27 |   80 | D        | S           |   7.73 |
+| ???743 | J     |    1 | 3.55 |   10 | 8.25 | S    |  4.22 |   91 | D        | S           |   7.78 |
+| ???130 | I     | 3.36 | 1.41 |   10 | 5.25 | S    |  3.67 |  100 | D        | S           |   8.33 |
+| ???838 | J     | 1.53 | 1.05 | 9.87 |  3.7 | S    |  2.78 |  100 | D        | S           |   9.22 |
+| ???781 | I     | 1.24 | 1.09 | 7.38 |    2 | S    |  2.17 |   80 | D        | S           |   9.83 |
+| ???198 | I     | 3.31 |    0 | 7.29 |    0 | S    |  2.09 |   76 | D        | S           |   9.91 |
+| ???597 | J     | 2.48 | 0.68 | 5.71 |  0.5 | S    |  1.96 |   84 | D        | S           |  10.04 |
+| ???718 | J     | 1.78 | 0.68 | 5.93 |  0.2 | S    |  1.75 |   78 | D        | S           |  10.25 |
 
 * AP
 
