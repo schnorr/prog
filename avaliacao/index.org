@@ -25,6 +25,32 @@
 
 * Geral
 
+Detalhamento das colunas da tabela abaixo
+- *P1* e *P2*: notas da P1 e P2 normalizadas de acordo com o seguinte código
+  #+BEGIN_SRC C
+  void normaliza (int *p, int n) {
+    int i;
+    double max = 0;
+    double fator;
+    // Descobre a nota máxima
+    for (i = 0; i < n; i++) {
+      if (p[i] > max) max = p[i];
+    }
+    fator = (10 - max)/max;
+    for (i = 0; i < n; i++) {
+      p[i] += p[i] * fator;
+    }
+  }
+  #+END_SRC
+- *AP*: notas das aulas práticas
+- *TF*: notas do trabalho final
+- *FINAL*: média final calculada com a formulação do plano da disciplina
+  #+BEGIN_EXAMPLE
+  Média Final = 0,3 * P1 + 0,45 * P2 + 0,15 * AP + 0,10 TF
+  #+END_EXAMPLE
+- *Freq*: frequência considerando as ausências justificadas
+- *Conceito*: conceitos pré-recuperação
+
 Aguarde.
 
 * AP
