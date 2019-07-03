@@ -103,6 +103,24 @@ Detalhamento das colunas da tabela abaixo
 | ???091 | J     | 1.11 |    0 | 7.21 |    0 | N    |  1.41 |   87 | D        |
 | ???114 | J     | 1.22 |    0 | 2.79 |    0 | N    |  0.78 |   78 | D        |
 
+* Recuperação
+
+Um critério de Recuperação Previsto consta no plano.
+
+#+BEGIN_EXAMPLE
+Se o aluno não atingir nota 6,0 na Média Final, poderá realizar uma
+prova de recuperação sobre toda a matéria. Se a média entre a prova de
+recuperação e a nota final da disciplina for maior ou igual a 6,0, o
+aluno será aprovado com C.
+
+(Media Final + Prova Recuperacao) /2 >= 6,0 => Conceito C
+
+A apresentação do Trabalho Final, mesmo que não execute perfeitamente,
+é pré-requisito para a realização da recuperação. 
+#+END_EXAMPLE
+
+
+
 
 * AP
 
