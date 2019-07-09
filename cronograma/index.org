@@ -189,7 +189,7 @@ suppressMessages(library(tidyverse));
 suppressMessages(library(xtable));
 
 daysOff <- c(
-    seq(ymd("2019-04-10"), ymd("2019-04-11"), by="days"), # ERAD
+    seq(ymd("2019-04-10"), ymd("2019-04-12"), by="days"), # ERAD
     ymd("2019-04-19"), # Religioso
     ymd("2019-04-20"), # Não letivo
     ymd("2019-04-21"), # Tiradentes
@@ -199,14 +199,16 @@ daysOff <- c(
     ymd("2019-09-07"), # Independência
     ymd("2019-09-20"), # Farroupilha
     ymd("2019-10-12"), # Religioso
-    ymd("2019-10-14"), # SEMAC
-    ymd("2019-10-15"), # SEMAC
-    ymd("2019-10-16"), # SEMAC
-    ymd("2019-10-17"), # SEMAC
-    ymd("2019-10-18"), # SEMAC
     ymd("2019-10-20"), # Não Letivo
+    ymd("2019-10-21"), # SEMAC
+    ymd("2019-10-22"), # SEMAC
+    ymd("2019-10-23"), # SEMAC
+    ymd("2019-10-24"), # SEMAC
+    ymd("2019-10-25"), # SEMAC
     ymd("2019-11-02"), # Mortos
-    ymd("2019-11-15")  # República
+    ymd("2019-11-15"), # República
+    ymd("2019-11-23"), # Não Letivo
+    ymd("2019-11-30")  # Não Letivo
 )
 #+end_src
 
@@ -220,7 +222,7 @@ suppressMessages(library(lubridate));
 suppressMessages(library(tidyverse));
 suppressMessages(library(xtable));
 
-dataDaRecuperação <- ymd("2019-07-08");
+dataDaRecuperação <- ymd("2019-12-18");
 #+end_src
 
 #+RESULTS: def_recup
@@ -235,7 +237,7 @@ suppressMessages(library(lubridate));
 suppressMessages(library(tidyverse));
 suppressMessages(library(xtable));
 
-dates <- tibble(Dia=seq(ymd("2019-03-11"), ymd("2019-07-20"), by="days")) %>%
+dates <- tibble(Dia=seq(ymd("2019-08-12"), ymd("2020-01-11"), by="days")) %>%
     # Define o dia da semana
     mutate(DiaDaSemana = wday(Dia)) %>%
     # Remove dias onde não haverá aula
@@ -335,8 +337,8 @@ cronograma %>%
 #+begin_src R :results output :session :exports both
 cronograma.modelo.filename = "data/be/43e1ff-0a91-4c3f-9e17-1fa62e6795ce/layout-cronograma.tex"
 cronograma.modelo = readChar(cronograma.modelo.filename, file.info(cronograma.modelo.filename)$size);
-turma = "I e J";
-semestre = "2019/1 -- Outono";
+turma = "C e D";
+semestre = "2019/2 -- Inverno/Primavera";
 cronograma.modelo <- gsub("TURMA", turma, cronograma.modelo);
 cronograma.modelo <- gsub("SEMESTRE", semestre, cronograma.modelo);
 cronograma.modelo <- gsub("TABELA", gsub("\\\\", "\\\\\\\\", cronograma.tex), cronograma.modelo);
@@ -365,51 +367,51 @@ cronograma %>%
 #+RESULTS:
 |  N |   Encontro | Setor   | Descrição                                                                                   |
 |----+------------+---------+---------------------------------------------------------------------------------------------|
-|  1 | 2019-03-11 | Teórica | Apresentação da disciplina, Introdução: paradigmas de programação, programa,  algoritmo     |
-|  2 | 2019-03-13 | Teórica | Algoritmo: atribuição, entrada e saída Estrutura de programa C: scanf, printf               |
-|  3 | 2019-03-15 | *Prática* | Introdução ao sistema EAD e ao compilador C                                                 |
-|  4 | 2019-03-18 | Teórica | Tipos de Dados, Declaração e tipos de variáveis, Operadores e expressão aritmética e lógica |
-|  5 | 2019-03-20 | Teórica | Comando de Seleção If                                                                       |
-|  6 | 2019-03-22 | *Prática* | Programa sequencial e comandos de seleção simples                                           |
-|  7 | 2019-03-25 | Teórica | Aninhamento de comandos If Else                                                             |
-|  8 | 2019-03-27 | Teórica | Estrutura de seleção múltipla - comando switch                                              |
-|  9 | 2019-03-29 | *Prática* | Exercicio if, if-else, switch                                                               |
-| 10 | 2019-04-01 | Teórica | Comando iterativo for                                                                       |
-| 11 | 2019-04-03 | Teórica | Comandos iterativos while e do-while                                                        |
-| 12 | 2019-04-05 | *Prática* | Comandos for, while                                                                         |
-| 13 | 2019-04-08 | Teórica | Comandos iterativos while e do-while Exemplos                                               |
-| 14 | 2019-04-12 | *Prática* | Comandos iterativos -- for e while com vetores                                              |
-| 15 | 2019-04-15 | Teórica | Tipos estruturados básicos – arranjos de uma dimensão                                       |
-| 16 | 2019-04-17 | Teórica | Classificação de vetores Strings: arranjos de caracteres                                    |
-| 17 | 2019-04-22 | Teórica | Arranjos com mais de uma dimensão: matrizes                                                 |
-| 18 | 2019-04-24 | Teórica | Busca e classificação em matrizes                                                           |
-| 19 | 2019-04-26 | *Prática* | Comandos iterativos -- while e do-while com strings e matrizes                              |
-| 20 | 2019-04-29 | Teórica | Revisão Geral para Prova                                                                    |
-| 21 | 2019-05-03 | *Prática* | Busca e classificação com matrizes                                                          |
-| 22 | 2019-05-06 | Teórica | 1ª Prova                                                                                    |
-| 23 | 2019-05-08 | Teórica | Subprogramação - variáveis locais e globais, parâmetros                                     |
-| 24 | 2019-05-10 | *Prática* | Apresentação do trabalho final                                                              |
-| 25 | 2019-05-13 | Teórica | Função sem retorno (void): parâmetros formais e reais                                       |
-| 26 | 2019-05-15 | Teórica | Parâmetros por valor e por referência, Ponteiros                                            |
-| 27 | 2019-05-17 | *Prática* | Ponteiros e Funções sem retorno                                                             |
-| 28 | 2019-05-20 | Teórica | Ponteiros                                                                                   |
-| 29 | 2019-05-22 | Teórica | Funções com retorno.  Bubble sort                                                           |
-| 30 | 2019-05-24 | *Prática* | Funções parametrizadas com retorno e ponteiros                                              |
-| 31 | 2019-05-27 | Teórica | Estruturas e Definição de Tipos                                                             |
-| 32 | 2019-05-29 | Teórica | Estruturas e parâmetros                                                                     |
-| 33 | 2019-05-31 | *Prática* | Estruturas                                                                                  |
-| 34 | 2019-06-03 | Teórica | Stream Arquivos binários: acesso sequencial                                                 |
-| 35 | 2019-06-05 | Teórica | Arquivos binários: acesso randômico                                                         |
-| 36 | 2019-06-07 | *Prática* | Arquivos binários                                                                           |
-| 37 | 2019-06-10 | Teórica | Arquivo texto                                                                               |
-| 38 | 2019-06-12 | Teórica | Arquivos texto exemplos                                                                     |
-| 39 | 2019-06-14 | *Prática* | Arquivos texto                                                                              |
-| 40 | 2019-06-17 | Teórica | Recursividade                                                                               |
-| 41 | 2019-06-19 | Teórica | Estruturação de programas                                                                   |
-| 42 | 2019-06-21 | *Prática* | Recursividade                                                                               |
-| 43 | 2019-06-24 | Teórica | Revisão para a segunda  prova                                                               |
-| 44 | 2019-06-26 | Teórica | 2ª Prova                                                                                    |
-| 45 | 2019-06-28 | *Prática* | Apresentação de Trabalhos Finais                                                            |
+|  1 | 2019-08-12 | Teórica | Apresentação da disciplina, Introdução: paradigmas de programação, programa,  algoritmo     |
+|  2 | 2019-08-14 | Teórica | Algoritmo: atribuição, entrada e saída Estrutura de programa C: scanf, printf               |
+|  3 | 2019-08-16 | *Prática* | Introdução ao sistema EAD e ao compilador C                                                 |
+|  4 | 2019-08-19 | Teórica | Tipos de Dados, Declaração e tipos de variáveis, Operadores e expressão aritmética e lógica |
+|  5 | 2019-08-21 | Teórica | Comando de Seleção If                                                                       |
+|  6 | 2019-08-23 | *Prática* | Programa sequencial e comandos de seleção simples                                           |
+|  7 | 2019-08-26 | Teórica | Aninhamento de comandos If Else                                                             |
+|  8 | 2019-08-28 | Teórica | Estrutura de seleção múltipla - comando switch                                              |
+|  9 | 2019-08-30 | *Prática* | Exercicio if, if-else, switch                                                               |
+| 10 | 2019-09-02 | Teórica | Comando iterativo for                                                                       |
+| 11 | 2019-09-04 | Teórica | Comandos iterativos while e do-while                                                        |
+| 12 | 2019-09-06 | *Prática* | Comandos for, while                                                                         |
+| 13 | 2019-09-09 | Teórica | Comandos iterativos while e do-while Exemplos                                               |
+| 14 | 2019-09-11 | Teórica | Tipos estruturados básicos – arranjos de uma dimensão                                       |
+| 15 | 2019-09-13 | *Prática* | Comandos iterativos -- for e while com vetores                                              |
+| 16 | 2019-09-16 | Teórica | Classificação de vetores Strings: arranjos de caracteres                                    |
+| 17 | 2019-09-18 | Teórica | Arranjos com mais de uma dimensão: matrizes                                                 |
+| 18 | 2019-09-23 | Teórica | Busca e classificação em matrizes                                                           |
+| 19 | 2019-09-25 | Teórica | Revisão Geral para Prova                                                                    |
+| 20 | 2019-09-27 | *Prática* | Comandos iterativos -- while e do-while com strings e matrizes                              |
+| 21 | 2019-09-30 | Teórica | 1ª Prova                                                                                    |
+| 22 | 2019-10-02 | Teórica | Subprogramação - variáveis locais e globais, parâmetros                                     |
+| 23 | 2019-10-04 | *Prática* | Busca e classificação com matrizes                                                          |
+| 24 | 2019-10-07 | Teórica | Função sem retorno (void): parâmetros formais e reais                                       |
+| 25 | 2019-10-09 | Teórica | Parâmetros por valor e por referência, Ponteiros                                            |
+| 26 | 2019-10-11 | *Prática* | Apresentação do trabalho final                                                              |
+| 27 | 2019-10-14 | Teórica | Ponteiros                                                                                   |
+| 28 | 2019-10-16 | Teórica | Funções com retorno.  Bubble sort                                                           |
+| 29 | 2019-10-18 | *Prática* | Ponteiros e Funções sem retorno                                                             |
+| 30 | 2019-10-28 | Teórica | Estruturas e Definição de Tipos                                                             |
+| 31 | 2019-10-30 | Teórica | Estruturas e parâmetros                                                                     |
+| 32 | 2019-11-01 | *Prática* | Funções parametrizadas com retorno e ponteiros                                              |
+| 33 | 2019-11-04 | Teórica | Stream Arquivos binários: acesso sequencial                                                 |
+| 34 | 2019-11-06 | Teórica | Arquivos binários: acesso randômico                                                         |
+| 35 | 2019-11-08 | *Prática* | Estruturas                                                                                  |
+| 36 | 2019-11-11 | Teórica | Arquivo texto                                                                               |
+| 37 | 2019-11-13 | Teórica | Arquivos texto exemplos                                                                     |
+| 38 | 2019-11-18 | Teórica | Recursividade                                                                               |
+| 39 | 2019-11-20 | Teórica | Estruturação de programas                                                                   |
+| 40 | 2019-11-22 | *Prática* | Arquivos binários                                                                           |
+| 41 | 2019-11-25 | Teórica | Revisão para a segunda  prova                                                               |
+| 42 | 2019-11-27 | Teórica | 2ª Prova                                                                                    |
+| 43 | 2019-11-29 | *Prática* | Arquivos texto                                                                              |
+| 44 | 2019-12-06 | *Prática* | Recursividade                                                                               |
+| 45 | 2019-12-13 | *Prática* | Apresentação de Trabalhos Finais                                                            |
 
 #+header: :var dep0=def_recup
 #+begin_src R :results value table :session :exports output :colnames yes
@@ -420,4 +422,4 @@ tribble(~"*Prova de Recuperação (PR)*",
 #+RESULTS:
 | *Prova de Recuperação (PR)* |
 |---------------------------|
-|                2019-07-08 |
+|                2019-12-18 |
