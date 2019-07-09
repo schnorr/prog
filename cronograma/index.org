@@ -123,38 +123,38 @@ A mescla entre aulas teóricas e práticas é feita automaticamente.
 
 #+NAME: listagem_de_encontros_teoricos
 #+header: :colnames yes
-| Setor   | Descrição                                                                                   |
-|---------+---------------------------------------------------------------------------------------------|
-| Teórica | Apresentação da disciplina, Introdução: paradigmas de programação, programa,  algoritmo     |
-| Teórica | Algoritmo: atribuição, entrada e saída Estrutura de programa C: scanf, printf               |
-| Teórica | Tipos de Dados, Declaração e tipos de variáveis, Operadores e expressão aritmética e lógica |
-| Teórica | Comando de Seleção If                                                                       |
-| Teórica | Aninhamento de comandos If Else                                                             |
-| Teórica | Estrutura de seleção múltipla - comando switch                                              |
-| Teórica | Comando iterativo for                                                                       |
-| Teórica | Comandos iterativos while e do-while                                                        |
-| Teórica | Comandos iterativos while e do-while Exemplos                                               |
-| Teórica | Tipos estruturados básicos – arranjos de uma dimensão                                       |
-| Teórica | Classificação de vetores Strings: arranjos de caracteres                                    |
-| Teórica | Arranjos com mais de uma dimensão: matrizes                                                 |
-| Teórica | Busca e classificação em matrizes                                                           |
-| Teórica | Revisão Geral para Prova                                                                    |
-| Teórica | 1ª Prova                                                                                    |
-| Teórica | Subprogramação - variáveis locais e globais, parâmetros                                     |
-| Teórica | Função sem retorno (void): parâmetros formais e reais                                       |
-| Teórica | Parâmetros por valor e por referência, Ponteiros                                            |
-| Teórica | Ponteiros                                                                                   |
-| Teórica | Funções com retorno.  Bubble sort                                                           |
-| Teórica | Estruturas e Definição de Tipos                                                             |
-| Teórica | Estruturas e parâmetros                                                                     |
-| Teórica | Stream Arquivos binários: acesso sequencial                                                 |
-| Teórica | Arquivos binários: acesso randômico                                                         |
-| Teórica | Arquivo texto                                                                               |
-| Teórica | Arquivos texto exemplos                                                                     |
-| Teórica | Recursividade                                                                               |
-| Teórica | Estruturação de programas                                                                   |
-| Teórica | Revisão para a segunda  prova                                                               |
-| Teórica | 2ª Prova                                                                                    |
+| Setor   | Descrição                                                       |
+|---------+-----------------------------------------------------------------|
+| Teórica | Apresentação, Introdução/Paradigmas/Programa/Algoritmo          |
+| Teórica | Algoritmo: atribuição, entrada/saída Estrutura de programa C    |
+| Teórica | Tipos, Declaração de variáveis, Operadores e Expr. Arit. e Lóg. |
+| Teórica | Comando de Seleção If                                           |
+| Teórica | Aninhamento de comandos If Else                                 |
+| Teórica | Estrutura de seleção múltipla - comando switch                  |
+| Teórica | Comando iterativo for                                           |
+| Teórica | Comandos iterativos while e do-while                            |
+| Teórica | Comandos iterativos while e do-while Exemplos                   |
+| Teórica | Tipos estruturados básicos – arranjos de uma dimensão           |
+| Teórica | Classificação de vetores Strings: arranjos de caracteres        |
+| Teórica | Arranjos com mais de uma dimensão: matrizes                     |
+| Teórica | Busca e classificação em matrizes                               |
+| Teórica | Revisão Geral para Prova                                        |
+| Teórica | 1ª Prova                                                        |
+| Teórica | Subprogramação - variáveis locais e globais, parâmetros         |
+| Teórica | Função sem retorno (void): parâmetros formais e reais           |
+| Teórica | Parâmetros por valor e por referência, Ponteiros                |
+| Teórica | Ponteiros                                                       |
+| Teórica | Funções com retorno.  Bubble sort                               |
+| Teórica | Estruturas e Definição de Tipos                                 |
+| Teórica | Estruturas e parâmetros                                         |
+| Teórica | Stream Arquivos binários: acesso sequencial                     |
+| Teórica | Arquivos binários: acesso randômico                             |
+| Teórica | Arquivo texto                                                   |
+| Teórica | Arquivos texto exemplos                                         |
+| Teórica | Recursividade                                                   |
+| Teórica | Estruturação de programas                                       |
+| Teórica | Revisão para a segunda  prova                                   |
+| Teórica | 2ª Prova                                                        |
 
 *** Práticas
 
@@ -367,8 +367,8 @@ cronograma %>%
 #+RESULTS:
 |  N |   Encontro | Setor   | Descrição                                                                                   |
 |----+------------+---------+---------------------------------------------------------------------------------------------|
-|  1 | 2019-08-12 | Teórica | Apresentação da disciplina, Introdução: paradigmas de programação, programa,  algoritmo     |
-|  2 | 2019-08-14 | Teórica | Algoritmo: atribuição, entrada e saída Estrutura de programa C: scanf, printf               |
+|  1 | 2019-08-12 | Teórica | Apresentação, Introdução/Paradigmas/Programa/Algoritmo                                      |
+|  2 | 2019-08-14 | Teórica | Algoritmo: atribuição, entrada/saída Estrutura de programa C                                |
 |  3 | 2019-08-15 | *Prática* | Introdução ao sistema EAD e ao compilador C                                                 |
 |  4 | 2019-08-19 | Teórica | Tipos de Dados, Declaração e tipos de variáveis, Operadores e expressão aritmética e lógica |
 |  5 | 2019-08-21 | Teórica | Comando de Seleção If                                                                       |
