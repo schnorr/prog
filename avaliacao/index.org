@@ -24,6 +24,8 @@
 #+TAGS: noexport(n) deprecated(d)
 
 * Geral
+** Final
+** Parcial
 
 Detalhamento das colunas da tabela abaixo
 - *P1* e *P2*: notas da P1 e P2 normalizadas de acordo com o seguinte código
