@@ -23,7 +23,9 @@
 #+EXPORT_SELECT_TAGS: export
 #+TAGS: noexport(n) deprecated(d)
 
-* Geral
+Aguarde.
+
+* Geral                                                            :noexport:
 ** Final
 
 Detalhamento das colunas da tabela abaixo igual ao anúncio parcial.
@@ -157,7 +159,7 @@ Detalhamento das colunas da tabela abaixo
 | ???091 | J     | 1.11 |    0 | 7.21 |    0 | N    |  1.41 |   87 | D        |
 | ???114 | J     | 1.22 |    0 | 2.79 |    0 | N    |  0.78 |   78 | D        |
 
-* PR
+* PR                                                               :noexport:
 ** Introdução
 
 Um critério de Recuperação Previsto consta no plano.
@@ -240,7 +242,7 @@ o conceito C conforme o regramento do plano.
 | ???743 |    8 |
 | ???616 | 7.24 |
 
-* AP
+* AP                                                               :noexport:
 
 | ID     |   AP |
 |--------+------|
@@ -291,7 +293,7 @@ o conceito C conforme o regramento do plano.
 | ???108 |  3.5 |
 | ???114 | 2.79 |
 
-* TF
+* TF                                                               :noexport:
 
 A coluna *TF.A* indica se o aluno apresentou (S) ou não (N) o trabalho final.
 
@@ -344,7 +346,7 @@ A coluna *TF.A* indica se o aluno apresentou (S) ou não (N) o trabalho final.
 | ???114 |    0 | N    |
 | ???934 |    0 | N    |
 
-* P2
+* P2                                                               :noexport:
 ** Peso
 | E    | Peso |
 |------+------|
@@ -612,7 +614,7 @@ int main() {
 | ???597 | 0.63 |
 | ???001 |  0.4 |
 
-* P1
+* P1                                                               :noexport:
 ** Peso
 
 | E    | Peso |
