@@ -43,7 +43,7 @@ disciplina.
 * Plano e Cronograma
 
 - Consulte no Portal do Aluno da UFRGS, ou uma [[./plano/][cópia neste repositório]].
-- [[./cronograma/][Cronograma Edição 2019/2]] (Turmas C/C)
+- [[./cronograma/][Cronograma Edição 2019/2]] (Turmas C/D)
   - Aulas Teóricas (Turmas C/D, Segundas e Quartas, 15:30 – 17:10)
   - Aulas Práticas, atenção, cada turma tem seu horário
     - (Turmas C, Quintas, 13:30 – 15:10)
