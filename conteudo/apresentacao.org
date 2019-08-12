@@ -25,10 +25,10 @@ Prof. Lucas M. Schnorr \hfill \to aulas téoricas
 
 #+latex: \vfill
 
-Prof. Vinicius Garcia Pinto \hfill \to práticas
-+ Prédio 43413, Sala 205
-+ [[http://www.inf.ufrgs.br/~vgpinto][http://www.inf.ufrgs.br/~vgpinto]]
-+ vgpinto@inf.ufrgs.br
+Prof. Claudio Jung \hfill \to práticas
++ Prédio 43425, Sala 218
++ [[http://www.inf.ufrgs.br/~crjung][http://www.inf.ufrgs.br/~crjung]]
++ crjung@inf.ufrgs.br
      
 * Motivação
 
