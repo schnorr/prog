@@ -205,6 +205,7 @@ daysOff <- c(
     ymd("2019-10-23"), # SEMAC
     ymd("2019-10-24"), # SEMAC
     ymd("2019-10-25"), # SEMAC
+    ymd("2019-10-28"), # Dia do Servidor Público
     ymd("2019-11-02"), # Mortos
     ymd("2019-11-15"), # República
     ymd("2019-11-23"), # Não Letivo
@@ -397,21 +398,21 @@ cronograma %>%
 | 28 | 2019-10-14 | Teórica | Ponteiros                                                       |
 | 29 | 2019-10-16 | Teórica | Funções com retorno.  Bubble sort                               |
 | 30 | 2019-10-17 | *Prática* | Funções parametrizadas com retorno e ponteiros                  |
-| 31 | 2019-10-28 | Teórica | Estruturas e Definição de Tipos                                 |
-| 32 | 2019-10-30 | Teórica | Estruturas e parâmetros                                         |
-| 33 | 2019-10-31 | *Prática* | Estruturas                                                      |
-| 34 | 2019-11-04 | Teórica | Stream Arquivos binários: acesso sequencial                     |
-| 35 | 2019-11-06 | Teórica | Arquivos binários: acesso randômico                             |
-| 36 | 2019-11-07 | *Prática* | Arquivos binários                                               |
-| 37 | 2019-11-11 | Teórica | Arquivo texto                                                   |
-| 38 | 2019-11-13 | Teórica | Arquivos texto exemplos                                         |
-| 39 | 2019-11-14 | *Prática* | Arquivos texto                                                  |
-| 40 | 2019-11-18 | Teórica | Recursividade                                                   |
-| 41 | 2019-11-20 | Teórica | Estruturação de programas                                       |
-| 42 | 2019-11-21 | *Prática* | Recursividade                                                   |
-| 43 | 2019-11-25 | Teórica | Revisão para a segunda  prova                                   |
-| 44 | 2019-11-27 | Teórica | 2ª Prova                                                        |
-| 45 | 2019-11-28 | *Prática* | Apresentação de Trabalhos Finais                                |
+| 31 | 2019-10-30 | Teórica | Estruturas e Definição de Tipos                                 |
+| 32 | 2019-10-31 | *Prática* | Estruturas                                                      |
+| 33 | 2019-11-04 | Teórica | Estruturas e parâmetros                                         |
+| 34 | 2019-11-06 | Teórica | Stream Arquivos binários: acesso sequencial                     |
+| 35 | 2019-11-07 | *Prática* | Arquivos binários                                               |
+| 36 | 2019-11-11 | Teórica | Arquivos binários: acesso randômico                             |
+| 37 | 2019-11-13 | Teórica | Arquivo texto                                                   |
+| 38 | 2019-11-14 | *Prática* | Arquivos texto                                                  |
+| 39 | 2019-11-18 | Teórica | Arquivos texto exemplos                                         |
+| 40 | 2019-11-20 | Teórica | Recursividade                                                   |
+| 41 | 2019-11-21 | *Prática* | Recursividade                                                   |
+| 42 | 2019-11-25 | Teórica | Estruturação de programas                                       |
+| 43 | 2019-11-27 | Teórica | Revisão para a segunda  prova                                   |
+| 44 | 2019-11-28 | *Prática* | Apresentação de Trabalhos Finais                                |
+| 45 | 2019-12-02 | Teórica | 2ª Prova                                                        |
 
 #+header: :var dep0=def_recup
 #+begin_src R :results value table :session :exports output :colnames yes
