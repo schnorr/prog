@@ -128,6 +128,14 @@ Anotações aleatórias:
   
 * Práticas
 
-O material das aulas práticas está disponível no [[https://moodle.ufrgs.br][Moodle Acadêmico]].
-- Turma C (clique [[https://moodle.ufrgs.br/course/view.php?id=68961][aqui]])
-- Turma D (clique [[https://moodle.ufrgs.br/course/view.php?id=68962][aqui]])
+O material das aulas práticas está disponível no Moodle @INF/UFRGS.
+
+https://moodle.inf.ufrgs.br/course/view.php?id=338
+
+A senha para auto-inscrição foi divulgada em aula.
+
+Converse com seu colega.
+
+# O material das aulas práticas está disponível no [[https://moodle.ufrgs.br][Moodle Acadêmico]].
+# - Turma C (clique [[https://moodle.ufrgs.br/course/view.php?id=68961][aqui]])
+# - Turma D (clique [[https://moodle.ufrgs.br/course/view.php?id=68962][aqui]])
