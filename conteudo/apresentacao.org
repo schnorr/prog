@@ -134,9 +134,17 @@ A apresentação do Trabalho Final, mesmo que não execute perfeitamente,
 * Ferramenta EAD
 
 #+BEGIN_CENTER
-``One /link/ [sic] to rule them all''
+Aulas Teóricas:
 
 https://gitlab.com/schnorr/prog/
+#+END_CENTER
+
+#+BEGIN_CENTER
+Aulas Práticas:
+
+https://moodle.inf.ufrgs.br/course/view.php?id=338
+
+Senha para auto-inscrição: ~ALG_PROG_2019_2CD~
 #+END_CENTER
 
 Em dúvidas
