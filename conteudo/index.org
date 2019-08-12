@@ -130,7 +130,7 @@ Anotações aleatórias:
 
 O material das aulas práticas está disponível no Moodle @INF/UFRGS.
 
-https://moodle.inf.ufrgs.br/course/view.php?id=338
+[[https://moodle.inf.ufrgs.br/course/view.php?id=338][INF01202 Algoritmos e Programação (2019/2 Turmas C/D)]]
 
 A senha para auto-inscrição foi divulgada em aula.
 
