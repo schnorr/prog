@@ -34,6 +34,8 @@ Prof. Claudio Jung \hfill \to práticas
 
 #+BEGIN_CENTER
 Por que fazer INF01202?
+
+Algoritmos e Programação
 #+END_CENTER
 
 * Motivação \to Adquirir *Pensamento Computacional*
