@@ -126,8 +126,8 @@ Anotações aleatórias:
   containing integers 1 through n, find the duplicate integer in an
   array." from [[https://it.slashdot.org/story/19/05/25/0214208/how-i-cheated-on-my-microsoft-job-interview][How I Cheated On My Microsoft Job Interview]].
   
-* Práticas                                                         :noexport:
+* Práticas
 
 O material das aulas práticas está disponível no [[https://moodle.ufrgs.br][Moodle Acadêmico]].
-- Turma I (clique [[https://moodle.ufrgs.br/course/view.php?id=65138][aqui]])
-- Turma J (clique [[https://moodle.ufrgs.br/course/view.php?id=65139][aqui]])
+- Turma C (clique [[https://moodle.ufrgs.br/course/view.php?id=68961][aqui]])
+- Turma D (clique [[https://moodle.ufrgs.br/course/view.php?id=68962][aqui]])
