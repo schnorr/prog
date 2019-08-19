@@ -73,17 +73,15 @@ O que tem na sacola do C3PO após a ida ao armazém?
 
 #+latex: \cortesia{./img/aula03_slide_04.pdf}{Adaptado do material do Prof. Edison Pignaton de Freitas}
 
-* Exemplo da conversão para dólar
-
-#+BEGIN_CENTER
-Em 15/03/2019, 1 dólar = 0.260797 reais
-#+END_CENTER
+* Exemplo da conversão para dólar                                  :noexport:
 
 #+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula03/aula03_slide_09.pdf}{Prof. Marcelo Walter}
 
 * Programa
 
 #+BEGIN_CENTER
+Em 15/03/2019, 1 dólar = 0.260797 reais
+
 Observe a formatação da saída na função =printf= \to =%4.2f=
 #+END_CENTER
 
