@@ -155,7 +155,7 @@ int main () {
   return 0;
 }
 #+END_SRC
-*** 2. vetores
+*** 2. copiando vetores com um deslocamento
 
 #+BEGIN_SRC C :tangle ap5-d-2.c
 #include <stdio.h>
