@@ -155,7 +155,7 @@ int main () {
   return 0;
 }
 #+END_SRC
-*** 2. copiando vetores com um deslocamento
+*** 2. copiando vetores com um deslocamento para a direita
 
 #+BEGIN_SRC C :tangle ap5-d-2.c
 #include <stdio.h>
@@ -185,10 +185,10 @@ int main() {
     scanf("%d", &m);
   } while (m > n);
 
-  for(j = 0, i = m; i < n; j++, i++){
+  for(j = m, i = 0; j < n; j++, i++){
     vetor2[j] = vetor1[i];
   }
-  for(i = 0; j < n; j++, i++){
+  for(j = 0; j < m; j++, i++){
     vetor2[j] = vetor1[i];
   }
 

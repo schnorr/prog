@@ -25,10 +25,10 @@ int main() {
     scanf("%d", &m);
   } while (m > n);
 
-  for(j = 0, i = m; i < n; j++, i++){
+  for(j = m, i = 0; j < n; j++, i++){
     vetor2[j] = vetor1[i];
   }
-  for(i = 0; j < n; j++, i++){
+  for(j = 0; j < m; j++, i++){
     vetor2[j] = vetor1[i];
   }
 
