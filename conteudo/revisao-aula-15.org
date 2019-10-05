@@ -140,5 +140,4 @@ _Resposta esperada_ \to =99996 10531 1001 19447 14479=
 * Exercício de Ordenação de Arranjos
 
 Tente fazer em casa a implementação deste algoritmo de ordenação por
-seleção (principalmente considerando que não há aula prática nesta
-sexta-feira). Veremos a solução na próxima aula.
+seleção. Veremos a solução na próxima aula.

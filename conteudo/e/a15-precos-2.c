@@ -10,7 +10,7 @@ int main () {
   // para usar indice 99, tem que declarar vetor com 100 elementos
   float preco[(CODMAX-CODMIN)+1];
   //obter preços
-  for (cod = CODMIN; cod <= CODMIN+(CODMAX-CODMIN); cod++) {
+  for (cod = CODMIN; cod <= (CODMAX-CODMIN); cod++) {
     printf("Entre o preco da mercadoria com codigo %d:", cod);
     scanf("%f", &preco[cod-CODMIN]);
   }
