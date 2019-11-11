@@ -23,7 +23,6 @@ REVISAO="revisao-aula-01.pdf \
 	 revisao-aula-37.pdf \
 	 revisao-aula-38.pdf \
 	 revisao-aula-40.pdf \
-	 revisao-aula-41.pdf \
 	 comentarios-p1.pdf"
 ORIGINA="apresentacao.pdf \
 arranjos.pdf \
