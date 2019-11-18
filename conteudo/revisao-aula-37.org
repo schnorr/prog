@@ -32,4 +32,83 @@
    arquivo texto existente por outro. As alterações devem ser gravadas
    no mesmo arquivo!
 
+* Respostas                                                        :noexport:
 
+** 1.
+
+#+BEGIN_SRC C :tangle e/rev-a37_1.c
+#include <stdio.h>
+int main() {
+  // arquivo de entrada e saída
+  FILE *arquivo_entrada = NULL;
+  FILE *arquivo_saida = NULL;
+  // variável auxiliar
+  char c;
+  arquivo_entrada = fopen("entrada.txt", "r");
+  arquivo_saida = fopen("saida.txt", "w");
+  if (!arquivo_entrada || !arquivo_saida){
+    printf("Erro na abertura dos arquivos de entrada e saída.\n");
+  }else{
+    while ((c = fgetc(arquivo_entrada)) != EOF) {
+      fputc(c, arquivo_saida);
+    }
+    fclose(arquivo_entrada);
+    arquivo_entrada = NULL;
+    fclose(arquivo_saida);
+    arquivo_saida = NULL;
+  }
+  return 0;
+}
+#+END_SRC
+
+** 2.
+
+#+BEGIN_SRC C :tangle e/rev-a37_2.c
+#include <stdio.h>
+#define TAMANHO_DA_LINHA 80
+int main() {
+  FILE *arquivo = NULL;
+  char linha[TAMANHO_DA_LINHA];
+  arquivo = fopen("saida.txt", "a");
+  fseek(arquivo, -1, SEEK_END);
+  if (arquivo == NULL){
+    printf("Erro na abertura do arquivo.\n");
+  }else{
+    printf("Entre com a linha a ser incluída no final: ");
+    fgets(linha, TAMANHO_DA_LINHA, stdin);
+    fputs(linha, arquivo);
+    fclose(arquivo);
+    arquivo = NULL;
+  }
+  return 0;
+}
+#+END_SRC
+
+** 3.
+
+#+BEGIN_SRC C :tangle e/rev-a37_3.c
+#include <stdio.h>
+int main() {
+  FILE *arquivo = NULL;
+  char c, o, d;
+  arquivo = fopen("saida.txt", "r+");
+  if (arquivo == NULL){
+    printf("Erro na abertura do arquivo.\n");
+  }else{
+    printf("Qual o caractere de origem? ");
+    scanf(" %c", &o);
+    printf("Qual o caractere de destino? ");
+    scanf(" %c", &d);
+    printf("Okay, todos os \'%c\' serão substituídos por \'%c\' no arquivo.\n", o, d);
+    while ((c = fgetc(arquivo)) != EOF) {
+      if (c == o){
+	    fseek(arquivo, -1, SEEK_CUR);
+	    fputc(d, arquivo);
+      }
+    }
+    fclose(arquivo);
+    arquivo = NULL;
+  }
+  return 0;
+}
+#+END_SRC
