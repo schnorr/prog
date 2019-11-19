@@ -4,7 +4,6 @@ int main() {
   FILE *arquivo = NULL;
   char linha[TAMANHO_DA_LINHA];
   arquivo = fopen("saida.txt", "a");
-  fseek(arquivo, -1, SEEK_END);
   if (arquivo == NULL){
     printf("Erro na abertura do arquivo.\n");
   }else{
