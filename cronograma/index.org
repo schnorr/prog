@@ -223,7 +223,7 @@ suppressMessages(library(lubridate));
 suppressMessages(library(tidyverse));
 suppressMessages(library(xtable));
 
-dataDaRecuperação <- ymd("2019-12-18");
+dataDaRecuperação <- ymd("2019-12-09");
 #+end_src
 
 #+RESULTS: def_recup
@@ -351,6 +351,7 @@ system2("rubber", " --pdf cronograma.tex")
 #+RESULTS: modelo_cronograma
 : 
 : compiling cronograma.tex...
+: compiling cronograma.tex...
 
 * Cronograma
 
@@ -423,4 +424,4 @@ tribble(~"*Prova de Recuperação (PR)*",
 #+RESULTS:
 | *Prova de Recuperação (PR)* |
 |---------------------------|
-|                2019-12-18 |
+|                2019-12-09 |
