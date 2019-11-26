@@ -32,7 +32,7 @@ considerando todo o conteúdo desenvolvido até a data das provas.
 #+latex: \vfill
 
 *Atenção*: Local da prova:
-- Quarta 26/06/2019 13:30
+- Segunda 02/12/2019 15:30
 - 43424 - *Auditório Prof. Castilho*
 
 * Conteúdo
@@ -93,36 +93,16 @@ Utilizando a notação de ponteiro:
 1. Escreva um comando printf para imprimir diretamente o conteúdo do
    3o elemento do vetor
 
-   #+BEGIN_SRC C
-   printf("%d", *(vet+2));
-   #+END_SRC
-
 2. Escreva um comando printf para imprimir diretamente o endereço do
    último elemento.
 
-   #+BEGIN_SRC C
-   printf("%d", vet+3);
-   #+END_SRC
-
 3. Qual a saída de printf ("%d" , ++(*vet)) ?
-
-   #+BEGIN_SRC text
-   3
-   #+END_SRC
 
 4. Supondo que o vetor fosse armazenado na posição 4086 de memória e
    que, nessa máquina, um inteiro ocupe dois bytes, quais as posições
    de vet[1], vet[2] e de vet+3?
 
-   #+BEGIN_EXAMPLE
-   vet[1] = (vet+1) = 4086+2 = 4088
-   vet[2] = (vet+2) = 4086+4 = 4090
-   vet+3  = 4086+6 = 4092
-   #+END_EXAMPLE
-
 5. Por que os índices começam em 0 na linguagem C?
-
-   Para evitar uma subtração do tamanho do tipo a cada acesso.
 
 * Simulado #2
 
@@ -131,76 +111,12 @@ inteiro n recebidos como parâmetros e retorna 1 se o arranjo contiver
 o número n e 0 no caso contrário. Defina os demais parâmetros
 necessários à função.
 
-*Uma solução*
-
-#+BEGIN_SRC C
-#define TAMANHO 5
-
-int recursiva (int v[], int n, int tamanho) {
-  if (tamanho == 0) return 0;
-  else if (n == v[tamanho-1]) return 1;
-  else return recursiva(v, n, tamanho-1);
-}
-
-int recur (int *v, int n, int tamanho) {
-  if (tamanho == 0) return 0;
-  else if (*v == n) return 1;
-  else return recur(v+1, n, tamanho-1);
-}
-
-int recur3 (int v[], int n, int tamanho, int indice){
-  if (tamanho == 0) return 0;
-  else if (v[indice] == n) return 1;
-  else return recur3(v, n, tamanho-1, indice+1);
-}
-
-int main(){
-  int achou = 0;
-  int vetor[TAMANHO] = {3, 5, 29, 392, 3943};
-  achou = recursiva(vetor, 392, TAMANHO);
-  printf("achou = %d\n", achou);
-  printf("achou = %d\n", recur(vetor, 392, TAMANHO));
-}
-#+END_SRC
-
-#+RESULTS:
-| achou | = | 1 |
-| achou | = | 1 |
-
 * Simulado #3
 
 Escreva uma função que recebe um string entrada s1, e devolve, em
 outro string saida s2, o string original sem os espaços
 brancos. Indique como seria a chamada no programa principal (declare
 as variáveis necessárias para a chamada).
-
-*Uma solução*:
-
-#+begin_src C :results output :session :exports both
-void simul3 (char *s1, char *s2) {
-  while(*s1 != '\0'){
-    if (*s1 != ' ') {
-      *s2 = *s1;
-      s2++;
-    }
-    s1++;
-  }
-  *s2 = '\0';
-}
-
-int main(){
-  char s1[] = "o universo está em expansão";
-  char s2[1000];
-  simul3(s1, s2);
-  printf("s1 vale o seguinte [%s]\n", s1);
-  printf("s2 vale o seguinte [%s]\n", s2);
-  return 0;
-}
-#+END_SRC
-
-#+RESULTS:
-: s1 vale o seguinte [o universo está em expansão]
-: s2 vale o seguinte [ouniversoestáemexpansão]
 
 * Simulado #4
 
@@ -230,116 +146,12 @@ b) Uma função ~void esc_texto(FILE *fp, char nome[], float preco)~ que
    escreve numa mesma linha no arquivo texto apontado por fp, o nome e
    preço de um eletrodoméstico recebidos como parâmetro.
 
-*Uma solução:*
-
-#+BEGIN_SRC C :tangle e/p2-simul-4.c
-#include <stdio.h>
-
-typedef struct {
-  int codigo;
-  char nome[32];
-  float preco;
-} eletro_t;
-
-void limpa_buffer() {
-  char c;
-  while ((c = getchar()) != '\n' && c != EOF);
-}
-
-void esc_bin(FILE *fp) {
-    eletro_t eletro = {0};
-    int enquanto_quiser_ler = 1;
-    char escolha;
-    do {
-      printf("Codigo: ");
-      scanf("%d", &eletro.codigo); //ler codigo em &eletro.codigo
-      limpa_buffer();
-      printf("Nome: ");
-      fgets(eletro.nome, 32, stdin); //ler nome de no máximo 31 bytes em eletro.nome
-      printf("Preco: ");
-      scanf("%f", &eletro.preco); //ler preço em &eletro.preco
-      fwrite(&eletro, sizeof(eletro_t), 1, fp);
-      printf("Continuar? (s ou n): ");
-      scanf(" %c", &escolha);
-      if(escolha == 'n') {
-         enquanto_quiser_ler = 0;
-      }
-    } while(enquanto_quiser_ler);
-}
-
-void esc_texto(FILE *fp, char nome[], float preco) {
-  fprintf(fp, "%s %f\n", nome, preco);
-}
-
-int main() {
-  FILE *fp = fopen("eletro.bin", "r+");
-  if(fp == NULL){
-    printf("Erro fatal.\n");
-    return 0;
-  }
-  esc_bin(fp);
-  fseek(fp, 0L, SEEK_SET); // como um rewind(fp)
-  FILE *caro = fopen("caro.txt", "w");
-  FILE *barato = fopen("barato.txt", "w");
-  eletro_t eletro;
-  int elementos_lidos;
-  do {
-    elementos_lidos = fread(&eletro, sizeof(eletro_t), 1, fp);
-    if (elementos_lidos == 1){
-      if(eletro.preco > 500) {
-	   esc_texto(caro, eletro.nome, eletro.preco);
-      }else{
-	   esc_texto(barato, eletro.nome, eletro.preco);
-	}
-    }
-  }while(elementos_lidos == 1);
-  fclose(caro);
-  fclose(barato);
-  fclose(fp);
-}
-#+END_SRC
-
-#+RESULTS:
-
 * Simulado #5
 
 Considere um arquivo texto arquivo.txt já existente. Escreva um
 programa em C que leia o arquivo, leia dois caracteres do teclado,
 troque cada ocorrência do primeiro caractere pelo segundo, e grave
 novamente o arquivo (com o mesmo nome).
-
-*Uma solução*:
-
-~arquivo.txt~
-#+BEGIN_SRC text :tangle arquivo.txt
-o universo esta se expandindo
-#+END_SRC
-
-programa:
-#+BEGIN_SRC C
-#include <stdio.h>
-int main() {
-  // Ler do teclado com fgetc
-  char c_origem, c_destino;
-  c_origem = fgetc(stdin);
-  c_destino = fgetc(stdin);
-
-  // Ler do arquivo char by char
-  FILE *fp = fopen("arquivo.txt", "r+");
-  char c = fgetc(fp);
-  while(c != EOF){
-    if (c == c_origem) {
-      fseek(fp, -1, SEEK_CUR);
-      fputc(c_destino, fp);
-    }
-    c = fgetc(fp);
-  }
-  fclose(fp);
-  return 0;
-}
-#+END_SRC
-
-#+RESULTS:
 
 * Simulado #6
 
@@ -354,26 +166,6 @@ deve retornar o valor da soma.
 $\frac{1}{1^p} + \frac{1}{2^p} + \frac{1}{3^p} +  ... +\frac{1}{n^p}$
 #+END_EXPORT
 
-*Uma solução*:
-
-#+BEGIN_SRC C :libs "-lm"
-#include <math.h>
-#include <stdio.h>
-
-float funcao(float p, int n) {
-  if (n <= 0) return 0;
-  float elemento = 1/pow(n, p);
-  return elemento+funcao(p, n-1);
-}
-
-int main() {
-  printf("%f\n", funcao(2.3, 3));
-}
-#+END_SRC
-
-#+RESULTS:
-: 1.282977
-
 * Simulado #7
 
 Escreva uma função que recebe como parâmetro apenas uma string de no
@@ -385,34 +177,6 @@ Exemplo ilustrativo:
 Entre com uma string: O rato roeu a roupa do rei de roma.
 String invertida: .amor ed ier od apuor a ueor otar O
 #+END_EXAMPLE
-
-*Uma solução sem recursão*
-
-#+begin_src C :results output :session :exports both
-#include<stdio.h>
-#include<string.h>
-
-void inverte(char *s) {
-  char grande[30];
-  int i;
-  for (i = 0; i < strlen(s); i++){
-    grande[i] = s[strlen(s) -1 - i];
-  }
-  grande[i] = '\0';
-  strcpy(s, grande);
-}
-
-int main() {
-  char s[] = "O rato roeu a roupa do rei de roma.";
-  printf("Entre com uma string: %s\n", s);
-  inverte(s);
-  printf("String invertida: %s\n", s);
-}
-#+END_SRC
-
-#+RESULTS:
-: Entre com uma string: O rato roeu a roupa do rei de roma.
-: String invertida: .amor ed ier od apuor a ueor otar O
 
 * Funções auxiliares
 
