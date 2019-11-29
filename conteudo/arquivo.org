@@ -125,7 +125,7 @@ FILE *fopen(const char *pathname, const char *mode);
 | r    | para leitura                                    | início |
 | r+   | para leitura e escrita, não apaga arquivo       | início |
 | w    | para escrita, apaga arquivo se existe           | início |
-| w+   | para leitura e escrita, não apaga arquivo       | início |
+| w+   | para leitura e escrita, o arquivo é truncado    | início |
 | a    | para concatenação no final do arquivo           | fim    |
 | a+   | para leitura e concatenação no final do arquivo | fim    |
 
