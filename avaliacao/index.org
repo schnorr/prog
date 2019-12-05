@@ -346,30 +346,26 @@ A coluna *TF.A* indica se o aluno apresentou (S) ou não (N) o trabalho final.
 | ???114 |    0 | N    |
 | ???934 |    0 | N    |
 
-* P2                                                               :noexport:
+* P2
 ** Peso
-| E    | Peso |
-|------+------|
-| E1   |  2.0 |
-| E2   |  2.0 |
-| E3.1 |  1.0 |
-| E3.2 |  1.0 |
-| E3.3 |  1.0 |
-| E4   |  3.0 |
+| E  | Peso |
+|----+------|
+| E1 |  3.0 |
+| E2 |  2.0 |
+| E3 |  2.0 |
+| E4 |  3.0 |
 ** Gabarito
 *** E1
-#+BEGIN_EXAMPLE
-n = 4, vet[1] = -1, z = 24.00
-n = 4, vet[2] = 7, z = -120.00
-#+END_EXAMPLE
+Uma solução possível por ser definida.
 *** E2
-Uma solução possível
+Uma solução possível.
 #+begin_src C :results output :session :exports both
 int fun (char *s, char c) {
   if (*s == '\0') {
     // Este é o critério de parada
     return 0;
   }else if (*s == c) {
+    ,*s = ' ';
     return 1 + fun(s+1, c);
   }else{
     return 0 + fun(s+1, c);
@@ -380,239 +376,117 @@ int main() {
   char c = 'e';
   int resposta = fun(str, c);
   printf("%d\n", resposta);
+  printf("%s\n", str);
   return 0;
 }
 #+end_src
 
 #+RESULTS:
 : 4
+: A  xpansão ac l rada do univ rso.
 *** E3
 Uma solução possível
 #+begin_src C :results output :session :exports both
-typedef struct{
-  float r;  // parte real
-  float i;  // parte imaginária
-}complex_t;
+#include <stdio.h>
+void funA(int x, int y)
+{ x = 78; y = 15; x = y;}
 
-void soma1(complex_t *c1, complex_t c2) {
-  c1->r = c1->r + c2.r;
-  c1->i = c1->i + c2.i;
-}
+void funB(int *x, int y)
+{ *x=123; y= 415; *x=y;}
 
-complex_t soma2(complex_t c1, complex_t c2) {
-  complex_t ret;
-  ret.r = c1.r + c2.r;
-  ret.i = c1.i + c2.i;
-  return ret;
-}
+void funC(int x, int *y)
+{ x = *y;}
 
-complex_t *soma3(complex_t c1, complex_t c2, complex_t *res) {
-  res->r = c1.r + c2.r;
-  res->i = c1.i + c2.i;
-  return res;
-}
+void funD(int *x, int *y)
+{*x = 10; *y = 17; x = y;}
 
-void imprime(complex_t c) {
-  printf("[%.2f,%.2f]\n", c.r, c.i);
-}
+int main()
+{
+  int a = 112, b = 13;
+  int *ptra = &a, *ptrb = &b;
 
-int main() {
-  complex_t co1 = {2.3, 3.4};
-  complex_t co2 = {4.3, 5.4};
-  complex_t co3;
-  complex_t *co4;
-  imprime(co1);
-  imprime(co2);
-  soma1(&co1, co2);
-  imprime(co1);
-  co3 = soma2(co1, co2);
-  imprime(co3);
-  co4 = soma3(co3, co1, &co3);
-  imprime(*co4);
+  funA(a, b);
+  printf("%d %d\n", a, b);
+
+  funB(ptra, b);
+  printf("%d %d\n", a, b);
+
+  funC(a, ptrb);
+  printf("%d %d\n", a, b);
+
+  funD(ptra, ptrb);
+  printf("%d %d\n", a, b);
   return 0;
 }
 #+end_src
 
 #+RESULTS:
-: [2.30,3.40]
-: [4.30,5.40]
-: [6.60,8.80]
-: [10.90,14.20]
-: [17.50,23.00]
+: 112 13
+: 415 13
+: 415 13
+: 10 17
 
 *** E4
-**** Uma solução possível
-#+begin_src C :results output :session :exports both
-#include <stdio.h>
-typedef struct{
-  int codigo;      // código do atleta
-  char nome[44];   // nome do atleta
-  int idade;       // idade do atleta
-  char esporte[4]; // código do esporte
-  float pad;       // espaço não utilizado
-}atleta_t;
-
-int main() {
-  FILE *fp = fopen("atletas.bin", "r+");
-  atleta_t atleta;
-  int flag;
-  flag = fread(&atleta, sizeof(atleta_t), 1, fp);
-  while (flag == 1) {
-    if (strcmp(atleta.esporte, "ESP") == 0) {
-      atleta.idade += 2;
-      fseek(fp, -sizeof(atleta_t), SEEK_CUR);
-      fwrite(&atleta, sizeof(atleta_t), 1, fp);
-    }
-    flag = fread(&atleta, sizeof(atleta_t), 1, fp);
-  }
-  fclose(fp);
-  return 0;
-}
-#+end_src
-
-#+RESULTS:
-
-**** Programas auxiliares
-Não era esperado que estes programas fossem implementados na prova.
-
-Programa que cria um arquivo ~atletas.bin~.
-#+begin_src C :results output :session :exports both
-#include <stdio.h>
-typedef struct{
-  int codigo;      // código do atleta
-  char nome[44];   // nome do atleta
-  int idade;       // idade do atleta
-  char esporte[4]; // código do esporte
-  float pad;       // espaço não utilizado
-}atleta_t;
-#define TT 10
-int main() {
-    atleta_t atletas[TT] = {0};
-    FILE *fp = fopen("atletas.bin", "w");
-    for (int i = 0; i < TT; i++){
-      atletas[i].idade = 2;
-      strcpy(atletas[i].esporte, "ESP");
-    }
-    fwrite(&atletas, sizeof(atleta_t), TT, fp);
-    fclose(fp);
-}
-#+end_src
-
-Programa que imprime o campo ~idade~ de um arquivo ~atletas.bin~.
-#+begin_src C :results output :session :exports both
-#include <stdio.h>
-typedef struct{
-  int codigo;      // código do atleta
-  char nome[44];   // nome do atleta
-  int idade;       // idade do atleta
-  char esporte[4]; // código do esporte
-  float pad;       // espaço não utilizado
-}atleta_t;
-#define TT 10
-int main() {
-    atleta_t atletas[TT] = {0};
-    FILE *fp = fopen("atletas.bin", "r");
-    fread(&atletas, sizeof(atleta_t), TT, fp);
-    fclose(fp);
-    for (int i = 0; i < TT; i++){
-      printf("%d\n", atletas[i].idade);
-    }
-}
-#+end_src
-
+Uma solução possível por ser definida.
 ** Detalhamento por questão (sobre 10)
 
-| ID     |   E1 |  E2 | E3.1 | E3.2 | E3.3 | E4 |
-|--------+------+-----+------+------+------+----|
-| ???001 |    0 |   2 |    0 |    0 |    0 |  0 |
-| ???130 |    0 |   2 |    0 |    0 |    0 |  3 |
-| ???781 |    0 |   2 |    0 |    0 |    0 |  2 |
-| ???694 |   10 | 7.5 |    0 |   10 |    5 |  9 |
-| ???043 | 8.35 |  10 |   10 |   10 |    5 |  7 |
-| ???941 |   10 |  10 |    0 |   10 |    5 | 10 |
-| ???924 |    5 |   8 |    9 |    9 |    8 |  2 |
-| ???057 | 6.65 |   2 |    0 |    0 |    0 |  2 |
-| ???365 |   10 | 9.9 |   10 |   10 |    5 |  5 |
-| ???762 |   10 | 9.9 |    0 |   10 |    1 |  4 |
-| ???987 |   10 |  10 |    9 |   10 |    5 |  9 |
-| ???391 |   10 |  10 |   10 |   10 |    5 |  9 |
-| ???616 | 3.35 |   9 |    0 |    3 |    0 |  4 |
-| ???816 | 8.35 |  10 |   10 |   10 |    5 |  9 |
-| ???035 | 1.65 | 9.9 |    0 |    8 |    5 |  9 |
-| ???934 |    5 |   0 |    3 |    9 |    7 |  9 |
-| ???074 |    5 |  10 |    8 |   10 |    9 |  7 |
-| ???315 |   10 |   8 |   10 |   10 |    5 |  9 |
-| ???108 |    5 |   0 |    0 |    0 |    0 |  0 |
-| ???893 |   10 | 9.9 |   10 |   10 |    5 |  9 |
-| ???351 | 3.35 |   0 |    0 |    0 |    0 |  5 |
-| ???838 | 3.35 |   0 |    0 |    0 |    0 |  1 |
-| ???845 | 3.35 |   2 |    9 |    0 |    9 |  5 |
-| ???073 |    5 |   2 |    7 |    2 |    1 |  3 |
-| ???635 |    5 |   3 |   10 |    9 |    1 |  9 |
-| ???743 | 3.35 |   7 |    0 |    0 |    0 |  4 |
-| ???846 | 1.65 |   3 |    0 |    0 |    5 |  2 |
-| ???224 | 8.35 | 9.9 |    5 |   10 |    1 |  9 |
-| ???677 |   10 |   0 |   10 |   10 |    0 |  7 |
-| ???564 |   10 | 9.9 |   10 |   10 |    5 |  4 |
-| ???588 | 6.65 |  10 |   10 |    9 |    1 | 10 |
-| ???039 |   10 |  10 |    3 |    3 |    5 |  6 |
-| ???037 |   10 |  10 |    0 |    0 |   10 | 10 |
-| ???099 |   10 |  10 |    9 |   10 |    5 |  6 |
-| ???313 |    5 | 9.9 |    9 |   10 |    5 |  9 |
-| ???788 | 8.35 |  10 |   10 |   10 |    5 |  8 |
-| ???718 | 1.65 |   0 |    0 |    0 |    0 |  1 |
-| ???292 | 6.65 | 9.9 |    8 |   10 |    5 | 10 |
-| ???597 | 1.65 |   0 |    0 |    0 |    0 |  1 |
-| ???052 |   10 |   6 |    9 |   10 |    5 |  8 |
-| ???570 |    5 | 9.9 |    0 |    0 |    0 |  5 |
-| ???352 |   10 |   5 |   10 |    9 |    0 | 10 |
+| ID     |  E1 |  E2 |   E3 |  E4 |
+|--------+-----+-----+------+-----|
+| ???377 |   9 | 1.5 | 8.75 | 9.5 |
+| ???506 |   0 |   0 | 6.25 |   0 |
+| ???292 | 8.5 |   6 |    5 |   1 |
+| ???235 | 9.5 |  10 |   10 |   8 |
+| ???942 |   8 |  10 |   10 |  10 |
+| ???243 |   8 |   3 |   10 |   8 |
+| ???846 |   3 | 9.5 | 6.25 |   8 |
+| ???023 |   6 |   6 |  2.5 |   0 |
+| ???412 | 7.5 |  10 | 8.75 |   5 |
+| ???271 |   0 |   7 | 6.25 |   0 |
+| ???324 |  10 |   9 |   10 | 7.5 |
+| ???141 |   1 |   8 |    5 |   8 |
+| ???111 |  10 |  10 | 8.75 | 9.5 |
+| ???522 |  10 |  10 |   10 |   0 |
+| ???458 |   3 | 1.5 | 1.25 |   0 |
+| ???151 | 9.5 |  10 |   10 |  10 |
+| ???213 | 3.5 | 1.5 |  7.5 |   0 |
+| ???720 | 9.5 |  10 |   10 | 8.5 |
+| ???166 |  10 |  10 |   10 |  10 |
+| ???962 |   2 | 7.5 |  7.5 |   1 |
+| ???853 |  10 |  10 |   10 |   0 |
+| ???665 | 7.5 |   5 | 8.75 |   6 |
+| ???118 |   9 |  10 |   10 |   9 |
+| ???500 | 9.5 |   0 |   10 |   5 |
+| ???961 |  10 |  10 |   10 |  10 |
 
 ** Final
 
 | ID     |   P2 |
 |--------+------|
-| ???391 |  9.2 |
-| ???893 | 9.18 |
-| ???987 |  9.1 |
-| ???816 | 8.87 |
-| ???315 |  8.8 |
-| ???292 | 8.61 |
-| ???788 | 8.57 |
-| ???941 |  8.5 |
-| ???588 | 8.33 |
-| ???043 | 8.27 |
-| ???099 |  8.2 |
-| ???313 | 8.08 |
-| ???037 |    8 |
-| ???052 |    8 |
-| ???365 | 7.98 |
-| ???224 | 7.95 |
-| ???352 |  7.9 |
-| ???074 |  7.8 |
-| ???694 |  7.7 |
-| ???564 | 7.68 |
-| ???039 |  6.9 |
-| ???035 | 6.31 |
-| ???635 |  6.3 |
-| ???762 | 6.28 |
-| ???677 |  6.1 |
-| ???924 |  5.8 |
-| ???934 |  5.6 |
-| ???570 | 4.48 |
-| ???845 | 4.37 |
-| ???616 | 3.97 |
-| ???073 |  3.3 |
-| ???743 | 3.27 |
-| ???057 | 2.33 |
-| ???351 | 2.17 |
-| ???846 | 2.03 |
-| ???130 |  1.3 |
-| ???108 |    1 |
-| ???781 |    1 |
-| ???838 | 0.97 |
-| ???718 | 0.63 |
-| ???597 | 0.63 |
-| ???001 |  0.4 |
+| ???166 |   10 |
+| ???961 |   10 |
+| ???151 | 9.85 |
+| ???111 |  9.6 |
+| ???942 |  9.4 |
+| ???118 |  9.4 |
+| ???720 |  9.4 |
+| ???235 | 9.25 |
+| ???324 | 9.05 |
+| ???377 |  7.6 |
+| ???412 |  7.5 |
+| ???243 |  7.4 |
+| ???522 |    7 |
+| ???853 |    7 |
+| ???665 |  6.8 |
+| ???846 | 6.45 |
+| ???500 | 6.35 |
+| ???141 |  5.3 |
+| ???292 | 5.05 |
+| ???962 |  3.9 |
+| ???023 |  3.5 |
+| ???213 | 2.85 |
+| ???271 | 2.65 |
+| ???458 | 1.45 |
+| ???506 | 1.25 |
 
 * P1
 ** Peso
