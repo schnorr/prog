@@ -54,7 +54,8 @@ ORIGINA= apresentacao.pdf \
 	 arq-texto-p2.pdf \
 	 recursividade.pdf \
 	 estruturacao.pdf \
-	 revisao-p2.pdf
+	 revisao-p2.pdf \
+	 revisao-p2-corrigido.pdf
 
 revisao: $(REVISAO)
 origina: $(ORIGINA)

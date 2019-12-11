@@ -53,7 +53,8 @@ arq-texto.pdf \
 arq-texto-p2.pdf \
 recursividade.pdf \
 estruturacao.pdf \
-revisao-p2.pdf"
+revisao-p2.pdf \
+revisao-p2-corrigido.pdf"
 
 PDFS="$REVISAO $ORIGINA"
 
