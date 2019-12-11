@@ -23,7 +23,7 @@
 #+EXPORT_SELECT_TAGS: export
 #+TAGS: noexport(n) deprecated(d)
 
-* Geral
+* Geral                                                            :noexport:
 ** Final                                                          :noexport:
 
 Detalhamento das colunas da tabela abaixo igual ao anúncio parcial.
