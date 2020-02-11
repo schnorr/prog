@@ -44,11 +44,11 @@ disciplina.
 * Plano e Cronograma
 
 - Consulte no Portal do Aluno da UFRGS, ou uma [[./plano/][cópia neste repositório]].
-- [[./cronograma/][Cronograma Edição 2019/2]] (Turmas C/D)
-  - Aulas Teóricas (Turmas C/D, Segundas e Quartas, 15:30 – 17:10)
+- [[./cronograma/][Cronograma Edição 2020/1]] (Turmas I/J)
+  - Aulas Teóricas (Turmas I/J, Segundas e Quartas, 13:30 – 15:10)
   - Aulas Práticas, atenção, cada turma tem seu horário
-    - (Turmas C, Quintas, 13:30 – 15:10)
-    - (Turmas D, Quintas, 15:30 – 17:10)
+    - (Turmas I, Sextas, 13:30 – 15:10)
+    - (Turmas J, Sextas, 15:30 – 17:10)
 
 * Conteúdo e Avaliação
 
@@ -81,5 +81,6 @@ habitual dos encontros teóricos).
 
 Se você encontrar algum problema, e também no caso de dúvidas, entre em contato por e-mail:
 - [[http://www.inf.ufrgs.br/~schnorr][Prof. Lucas (http://www.inf.ufrgs.br/~schnorr)]], (aulas teóricas)
-- [[http://www.inf.ufrgs.br/~crjung][Prof. Claudio (http://www.inf.ufrgs.br/~crjung)]] (aulas práticas)
+- Professor das aulas práticas por definir (práticas)
+# - [[http://www.inf.ufrgs.br/~crjung][Prof. Claudio (http://www.inf.ufrgs.br/~crjung)]] (aulas práticas)
 # - [[http://www.inf.ufrgs.br/~vgpinto][Prof. Vinicius (http://www.inf.ufrgs.br/~vgpinto)]], (práticas)
