@@ -81,6 +81,6 @@ habitual dos encontros teóricos).
 
 Se você encontrar algum problema, e também no caso de dúvidas, entre em contato por e-mail:
 - [[http://www.inf.ufrgs.br/~schnorr][Prof. Lucas (http://www.inf.ufrgs.br/~schnorr)]], (aulas teóricas)
-- Professor das aulas práticas por definir (práticas)
+- [[http://www.inf.ufrgs.br/~rqmaffei][Prof. Renan (http://www.inf.ufrgs.br/~rqmaffei)]] (aulas práticas)
 # - [[http://www.inf.ufrgs.br/~crjung][Prof. Claudio (http://www.inf.ufrgs.br/~crjung)]] (aulas práticas)
 # - [[http://www.inf.ufrgs.br/~vgpinto][Prof. Vinicius (http://www.inf.ufrgs.br/~vgpinto)]], (práticas)

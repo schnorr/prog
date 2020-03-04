@@ -25,10 +25,10 @@ Prof. Lucas M. Schnorr \hfill \to aulas téoricas
 
 #+latex: \vfill
 
-Prof. Claudio Jung \hfill \to práticas
-+ Prédio 43425, Sala 218
-+ [[http://www.inf.ufrgs.br/~crjung][http://www.inf.ufrgs.br/~crjung]]
-+ crjung@inf.ufrgs.br
+Prof. Renan Maffei \hfill \to práticas
++ Prédio 43424, Sala 224
++ [[http://www.inf.ufrgs.br/~rqmaffei][http://www.inf.ufrgs.br/~rqmaffei]]
++ rqmaffei@inf.ufrgs.br
      
 * Motivação
 
