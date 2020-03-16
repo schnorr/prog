@@ -356,7 +356,7 @@ system2("rubber", " --pdf cronograma.tex")
 : 
 : compiling cronograma.tex...
 
-* Cronograma
+* Cronograma                                                       :noexport:
 
 O cronograma também está [[./cronograma.pdf][disponível em formato PDF]].
 
@@ -429,3 +429,6 @@ tribble(~"*Prova de Recuperação (PR)*",
 | *Prova de Recuperação (PR)* |
 |---------------------------|
 |                2020-07-06 |
+* Cronograma
+
+Aguardando novo calendário acadêmico para 2020/1.
