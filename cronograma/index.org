@@ -20,8 +20,7 @@
 #+EXPORT_SELECT_TAGS: export
 #+TAGS: noexport(n) deprecated(d)
 
-* Planejamento                                                     :noexport:
-** Preparação baseada em ODS                             :deprecated:ATTACH:
+* Preparação baseada em ODS                               :deprecated:ATTACH:
 :PROPERTIES:
 :Attachments: inf01202-cronograma.ods
 :ID:       9848b48e-de8e-4fa3-8ac0-1a22ec9f9d39
@@ -49,38 +48,9 @@ df.legacy %>%
 #+end_src
 
 #+RESULTS:
-| Setor   | Descrição                                                                                                                               |
-|---------+-----------------------------------------------------------------------------------------------------------------------------------------|
-| Teórica | Apresentação  do  curso  e  da  disciplina  Aula  inaugural  dos  calouros Introdução:  paradigmas de programação, programa,  algoritmo |
-| Teórica | Algoritmo: atribuição, entrada e saída Estrutura de programa C: scanf, printf                                                           |
-| Teórica | Tipos de Dados, Declaração de variáveis, Operadores e expressão aritmética e lógica                                                     |
-| Teórica | Comando de Seleção If                                                                                                                   |
-| Teórica | Aninhamento de comandos If Else                                                                                                         |
-| Teórica | Estrutura de seleção múltipla - comando switch                                                                                          |
-| Teórica | Comando iterativo for                                                                                                                   |
-| Teórica | Comandos iterativos while e do-while                                                                                                    |
-| Teórica | Comandos iterativos while e do-while Exemplos                                                                                           |
-| Teórica | Tipos estruturados básicos – arranjos de uma dimensão                                                                                   |
-| Teórica | Classificação de vetores Strings: arranjos de caracteres                                                                                |
-| Teórica | Arranjos com mais de uma dimensão: matrizes                                                                                             |
-| Teórica | Busca e classificação em matrizes                                                                                                       |
-| Teórica | Revisão Geral para Prova                                                                                                                |
-| Teórica | 1ª Prova                                                                                                                                |
-| Teórica | Subprogramação - variáveis locais e globais, parâmetros                                                                                 |
-| Teórica | Função sem retorno (void): parâmetros formais e reais                                                                                   |
-| Teórica | Parâmetros por valor e por referência, Ponteiros                                                                                        |
-| Teórica | Ponteiros                                                                                                                               |
-| Teórica | Funções com retorno.  Bubble sort                                                                                                       |
-| Teórica | Estruturas e Definição de Tipos                                                                                                         |
-| Teórica | Estruturas e parâmetros                                                                                                                 |
-| Teórica | Stream Arquivos binários: acesso sequencial                                                                                             |
-| Teórica | Arquivos binários: acesso randômico                                                                                                     |
-| Teórica | Arquivo texto                                                                                                                           |
-| Teórica | Arquivos texto exemplos                                                                                                                 |
-| Teórica | Recursividade                                                                                                                           |
-| Teórica | Estruturação de programas                                                                                                               |
-| Teórica | Revisão para a segunda  prova                                                                                                           |
-| Teórica | 2ª Prova                                                                                                                                |
+| x    |
+|------|
+| TRUE |
 
 #+begin_src R :results table :session :exports both :colnames yes
 df.legacy %>%
@@ -107,6 +77,7 @@ df.legacy %>%
 | Prática | Recursividade                                                 |
 | Prática | Apresentação de Trabalhos Finais                              |
 
+* Planejamento                                                     :noexport:
 ** Modelo do cronograma em TEX                                      :ATTACH:
 :PROPERTIES:
 :Attachments: layout-cronograma.tex
@@ -138,7 +109,7 @@ A mescla entre aulas teóricas e práticas é feita automaticamente.
 | Teórica | Strings                                      |
 | Teórica | Arranjos multidimensionais (matrizes)        |
 | Teórica | Estudos de Caso com Matrizes                 |
-| Teórica | (Fechamento Notas AP1)                       |
+| Teórica | (Fechamento Notas AP1, Anúncio do TF)        |
 | Teórica | (Recuperação AP1)                            |
 | Teórica | Subprogramas e Funções                       |
 | Teórica | Funções e seus Parâmetros                    |
@@ -272,6 +243,12 @@ teoricas %>%
 #+end_src
 
 #+RESULTS: def_junta_praticas_teoricas
+: 
+: Error: Problem with `mutate()` input `Order`.
+: [31m✖[39m Input `Order` can't be recycled to size 14.
+: [34mℹ[39m Input `Order` is `1:15`.
+: [34mℹ[39m Input `Order` must be size 14 or 1, not 15.
+: [90mRun `rlang::last_error()` to see where the error occurred.[39m
 
 **** Mapeamento das aulas sobre as datas
 
@@ -390,6 +367,7 @@ system2("rubber", " --pdf cronograma.tex")
 #+RESULTS: modelo_cronograma
 : 
 : compiling cronograma.tex...
+
 * Cronograma
 
 O cronograma também está [[./cronograma.pdf][disponível em formato PDF]].
@@ -423,7 +401,7 @@ cronograma.output %>%
 | 18 |      7 |            |       |          |     | Arranjos multidimensionais (matrizes)        |
 | 19 |      7 |            |       |          |     | Estudos de Caso com Matrizes                 |
 | 20 |      7 | 2020-10-02 | Sexta | Sim      | P7  | Busca e classificação com matrizes           |
-| 21 |      8 |            |       |          |     | (Fechamento Notas AP1)                       |
+| 21 |      8 |            |       |          |     | (Fechamento Notas AP1, Anúncio do TF)        |
 | 22 |      8 |            |       |          |     | (Recuperação AP1)                            |
 | 23 |      9 |            |       |          |     | Subprogramas e Funções                       |
 | 24 |      9 |            |       |          |     | Funções e seus Parâmetros                    |
