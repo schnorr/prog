@@ -138,8 +138,8 @@ A mescla entre aulas teóricas e práticas é feita automaticamente.
 | Teórica | Strings                                      |
 | Teórica | Arranjos multidimensionais (matrizes)        |
 | Teórica | Estudos de Caso com Matrizes                 |
-| Teórica |                                              |
 | Teórica | (Fechamento Notas AP1)                       |
+| Teórica | (Recuperação AP1)                            |
 | Teórica | Subprogramas e Funções                       |
 | Teórica | Funções e seus Parâmetros                    |
 | Teórica | Referências e Ponteiros                      |
@@ -169,7 +169,7 @@ A mescla entre aulas teóricas e práticas é feita automaticamente.
 | Prática | Comandos for e while                        |
 | Prática | Vetor e Strings                             |
 | Prática | Busca e classificação com matrizes          |
-| Prática | (Recuperação AP1)                           |
+| Prática |                                             |
 | Prática | Funções                                     |
 | Prática | Referências e Ponteiros                     |
 | Prática | Estruturas                                  |
@@ -308,19 +308,48 @@ Sys.setlocale("LC_TIME","en_US.utf8") -> ignore;
 :   OS reports request to set locale to "pt_BR.utf8" cannot be honored
 
 *** Exporta cronograma em TEX
+**** New
 
 #+name: def_cronograma_tex
 #+header: :var dep0=def_cronograma
 #+begin_src R :results output :session :exports both
+options(crayon.enabled=FALSE)
 cronograma %>%
-#    mutate(Setor = case_when(Descrição == "" ~ "",
-#                             TRUE ~ Setor)) %>%
+    mutate(Semana = lead(week(Dia))) %>%
+    mutate(Semana = ifelse(is.na(Semana), max(week(Dia))+1, Semana)) %>%
+    mutate(Semana = as.integer(Semana - min(Semana)+1)) %>%
+    mutate(DiaDaSemana = ifelse(DiaDaSemana == "Friday", "Sexta", "")) %>%
+    mutate(Síncrono = ifelse(Setor == "Prática", "Sim", "")) %>%
+    mutate(Encontro = ifelse(Síncrono == "Sim", Encontro, "")) %>%
+    mutate(Setor = case_when(Setor == "Teórica" ~ "", TRUE ~ .$Setor)) %>%
+    mutate(N = 1:n()) %>%
+    slice(-23) %>%
     group_by(Setor) %>%
-    mutate(O = case_when(Setor == "Prática" ~ paste0("P", 1:n()),
-                         TRUE ~ "")) %>%
+    mutate(O = case_when(Setor == "Prática" & Descrição != "" ~ paste0("P", 1:n()), TRUE ~ "")) %>%
     ungroup %>%
-    mutate(Setor = case_when(Setor == "Teórica" ~ "",
-                             TRUE ~ .$Setor)) %>%
+    select(N, Semana, Data = Encontro, Dia = DiaDaSemana, Síncrono, O, Descrição) -> cronograma.output
+cronograma.output %>%
+    as.data.frame() %>%
+    xtable(., align = "rrrrllll") %>%
+    print (print.results=FALSE,
+           booktabs = TRUE,
+           include.rownames=FALSE,
+           tabular.environment = 'longtable',
+           floating = FALSE) %>%
+    as.character -> cronograma.tex;    
+#+end_src
+
+#+RESULTS:
+
+**** Deprecated
+
+
+#+begin_src R :results output :session :exports both
+cronograma %>%
+    group_by(Setor) %>%
+    mutate(O = case_when(Setor == "Prática" ~ paste0("P", 1:n()), TRUE ~ "")) %>%
+    ungroup %>%
+    mutate(Setor = case_when(Setor == "Teórica" ~ "", TRUE ~ .$Setor)) %>%
     select(N, Encontro, O, Setor, Descrição) %>%
     as.data.frame() %>%
     xtable(., align = "rrlllp{12cm}") %>%
@@ -332,7 +361,10 @@ cronograma %>%
     as.character -> cronograma.tex;
 #+end_src
 
+#+RESULTS:
+
 #+RESULTS: def_cronograma_tex
+
 
 ** Cronograma (em PDF)
 
@@ -342,7 +374,7 @@ cronograma %>%
 cronograma.modelo.filename = "data/be/43e1ff-0a91-4c3f-9e17-1fa62e6795ce/layout-cronograma.tex"
 cronograma.modelo = readChar(cronograma.modelo.filename, file.info(cronograma.modelo.filename)$size);
 turma = "I e J";
-semestre = "2020/1";
+semestre = "ERE 2020/1";
 cronograma.modelo <- gsub("TURMA", turma, cronograma.modelo);
 cronograma.modelo <- gsub("SEMESTRE", semestre, cronograma.modelo);
 cronograma.modelo <- gsub("TABELA", gsub("\\\\", "\\\\\\\\", cronograma.tex), cronograma.modelo);
@@ -351,82 +383,78 @@ system2("rm", "-f cronograma.pdf")
 system2("rubber", " --pdf cronograma.tex")
 #+end_src
 
-#+RESULTS: modelo_cronograma
+#+RESULTS:
 : 
 : compiling cronograma.tex...
 
-* Cronograma                                                       :noexport:
+#+RESULTS: modelo_cronograma
+: 
+: compiling cronograma.tex...
+* Cronograma
 
 O cronograma também está [[./cronograma.pdf][disponível em formato PDF]].
 
 #+header: :var dep=def_cronograma
 #+begin_src R :results value table :session :exports output :colnames yes
-cronograma %>%
-    select(N, Encontro, Setor, Descrição) %>%
-    mutate(Setor = case_when(Setor == "Prática" ~ "*Prática*",
-                             TRUE ~ .$Setor)) %>%
+cronograma.output %>%
     as.data.frame
 #+end_src
 
 #+RESULTS:
-|  N |   Encontro | Setor   | Descrição                                                       |
-|----+------------+---------+-----------------------------------------------------------------|
-|  1 | 2020-08-19 | Teórica | Apresentação, Introdução/Paradigmas/Programa/Algoritmo          |
-|  2 | 2020-08-21 | *Prática* | Introdução ao sistema EAD e ao compilador C                     |
-|  3 | 2020-08-24 | Teórica | Algoritmo: atribuição, entrada/saída Estrutura de programa C    |
-|  4 | 2020-08-26 | Teórica | Tipos, Declaração de variáveis, Operadores e Expr. Arit. e Lóg. |
-|  5 | 2020-08-28 | *Prática* | Programa sequencial e comandos de seleção simples               |
-|  6 | 2020-08-31 | Teórica | Comando de Seleção If                                           |
-|  7 | 2020-09-02 | Teórica | Aninhamento de comandos If Else                                 |
-|  8 | 2020-09-04 | *Prática* | (EAD) Exercicio if, if-else, switch                             |
-|  9 | 2020-09-07 | Teórica | Estrutura de seleção múltipla - comando switch                  |
-| 10 | 2020-09-09 | Teórica | Comando iterativo for                                           |
-| 11 | 2020-09-11 | *Prática* | Comandos for, while                                             |
-| 12 | 2020-09-14 | Teórica | Comandos iterativos while e do-while                            |
-| 13 | 2020-09-16 | Teórica | Comandos iterativos while e do-while Exemplos                   |
-| 14 | 2020-09-18 | *Prática* | Comandos iterativos -- for e while                              |
-| 15 | 2020-09-21 | Teórica | Tipos estruturados básicos – arranjos de uma dimensão           |
-| 16 | 2020-09-23 | Teórica | Classificação de vetores Strings: arranjos de caracteres        |
-| 17 | 2020-09-25 | *Prática* | (EAD) Comandos iterativos -- while/do-while, vetor/strings      |
-| 18 | 2020-09-28 | Teórica | Arranjos com mais de uma dimensão: matrizes                     |
-| 19 | 2020-09-30 | Teórica | Busca e classificação em matrizes                               |
-| 20 | 2020-10-02 | *Prática* | Busca e classificação com matrizes                              |
-| 21 | 2020-10-05 | Teórica | Revisão Geral para Prova                                        |
-| 22 | 2020-10-07 | Teórica | 1ª Prova                                                        |
-| 23 | 2020-10-09 | *Prática* | Apresentação do trabalho final                                  |
-| 24 | 2020-10-12 | Teórica | Subprogramação - variáveis locais e globais, parâmetros         |
-| 25 | 2020-10-14 | Teórica | Função sem retorno (void): parâmetros formais e reais           |
-| 26 | 2020-10-16 | *Prática* | Funções sem retorno                                             |
-| 27 | 2020-10-19 | Teórica | Parâmetros por valor e por referência, Ponteiros                |
-| 28 | 2020-10-21 | Teórica | Ponteiros, Funções com retorno                                  |
-| 29 | 2020-10-23 | *Prática* | Funções parametrizadas com retorno e ponteiros                  |
-| 30 | 2020-10-26 | Teórica | Estruturas e Definição de Tipos                                 |
-| 31 | 2020-10-28 | Teórica | Estruturas e parâmetros                                         |
-| 32 | 2020-10-30 | *Prática* | Estruturas                                                      |
-| 33 | 2020-11-02 | Teórica | Stream Arquivos binários: acesso sequencial                     |
-| 34 | 2020-11-04 | Teórica | Arquivos binários: acesso randômico                             |
-| 35 | 2020-11-06 | *Prática* | Arquivos binários                                               |
-| 36 | 2020-11-09 | Teórica | Arquivo texto                                                   |
-| 37 | 2020-11-11 | Teórica | Arquivos texto exemplos                                         |
-| 38 | 2020-11-13 | *Prática* | Arquivos texto                                                  |
-| 39 | 2020-11-16 | Teórica | Recursividade                                                   |
-| 40 | 2020-11-18 | Teórica | Depuração de programas                                          |
-| 41 | 2020-11-20 | *Prática* | Recursividade                                                   |
-| 42 | 2020-11-23 | Teórica | Bubble sort e algoritmos avançados de ordenamento               |
-| 43 | 2020-11-25 | Teórica | Revisão para a segunda  prova                                   |
-| 44 | 2020-11-27 | *Prática* | Apresentação de Trabalhos Finais                                |
-| 45 | 2020-11-30 | Teórica | 2ª Prova                                                        |
+|  N | Semana |       Data | Dia   | Síncrono | O   | Descrição                                    |
+|----+--------+------------+-------+----------+-----+----------------------------------------------|
+|  1 |      1 |            |       |          |     | Apresentação da disciplina, Introdução Geral |
+|  2 |      1 | 2020-08-21 | Sexta | Sim      | P1  | Introdução ao sistema EAD e ao compilador C  |
+|  3 |      2 |            |       |          |     | Estrutura de um Programa em C                |
+|  4 |      2 |            |       |          |     | Tipos de variáveis, expressões aritméticas   |
+|  5 |      2 | 2020-08-28 | Sexta | Sim      | P2  | Programa sequencial                          |
+|  6 |      3 |            |       |          |     | Comandos if e expressões lógicas             |
+|  7 |      3 |            |       |          |     | Comandos if-else aninhados                   |
+|  8 |      3 | 2020-09-04 | Sexta | Sim      | P3  | Comandos if e if-else                        |
+|  9 |      4 |            |       |          |     | Estrutura de seleção múltipla switch-case    |
+| 10 |      4 |            |       |          |     | Comando iterativo for                        |
+| 11 |      4 | 2020-09-11 | Sexta | Sim      | P4  | Comandos switch e for                        |
+| 12 |      5 |            |       |          |     | Comando iterativo for (bis)                  |
+| 13 |      5 |            |       |          |     | Comando iterativo while                      |
+| 14 |      5 | 2020-09-18 | Sexta | Sim      | P5  | Comandos for e while                         |
+| 15 |      6 |            |       |          |     | Arranjos unidimensionais (vetores)           |
+| 16 |      6 |            |       |          |     | Strings                                      |
+| 17 |      6 | 2020-09-25 | Sexta | Sim      | P6  | Vetor e Strings                              |
+| 18 |      7 |            |       |          |     | Arranjos multidimensionais (matrizes)        |
+| 19 |      7 |            |       |          |     | Estudos de Caso com Matrizes                 |
+| 20 |      7 | 2020-10-02 | Sexta | Sim      | P7  | Busca e classificação com matrizes           |
+| 21 |      8 |            |       |          |     | (Fechamento Notas AP1)                       |
+| 22 |      8 |            |       |          |     | (Recuperação AP1)                            |
+| 24 |      9 |            |       |          |     | Subprogramas e Funções                       |
+| 25 |      9 |            |       |          |     | Funções e seus Parâmetros                    |
+| 26 |      9 | 2020-10-16 | Sexta | Sim      | P8  | Funções                                      |
+| 27 |     10 |            |       |          |     | Referências e Ponteiros                      |
+| 28 |     10 |            |       |          |     | Ponteiros, Passagem de Matrizes              |
+| 29 |     10 | 2020-10-23 | Sexta | Sim      | P9  | Referências e Ponteiros                      |
+| 30 |     11 |            |       |          |     | Ordenamento Bolha, Estruturas I              |
+| 31 |     11 |            |       |          |     | Estruturas II                                |
+| 32 |     11 | 2020-10-30 | Sexta | Sim      | P10 | Estruturas                                   |
+| 33 |     12 |            |       |          |     | Arquivo Binário I (acesso sequencial)        |
+| 34 |     12 |            |       |          |     | Arquivo Binário II (acesso aleatório)        |
+| 35 |     12 | 2020-11-06 | Sexta | Sim      | P11 | Arquivos binários                            |
+| 36 |     13 |            |       |          |     | Arquivo Texto I (visão geral)                |
+| 37 |     13 |            |       |          |     | Arquivo Texto II (conversão/tokens)          |
+| 38 |     13 | 2020-11-13 | Sexta | Sim      | P12 | Arquivos texto                               |
+| 39 |     14 |            |       |          |     | Recursividade                                |
+| 40 |     14 |            |       |          |     | Depuração de programas                       |
+| 41 |     14 | 2020-11-20 | Sexta | Sim      | P13 | Recursividade                                |
+| 42 |     15 |            |       |          |     | (Apresentação dos trabalhos finais)          |
+| 43 |     15 |            |       |          |     | (Fechamento Notas AP2, TF)                   |
+| 44 |     16 |            |       |          |     | (Recuperação MF)                             |
 
-#+header: :var dep0=def_recup
 #+begin_src R :results value table :session :exports output :colnames yes
-tribble(~"*Prova de Recuperação (PR)*",
-        dataDaRecuperação)
+cronograma %>%
+    filter(grepl("Recuperação", Descrição)) %>%
+    select(Dia, Descrição)
 #+end_src
 
 #+RESULTS:
-| *Prova de Recuperação (PR)* |
-|---------------------------|
-|                2020-07-06 |
-* Cronograma
-
-Aguardando novo calendário acadêmico para 2020/1.
+|        Dia | Descrição         |
+|------------+-------------------|
+| 2020-10-07 | (Recuperação AP1) |
+| 2020-11-30 | (Recuperação MF)  |
