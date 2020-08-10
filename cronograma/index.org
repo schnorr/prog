@@ -327,6 +327,7 @@ cronograma %>%
     group_by(Setor) %>%
     mutate(O = case_when(Setor == "Prática" & Descrição != "" ~ paste0("P", 1:n()), TRUE ~ "")) %>%
     ungroup %>%
+    mutate(N = 1:n()) %>%
     select(N, Semana, Data = Encontro, Dia = DiaDaSemana, Síncrono, O, Descrição) -> cronograma.output
 cronograma.output %>%
     as.data.frame() %>%
@@ -364,7 +365,6 @@ cronograma %>%
 #+RESULTS:
 
 #+RESULTS: def_cronograma_tex
-
 
 ** Cronograma (em PDF)
 
@@ -425,27 +425,27 @@ cronograma.output %>%
 | 20 |      7 | 2020-10-02 | Sexta | Sim      | P7  | Busca e classificação com matrizes           |
 | 21 |      8 |            |       |          |     | (Fechamento Notas AP1)                       |
 | 22 |      8 |            |       |          |     | (Recuperação AP1)                            |
-| 24 |      9 |            |       |          |     | Subprogramas e Funções                       |
-| 25 |      9 |            |       |          |     | Funções e seus Parâmetros                    |
-| 26 |      9 | 2020-10-16 | Sexta | Sim      | P8  | Funções                                      |
-| 27 |     10 |            |       |          |     | Referências e Ponteiros                      |
-| 28 |     10 |            |       |          |     | Ponteiros, Passagem de Matrizes              |
-| 29 |     10 | 2020-10-23 | Sexta | Sim      | P9  | Referências e Ponteiros                      |
-| 30 |     11 |            |       |          |     | Ordenamento Bolha, Estruturas I              |
-| 31 |     11 |            |       |          |     | Estruturas II                                |
-| 32 |     11 | 2020-10-30 | Sexta | Sim      | P10 | Estruturas                                   |
-| 33 |     12 |            |       |          |     | Arquivo Binário I (acesso sequencial)        |
-| 34 |     12 |            |       |          |     | Arquivo Binário II (acesso aleatório)        |
-| 35 |     12 | 2020-11-06 | Sexta | Sim      | P11 | Arquivos binários                            |
-| 36 |     13 |            |       |          |     | Arquivo Texto I (visão geral)                |
-| 37 |     13 |            |       |          |     | Arquivo Texto II (conversão/tokens)          |
-| 38 |     13 | 2020-11-13 | Sexta | Sim      | P12 | Arquivos texto                               |
-| 39 |     14 |            |       |          |     | Recursividade                                |
-| 40 |     14 |            |       |          |     | Depuração de programas                       |
-| 41 |     14 | 2020-11-20 | Sexta | Sim      | P13 | Recursividade                                |
-| 42 |     15 |            |       |          |     | (Apresentação dos trabalhos finais)          |
-| 43 |     15 |            |       |          |     | (Fechamento Notas AP2, TF)                   |
-| 44 |     16 |            |       |          |     | (Recuperação MF)                             |
+| 23 |      9 |            |       |          |     | Subprogramas e Funções                       |
+| 24 |      9 |            |       |          |     | Funções e seus Parâmetros                    |
+| 25 |      9 | 2020-10-16 | Sexta | Sim      | P8  | Funções                                      |
+| 26 |     10 |            |       |          |     | Referências e Ponteiros                      |
+| 27 |     10 |            |       |          |     | Ponteiros, Passagem de Matrizes              |
+| 28 |     10 | 2020-10-23 | Sexta | Sim      | P9  | Referências e Ponteiros                      |
+| 29 |     11 |            |       |          |     | Ordenamento Bolha, Estruturas I              |
+| 30 |     11 |            |       |          |     | Estruturas II                                |
+| 31 |     11 | 2020-10-30 | Sexta | Sim      | P10 | Estruturas                                   |
+| 32 |     12 |            |       |          |     | Arquivo Binário I (acesso sequencial)        |
+| 33 |     12 |            |       |          |     | Arquivo Binário II (acesso aleatório)        |
+| 34 |     12 | 2020-11-06 | Sexta | Sim      | P11 | Arquivos binários                            |
+| 35 |     13 |            |       |          |     | Arquivo Texto I (visão geral)                |
+| 36 |     13 |            |       |          |     | Arquivo Texto II (conversão/tokens)          |
+| 37 |     13 | 2020-11-13 | Sexta | Sim      | P12 | Arquivos texto                               |
+| 38 |     14 |            |       |          |     | Recursividade                                |
+| 39 |     14 |            |       |          |     | Depuração de programas                       |
+| 40 |     14 | 2020-11-20 | Sexta | Sim      | P13 | Recursividade                                |
+| 41 |     15 |            |       |          |     | (Apresentação dos trabalhos finais)          |
+| 42 |     15 |            |       |          |     | (Fechamento Notas AP2, TF)                   |
+| 43 |     16 |            |       |          |     | (Recuperação MF)                             |
 
 #+begin_src R :results value table :session :exports output :colnames yes
 cronograma %>%
