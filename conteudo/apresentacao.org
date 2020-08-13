@@ -8,7 +8,7 @@
 
 #+Title: Apresentação \linebreak Algoritmos e Programação
 #+Subtitle: *INF01202*
-#+Author: Prof. Lucas Mello Schnorr \linebreak Prof. Claudio Jung
+#+Author: Prof. Lucas Mello Schnorr \linebreak Prof. Renan Maffei
 #+Date: \copyleft
 
 #+LaTeX_CLASS: beamer
