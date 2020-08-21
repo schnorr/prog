@@ -6,7 +6,7 @@
 #+EXPORT_EXCLUDE_TAGS: noexport
 #+EXPORT_SELECT_TAGS: export
 
-#+Title: Apresentação \linebreak Algoritmos e Programação
+#+Title: Algoritmos e Programação
 #+Subtitle: *INF01202* \linebreak (ERE 2020/1)
 #+Author: Prof. Lucas Mello Schnorr \linebreak Prof. Renan Maffei
 #+Date: \copyleft
@@ -201,6 +201,8 @@ Senão
 * Algoritmo para avaliação (no caso de recuperação)
 
 
+Lá no final do semestre, após fazer a recuperação.
+
 #+BEGIN_SRC C
 Se em recuperação
    MF = (MF + Recuperação)/2
@@ -220,8 +222,10 @@ Sempre consulte o Moodle Institucional da UFRGS
 #+END_CENTER
 
 Por turma
-- Turma I: https://moodle.ufrgs.br/course/view.php?id=74642
-- Turma J: https://moodle.ufrgs.br/course/view.php?id=74643
+- Turma I
+  - https://moodle.ufrgs.br/course/view.php?id=74642
+- Turma J
+  - https://moodle.ufrgs.br/course/view.php?id=74643
 
 * Cronograma
 ** Texto
