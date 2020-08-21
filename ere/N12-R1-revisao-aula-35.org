@@ -1,0 +1,153 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Algoritmos
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: @@latex:\copyleft@@
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{systeme}
+
+#+latex: \newcommand{\mytitle}{Revisão Aula 35}
+#+latex: \mytitleslide
+
+* Revisão
+
+Estruturação de programas em módulos
+- O que é um módulo: arquivos ~.h~ (cabeçalho) e ~.c~ (implementação)
+
+No cabeçalho do módulo (~.h~)
+- Vários ~#include~ de bibliotecas utilizadas pelo módulo
+- Declarações de novos tipos de usuário com ~struct~
+- Emprego do ~typedef~ para dar apelidos para os novos tipos
+- Declarações de todos os protótipos das funções ditas visíveis
+
+No arquivo de implementação do módulo (~.c~)
+- Um único ~#include~, do cabeçalho do módulo
+- Implementação de todas as funções ditas visíveis
+- Implementação de funções ditas privadas, com ~static~
+
+* Revisão
+
+Acesso não sequencial a um arquivo
+- Controle do cabeçote de leitura/escrita
+
+#+latex: \vfill
+
+São basicamente três funções:
+
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C
+void rewind(FILE *stream);
+int fseek(FILE *stream, long offset, int whence);
+long ftell(FILE *stream);
+#+END_SRC
+
+* Exercício #1: Calcular estatísticas
+
+Faça um programa de computador que leia ~atletas.bin~ e calcule a idade
+mínima, idade máxima e idade média dentre todos os atletas
+envolvidos. Faça o mesmo (ao mesmo tempo) para a altura dos atletas.
+
+Implemente este algoritmo
+
+1. Posicione no início do primeiro atleta (4 /bytes/ do início do arquivo)
+2. Enquanto o arquivo não terminar
+   1. Avance até a posição da idade (sabendo que o nome ocupa 32 /bytes/)
+   2. Leia a idade
+   3. Atualize estatísticas da idade
+   4. Leia a altura
+   5. Atualize estatísticas da altura
+3. Apresente as estatísticas
+   
+E lembre-se:
+- A idade média e a altura média são números reais.
+- Utilize o programa ~GeraSalva~ para criar ~atletas.bin~
+
+* (#1) Estratégia
+
+Gerar um arquivo ~atletas.bin~:
+#+begin_src shell :results output :dir e/rev-a34/ :exports both
+./GeraSalva; ls -l atletas.bin
+#+end_src
+
+#+RESULTS:
+: -rw-r--r-- 1 schnorr schnorr 80000004 Jun 10 08:30 atletas.bin
+
+Lembrando do formato do arquivo
+- Um inteiro (4 bytes) com a quantidade de atletas no arquivo
+- Sequência de estruturas de dados com os atletas
+
+#+latex: \vfill\pause
+
+Passos
+1. Abrir arquivo para leitura (/aka/ "r")
+2. Posicionar o cabeçote no início do primeiro campo idade
+3. Enquanto o arquivo não terminar
+   1. Ler idade, atualizar estatísticas
+   2. Ler altura, atualizar estatísticas
+   3. Mover o cabeçote no início do próximo campo idade
+4. Apresentar estatísticas
+
+* (#1) Código
+
+#+BEGIN_SRC C
+#include "GeraSalva.h"
+int main() {
+  int idade, altura;
+  FILE *arquivo = fopen(FATLETAS, "r");
+  if (arquivo == NULL) {
+    printf("Impossível de abrir arquivo [%s] para leitura. Fatal.\n", FATLETAS);
+    return 0;
+  }
+  fseek(arquivo, sizeof(int)+sizeof(char)*32, SEEK_SET);
+  while(feof(arquivo) == 0) {
+    fread(&idade, sizeof(int), 1, arquivo);
+    fread(&altura, sizeof(int), 1, arquivo);
+    fseek(arquivo, sizeof(char)*32, SEEK_CUR);
+  }
+  fclose(arquivo);
+  return 0;
+}
+#+END_SRC
+
+* Leitura recomendada
+
+Why is “while (!feof(file))” always wrong?
+
+https://stackoverflow.com/questions/5431941/why-is-while-feoffile-always-wrong#26557243
+
+* (#1) Código melhorado (considera erro na leitura)
+
+~Estatistica-Esqueleto.c~
+#+BEGIN_SRC C :tangle e/rev-a34/Estatistica-Esqueleto.c
+#include "GeraSalva.h"
+int main() {
+  int bytes_lidos;
+  int idade, altura;
+  FILE *arquivo = fopen(FATLETAS, "r");
+  if (arquivo == NULL) {
+    printf("Impossível de abrir arquivo [%s] para leitura. Fatal.\n", FATLETAS);
+    return 0;
+  }
+  fseek(arquivo, sizeof(int)+sizeof(char)*32, SEEK_SET);
+  do {
+    bytes_lidos = fread(&idade, sizeof(int), 1, arquivo);
+    bytes_lidos += fread(&altura, sizeof(int), 1, arquivo);
+    fseek(arquivo, sizeof(char)*32, SEEK_CUR);
+  }while(bytes_lidos != 0);
+  fclose(arquivo);
+  return 0;
+}
+#+END_SRC
+

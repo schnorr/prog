@@ -1,0 +1,261 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Algoritmos
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{systeme}
+
+#+latex: \newcommand{\mytitle}{Arquivos Texto - Conversão de Tokens}
+#+latex: \mytitleslide
+
+* Sumário
+
+#+BEGIN_COMMENT
+Veremos funções auxiliares para lidar com texto (/strings/).
+#+END_COMMENT
+
+Conversão de /strings/ para tipos de dados (parte de ~stdlib.h~)
+- ~char*~ para ~int~ (~atoi~)
+- ~char*~ para ~long~ (~atol~)
+- ~char*~ para ~long long~ (~atoll~)
+- ~char*~ para ~double~ (~atof~)
+- Outras funções
+  - ~strtod~ (double), ~stdtof~ (float), ~strtold~ (long double)
+
+Funções para análise, divisão em /tokens/ (pedaços) (~string.h~)
+- Leitura caractere por caractere
+- ~strtok~
+
+Exemplos e Exercício
+
+* Conversão de /string/ para ~int~, ~long~ ou ~long long~
+
+Protótipos
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C
+#include<stdlib.h>
+int atoi(const char *nptr);
+long atol(const char *nptr);
+long long atoll(const char *nptr);
+#+END_SRC
+
+#+latex: \vfill\pause
+
+Exemplo
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C :results output :exports both
+char str[] = "345612";
+int numero;
+long numero_longo;
+numero = atoi(str);
+printf("[%d]\n", numero);
+numero_longo = atol(str);
+printf("[%ld]\n", numero_longo);
+#+END_SRC
+
+#+RESULTS:
+: [345612]
+: [345612]
+
+* Conversão de /string/ para ~double~
+
+Protótipo
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C
+#include<stdlib.h>
+double atof(const char *nptr);
+#+END_SRC
+
+#+latex: \vfill\pause
+
+Exemplo
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C :results output :exports both :includes "<stdlib.h> <stdio.h>"
+char str[] = "345612.21098823";
+double numero;
+numero = atof(str);
+printf("[%.15f]\n", numero);
+#+END_SRC
+
+#+RESULTS:
+: [345612.210988230013754]
+
+* Outras funções de conversão com tratamento de erros
+
+Protótipos
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C
+#include<stdlib.h>
+double strtod(const char *nptr, char **endptr);
+float strtof(const char *nptr, char **endptr);
+long double strtold(const char *nptr, char **endptr);
+#+END_SRC
+
+#+latex: \vfill\pause
+
+*Comentário*: Se ~endptr~ não for nulo, um ponteiro para o caractere
+depois do último caractere utilizado na conversão é registrado na
+localização referenciada por ~endptr~. \to Útil para fazer o parsing de
+números separados por espaços (por exemplo).
+
+* Processamento de texto
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula27/aula27_slide_04.pdf}{Prof. Marcelo Walter}
+* Extração de elementos (separação em /tokens/)
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula27/aula27_slide_05.pdf}{Prof. Marcelo Walter}
+* Caractere por caractere (estratégia puramente manual)
+
+Enquanto o arquivo não terminar
+1. Lê uma linha do arquivo em uma /string/ ~linha~
+2. Para cada caractere de ~linha~
+   1. Obtém o caractere ~c~
+   2. Se ~c~ não for um separador
+      1. Concatena caractere ~c~ no fim da /string/ ~aux~
+   3. Senão
+      1. Concatena caractere ~\0~ no fim da /string/ ~aux~
+      2. Converte a string ~aux~ para o tipo apropriado
+
+#+latex: \vfill
+
+Exemplo de entrada
+#+BEGIN_EXAMPLE
+20#Ricardo Garcia Belfast#8.4#5.7#8.8#
+55#Pedro Pedreira Paris#9.0#5.8#7.5#
+67#Dagmar Scherer Brasil#8.5#7.0#6.0#
+#+END_EXAMPLE
+
+* Tokenização com ~strtok~: mais sofisticação
+
+Protótipo
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C
+#include<string.h>
+char *strtok(char *str, const char *delim);
+#+END_SRC
+
+A função ~strtok()~ quebra a ~str~ em uma sequência de zero ou mais tokens
+não vazios. Na primeira chamada para ~strtok()~, a /string/ a ser
+processada deve ser especificada em ~str~. Nas chamadas subsequentes que
+devem continuar o processamento da mesma string, ~str~ deve ser nulo.
+
+#+latex: \vfill\pause
+
+Exemplo
+#+BEGIN_SRC C :includes "<stdio.h> <string.h>" :results output :exports both
+char linha[] = "20#Ricardo Garcia Belfast#8.4#5.7#8.8#";
+char *p = strtok(linha, "#");
+do {
+  printf("[%s]\n", p);
+} while ((p = strtok(NULL, "#")));
+#+END_SRC
+
+#+RESULTS:
+: [20]
+: [Ricardo Garcia Belfast]
+: [8.4]
+: [5.7]
+: [8.8]
+* Exemplo #1: emprego de ~strtok~ e ~atof~
+
+Desenvolver um programa em C que abre um arquivo texto ~entrada.txt~,
+composto de sequências de números ponto-flutuantes separados por
+asterisco, os lendo sucessivamente até encontrar EOF. O resultado do
+programa deve ser o somatório desses números.
+
+#+latex: \vfill\pause
+
+Exemplo de ~entrada.txt~:
+#+BEGIN_EXAMPLE
+12.34*2.29*2.31*948.24*1023.24*1.253
+#+END_EXAMPLE
+* (#1) Solução possível
+
+#+BEGIN_SRC C :tangle e/a38-soma-doubles.c
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#define MAXNUMEL 10
+void ConvertePontuacao(FILE *fp, double vet[]);
+int main() {
+  FILE *arq = NULL;
+  int i = 0;
+  double ptos[MAXNUMEL]; // vetor de pontos e índice
+  arq = fopen("entrada.txt", "r");
+  if (arq == NULL){
+    printf("Erro ao abrir arquivo!\n");
+    return 0;
+  }
+  ConvertePontuacao (arq, ptos);
+  fclose(arq);
+  printf("Vetor resultante da conversao:\n");
+  double somatorio = 0;
+  while (ptos[i] != -1){
+    printf(" %f ",ptos[i]);
+    somatorio += ptos[i];
+    i++;
+  }
+  printf("\nSomatorio: %f\n", somatorio);
+  return 0;
+}
+
+#+END_SRC
+
+* (#1) Solução possível (continuação)
+
+#+BEGIN_SRC C :tangle e/a38-soma-doubles.c :main no
+void ConvertePontuacao (FILE *fp, double vet[]) {
+  char stringao[256], *pch; // armazena linha lida
+  int i_vet=0;
+  if (fgets (stringao, sizeof(stringao), fp) == NULL)
+    printf("\n Não leu nada!");
+  else{
+    pch = strtok(stringao,"*");
+    vet[i_vet] = atof(pch);
+    while (pch != NULL){
+      i_vet++;
+      pch = strtok(NULL,"*");
+      if (pch!= NULL) vet[i_vet] = atof(pch);
+    }
+    vet[i_vet] = -1; // sinalizador de fim de valores convertidos
+  }
+} // fim da função
+#+END_SRC
+
+#+RESULTS:
+* Exemplo #2: convergência 
+
+Desenvolver um programa em C que leia um arquivo texto contendo
+código, nomes e duas notas, em formato CSV, listando os conteúdos
+formatados e calculando a média das notas lidas.  O programa ao
+executar lê o arquivo dados.txt, como este exemplo:
+#+BEGIN_EXAMPLE
+4,Marina Bastos,8.5,5.6
+13,Joao Super da Silva,2.3,9.8
+33,Sonja Sperb,4.5,7.8
+#+END_EXAMPLE
+* Exercício #1
+
+O arquivo texto ~matriz.txt~ contém, na primeira linha, as dimensões de
+uma matriz separadas por um espaço (linha e coluna). Nas linhas
+seguintes, contém os elementos de uma matriz (inteiros) com a dimensão
+especificada. Considere que o número de linhas e de colunas não pode
+exceder uma constante DIMMAX.  Desenvolver um programa em C que:
+
+1. Leia o arquivo texto acima, armazenando os dados em uma matriz.
+2. Imprima a matriz na tela, no formato de matriz
+3. Troque todos elementos negativos da matriz por zero.
+4. Grave os elementos da matriz modificada no arquivo binário
+   ~matriz.bin~, linha por linha.
+5. Leia o arquivo ~matriz.bin~ em outra matriz, imprimindo-a na tela.

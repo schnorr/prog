@@ -1,0 +1,202 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Algoritmos
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+
+#+latex: \newcommand{\mytitle}{Revisão Aula 07}
+#+latex: \mytitleslide
+
+* Configuração                                                     :noexport:
+
+#+BEGIN_SRC emacs-lisp
+(setq org-latex-listings 'minted
+      org-latex-packages-alist '(("" "minted"))
+      org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+(setq org-latex-minted-options
+       '(("frame" "lines")
+         ("fontsize" "\\scriptsize")))
+#+END_SRC
+
+#+RESULTS:
+| frame    | lines       |
+| fontsize | \scriptsize |
+* Revisão rápida
+
+#+ATTR_LATEX: :options frame=leftline
+#+BEGIN_SRC C
+if (condição 1)
+  if (condição 2)
+    if (condição 3)
+      comando;
+  else
+    comando;
+#+END_SRC
+
+O =else= se refere a qual =if=?
+
+- [ ] Primeiro
+- [ ] Segundo
+- [ ] Terceiro
+
+
+#+latex: \vfill\pause
+
+#+ATTR_LATEX: :options frame=leftline
+#+BEGIN_SRC C
+if (condição 1)
+  if (condição 2)
+    if (condição 3)
+      comando;
+  else if(condição 4)
+    comando;
+#+END_SRC
+
+
+E agora, mudou alguma coisa?
+
+- [ ] Sim
+- [ ] Não
+
+* Cuidado com o encadeamento
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula06_slide_03.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Exercício para casa #1
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula05-If_Aninhado_slide_38.pdf}{Prof. Mara Abel}
+
+* Uma possível solução para o exercício #1
+
+Veja o arquivo [[./rev-a05-raizes.c]].
+
+#+BEGIN_SRC C :tangle e/rev-a05-raizes.c
+/* Um programa de computador para averiguar se uma equação é de segundo grau */
+#include<stdio.h>
+#include<math.h>
+int main() {
+  float a, b, c;      //variáveis de entrada
+  float delta, r1, r2; //variáveis auxiliares
+  printf("Entre com os valores a, b, c, separados por espaço:\n");
+  scanf("%f%f%f", &a, &b, &c);
+  printf("Dados reconhecidos: a = [%f] b = [%f] c = [%f]\n", a, b, c);
+  printf("Vamos analisar a equação: %f * x^2 + %f * x + %f = 0\n", a, b, c);
+  if(a == 0){
+    printf("Resposta: Não é uma equação do segundo grau.\n");
+  }else{
+    delta = pow(b, 2) - 4 * a * c;
+    if (delta < 0){
+      printf("Resposta: raízes imaginárias %f (%f).\n", pow(b, 2), delta);
+    }else{
+      r1 = (-b + sqrt(delta)) / 2 * a;
+      r2 = (-b - sqrt(delta)) / 2 * a;
+      printf("Os resultados possíveis são: x = [%f] ou x = [%f]\n", r1, r2);
+    }
+  }
+  return 0;
+}
+#+end_src
+
+* Exercício para casa #2
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula05-If_Aninhado_slide_41.pdf}{Prof. Mara Abel}
+
+* Uma possível solução para o exercício #2
+
+Veja o arquivo [[./rev-a05-ordem.c]].
+
+#+BEGIN_SRC C :tangle e/rev-a05-ordem.c
+/* Um programa de computador para averiguar se uma equação é de segundo grau */
+#include<stdio.h>
+#include<math.h>
+int main() {
+  float a, b, c;            //variáveis de entrada
+  float menor, meio, maior; //variáveis de saída
+  printf("Entre com os três valores separados por espaço:\n");
+  scanf("%f%f%f", &a, &b, &c);
+  printf("Dados reconhecidos: [%f] [%f] [%f]\n", a, b, c);
+
+  //Descobre o menor
+  if (a < b && a < c)
+    menor = a;
+  else if (b < a && b < c)
+    menor = b;
+  else
+    menor = c;
+
+  //Descobre o maior
+  if (a > b && a > c)
+    maior = a;
+  else if (b > a && b > c)
+    maior = b;
+  else
+    maior = c;
+
+  //Descobre o miolo
+  if (a != maior && a != menor) 
+    meio = a;
+  else if (b != maior && b != menor)
+    meio = b;
+  else
+    meio = c;
+  printf("Em ordem crescente: %f %f %f\n", menor, meio, maior);
+  return 0;
+}
+#+end_src
+
+* Uma solução melhorada para o exercício #2
+
+Veja o arquivo [[./rev-a05-ordem-melhor.c]].
+
+#+BEGIN_SRC C :tangle e/ rev-a05-ordem-melhor.c
+#include <stdio.h>
+int main()
+{
+  float v1, v2, v3;    //variáveis de entrada e saída
+  printf("Entre com os três valores separados por espaço:\n");
+  scanf("%f%f%f", &v1, &v2, &v3);
+  printf("Dados reconhecidos: [%f] [%f] [%f]\n", v1, v2, v3);
+  if ( v1 <= v2)
+    if( v1 <= v3 )
+      if(v2 <= v3)
+	printf("%f, %f, %f\n", v1, v2, v3);
+      else
+	printf("%f, %f, %f\n", v1, v3, v2);
+    else
+      printf("%f, %f, %f\n", v3, v1, v2);
+  else
+    if(v2 <= v3)
+      if(v1 <= v3)
+	printf("%f, %f, %f\n", v2, v1, v3);
+      else
+	printf("%f, %f, %f\n", v2, v3, v1);
+    else
+      printf("%f, %f, %f\n", v3, v2, v1);
+  return 0;
+}
+#+end_src
+
+* Exercício para casa #3
+
+Suponha que a variável =resultado= se inicie com o valor =20=.
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula05-If_Aninhado_slide_44.pdf}{Prof. Mara Abel}
+
+* Uma possível solução para o exercício #3
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula06-Switch_slide_38.pdf}{Prof. Mara Abel}
+

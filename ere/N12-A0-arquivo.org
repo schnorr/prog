@@ -1,0 +1,318 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Algoritmos
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{systeme}
+
+#+latex: \newcommand{\mytitle}{Arquivos}
+#+latex: \mytitleslide
+
+* Sumário
+Lidar com Arquivos
+- Introdução
+- Conceitos
+- Terminologia
+
+#+latex: \vfill
+
+Em C (lidar com o conteúdo de arquivos)
+- Abrir ~fopen~
+- Fechar ~fclose~
+- Ler ~fread~
+- Escrever ~fwrite~
+- Descarregar ~fflush~
+- Testar fim de arquivo ~feof~
+- Avaliar condição de erro ~ferror~
+
+* Arquivos                                                         :noexport:
+Arquivos são *repositórios permanentes* de dados
+- Permitem /perenizar/ informações de um programa
+
+#+latex: \pause
+
+Arquivos são armazenados em memória auxiliar
+- Discos (rígidos, sólidos), /Pendrive/, Cartões SD
+
+#+latex: \pause
+
+A alteração de um arquivo é permanente.
+
+#+latex: \pause
+
+Arquivos podem ser grandes
+* Arquivos
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula24/aula24_slide_06.pdf}{Prof. Marcelo Walter}
+* Arquivos                                                         :noexport:
+#+latex: %\cortesia{../../../Algoritmos/Claudio/Teorica/Aula24-stream_e_arquivos_slide_01.pdf}{Prof. Claudio Jung}
+* Arquivos em C
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula24/aula24_slide_07.pdf}{Prof. Marcelo Walter}
+* /Stream/
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/Aula24-ArquivoEArquivoBin_emC_1_slide_04.pdf}{Prof. Edison Pignaton de Freitas}
+* Como funciona?
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula24/aula24_slide_08.pdf}{Prof. Marcelo Walter}
+* Tipos de arquivo
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula24/aula24_slide_09.pdf}{Prof. Marcelo Walter}
+* Arquivo Binário
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula24/aula24_slide_10.pdf}{Prof. Marcelo Walter}
+* Exemplo de arquivo binário com inteiros
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula24/aula24_slide_12.pdf}{Prof. Marcelo Walter}
+* Operações em C para arquivos binários
+#+BEGIN_CENTER
+Retiradas da biblioteca ~stdio.h~
+#+END_CENTER
+
+| *Operação*                 | *Função* |
+|--------------------------+--------|
+| Abrir                    | ~fopen~  |
+| Fechar                   | ~fclose~ |
+| Ler                      | ~fread~  |
+| Escrever                 | ~fwrite~ |
+| Descarregar              | ~fflush~ |
+| Testar fim de arquivo    | ~feof~   |
+| Avaliar condição de erro | ~ferror~ |
+
+* Protótipos das funções
+
+O que há de comum entre estas funções?
+
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C
+FILE *fopen(const char *pathname, const char *mode);
+int fclose(FILE *stream);
+
+size_t fread(void *ptr,
+	     size_t size,
+	     size_t nmemb,
+	     FILE *stream);
+
+size_t fwrite(const void *ptr,
+	      size_t size,
+	      size_t nmemb,
+	      FILE *stream);
+
+int fflush(FILE *stream);
+int feof(FILE *stream);
+int ferror(FILE *stream);
+#+END_SRC
+
+* O ``ponteiro'' para uma estrutura ~FILE~ (/aka/ ~FILE*~)
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula24-stream_e_arquivos_slide_09.pdf}{Prof. Claudio Jung}
+* Sempre verificar o retorno destas funções
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula24-stream_e_arquivos_slide_10.pdf}{Prof. Claudio Jung}
+* Abrir arquivo ~fopen~
+
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C
+FILE *fopen(const char *pathname, const char *mode);
+#+END_SRC
+
+~pathname~ é o ``caminho'' para o arquivo (o nome do arquivo)
+
+~mode~ é o modo de abertura
+| *Modo* | *Comportamento*                                   | ~stream~ |
+|------+-------------------------------------------------+--------|
+| r    | para leitura                                    | início |
+| r+   | para leitura e escrita, não apaga arquivo       | início |
+| w    | para escrita, apaga arquivo se existe           | início |
+| w+   | para leitura e escrita, o arquivo é truncado    | início |
+| a    | para concatenação no final do arquivo           | fim    |
+| a+   | para leitura e concatenação no final do arquivo | fim    |
+
+#+latex: \pause
+
+Pode-se misturar modos.
+
+Outros modos relevantes: ~b~ para arquivos binários.
+
+#+latex: \pause
+
+Valor de retorno:
+- se tudo bem, ponteiro para o descrito de arquivo subjacente
+- caso contrário, ~NULL~
+
+* Fechar arquivo ~fclose~
+
+Protótipo
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C
+int fclose(FILE *stream);
+#+END_SRC
+
+A função ~fclose~ descarrega o stream apontado por ~stream~ (escrevendo
+qualquer dado buferizado usando ~fflush~) e fecha o descritor de arquivo
+subjacente.
+
+Valor de retorno
+- se tudo bem, 0 é retornado
+- caso contrário, o valor de ~EOF~ é retornado.
+
+* Exemplo com fopen/fclose
+
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C
+#include <stdio.h>
+int main() {
+  FILE *arquivo;
+  arquivo = fopen("notas_da_turma.bin", "r");
+  if (arquivo == NULL){
+    printf("O arquivo não pode ser aberto.\n");
+  }
+  return 0;
+}
+#+END_SRC
+
+#+latex: \pause
+
+Assumindo que o arquivo existe, o que aconteceria se:
+- O modo fosse "rb"
+- O modo fosse "ra"
+- O modo fosse "a"
+- O modo fosse "w"
+
+* A função de descarregamento ~fflush~
+
+Para /streams/ de saída
+- Força a escrita em disco de todos os dados em /buffer/
+
+#+latex: \pause
+
+Para /streams/ de entrada
+- Desconsidera todos os dados em /buffer/ que ainda não consumidos
+
+#+latex: \vfill\pause
+
+Para o caso do exemplo abaixo
+#+BEGIN_SRC C
+fflush(NULL);
+#+END_SRC
+a função descarrega _todos_ os /streams/ de saída abertos.
+
+* Escrever ~fwrite~
+
+Protótipo
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C
+size_t fwrite(const void *ptr,
+	      size_t size,
+	      size_t nmemb,
+	      FILE *stream);
+#+END_SRC
+
+Escreve ~nmemb~ itens de dados, cada um de tamanho ~size~ bytes, para o
+stream apontado por ~stream~, obtendo os dados da localização dada pelo
+endereço _em_ ~ptr~.
+
+#+latex: \pause\vfill
+
+Exemplos
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C
+int meu_inteiro;
+fwrite(&meu_inteiro, sizeof(int), 1, arquivo);
+
+double muitos_dados[TAMANHO];
+fwrite(&muitos_dados, sizeof(double), TAMANHO, arquivo);
+#+END_SRC
+
+* Ler ~fread~
+
+Protótipo
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C
+size_t fread(void *ptr,
+	     size_t size,
+	     size_t nmemb,
+	     FILE *stream);
+#+END_SRC
+
+Lê ~nmemb~ itens de dados, cada um de tamanho ~size~ bytes, do stream
+apontado por ~stream~, registrando os dados lidos na localização dada
+pelo endereço _em_ ~ptr~.
+
+#+latex: \pause\vfill
+
+Exemplos
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C
+int meu_inteiro;
+fread(&meu_inteiro, sizeof(int), 1, arquivo);
+
+double muitos_dados[TAMANHO];
+fread(&muitos_dados, sizeof(double), TAMANHO, arquivo);
+#+END_SRC
+* Valor de retorno de ~fwrite~ e ~fread~
+
+Protótipos
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C
+size_t fwrite(const void *ptr,
+	      size_t size,
+	      size_t nmemb,
+	      FILE *stream);
+size_t fread(void *ptr,
+	     size_t size,
+	     size_t nmemb,
+	     FILE *stream);
+#+END_SRC
+
+#+BEGIN_CENTER
+As duas funções retornam a quantidade de
+
+bytes efetivamente escritos ou lidos.
+#+END_CENTER
+
+* Testar ~EOF~ com ~feof~ e condição de erro com ~fwrite~
+
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C
+int feof(FILE *stream);
+int ferror(FILE *stream);
+#+END_SRC
+
+A função ~feof~ testa o indicador de ``fim de arquivo'' para o stream
+apontado por ~stream~, retornando não zero se estiver setado.
+
+A função ~ferror~ testa o indicador de erro para o stream apontado por
+~stream~, retornando não zero se estiver setado.
+
+#+latex: \pause
+
+#+BEGIN_CENTER
+Estas funções podem (ou até devem) ser empregadas
+
+após cada operação de entrada/saída.
+#+END_CENTER
+
+#+latex: \pause
+
+Exemplo: ler enquanto não chegar no fim do arquivo
+#+BEGIN_SRC C
+while(!feof(arquivo)) { ... }
+#+END_SRC
+
+Exemplo: verificar se houveram erros na leitura
+#+BEGIN_SRC C
+int meu_inteiro;
+fread(&meu_inteiro, sizeof(int), 1, arquivo);
+if (ferror(arquivo)) {
+  // aconteceu um erro na leitura
+}
+#+END_SRC
+
+* Exercício #1
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula24-stream_e_arquivos_slide_26.pdf}{Prof. Claudio Jung}

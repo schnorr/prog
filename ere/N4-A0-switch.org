@@ -1,0 +1,359 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Algoritmos
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+
+#+latex: \newcommand{\mytitle}{Comando de seleção =switch-case=}
+#+latex: \mytitleslide
+
+* Configuração                                                     :noexport:
+
+#+BEGIN_SRC emacs-lisp
+(setq org-latex-listings 'minted
+      org-latex-packages-alist '(("" "minted"))
+      org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+(setq org-latex-minted-options
+       '(("frame" "lines")
+         ("fontsize" "\\scriptsize")))
+#+END_SRC
+
+#+RESULTS:
+| frame    | lines       |
+| fontsize | \scriptsize |
+* Aula de hoje
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula06_slide_12.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Sumário
+
+- Motivação para =switch-case= com exemplos =if-else=
+- Funcionamento do =switch-case=
+- Estudos de caso
+  - Calculadora
+  - Preço de um produto
+  - Estado civil
+  - Notas
+- Exercício
+  - Mapeamento da Tabela
+  - Ovos de Páscoa
+
+* Relembrando o fluxograma do =if=...
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula06-Switch_slide_02.pdf}{Prof. Mara Abel}
+
+* ... e do =if-else=
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula06-Switch_slide_03.pdf}{Prof. Mara Abel}
+
+* Dado um problema
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula06-Switch_slide_04.pdf}{Prof. Mara Abel}
+
+* Possível solução usando apenas =if...=
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula06-if_ANINHADO_e_switch_slide_12.pdf}{Prof. Claudio Jung}
+
+* ...ou com =if-else=
+
+Uma solução mais eficiente.
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula06-if_ANINHADO_e_switch_slide_13.pdf}{Prof. Claudio Jung}
+
+* Uma terceira solução
+
+Veja em [[./a06-mensagem.c]], uma solução ineficiente.
+
+#+begin_src C :tangle e/a06-mensagem.c
+/* Imprime uma mensagem, de acordo com um código lido - solução usando if simples
+   Entrada: valor (inteiro) lido do teclado; Saida: Mensagem na tela */
+#include <stdio.h>
+int main ( )
+{
+  int cod;
+  printf("Codigo (1 a 4): ");
+  scanf ("%d", &cod);
+  if (cod == 1)
+    printf ("\nMensagem 1\n");
+  else if (cod == 2)
+    printf ("\nMensagem 2\n");
+  else if (cod == 3)
+    printf ("\nMensagem 3\n");
+  else if (cod == 4)
+    printf ("\nMensagem 4\n");
+  else if (cod < 1 || cod > 4)
+    printf ("\nMensagem de erro\n");
+  return 0;
+}
+#+end_src
+
+Como fica o *fluxograma*?
+
+* Fluxograma do exemplo
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula06-Switch_slide_07.pdf}{Prof. Mara Abel}
+
+* Apresentação do =switch-case=
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula06_slide_13.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Detalhamento do comando =switch-case=
+  
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula06_slide_14.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Emprego de =switch-case= para o programa da mensagem
+
+Veja em [[./a06-mensagem-switch-case_v1.c]].
+
+Vamos testar!
+
+#+BEGIN_SRC C :tangle e/a06-mensagem-switch-case_v1.c
+#include <stdio.h>
+int main () {
+  int cod;
+  printf("Codigo (1 a 4): ");
+  scanf ("%d", &cod);
+  switch (cod) {
+  case 1:
+    printf ("Mensagem 1.\n");
+  case 2:
+    printf ("Mensagem 2.\n");
+  case 3:
+    printf ("Mensagem 3.\n");
+  case 4:
+    printf ("Mensagem 4.\n");
+  default:
+    printf ("Mensagem de erro.\n");
+  }
+  return 0;
+}
+#+END_SRC
+
+* Fluxograma do funcionamento do exemplo anterior
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula06-if_ANINHADO_e_switch_slide_16.pdf}{Prof. Claudio Jung}
+
+* Comando de quebra (=break=) dentro do =switch-case=
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula06-if_ANINHADO_e_switch_slide_19.pdf}{Prof. Claudio Jung}
+
+* Exemplo de uso de =break= no =switch-case=
+
+Veja em [[./a06-mensagem-switch-case_v2.c]].
+
+#+BEGIN_SRC C :tangle e/a06-mensagem-switch-case_v2.c
+#include <stdio.h>
+int main () {
+  int cod;
+  printf("Codigo (1 a 4): ");
+  scanf ("%d", &cod);
+  switch (cod) {
+  case 1:
+    printf ("Mensagem 1.\n");
+    break;
+  case 2:
+    printf ("Mensagem 2.\n");
+    break;
+  case 3:
+    printf ("Mensagem 3.\n");
+    break;
+  case 4:
+    printf ("Mensagem 4.\n");
+    break;
+  default:
+    printf ("Mensagem de erro.\n");
+    break;
+  }
+  return 0;
+}
+#+END_SRC
+
+* Fluxograma do funcionamento com =break=
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula06-if_ANINHADO_e_switch_slide_20.pdf}{Prof. Claudio Jung}
+
+* Estudo de caso #1: Programa da calculadora
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula06/aula06_slide_14.pdf}{Prof. Marcelo Walter}
+
+* 
+
+# Veja em [[./a06-calculadora.c]].
+
+#+attr_latex: :options fontsize=\scriptsize
+#+BEGIN_SRC C :tangle e/a06-calculadora.c
+//a06-calculadora.c - executa uma das quatro operações aritméticas sobre dois operandos
+#include <stdio.h>
+int main ( )
+{
+  float operando1, operando2;
+  char operador; // variável do tipo char
+  printf("Operador: ");
+  scanf("%c", &operador);
+  printf("Operando 1: ");
+  scanf("%f", &operando1);
+  printf("Operando 2: ");
+  scanf("%f", &operando2);
+  switch (operador) { // seletor é 1 caractere
+    // constante char: sempre entre aspas simples
+  case '+': printf("resultado: %f\n", operando1 + operando2);
+    break;
+  case '-': printf("resultado: %f\n", operando1 - operando2);
+    break;
+  case '*': printf("resultado: %f\n", operando1 * operando2);
+    break;
+  case '/': printf("resultado: %f\n", operando1 / operando2);
+    break;
+  default: printf ("Operador invalido.\n");
+  }
+  return 0;
+}
+#+END_SRC
+* Estudo de caso #2: Preço de um produto
+
+Análise do enunciado, definição de entradas e saídas.
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula06-if_ANINHADO_e_switch_slide_22.pdf}{Prof. Claudio Jung}
+
+* Código
+
+Veja em  [[./a06-preco.c]].
+
+#+attr_latex: :options fontsize=\scriptsize
+#+BEGIN_SRC C :tangle e/a06-preco.c
+/*Calcula preco a ser cobrado por um servico
+  Entrada: tempo de produção e tempo de projeto
+  Saida: valor do servico */
+#include <stdio.h>
+int main ( )
+{
+  int tempo_prod, tempo_projeto;
+  printf("Tempo de projeto: ");
+  scanf("%d", &tempo_projeto);
+  printf("Tempo de producao: ");
+  scanf("%d", &tempo_prod);
+  switch (tempo_prod + tempo_projeto)
+  {
+  case 2 : printf ("\nPreco: R$ 1.000,00\n");
+    break;
+  case 3 : printf ("\nPreco: R$ 1.500,00\n");
+    break;
+  case 4 : printf ("\nPreco: R$ 2.000,00\n");
+    break;
+  default: printf ("\nPreco: R$ 2.500,00\n");
+  }
+  return 0;
+}
+#+END_SRC
+
+* Estudo de caso #3: Estado civil
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula06-if_ANINHADO_e_switch_slide_27.pdf}{Prof. Claudio Jung}
+
+* Código
+
+Veja em [[./a06-estado-civil.c]].
+
+#+attr_latex: :options fontsize=\tiny
+#+BEGIN_SRC C :tangle e/a06-estado-civil.c
+/*Apresenta o estado civil correspondente ao caractere informado
+  Entrada: abreviacao (caracter) do estado civil
+  Saida: impressao na tela do estado civil (por extenso) */
+#include <stdio.h>
+int main ()
+{
+  char estado_civil;
+  printf("Estado Civil (C - Casado, S - Solteiro, D - Divorciado ou V - Viuvo):");
+  scanf("%c", &estado_civil);
+  switch (estado_civil)
+  {
+  case 'c':
+  case 'C': printf ("Casado\n");
+    break;
+  case 's':
+  case 'S': printf ("Solteiro\n");
+    break;
+  case 'd':
+  case 'D': printf ("Divorciado\n");
+    break;
+  case 'v':
+  case 'V': printf ("Viuvo\n");
+    break;
+  default: printf ("Estado Civil incorreto\n");
+  }
+  return 0;
+}
+#+END_SRC
+* Estudo de caso #4: Notas
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula06-Switch_slide_28.pdf}{Prof. Mara Abel}
+
+* Código
+
+Veja em [[./a06-notas.c]].
+
+#+attr_latex: :options fontsize=\tiny
+#+BEGIN_SRC C :tangle e/a06-notas.c
+// Recebida uma nota, fornecer uma das seguintes mensagens:
+//0 a 6: Reprovado; 7 a 9: Aprovado; 10: Aprovado com louvor.
+#include <stdio.h>
+int main () {
+  int nota;
+  printf("Nota (0 a 10): ");
+  scanf("%d", &nota);
+  if (nota < 0 || nota > 10)
+    printf("Nota inválida!\n");
+  else
+    switch (nota) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+      printf("Reprovado\n");
+      break;
+    case 6:
+    case 7:
+    case 8:
+    case 9:
+      printf("Aprovado\n");
+      break;
+    case 10:
+      printf("Aprovado com louvor\n");
+    }
+  return 0;
+}
+#+END_SRC
+
+* Condição para uso do =switch-case= (lembrete)
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula06-Switch_slide_31.pdf}{Prof. Mara Abel}
+
+* Vantagens e desvantagens
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula06-Switch_slide_35.pdf}{Prof. Mara Abel}
+
+* Exercício #1: Problema da Tabela
+
+Faça somente usando =switch-case=.
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula06-Switch_slide_37.pdf}{Prof. Mara Abel}
+
+* Exercício #2: Ovos de Páscoa
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula06/aula06_slide_17.pdf}{Prof. Marcelo Walter}

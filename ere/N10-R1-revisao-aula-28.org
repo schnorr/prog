@@ -1,0 +1,302 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Algoritmos
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{systeme}
+
+#+latex: \newcommand{\mytitle}{Revisão Aula 28}
+#+latex: \mytitleslide
+
+* Revisão #1
+
+Ponteiros
+#+BEGIN_SRC C :results output :session :exports both :includes <stdio.h>
+int a = 1;      // uma variável inteiro
+int *p = NULL;  // um ponteiro para inteiro, sempre inicializado para nulo
+p = &a;         // façamos p apontar para a
+printf ("%d %d\n", *p, a);
+#+END_SRC
+
+#+latex: \pause
+
+Vetores são como se fossem ponteiros!
+#+BEGIN_SRC C :results output :session :exports both :includes <stdio.h>
+int v[3] = {1,2,3}; // um vetor de 3 inteiros
+int *p = NULL;      // um ponteiro para inteiro, sempre inicializado para nulo
+p = v;      // façamos p apontar para o início de v
+// imprimir a primeira posição do vetor v
+printf ("%d %d\n", *p, v[0]);
+#+END_SRC
+
+#+latex: \pause
+
+Aritmética de ponteiros para /navegar/ em um vetor.
+#+BEGIN_SRC C :results output :session :exports both
+int v[3] = {1,2,3}; // um vetor de 3 inteiros
+int *p = NULL;      // um ponteiro para inteiro, sempre inicializado para nulo
+p = v;
+for (int i = 0; i < 3; i++)
+  printf("%d %d\n", *(p+i), v[i]);
+#+END_SRC
+
+* Revisão #2
+
+Passando /strings/ como parâmetros (com passagem por referência)
+#+BEGIN_SRC C :results output :session :exports both :includes <stdio.h> :includes <ctype.h>
+void nosso_upper (char str[]){
+  int i = 0;
+  while(str[i] != '\0') {
+    str[i] = toupper(str[i]);
+    i++;
+  }
+}
+char str[] = "alpha centauri";
+nosso_upper(str);
+printf("%s\n", str);
+#+END_SRC
+
+#+latex: \pause
+
+Versão unicamente com ponteiros
+#+BEGIN_SRC C :results output :session :exports both :includes "<stdio.h> <ctype.h>" :tangle x.c
+void nosso_upper (char *str){
+  while(*str != '\0') {
+    ,*str = toupper(*str);
+    str++;
+  }
+}
+#+END_SRC
+
+#+latex: \pause
+O que acontece se declararmos ~str~ assim:
+
+~char *str = "alpha centauri";~
+
+* ``Revisão'' #3
+
+Ponteiros, vetores e *funções* (uma função pode retornar um ponteiro)
+#+BEGIN_SRC C :results output :session :exports both :includes "<stdio.h> <ctype.h>"
+int *maior (int *vetor, int tamanho) {
+  int *p = vetor;
+  int i;
+  for (i = 0; i < tamanho; i++)
+    if (*(vetor+i) > *p)
+      p = vetor+i;
+  return p;
+}
+#+END_SRC
+
+#+latex: \pause
+
+Mas devemos _ter cuidado_
+#+BEGIN_SRC C :results output :session :exports both :includes "<stdio.h> <ctype.h>" :tangle cuidado.c
+int *minha_funcao (void) {
+  int a = 123;
+  return &a;
+}
+int *p = NULL;
+p = minha_funcao();
+printf("%d", *p);
+#+END_SRC
+
+#+RESULTS:
+* Exercício #1 (/Bhaskara/)
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula18/aula18_slide_28.pdf}{Prof. Marcelo Walter}
+
+* Solução #1 ~rev-a28-bhaskara.c~
+
+#+BEGIN_SRC C :tangle e/rev-a28-bhaskara.c :main no
+#include <stdio.h>
+#include <math.h>
+void bhaskara (float a, float b, float c, float *x1, float *x2);
+int main () {
+  float x, y, z, r1, r2;
+  scanf("%f%f%f", &x, &y, &z);
+  bhaskara(x, y, z, &r1, &r2); // passamos o endereço de r1 e r2
+  printf("%f e %f\n", r1, r2);
+  return 0;
+}
+#+end_src
+
+#+latex: \pause
+
+#+BEGIN_SRC C :tangle e/rev-a28-bhaskara.c :main no
+void bhaskara (float a, float b, float c, float *x1, float *x2) {
+  float raizdisc;
+  raizdisc = sqrt(b*b-4*a*c); // raiz do discriminante, evita calculo repetido
+  ,*x1 = (-b + raizdisc)/(2*a);
+  ,*x2 = (-b - raizdisc)/(2*a);
+  return;
+}
+#+END_SRC
+
+#+latex: \pause
+
+Teste com
+- a=2, b=-16, c=-18 \to raízes 1 e -13
+- a=1, b=12, c=-13 \to raízes 9 e -1
+
+* Solução #1 (não funciona, onde está o erro?)
+#+BEGIN_SRC C
+#include <math.h>
+#include <stdio.h>
+void baskara(float a,float b, float c, float* x1, float* x2);
+int main(){
+  float a,b,c;
+  float* x1 = NULL;
+  float* x2 = NULL;
+  printf("Insira os parametros a,b,c da funcao, respectivamente\n");
+  scanf("%f",&a);
+  scanf("%f",&b);
+  scanf("%f",&c);
+  baskara(a,b,c,x1,x2);
+  return 0;
+}
+
+void baskara(float a,float b, float c, float* x1, float* x2){
+  float calc1,calc2;
+  calc1 = -b+(pow((pow(b,2)-(4*a*c/2/a)),1/2));
+  calc2 = -b-(pow((pow(b,2)-((4*a*c)/2/a)),1/2));
+  x1 = &calc1;
+  x2 = &calc2;
+  printf("Raiz primeira da funcao %f",*x1);
+  printf("Raiz segunda da funcao %f",*x2);
+}
+#+END_SRC
+
+* Solução #2 (não funciona, onde está o erro?)
+
+#+BEGIN_SRC C
+#include<stdio.h>
+#include<math.h>
+void bhaskara (float a, float b, float c, float *x1, float *x2);
+
+int main() {
+  float variavel_A;
+  float variavel_B;
+  float variavel_C;
+  float *retorno_x1 = NULL;
+  float *retorno_x2 = NULL;
+  printf("Informe os valores das variaveis A B e C:\n");
+  scanf("%f %f %f",&variavel_A, &variavel_B, &variavel_C);
+  bhaskara (variavel_A, variavel_B, variavel_C, &retorno_x1, &retorno_x2);
+  printf("Raizes x1 e x2: %.2f e %.2f", &retorno_x1, &retorno_x2);
+  return 0;
+}
+
+void bhaskara (float a, float b, float c, float *x1, float *x2){
+  float delta;
+  delta = (pow(b,2) - 4 * a * c);
+  x1 = ((-b + sqrt(delta)) / 2 * a);
+  x2 = ((-b - sqrt(delta)) / 2 * a);
+  return;
+}
+#+END_SRC
+* Simulado #1 (Ponteiros e Funções)
+
+Marque V ou F conforme adequado.
+
+Se for F, corrija para ficar V.
+
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C
+int funcao1(float *a, int *b);
+char funcao2(int a, int b, char v[]);
+int main() {
+  int i, j, *k, m[50];
+  float x, y[40], *z;
+  char r, s[40], *t;
+  // ...
+  a. ( ) i = funcao1(z, j);
+  b. ( ) *z=y;
+  c. ( ) k=&i;
+  d. ( ) r = funcao2(i,4,s);
+  e. ( ) m=k;
+}
+#+END_SRC
+
+* Respostas do simulado
+
+Marque V ou F conforme adequado.
+
+Se for F, corrija para ficar V.
+
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C
+int funcao1(float *a, int *b);
+char funcao2(int a, int b, char v[]);
+int main() {
+  int i, j, *k, m[50];
+  float x, y[40], *z;
+  char r, s[40], *t;
+  // ...
+  a. (F) i = funcao1(z, j);  // i = funcao1(y,&j);
+  b. (F) *z=y;               // z=y
+  c. (V) k=&i;
+  d. (V) r = funcao2(i,4,s);
+  e. (F) m=k;                // k=m
+}
+#+END_SRC
+
+* Simulado #2
+
+Seja o trecho:
+#+attr_latex: :options fontsize=\large
+#+BEGIN_SRC C
+int i = 3, j = 5;
+int *p, *q;
+p = &i;
+q = &j;
+#+END_SRC
+
+Qual é o valor das seguintes expressões ?
+#+attr_latex: :options fontsize=\Large
+#+BEGIN_SRC C
+p == &i
+*p - *q
+**&p
+3* - *p / (*q) + 7
+#+END_SRC
+
+#+latex: %\cortesia{../../../Algoritmos/Mara/Teoricas/Aula19-Ponteiros2_v3_slide_22.pdf}{Prof. Mara Abel}
+
+* Simulado #3
+
+#+attr_latex: :options fontsize=\large
+#+BEGIN_SRC C
+int i, j;
+int *p, *q;
+#+END_SRC
+
+Quais das seguintes expressões de atribuição são válidas,
+
+ou seja, tem uma semântica aceitável?
+#+attr_latex: :options fontsize=\Large
+#+BEGIN_SRC C
+p = &i;
+*q = &j;
+p = &*&i;
+i = (*&)j;
+i = *&j;
+i = *&*&j;
+q = *p;
+i = (*p)+++*q
+#+END_SRC
+
+
+#+latex: %\cortesia{../../../Algoritmos/Mara/Teoricas/Aula19-Ponteiros2_v3_slide_24.pdf}{Prof. Mara Abel}

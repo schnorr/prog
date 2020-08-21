@@ -1,0 +1,146 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Algoritmos
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+
+#+latex: \newcommand{\mytitle}{Revisão Aula 08}
+#+latex: \mytitleslide
+
+* Configuração                                                     :noexport:
+
+#+BEGIN_SRC emacs-lisp
+(setq org-latex-listings 'minted
+      org-latex-packages-alist '(("" "minted"))
+      org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+(setq org-latex-minted-options
+       '(("frame" "lines")
+         ("fontsize" "\\scriptsize")))
+#+END_SRC
+
+#+RESULTS:
+| frame    | lines       |
+| fontsize | \scriptsize |
+* Revisão: =switch-case=
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula07_slide_02.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Dúvidas
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula07_slide_03.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Exercício #1: Problema da Tabela
+
+Faça somente usando =switch-case=.
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula06-Switch_slide_37.pdf}{Prof. Mara Abel}
+
+* Solução de #1
+
+#+attr_latex: :options fontsize=\tiny
+#+BEGIN_SRC C :tangle e/rev-a06-tabela.c
+#include <stdio.h>
+int main()
+{
+  int codigo;
+  int resultado = 20;
+  printf("Entre com o código: ");
+  scanf("%d", &codigo);
+  switch (codigo) {
+  case 1: resultado = resultado + 5;
+    break;
+  case 2:
+  case 4:
+  case 7: break; // 2, 4 e 7: não faz nada, apenas evita entrar no default
+  case 3:
+  case 5: resultado = resultado - 2;
+    break;
+  case 6: resultado = 2 * (resultado + 1);
+    break;
+  case 8:
+  case 9:
+  case 10: resultado = 0;
+    break;
+  case 11: resultado = 123;
+    break;
+  default: printf("Codigo informado invalido!\n"); // não precisa break
+  }
+  printf("O valor de resultado é %d.\n", resultado);
+  return 0;
+}
+#+END_SRC
+
+* Exercício #2: Ovos de Páscoa
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula06/aula06_slide_17.pdf}{Prof. Marcelo Walter}
+
+* Solução de #2
+
+#+attr_latex: :options fontsize=\tiny
+#+BEGIN_SRC C :tangle e/rev-a06-ovos.c
+#include <stdio.h>
+#include <ctype.h>
+int main()
+{
+  char tipo_de_ovo;
+  int quantidade;
+  float preco;
+
+  printf("Entre com o tipo de ovo: ");
+  scanf("%c", &tipo_de_ovo);
+  tipo_de_ovo = toupper(tipo_de_ovo);
+  printf("Entre com a quantidade: ");
+  scanf("%d", &quantidade);
+  printf("Ovo tipo [%c], quantidade [%d].\n", tipo_de_ovo, quantidade);
+
+  switch(tipo_de_ovo){
+  case 'A':
+    if (quantidade > 50){
+      printf("Quantidade maxima igual a 50!\n");
+      quantidade = 50;
+    }
+    preco = quantidade * 12.00;
+    break;
+  case 'B':
+    if (quantidade > 30){
+      printf("Quantidade maxima igual a 30!\n");
+      quantidade = 30;
+    }
+    preco = quantidade * 15.50;
+    break;
+  case 'C':
+    if (quantidade > 20){
+      printf("Quantidade maxima igual a 20!\n");
+      quantidade = 20;
+    }
+    preco = quantidade * 21.30;
+    break;
+  default:
+    printf("Tipo de ovo invalido!\n");
+  }
+
+  if(tipo_de_ovo == 'A' || tipo_de_ovo == 'B' || tipo_de_ovo == 'C'){
+    printf("Venda de %d ovos do tipo %c com preco total %.2f\n",
+	   quantidade, tipo_de_ovo, preco);
+  }
+  return 0;
+}
+#+END_SRC
+
+* Resumo
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula07_slide_18.pdf}{Prof. Edison Pignaton de Freitas}

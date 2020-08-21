@@ -1,0 +1,418 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Algoritmos
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{systeme}
+
+#+latex: \newcommand{\mytitle}{Subprogramas e Funções}
+#+latex: \mytitleslide
+
+* Configuração                                                     :noexport:
+
+#+BEGIN_SRC emacs-lisp
+(setq org-latex-listings 'minted
+      org-latex-packages-alist '(("" "minted"))
+      org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+(setq org-latex-minted-options
+       '(("frame" "lines")
+         ("fontsize" "\\scriptsize")))
+#+END_SRC
+
+#+RESULTS:
+| frame    | lines       |
+| fontsize | \scriptsize |
+
+* Sumário
+
+Subprogramas
+- Motivação
+- Conceito
+- Níveis de chamada
+
+Funções
+- Com e sem retorno
+
+Variáveis
+- Regras de escopo
+- Locais e globais
+
+Exercício
+- #1 Menu de opções
+
+* Motivação
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula16-Subprogramacao_slide_03.pdf}{Prof. Mara Abel}
+
+* Código ~a23-motivacao.c~
+
+#+latex: \vspace{-0.3cm}\begin{multicols}{2}
+#+attr_latex: :options fontsize=\large
+#+BEGIN_SRC C :tangle e/a23-motivacao.c
+#include <stdio.h>
+#define MAX 10
+int main() {
+  int a[MAX], k;
+  //preencher com índices
+  for (k=0; k<MAX; k++)
+    a [k] = k;
+  //imprimir a
+  for (k=0; k<MAX; k++)
+    printf("%3d ",a[k]);
+  printf("\n");
+  //somar 2 em cada
+  for (k=0; k<MAX; k++)
+    a [k] = a[k] + 2;
+  //imprimir a
+  for (k=0; k<MAX; k++)
+     printf("%3d ",a[k]);
+  printf("\n");
+  //zerar os pares
+  for (k=0; k<MAX; k++)
+    if (a[k] % 2 == 0)
+      a[k] = 0;
+  //imprimir a
+  for (k=0; k<MAX; k++)
+    printf("%3d ",a[k]);
+  printf("\n");
+  return 0;
+}
+#+END_SRC
+#+latex: \end{multicols}
+
+#+latex: \pause
+
+Qual o problema deste código?
+
+* Linux 3.6 \to \approx15.9M de SLOC
+
+Ver conceito de SLOC:
+#+latex: {\scriptsize
+https://en.wikipedia.org/wiki/Source_lines_of_code
+#+latex: }
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula017_-funcoesvoid_semparametros_slide_07.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Linux 4.2 \to \approx20.2M
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula16/Aula16-funcoesvoid_semparametros_slide_10.pdf}{Prof. Marcelo Walter}
+
+* Linux 5.1 (/Released on May 5th 2019/, in US 5/1)
+
+#+BEGIN_CENTER
+Linux 5.1 Should Be Released Today With
+
+~IO_uring~, Faster zRAM, More Icelake
+
+https://www.phoronix.com/scan.php?px=Linux-5.1-Today
+#+END_CENTER
+
+#+latex: \vfill
+
+#+BEGIN_QUOTE
+For those wondering about the size of Linux 5.1, here is the *cloc*
+output as of 5.1 Git this morning... 17.8 million lines of code, 3.3
+million lines of comments, and 3.2 million blank lines.
+#+END_QUOTE
+
+* Ferramenta ~cloc~
+
+Façamos o uso de ~cloc~ com o exemplo anterior:
+
+#+begin_src shell :results output :exports both
+cloc a23-motivacao.c
+#+end_src
+
+#+RESULTS:
+#+begin_example
+       1 text file.
+       1 unique file.                              
+       0 files ignored.
+
+github.com/AlDanial/cloc v 1.81  T=0.00 s (256.2 files/s, 7173.7 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+C                                1              0              6             22
+-------------------------------------------------------------------------------
+#+end_example
+* Modularização
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula017_-funcoesvoid_semparametros_slide_08.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Vantagens
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula017_-funcoesvoid_semparametros_slide_09.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Programação Estruturada (com *Módulos* e *Funcões*)
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula017_-funcoesvoid_semparametros_slide_10.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Vejamos rapidamente *Módulos* (na linguagem C)
+
+#+BEGIN_CENTER
+São arquivos ~.c~ independentes uns dos outros,
+
+mas que fazem parte do mesmo programa.
+#+END_CENTER
+
+** Arquivo 1 ~a23-modulo-1.c~
+
+#+attr_latex: :options fontsize=\tiny
+#+BEGIN_SRC C :tangle e/a23-modulo-1.c
+#include <stdio.h>
+int minha_funcao(); //declaração da existência da função com seu protótipo (sem a implementação entre chaves)
+int main() {
+  minha_funcao();   //chamada da funcao minha_funcao(), implementada em outro arquivo
+  return 0;
+}
+#+END_SRC
+
+** Arquivo 2 ~a23-modulo-2.c~
+
+#+attr_latex: :options fontsize=\tiny
+#+BEGIN_SRC C :tangle e/a23-modulo-2.c :main no
+#include <stdio.h>
+int minha_funcao() { //implementação da funcao minha_funcao no seu próprio arquivo
+  return 0;
+}
+#+END_SRC
+
+** Compilação conjunta
+
+#+begin_src shell :results output :dir e
+gcc a23-modulo-1.c a23-modulo-2.c -o programa
+#+end_src
+
+#+RESULTS:
+
+* Ideia Principal com *funções*
+
+_Esta é a parte principal desta aula_!
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula017_-funcoesvoid_semparametros_slide_11.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Voltando ao exemplo inicial ~a23-motivacao-funcao.c~
+
+#+latex: \vspace{-0.3cm}\begin{multicols}{2}
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C :tangle e/a23-motivacao-funcao.c :main no
+#include <stdio.h>
+#define MAX 10
+int a[MAX]; //global
+int imprime_vetor () {
+  int k;
+  for (k=0; k<MAX; k++)
+    printf("%3d ",a[k]);
+  printf("\n");
+  return 0;
+}
+int main() {
+  int k;
+  //preencher com índices
+  for (k=0; k<MAX; k++)
+    a [k] = k;
+  //imprimir a
+  imprime_vetor();
+  //somar 2 em cada
+  for (k=0; k<MAX; k++)
+    a [k] = a[k] + 2;
+  //imprimir a
+  imprime_vetor();
+  //zerar os pares
+  for (k=0; k<MAX; k++)
+    if (a[k] % 2 == 0)
+      a[k] = 0;
+  //imprimir a
+  imprime_vetor();
+  return 0;
+}
+#+END_SRC
+#+latex: \end{multicols}
+
+* Objetivos com funções
+
+Funções podem ser conhecidas também por _subprogramas_.
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula16-intro_subprogramacao_slide_02.pdf}{Prof. Claudio Jung}
+
+* Conceitos fundamentais e funcionamento geral
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula16-intro_subprogramacao_slide_04.pdf}{Prof. Claudio Jung}
+
+* Funcionamento
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula16-Subprogramacao_slide_06.pdf}{Prof. Mara Abel}
+
+* Código ~a23-area-circulo.c~
+
+Quais são as funções já existentes que foram invocadas?
+
+#+BEGIN_SRC C :tangle e/a23-area-circulo.c
+// Calcula a área de um circulo, utilizando a função pow.
+#include <stdio.h>
+#include <math.h>
+#include <ctype.h>
+#define PI 3.141618 // não existe esta constante em C
+int main() {
+  float raio, area;
+  char circulo;
+  printf("Forneça o identificador do círculo: ");
+  scanf(" %c", &circulo);
+  circulo = toupper(circulo);
+  printf("Forneca o raio do circulo %c: ", circulo);
+  scanf("%f", &raio);
+  area = PI * pow(raio, 2);
+  printf("Area do circulo %c de raio %6.2f eh %6.2f \n", circulo, raio, area);
+  return 0;
+}
+#+END_SRC
+
+* Estudo de caso: funções predefinidas de ~math.h~
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula16-intro_subprogramacao_slide_06.pdf}{Prof. Claudio Jung}
+
+* Funções desenvolvidas pelo usuário
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula017_-funcoesvoid_semparametros_slide_17.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Código ~a23-apresenta-numeros-inteiros.c~
+
+Quais partes do código estão repetidas?
+
+#+attr_latex: :options fontsize=\small
+#+BEGIN_SRC C :tangle e/a23-apresenta-numeros-inteiros.c
+#include <stdio.h>
+int main() {
+  int i;
+  for (i=1;i<20;i++)
+    printf("*");
+  printf("\n");
+  printf("Numeros entre 1 e 5\n");
+  for (i=1;i<20;i++)
+    printf("*");
+  printf("\n");
+  for (i=1;i<=5;i++)
+    printf("%d\n",i);
+  for (i=1;i<20;i++)
+    printf("*");
+  printf("\n");
+  return 0;
+}
+#+END_SRC
+
+* Por que evitar repetição de código?
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula017_-funcoesvoid_semparametros_slide_19.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Funções podem ter parâmetros
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula017_-funcoesvoid_semparametros_slide_20.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Tipos de funções
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula017_-funcoesvoid_semparametros_slide_21.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Funções do tipo ~void~
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula16-Subprogramacao_slide_29.pdf}{Prof. Mara Abel}
+
+* Parâmetros reais (argumentos) e formais
+
+Vejamos um exemplo com algoritmo
+
+#+begin_src shell
+Subprograma Soma2 (A, B)
+{ parâmetros formais A e B inteiros }
+0. Início
+1. Soma = A + B
+2. Retorna Soma
+fim Subprograma Soma2
+
+Algoritmo Somar
+Variáveis: X, Y, Z { entradas lidas, inteiras }
+           Soma { para conter a soma}
+0. Início
+1. Ler X, Y, Z
+2. Executar Soma2 (X, Y)
+3. Registrar resultado em Soma
+4. Imprimir Soma
+5. Executar Soma2 (Y, Z)
+6. Registrar resultado em Soma
+7. Imprimir Soma
+8. Fim
+fim Algoritmo Somar
+#+end_src
+
+#+latex: \pause
+
+Continuaremos este assunto (/parâmetros de funções/) na próxima aula.
+
+* Regras de Escopo estático da Linguagem C
+
+#+BEGIN_CENTER
+_Conceito de *Escopo*_
+
+O escopo de uma variável é onde ela é visível e acessível no programa.
+#+END_CENTER
+
+#+latex: \vfill\pause
+
+Regras de escopo
+- Variáveis de bloco (Escopo do bloco)
+- Variáveis locais (Escopo local da função)
+- Variáveis globais (Escopo global)
+
+#+latex: \pause
+
+#+BEGIN_SRC C
+int a;     //global
+int main() {
+  int a;   //local da função
+  {
+    int a; //bloco
+  }
+  return 0;
+}
+#+END_SRC
+
+#+latex: \pause
+
+_Cuidado_: o mesmo nome pode /mascarar/ as definições anteriores
+- Elas se tornam inacessíveis
+
+* Variáveis Locais (Conceitos)
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula16/Aula16-funcoesvoid_semparametros_slide_30.pdf}{Prof. Marcelo Walter}
+
+* Exemplo com variáveis locais
+
+  #+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula16-Subprogramacao_slide_17.pdf}{Prof. Mara Abel}
+
+* Variáveis Globais (Conceitos)
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula16-Subprogramacao_slide_18.pdf}{Prof. Mara Abel}
+
+* Importante: variáveis globais restrigem a estruturação
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula16/Aula16-funcoesvoid_semparametros_slide_36.pdf}{Prof. Marcelo Walter}
+
+* Exercício #1 (Menu de Opções)
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula16-Subprogramacao_slide_30.pdf}{Prof. Mara Abel}
+

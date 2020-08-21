@@ -1,0 +1,83 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Algoritmos
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{systeme}
+
+#+latex: \newcommand{\mytitle}{Revisão Aula 23}
+#+latex: \mytitleslide
+
+* Configuração                                                     :noexport:
+
+#+BEGIN_SRC emacs-lisp
+(setq org-latex-listings 'minted
+      org-latex-packages-alist '(("" "minted"))
+      org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+(setq org-latex-minted-options
+       '(("frame" "lines")
+         ("fontsize" "\\scriptsize")))
+#+END_SRC
+
+#+RESULTS:
+| frame    | lines       |
+| fontsize | \scriptsize |
+
+* Revisão
+
+Funções
+- Múltiplos níveis de chamada
+- Tipos (com ou /sem/ retorno)
+  - Vimos especialmente funções sem valor de retorno (void)
+- Parametrizáveis ou /não/
+  - Vimos especialmente funções sem parâmetros
+- Protótipo de funções
+- Regras de escopo estático
+- Variáveis locais e globais
+
+* Exercício #1 (Menu de Opções)
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula16-Subprogramacao_slide_30.pdf}{Prof. Mara Abel}
+
+* (#1) Código ~rev-a23-menu.c~
+
+#+BEGIN_SRC C :tangle e/rev-a23-menu.c
+#include <stdio.h>
+
+void menu_de_opcoes(void);  //protótipo
+
+int main() {
+  int opcao;
+  menu_de_opcoes(); //chamada da função
+  scanf("%d", &opcao);
+  printf("A opção selecionada foi a '%d'.\n", opcao);
+  return 0;
+}
+
+void menu_de_opcoes (void) { //implementação
+  printf("Opções disponíveis:\n"
+	 "------------------\n\n"
+	 "   1 - soma de dois valores reais\n"
+	 "   2 - se é divisor do número\n"
+	 "   3 - sequência de números pares\n"
+	 "   4 - se número é perfeito\n\n"
+	 "-> Informe a opção desejada: ");
+  return;
+}
+
+#+END_SRC

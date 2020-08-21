@@ -1,0 +1,146 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Algoritmos
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+
+#+latex: \newcommand{\mytitle}{Revisão Aula 15}
+#+latex: \mytitleslide
+
+* Configuração                                                     :noexport:
+
+#+BEGIN_SRC emacs-lisp
+(setq org-latex-listings 'minted
+      org-latex-packages-alist '(("" "minted"))
+      org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+(setq org-latex-minted-options
+       '(("frame" "lines")
+         ("fontsize" "\\scriptsize")))
+#+END_SRC
+
+#+RESULTS:
+| frame    | lines       |
+| fontsize | \scriptsize |
+* Sumário
+
+- Exercício #1 da aula 15
+- Ordenamento de arranjos de números inteiros
+
+* Exercício #1
+
+Faça um _algoritmo_ e um _programa em C_ para
+
+1. Preencher um arranjo de números inteiros com 20000 valores
+   - Os valores devem ser números aleatórios entre 1000 e 100000.
+   - Utilize as funções =srand()= e =rand()=
+2. Procure o /maior/ número
+   1. Informe o valor e a posição
+3. Procure o /menor/ número
+   1. Informe o valor e a posição
+4. Calcule o valor médio
+   1. Informe o valor médio
+5. Procure a posição que tem o valor mais próximo do valor médio
+   1. Informe a posição
+
+* (#1) Passos do Algoritmo
+
+1. Declarar um arranjo unidimensional para registro das números
+2. Inicializar variáveis
+   1. Acumulador de =soma= igual a zero
+   2. Registro =maior= igual a =INT_MIN= e =pos_maior= igual a zero
+   3. Registro =menor= igual a =INT_MAX= e =pos_menor= igual a zero
+   4. Registro =prox= igual a =INT_MAX= e =pos_prox= igual a zero
+3. Inicializar com zero o valor de semente de números aleatórios
+4. Para uma sequência de 0 até 19999
+   1. Obter um número aleatório
+   2. Transformar o número para um valor entre 1000 e 100000
+   3. Atribuir o valor para a posição do arranjo indicada pela sequência
+   4. Se o número for maior que =maior=, atualiza =maior= e =pos_maior=
+   5. Se o número for menor que =menor=, atualiza =menor= e =pos_menor=
+   6. Acumular o número em =soma=
+5. Calcula o valor médio dividindo =soma= por 20000
+6. Para uma sequência de 0 até 19999
+   1. Calcula a diferença absoluta entre valor da posição do arranjo e média
+   2. Se diferença menor que =prox=, atualiza =prox= e =pos_prox=
+7. Relata =maior=, =pos_maior=, =menor=, =pos_menor=, e =pos_prox=
+
+* (#1) Programa ~rev-a15-exercicio.c~
+
+#+latex: \begin{multicols}{2}
+#+attr_latex: :options fontsize=\scriptsize
+#+BEGIN_SRC C :tangle e/rev-a15-exercicio.c
+/* Programa que implementa
+   o exercício da aula 15 */
+#include <stdio.h>
+#include <stdlib.h>
+#include <limits.h>
+#define TAMANHO 20000
+#define MIN 1000
+#define MAX 100000
+int main(){
+  int v[TAMANHO], i;             //P1
+  int soma = 0, media;           //P2
+  int maior = INT_MIN, pos_maior = -1;
+  int menor = INT_MAX, pos_menor = -1;
+  int prox = INT_MAX, pos_prox = -1;
+  int num, dif;
+  srand(0);                      //P3
+  for (i = 0; i < TAMANHO; i++){ //P4
+    num = rand();                //P4.1
+    num = MIN+(num%(MAX-MIN+1)); //P4.2
+    v[i] = num;                  //P4.3
+    if (v[i] > maior) {          //P4.4
+      maior = v[i];
+      pos_maior = i;
+    }
+    if (v[i] < menor) {          //P4.5
+      menor = v[i];
+      pos_menor = i;
+    }
+    soma += num;                 //P4.6
+  }
+  media = soma / TAMANHO;        //P5
+  for (i = 0; i < TAMANHO; i++){ //P6
+    dif = abs(media - v[i]);     //P6.1
+    if (dif < prox){             //P6.2
+      prox = dif;
+      pos_prox = i;
+    }
+  }
+  printf("%d %d %d %d %d\n",     //P7
+	 maior, pos_maior,
+	 menor, pos_menor, pos_prox);
+  return 0;
+}
+#+END_SRC
+#+latex: \end{multicols}\vspace{-0.3cm}
+_Resposta esperada_ \to =99996 10531 1001 19447 14479=
+
+* Ordenamento de arranjos (Algoritmo inicial)
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula12_slide_05.pdf}{Prof. Edison Pignaton de Freitas}
+* Passos #1 e #2
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula12_slide_06.pdf}{Prof. Edison Pignaton de Freitas}
+* Passos #3, #4 e #5
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula12_slide_07.pdf}{Prof. Edison Pignaton de Freitas}
+* Ideia para o Passo #6 (P1)
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula12_slide_08.pdf}{Prof. Edison Pignaton de Freitas}
+* Ideia para o Passo #6 (P2) \to Ordenação por Seleção
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula12_slide_09.pdf}{Prof. Edison Pignaton de Freitas}
+* Exercício de Ordenação de Arranjos
+
+Tente fazer em casa a implementação deste algoritmo de ordenação por
+seleção. Veremos a solução na próxima aula.

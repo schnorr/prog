@@ -1,0 +1,365 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Algoritmos
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{systeme}
+
+#+latex: \newcommand{\mytitle}{Tipos de Dados de Usuário @@latex}
+#+latex: \mytitleslide
+
+* Motivação
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula22/aula22_slide_02.pdf}{Prof. Marcelo Walter}
+
+* Representando livros em memória
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula22/aula22_slide_03.pdf}{Prof. Marcelo Walter}
+
+* Tipos de Dados na Linguagem C
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula22/aula22_slide_05.pdf}{Prof. Marcelo Walter}
+
+* Estruturas
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula22/aula22_slide_06.pdf}{Prof. Marcelo Walter}
+
+* Diferenças
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula22/aula22_slide_07.pdf}{Prof. Marcelo Walter}
+
+* Diferenças para indexação
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula22/aula22_slide_08.pdf}{Prof. Marcelo Walter}
+
+* Declaração do tipo de usuário na forma de estrutura
+
+Sintaxe
+#+BEGIN_EXAMPLE
+struct identificador {
+  tipo1 campo1, campo2;
+  tipo2 campo3;
+  //...
+  tipoN campoN;
+};
+#+END_EXAMPLE
+
+#+latex: \pause
+
+Exemplo de uma estrutura para funcionário
+#+BEGIN_SRC C :tangle e/a31-declara-estrutura.c
+struct funcionario {
+  int codigo;
+  char nome[30];
+  char cargo[10];
+  int depto;
+  float salario;
+};
+#+END_SRC
+
+* Integração de declaração de tipo no programa
+E declaração de ~func1~ e ~func2~ com o tipo definido pelo programador
+
+#+BEGIN_SRC C :tangle e/a31-declara-estrutura-uso.c
+#include <stdio.h>
+
+struct funcionario {
+  int codigo;
+  char nome[30];
+  char cargo[10];
+  int depto;
+  float salario;
+};
+
+int main() {
+  struct functionario func1, func2;
+
+  return 0;
+}
+#+END_SRC
+
+* Inicialização de variáveis do tipo definido pelo programador
+
+A ordem segue a ordem da declaração da estrutura!
+
+#+BEGIN_SRC C :tangle e/a31-estrutura-inicializada.c
+#include <stdio.h>
+
+struct funcionario {
+  int codigo;
+  char nome[30];
+  char cargo[40];
+  int depto;
+  float salario;
+};
+
+int main() {
+  struct funcionario func1 = {2314, "Lucas", "Professor",  42, 123.45};
+  struct funcionario func2 = {2315, "Alpha", "Professora", 43, 123.46};
+  return 0;
+}
+#+END_SRC
+
+* Acesso aos campos de uma estrutura
+
+Campos são acessados individualmente com o operador ~.~
+
+#+BEGIN_SRC C :tangle e/a31-acesso-campos.c :results output :exports both
+#include <stdio.h>
+
+struct funcionario {
+  int codigo;
+  char nome[30];
+  char cargo[40];
+  int depto;
+  float salario;
+};
+
+int main() {
+  struct funcionario f = {2315, "Alpha", "Professora", 43, 123.46};
+  f.codigo = 2317;  //vamos alterar o código
+  printf("Código: %d\nNome: %s\nCargo: [%s]\nDepartamento: %d\nSalário: %f\n",
+	 f.codigo, f.nome, f.cargo, f.depto, f.salario);
+  return 0;
+}
+#+END_SRC
+
+#+RESULTS:
+: Código: 2317
+: Nome: Alpha
+: Cargo: [Professora]
+: Departamento: 43
+: Salário: 123.459999
+
+* Preenchimento de campos por leitura
+
+#+BEGIN_SRC C :tangle e/a31-leitura-com-scanf.c :results output :exports both
+#include <stdio.h>
+
+struct funcionario {
+  int codigo;
+  char nome[30];
+  char cargo[40];
+  int depto;
+  float salario;
+};
+
+int main() {
+  struct funcionario f;
+  scanf("%d", &f.codigo);
+  fgets(f.nome, 30, stdin);
+  fgets(f.cargo, 40, stdin);
+  scanf("%d", &f.depto);
+  scanf("%f", &f.salario);
+  return 0;
+}
+#+END_SRC
+
+* Atribuição de variáveis de tipo de usuário
+
+Única atribuição permitida: uma variável de tipo de usuário só recebe
+o valor de variáveis que sejam do mesmo tipo de usuário. O atribuição
+implica em uma cópia da memória.
+
+#+BEGIN_SRC C :tangle e/a31-atribuicao.c :results output :exports both
+#include <stdio.h>
+
+struct funcionario {
+  int codigo;
+  char nome[30];
+  char cargo[40];
+  int depto;
+  float salario;
+};
+
+int main() {
+  struct funcionario f1 = {2315, "Alpha", "Professora", 43, 123.46};
+  struct funcionario f2;
+  f2 = f1; // <-- veja aqui a atribuição
+  printf("Código: %d\nNome: %s\nCargo: [%s]\nDepartamento: %d\nSalário: %f\n",
+	 f2.codigo, f2.nome, f2.cargo, f2.depto, f2.salario);
+  return 0;
+}
+#+END_SRC
+
+* Um tipo de usuário pode conter outros tipos de usuário
+
+#+BEGIN_SRC C :tangle e/a31-estrutura-aninhada.c :main no
+#include <stdio.h>
+struct endereco {
+  char rua[50];
+  int numero;
+  char cidade[30];
+  char estado[3];
+};
+#+END_SRC
+
+#+latex: \pause
+
+#+BEGIN_SRC C :tangle e/a31-estrutura-aninhada.c :main no
+struct funcionario {
+  int codigo;
+  char nome[30];
+  struct endereco local;
+};
+#+END_SRC
+
+#+latex: \pause
+
+Como inicializar, usar, atribuir, ...
+#+BEGIN_SRC C :tangle e/a31-estrutura-aninhada.c
+int main() {
+  struct funcionario f1 = {2315, "Alpha", {"Bento", 9500, "Poa", "RS"} };
+  struct funcionario f2;
+  f2 = f1; // <-- veja aqui a atribuição
+  printf("Código: %d\nNome: %s\n", f2.codigo, f2.nome);
+  printf("Endereço: %s, %d - %s, %s\n",
+	 f2.local.rua, f2.local.numero, f2.local.cidade, f2.local.estado);
+  return 0;
+}
+#+END_SRC
+
+* Voltando aos livros para falar de arranjos de tipos de usuário
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula22/aula22_slide_21.pdf}{Prof. Marcelo Walter}
+
+* (por um lado) Arranjo de estruturas de usuário
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula22/aula22_slide_22.pdf}{Prof. Marcelo Walter}
+
+* (por outro lado) Estruturas com arranjos
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula22/aula22_slide_23.pdf}{Prof. Marcelo Walter}
+
+* Funções podem retornar variáveis do tipo de usuário
+
+Podemos criar funções que tenham como retorno um tipo de usuário
+(/struct/).  Por exemplo, podemos criar uma função que faça a leitura
+dos campos de um funcionário, retornando a struct correspondente.
+
+#+BEGIN_SRC C :tangle e/a31-estruturas-retornadas.c
+#include <stdio.h>
+#define NFUNCS 2
+struct funcionario {
+  int codigo;
+  float salario;
+};
+struct funcionario le_funcionario (void) {
+  struct funcionario ret;
+  printf("Forneça código e salário: ");
+  scanf("%d%f", &ret.codigo, &ret.salario);
+  return ret;
+}
+int main() {
+  struct funcionario fs[NFUNCS];
+  int i;
+  for (i = 0; i < NFUNCS; i++){
+    fs[i] = le_funcionario();
+    printf("Lido %d:\n\tCód.:%d\n\tSal.:%f\n", i, fs[i].codigo, fs[i].salario);
+  }
+  return 0;
+}
+#+END_SRC
+
+* Funções podem receber variáveis do tipo de usuário
+
+Recebe estrutura como parâmetro por valor.
+
+#+BEGIN_SRC C :tangle e/a31-estruturas-recebidas.c
+#include <stdio.h>
+#define NFUNCS 2
+struct funcionario {
+  int codigo;
+  float salario;
+};
+
+void imprime_funcionario (struct funcionario f) {
+  printf("Cód.:%d\n\tSal.:%f\n", f.codigo, f.salario);
+  return;
+}
+
+int main() {
+  struct funcionario fs[NFUNCS] = { {2, 3.4}, {4, 5.6} };
+  int i;
+  for (i = 0; i < NFUNCS; i++){
+    imprime_funcionario(fs[i]);
+  }
+  return 0;
+}
+#+END_SRC
+
+* Declaração de variáveis de tipos de usuário (*sem nome*)
+
+Com nome (lembrete), sintaxe
+#+BEGIN_EXAMPLE
+struct identificador {
+  tipo1 campo1, campo2;
+  tipo2 campo3;
+  //...
+  tipoN campoN;
+};
+#+END_EXAMPLE
+
+#+latex: \pause
+
+*Sem nome*
+#+BEGIN_EXAMPLE
+struct {
+  tipo1 campo1, campo2;
+  //...
+  tipoN campoN;
+};
+#+END_EXAMPLE
+
+#+latex: \pause
+
+Usamos exclusivamente para declarar variáveis, de imediato. Exemplo:
+- A variável de nome ~professor~ é declarada
+#+BEGIN_SRC C
+struct {
+  int codigo;
+  float salario;
+} professor;
+#+END_SRC
+
+* Exercício #1
+
+*Parte #1*: Faça uma função que leia o nome (até 15 caracteres) e as 3
+notas de 1 aluno, calcule a média aritmética e o conceito obtido,
+armazenando todas estas informações em uma estrutura ~aluno~.
+
+*Parte #2:* Altere o programa anterior, de modo que armazene informações
+referentes a NRALUNOS alunos.
+
+Utilize o código abaixo para começar.
+#+BEGIN_SRC C
+#include <stdio.h>
+#include <string.h>
+#define NRALUNOS 3 // número de alunos da turma
+#define NRNOTAS 3  // número de notas
+struct aluno {
+  char nome[15 + 1];
+  float nota[NRNOTAS]; // vetor é um tipo de variável (indexada)
+  float media;
+  char conceito;
+};
+int main()
+{
+  struct aluno alunos[NRALUNOS];
+  //...
+  return 0;
+}
+#+END_SRC

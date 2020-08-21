@@ -1,0 +1,401 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Algoritmos
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: @@latex:\copyleft@@
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{systeme}
+
+#+latex: \newcommand{\mytitle}{Revisão Aula 34}
+#+latex: \mytitleslide
+
+* O que vimos na última aula?
+
+Em C (lidar com o conteúdo de arquivos)
+- Abrir ~fopen~
+- Fechar ~fclose~
+- Ler ~fread~
+- Escrever ~fwrite~
+- Descarregar ~fflush~
+- Testar fim de arquivo ~feof~
+- Avaliar condição de erro ~ferror~
+
+* Arquivos e /Streams/
+
+Arquivos são *repositórios permanentes* de dados
+- Permitem /perenizar/ informações de um programa
+
+#+latex: \pause
+
+Arquivos são armazenados em memória auxiliar
+- Discos (rígidos, sólidos), /Pendrive/, Cartões SD
+
+#+latex: \pause
+
+Arquivos podem ser grandes (bem maiores que a memória RAM)
+
+#+latex: \vfill\pause
+
+Conceito de /stream/ (fluxo) de bytes
+- Cada /stream/ tem um cabeça de leitura/escrita
+Os dados são sempre bufferizados.
+
+* Exercício #1
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula24-stream_e_arquivos_slide_26.pdf}{Prof. Claudio Jung}
+
+* (#1) Organização P1
+
+#+BEGIN_CENTER
+Faça um programa para gravar um arquivo
+
+composto por estruturas que contenham
+
+nome, idade e altura de atletas.
+#+END_CENTER
+
+#+latex: \pause\vfill
+
+Programa _GeraSalva_, com os seguintes módulos
+1. *Nomes*, responsável pela geração de nomes, idade e altura aleatórios
+2. *Principal*, responsável por (a) criar estruturas que contenham
+   múltiplos atletas com nomes, idade e altura válidos, e (b) salva em
+   um arquivo binário as informações destes atletas.
+
+#+latex: \pause\vfill
+
+Como será o formato do arquivo binário:
+- Um inteiro (4 bytes) com a quantidade de atletas no arquivo
+- Sequência de estruturas de dados com os atletas
+
+* (#1) GeraSalva, Módulo Nomes (Cabeçalho)
+
+~GeraSalva-Nomes.h~
+#+BEGIN_SRC C :tangle e/rev-a34/GeraSalva-Nomes.h :main no
+#ifndef GERA_SALVA_NOMES_H
+#define GERA_SALVA_NOMES_H
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#define MIN 3
+#define MAX 8
+void gera_nome_aleatorio (char *str, int tamanho_maximo);
+int gera_idade_aleatoria (int minima, int maxima);
+int gera_altura_aleatoria (int minima, int maxima);
+#endif
+#+END_SRC
+
+* (#1) GeraSalva, Módulo Nomes (Implementação P1)
+
+~GeraSalva-Nomes.c~
+#+BEGIN_SRC C :tangle e/rev-a34/GeraSalva-Nomes.c :main no
+#include "GeraSalva-Nomes.h"
+static char consoante (void) {
+  char consoantes[] = { "bcdfghjklmlnpqrstvwx" };
+  int nc = strlen(consoantes);
+  return consoantes[rand()%nc];
+}
+
+static char vogal (void) {
+  char vogais[] = { "aeiouy" };
+  int nv = strlen(vogais);
+  return vogais[rand()%nv];
+}
+
+void gera_nome_aleatorio (char *str, int tamanho_maximo) {
+  int tamanho_aleatorio = MIN+(rand()%(MAX-MIN));
+  for (int i = 0; i < tamanho_maximo &&
+                  i < tamanho_aleatorio; i++) {
+    ,*str++ = consoante();
+    ,*str++ = vogal();
+  }
+  ,*str = '\0';
+}
+#+END_SRC
+
+* (#1) GeraSalva, Módulo Nomes (Implementação P2)
+
+#+BEGIN_SRC C :tangle e/rev-a34/GeraSalva-Nomes.c :main no
+int gera_idade_aleatoria (int minima, int maxima) {
+  return minima+(rand()%(maxima-minima));
+}
+
+int gera_altura_aleatoria (int minima, int maxima) {
+  return gera_idade_aleatoria (minima, maxima);
+}
+#+END_SRC
+
+* (#1) GeraSalva (Cabeçalho)
+
+~GeraSalva.h~
+#+BEGIN_SRC C :tangle e/rev-a34/GeraSalva.h :main no
+#ifndef GERASALVA_H
+#define GERASALVA_H
+#include <stdio.h>
+#include "GeraSalva-Nomes.h"
+#define NATLETAS 2000000
+#define FATLETAS "atletas.bin"
+typedef struct {
+  char nome[32];
+  int idade;     // anos completos
+  int altura;    // em centimetros
+} atleta_t;
+#endif
+#+END_SRC
+
+* (#1) GeraSalva (Implementação)
+
+~GeraSalva.c~
+#+BEGIN_SRC C :tangle e/rev-a34/GeraSalva.c
+#include "GeraSalva.h"
+atleta_t atletas[NATLETAS] = {0};
+int main() {
+  int i, natletas = NATLETAS;
+  for (i = 0; i < natletas; i++){
+    atleta_t *a = &atletas[i];
+    gera_nome_aleatorio(a->nome, 32);
+    a->idade = gera_idade_aleatoria(15, 35);
+    a->altura = gera_altura_aleatoria(155, 190);
+  }
+  FILE *arquivo = fopen(FATLETAS, "w");
+  if (arquivo) {
+    fwrite(&natletas, sizeof(int), 1, arquivo);
+    fwrite(&atletas, sizeof(atleta_t), natletas, arquivo);
+    fclose(arquivo);
+  }else{
+    printf("Impossível de abrir arquivo [%s]. Fatal.\n", FATLETAS);
+  }
+  return 0;
+}
+#+END_SRC
+
+* (#1) GeraSalva: Compilação e Testes
+
+#+begin_src shell :results output :exports both
+rm -f GeraSalva
+gcc -Wall -g \
+    e/rev-a34/GeraSalva-Nomes.c \
+    e/rev-a34/GeraSalva.c \
+    -o e/rev-a34/LeMostra
+#+end_src
+
+#+RESULTS:
+
+* (#1) Organização P2
+
+#+BEGIN_CENTER
+Faça outro programa, agora para
+
+listar um arquivo com estas estruturas.
+#+END_CENTER
+
+#+latex: \pause\vfill
+
+Programa _LeMostra_, com os seguintes módulos
+1. *Principal*, responsável por (a) ler e (b) mostrar.
+
+#+latex: \pause\vfill
+
+Como é o formato do arquivo binário:
+- Um inteiro (4 bytes) com a quantidade de atletas no arquivo
+- Sequência de estruturas de dados com os atletas
+
+* (#1) LeMostra (Implementação)
+
+~LeMostra.c~
+#+BEGIN_SRC C :tangle e/rev-a34/LeMostra.c
+#include "GeraSalva.h"
+atleta_t atletas[NATLETAS] = {0};
+int main() {
+  int i, natletas = 0;
+  FILE *arquivo = fopen(FATLETAS, "r");
+  if (arquivo) {
+    fread(&natletas, sizeof(int), 1, arquivo);
+    fread(&atletas, sizeof(atleta_t), natletas, arquivo);
+    fclose(arquivo);
+  }else{
+    printf("Impossível de abrir arquivo [%s] para leitura. Fatal.\n", FATLETAS);
+  }
+
+  for (i = 0; i < natletas; i++){
+    atleta_t *a = &atletas[i];
+    printf("%s, %d, %d\n", a->nome, a->idade, a->altura);
+  }
+  printf("Foram impressos %d atletas.\n", natletas);
+  return 0;
+}
+#+END_SRC
+* (#1) LeMostra: Compilação e Testes
+
+#+begin_src shell :results output :exports both
+rm -f LeMostra
+gcc -Wall -g \
+    e/rev-a34/GeraSalva-Nomes.c \
+    e/rev-a34/LeMostra.c \
+    -o e/rev-a34/LeMostra
+#+end_src
+
+#+RESULTS:
+
+* (#1) Organização P3
+
+#+BEGIN_CENTER
+Faça uma função (que recebe um nome de
+
+arquivo como entrada), e imprima a altura de
+
+atletas cujos nomes foram lidos do teclado. A
+
+função deve abrir e fechar o arquivo, e possibilitar
+
+a busca de diversos atletas.
+#+END_CENTER
+
+#+latex: \pause\vfill
+
+#+BEGIN_CENTER
+Exercício caseiro (/aka/ tema de casa)
+#+END_CENTER
+
+* (#1) Organização P4
+
+#+BEGIN_CENTER
+Faça outro programa que insere um
+
+novo registro de atleta no final do arquivo.
+#+END_CENTER
+
+#+latex: \pause\vfill
+
+Programa _InsereNoFinal_, com os seguintes módulos
+1. *Nomes*, responsável pela geração de nomes, idade e altura aleatórios
+2. *Principal*, responsável por (a) gerar um atleta e (b) colocar no final.
+
+#+latex: \pause\vfill
+
+(lembrete) Como é o formato do arquivo binário:
+- Um inteiro (4 bytes) com a quantidade de atletas no arquivo
+- Sequência de estruturas de dados com os atletas
+
+* (#1) InsereNoFinal (Implementação)
+
+~InsereNoFinal.c~
+#+BEGIN_SRC C :tangle e/rev-a34/InsereNoFinal.c
+#include <stdio.h>
+#include "GeraSalva-Nomes.h"
+#include "GeraSalva.h"
+int main() {
+  atleta_t um_atleta;
+  gera_nome_aleatorio(um_atleta.nome, 20);
+  um_atleta.idade = gera_idade_aleatoria(18, 25);
+  um_atleta.altura = gera_altura_aleatoria(180, 185);
+
+  FILE *arquivo = fopen(FATLETAS, "a");
+  if (arquivo){
+    fwrite(&um_atleta, sizeof(atleta_t), 1, arquivo);
+    fclose(arquivo);
+  }else{
+    printf("Impossível abrir arquivo [%s] para concatenar. Fatal.\n", FATLETAS);
+  }
+  return 0;
+}
+#+END_SRC
+
+#+latex: \pause
+
+Qual o problema dessa abordagem?
+
+* (#1) InsereNoFinal: Compilação e Testes
+
+#+begin_src shell :results output :exports both
+rm -f InsereNoFinal
+gcc -Wall -g \
+    e/rev-a34/GeraSalva-Nomes.c \
+    e/rev-a34/InsereNoFinal.c \
+    -o e/rev-a34/InsereNoFinal
+#+end_src
+
+#+RESULTS:
+
+* (#1) InsereNoFinal-Melhor
+
+Resolvendo o problema da abordagem anterior?
+1. Ler a quantidade de atletas no início do arquivo
+2. Escrever o novo atleta no final
+3. Escrever a nova quantidade de atletas no início
+
+#+latex: \vfill
+
+
+#+latex: \begin{multicols}{2}
+~InsereNoFinal-Melhor.c~
+#+attr_latex: :options fontsize=\tiny
+#+BEGIN_SRC C :tangle e/rev-a34/InsereNoFinal-Melhor.c
+#include <stdio.h>
+#include "GeraSalva-Nomes.h"
+#include "GeraSalva.h"
+int main() {
+  FILE *arquivo = NULL;
+  int natletas = 0;
+  atleta_t atleta = {0};
+  gera_nome_aleatorio(atleta.nome, 20);
+  atleta.idade = gera_idade_aleatoria(18, 25);
+  atleta.altura = gera_altura_aleatoria(180, 185);
+
+  //1. 
+  arquivo = fopen(FATLETAS, "r");
+  if (arquivo){
+    fread(&natletas, sizeof(int), 1, arquivo);
+    fclose(arquivo);
+  }else{
+    printf("Impossível abrir arquivo "
+	   "[%s] para leitura. Fatal.\n", FATLETAS);
+    return 0;
+  }
+
+
+
+
+  //2. 
+  arquivo = fopen(FATLETAS, "a");
+  if (arquivo){
+    fwrite(&atleta, sizeof(atleta_t), 1, arquivo);
+    fclose(arquivo);
+  }else{
+    printf("Impossível abrir arquivo [%s] para concatenar. Fatal.\n", FATLETAS);
+    return 0;
+  }
+
+
+  //3. 
+  natletas++;
+  arquivo = fopen(FATLETAS, "r+");
+  fwrite(&natletas, sizeof(int), 1, arquivo);
+  fclose(arquivo);
+  return 0;
+}
+#+END_SRC
+#+latex: \end{multicols}
+* (#1) InsereNoFinal: Compilação e Testes
+
+#+begin_src shell :results output :exports both
+rm -f InsereNoFinal-Melhor
+gcc -Wall -g \
+    e/rev-a34/GeraSalva-Nomes.c \
+    e/rev-a34/InsereNoFinal-Melhor.c \
+    -o e/rev-a34/InsereNoFinal-Melhor
+#+end_src
+
+#+RESULTS:

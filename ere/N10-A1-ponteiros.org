@@ -1,0 +1,303 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Algoritmos
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{systeme}
+
+#+latex: \newcommand{\mytitle}{Ponteiros e Vetores}
+#+latex: \mytitleslide
+
+* Sumário
+
+Ponteiros
+- Aritmética de ponteiros (/lembrete/)
+- Exemplo #1: aritmética
+
+Ponteiros e vetores
+- Semelhanças
+  - Exemplo #2
+- Diferenças
+  - Exemplo #3
+  - Exemplo #4
+
+Passagem de vetores como referência
+- Exemplo #5 (leitura de valores)
+- Exemplo #6 (manipulação de string)
+- Exemplo #7 (copia invertido)
+- Exemplo #8 (função retorna ponteiro)
+
+#+latex: %\vfill
+
+# Algoritmo da bolha (/bubble sort/)
+# - Ordenação de vetores com valores numéricos
+
+* Aritmética de ponteiros (/lembrete/)
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula19/aula19_slide_09.pdf}{Prof. Marcelo Walter}
+
+* Exemplo #1 ~a28-aritmetica.c~
+
+#+BEGIN_SRC C :tangle a28-aritmetica.c
+#include <stdio.h>
+int main() {
+  int i, *pi1, *pi2;
+  double d, *pd1, *pd2;
+  char c, *pc1, *pc2;
+  c = 'A';
+  d = 5.423;
+  i = -20;
+  pi1 = &i;
+  pi2 = pi1 + 1; // incrementa o espaco ocupado por um inteiro (4 bytes)
+  pd1 = &d;
+  pd2 = pd1 + 2; // incrementa duas vezes o espaco ocupado por um double (2*8 bytes)
+  pc1 = &c;
+  pc2 = pc1 - 1; // decrementa o espaco ocupado por um char (1 byte)
+  printf("Resultados em hexadecimal\n");
+  printf("pi1: %p, pi2: %p\n", pi1, pi2);
+  printf("pd1: %p, pd2: %p\n", pd1, pd2);
+  printf("pc1: %p, pc2: %p\n\n", pc1, pc2);
+  printf("Resultados em decimal\n");
+  printf("pi1: %d, pi2: %d\n", pi1, pi2);
+  printf("pd1: %d, pd2: %d\n", pd1, pd2);
+  printf("pc1: %d, pc2: %d\n", pc1, pc2);
+  return 0;
+}
+#+END_SRC
+* Ponteiros e vetores: *semelhanças*
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula19/aula19_slide_11.pdf}{Prof. Marcelo Walter}
+
+* Exemplo #2 ~a28-semelhancas.c~
+
+#+BEGIN_SRC C :tangle a28-semelhancas.c
+#include <stdio.h>
+#define TAM 2
+int main()
+{
+  int v[TAM]; //alocação de vetor de inteiros de tamanho TAM
+  int i;
+
+  printf("Leitura com acesso tipo ponteiro\n");
+  for (i = 0; i < TAM; i++)
+    scanf("%d",v+i);       // ja eh ponteiro (sem o "e" comercial)
+
+  printf("Impressao com acesso tipo ponteiro\n");
+  for (i = 0; i < TAM; i++)
+    printf("%d ",*(v+i)); //acessamos o valor apontado por v+i
+  printf("\n");
+
+  printf("Impressao com acesso tipo vetor\n");
+  for (i = 0; i < TAM; i++)
+    printf("%d ",v[i]);   //acessamos a posição i de v
+  printf("\n");
+  return 0;
+}
+#+END_SRC
+* Ponteiros e vetores: *diferenças* (na _declaração_ unicamente)
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula19/aula19_slide_13.pdf}{Prof. Marcelo Walter}
+
+* Exemplo #3 ~a28-diferencas.c~
+
+#+BEGIN_SRC C :tangle a28-diferencas.c
+#include <stdio.h>
+#define TAM 3
+int main() {
+
+  int v[TAM] = {1,2,3};
+  int *p;
+  p = v; //operação válida. Atribui a p o endereço do primeiro elemento de v
+  v = p; //operação inválida (pois v aponta para um endereço fixo de memória)
+
+  return 0;
+}
+#+END_SRC
+
+#+latex: \pause
+
+Compilando para ver *error*
+
+#+begin_src shell :results output :exports both
+gcc a28-diferencas.c 2> x; cat x
+#+end_src
+
+#+RESULTS:
+: a28-diferencas.c: In function ‘main’:
+: a28-diferencas.c:9:5: error: assignment to expression with array type
+:    v = p; //operação inválida (pois v aponta para um endereço fixo de memória)
+:      ^
+
+* Exemplo #4 ~a28-strings.c~
+
+Strings são vetores de caracteres.
+
+#+BEGIN_SRC C :tangle a28-strings.c
+#include <stdio.h>
+int main() {
+  char str[80] = "Alpha Centauri";
+  char *p1;
+
+  //atribui à p1 o endereço do primeiro elemento de str
+  p1 = str;
+
+  //imprimir o mesmo elementos com dois atalhos
+  printf("[%c] = [%c]\n", str[0], *p1);
+
+  // str[4] ou *(p1+4) acessam o 5o caractere (elemento) de str
+  printf("[%c] = [%c]\n", str[4], *(p1+4));
+
+  return 0;
+}
+#+END_SRC
+
+* Resumo: Vetores são como se fossem ponteiros!
+
+#+latex: %\cortesia{../../../Algoritmos/Marcelo/aulas/aula19/aula19_slide_15.pdf}{Prof. Marcelo Walter}
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula19-ponteiros_arrays_slide_07.pdf}{Prof. Claudio Jung}
+
+* Exemplo #5 ~a28-levetor.c~ (leitura de valores)
+
+Faça uma função ~le_vetor~ de floats que receba como parâmetro o vetor a
+ser preenchido e o número de elementos a serem lidos:
+
+#+BEGIN_SRC C :tangle a28-levetor.c :main no
+#include <stdio.h>
+#define TAM 3
+
+void le_vetor(float vetor[], int num_vet) { //leitura de um vetor de floats
+  int i; // variável local, para auxiliar leitura
+  printf("Entre os %d valores do vetor, separados por espaços\n",num_vet);
+  for (i = 0; i < num_vet; i++)
+    scanf("%f",&vetor[i]);
+  return;
+}
+#+END_SRC
+
+#+latex: \pause
+
+#+BEGIN_SRC C :tangle a28-levetor.c :main no
+int main() {
+  int i; //contador
+  float vec[TAM];
+  printf("leitura de %d elementos \n", TAM);
+  le_vetor(vec, TAM);  //<-- veja a chamada da função
+  for (i = 0; i < TAM; i++) // escrita do vetor
+    printf("%.2f ", vec[i]);
+  printf("\n");
+  return 0;
+}
+#+END_SRC
+* Observação sobre o Exemplo #5
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula19-ponteiros_arrays_slide_09.pdf}{Prof. Claudio Jung}
+
+* Exemplo #6 ~a28-upper.c~ (manipulação de /string/)
+
+Faça uma função ~void~ que receba como parâmetro uma string e converta
+todos seus caracteres para maiúsculas.
+
+#+BEGIN_SRC C :tangle a28-upper.c :main no
+#include <stdio.h>
+void nosso_upper (char str[])  {
+  int i = 0; //contador inicializado na primeira posicao da string
+  while(str[i] != '\0') {
+    str[i] = toupper(str[i]);
+    i++;
+  }
+}
+#+END_SRC
+
+#+latex: \pause
+
+Uma segunda versão:
+
+#+BEGIN_SRC C :tangle a28-upper.c :main no
+void nosso_upper_v2 (char str[])  {
+  while(*str != '\0'){
+    ,*str = toupper(*str);
+    str++;
+  }
+}
+#+END_SRC
+* Exemplo #7 ~a28-inverte.c~ (copia invertido)
+
+Faça uma função ~void inverte(char* str1, char* str2)~, que copie
+o conteúdo de str1 invertido (caracteres de trás para frente) em str2.
+
+#+BEGIN_SRC C :tangle a28-inverte.c
+#include <stdio.h>
+#include <string.h>
+#define TAM 20
+void inverte(char* str1, char* str2);
+int main() {
+  char c1[TAM], c2[TAM];
+  fgets(c1, TAM, stdin);
+  c1[strlen(c1)-1] = '\0';
+  inverte_texto(c1, c2);
+  printf("[%s] -> [%s]\n", c1, c2);
+  return 0;
+}
+#+END_SRC
+
+#+latex: \pause
+
+#+BEGIN_SRC C :tangle a28-inverte.c :main no
+void inverte(char* str1, char* str2) {
+  int i, n = strlen(str1);
+  for (i = 0; i < n; i++)
+    str2[i] = str1[n - 1 - i];
+  str2[i] = '\0';
+}
+#+END_SRC
+* Exemplo #8 ~a28-maior.c~ (ponteiro para maior)
+
+#+BEGIN_CENTER
+Uma função também pode retornar um ponteiro
+#+END_CENTER
+
+Escreva uma função em C que receba como parâmetro
+um vetor de inteiros, e retorne um ponteiro apontando
+para a posição do maior elemento do vetor
+
+#+latex: \pause
+
+#+BEGIN_SRC C :tangle a28-maior.c :main no
+#include <stdio.h>
+// função tipo ponteiro inteiro
+int *maior(int vet[], int tamanho) {
+  int i, *p; // índice e ponteiro de elemento do vetor
+  p = vet;   // aponta para 1o elemento do vetor
+  for (i = 0; i < tamanho; i++)
+    if (vet[i] > *p)
+      p = vet + i; // passa a apontar para o maior valor
+  return p; // retorna o ponteiro
+}
+#+END_SRC
+
+#+latex: \pause
+
+#+BEGIN_SRC C :tangle a28-maior.c
+int main() {
+  int vet[] = {3, 1, 8, 4}, *m = NULL;
+  m = maior (vet, 4);
+  return 0;
+}
+#+END_SRC
+
+* Observação sobre o Exemplo #8
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula19-ponteiros_arrays_slide_17.pdf}{Prof. Claudio Jung}

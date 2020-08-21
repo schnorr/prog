@@ -1,0 +1,160 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Algoritmos
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+
+#+latex: \newcommand{\mytitle}{Revisão Aula 02}
+#+latex: \mytitleslide
+
+* Configuração                                                     :noexport:
+
+#+BEGIN_SRC emacs-lisp
+(setq org-latex-listings 'minted
+      org-latex-packages-alist '(("" "minted"))
+      org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+(setq org-latex-minted-options
+       '(("frame" "lines")
+         ("fontsize" "\\scriptsize")))
+#+END_SRC
+
+#+RESULTS:
+| frame    | lines       |
+| fontsize | \scriptsize |
+
+* Revisitando o =scanf=
+
+Observar sempre o retorno da função =scanf=
+- Ele indica quantos elementos foram reconhecidos
+
+#+latex: \vfill
+
+#+BEGIN_SRC C :tangle e/programa-soma2_v2.c
+/*calcula a soma de 2 valores inteiros lidos do teclado */
+#include<stdio.h> // biblioteca com operações de entrada e saída
+int main( )
+{
+  int val_1, val_2; // declaração das variáveis de entrada
+  int soma;         // declaração da variável resultante
+  int nlidos;       // declaração de variável auxiliar
+
+  printf("Informe dois valores:\n"); // mensagem impressa na tela
+  nlidos = scanf("%d %d", &val_1, &val_2);   // leitura da informação digitada
+  soma = val_1 + val_2;   // armazena resultado em soma
+  printf("Resultado da soma: %d (%d)\n", soma, nlidos); // e mostra na tela
+  nlidos = scanf("%d", &val_1);
+  printf("Mais um elemento lido: %d (%d)\n", val_1, nlidos);
+  return 0; // encerra o programa de forma correta
+}
+#+END_SRC
+
+* Algoritmo deve ser claro nos comandos
+
+[[./img/robots_not_so_clear.pdf]]
+
+#+latex: \pause
+
+#+BEGIN_CENTER
+O que tem na sacola do C3PO após a ida ao armazém?
+#+END_CENTER
+
+* Comandos claros no algoritmo
+
+#+latex: \cortesia{./img/aula03_slide_04.pdf}{Adaptado do material do Prof. Edison Pignaton de Freitas}
+
+* Exemplo da conversão para dólar                                  :noexport:
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula03/aula03_slide_09.pdf}{Prof. Marcelo Walter}
+
+* Programa
+
+#+BEGIN_CENTER
+Em 15/03/2019, 1 dólar = 0.260797 reais
+
+Observe a formatação da saída na função =printf= \to =%4.2f=
+#+END_CENTER
+
+#+BEGIN_SRC C :tangle e/programa-conversao-real-dolar_v2.c
+/* Programa que converte um valor em reais para dolares.
+   Entradas: valor em reais, taxa de conversão
+   Saída: valor em dólares */
+#include <stdio.h> // biblioteca para I/O
+int main() // programa principal
+{
+  float preco_real, taxa; // entradas
+  float preco_dolar; //saída
+
+  printf("Informar preco em real: R$ ");
+  scanf("%f",&preco_real);
+
+  //le e armazena na variável
+  printf("Informar taxa de conversao: R$ ");
+  scanf("%f",&taxa);
+
+  //le e armazena na variável
+  preco_dolar = preco_real/taxa;
+  printf("O preco em dolar vale: US$ %4.2f", preco_dolar);
+  return 0; // encerra funcao main
+}
+#+END_SRC
+
+* Tamanho do campo e precisão
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula03/aula03_slide_11.pdf}{Prof. Marcelo Walter}
+
+* Ilustração do tamanho do campo e precisão
+
+#+latex_attr: :options :fontsize \tiny
+#+BEGIN_SRC C :tangle e/teste-printf.c
+//teste saida printf
+#include <stdio.h>
+int main( )
+{
+  float valor=99.7567892;
+  printf("Valor com 9f   = [%9f]\n", valor);
+  printf("Valor com 9.0f = [%9.0f]\n", valor);
+  printf("Valor com 9.1f = [%9.1f]\n", valor);
+  printf("Valor com 9.2f = [%9.2f]\n", valor);
+  printf("Valor com 9.3f = [%9.3f]\n", valor);
+  printf("Valor com 1.2f = [%1.2f]\n", valor);
+  return 0;
+}
+#+END_SRC
+
+#+latex: \vfill\pause
+
+Compilando e executando (veja a saída no terminal)
+
+#+begin_src shell :results output :dir e
+gcc teste-printf.c -o teste-printf
+./teste-printf
+#+end_src
+
+#+RESULTS:
+: Valor com 9f   = [99.756790]
+: Valor com 9.0f = [      100]
+: Valor com 9.1f = [     99.8]
+: Valor com 9.2f = [    99.76]
+: Valor com 9.3f = [   99.757]
+: Valor com 1.2f = [99.76]
+
+* Para ir mais longe
+
+1. Ler o manual do =printf= e do =scanf=
+   - /aka/ =man printf=, or https://linux.die.net/man/3/printf
+2. Exercitar o pensamento computacional no quotidiano
+   - Para algo, estabelecer passo a passo com clareza

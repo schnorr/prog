@@ -1,0 +1,221 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Algoritmos
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+
+#+latex: \newcommand{\mytitle}{Estrutura de um Programa em C}
+#+latex: \mytitleslide
+
+* Listagem de tópicos abordados
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula02-Sequencial_slide_05.pdf}{Profa. Mara Abel}
+
+* Partes principais do computador
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula02-Sequencial_slide_09.pdf}{Profa. Mara Abel}
+
+* Análise e Definição do Problema para o Algoritmo
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula02/aula02_slide_12.pdf}{Prof. Marcelo Walter}
+
+* Projeto do Algoritmo (primeira versão)
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula02/aula02_slide_13.pdf}{Prof. Marcelo Walter}
+
+* Projeto do Algoritmo (versão melhorada)
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula02/aula02_slide_14.pdf}{Prof. Marcelo Walter}
+
+* Projeto do Algoritmo (versão final)
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula02/aula02_slide_15.pdf}{Prof. Marcelo Walter}
+
+#+latex: \pause
+
+O próximo passo é a codificação em uma linguagem de programação.
+
+* Linguagem de Programação
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula02/aula02_slide_17.pdf}{Prof. Marcelo Walter}
+
+* Ambiente de Programação
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula02/aula02_slide_18.pdf}{Prof. Marcelo Walter}
+
+#+latex: \pause
+
+*Nota*: Mas pode-se utilizar qualquer editor de texto e compilador.
+
+* Esqueleto de um Programa (vazio) escrito em C
+
+#+BEGIN_SRC C :tangle e/programa-vazio.c
+/* comentário inicial, descrevendo objetivos do programa */
+#include<stdlib.h> // para usar comandos do sistema
+#include<stdio.h> // para entrada e saída de dados
+// outras bibliotecas necessárias
+// outras declarações
+
+int main() // função principal e obrigatória
+{
+  //declarações e comandos
+  return 0; // para encerramento normal do programa
+}
+#+END_SRC
+
+- Linhas com =#= são tratados pelo *pré-processador*
+
+#+latex:% \cortesia{../../../Algoritmos/Claudio/Teorica/Aula02-algor-estrutprogr_slide_08.pdf}{Prof. Claudio Jung}
+
+* Entrada (=scanf=) e saída (=printf=) de dados
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula02/aula02_slide_21.pdf}{Prof. Marcelo Walter}
+
+#+latex: \pause\raggedright
+
+=scanf= \to escaneamento de dados formatados
+
+=printf= \to impressão na tela de dados formatados
+
+* Codificação do projeto da soma
+
+#+BEGIN_SRC C :tangle e/programa-soma2.c
+/*calcula a soma de 2 valores inteiros lidos do teclado */
+#include<stdio.h> // biblioteca com operações de entrada e saída
+int main( )
+{
+  int val1, val2;       // declaração das variáveis de entrada
+  int soma;             // declaração da variável resultante
+
+  printf("Valor 1:\n"); // mensagem impressa na tela
+  scanf("%d", &val1);   // leitura da informação digitada
+  printf("Valor 2:\n");
+  scanf("%d", &val2);
+  soma = val1 + val2;   // armazena resultado em soma
+  printf("Resultado da soma: %d\n", soma); // e mostra na tela
+  return 0;             // encerra o programa de forma correta
+}
+#+END_SRC
+
+* Declaração de variáveis
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula02/aula02_slide_25.pdf}{Prof. Marcelo Walter}
+
+#+latex: \vfill
+
+#+BEGIN_CENTER
+Teste
+#+END_CENTER
+
+* =scanf=
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula02-v1_slide_35.pdf}{Prof. Edison Pignaton de Freitas}
+
+* =scanf= (exemplo)
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula02-v1_slide_36.pdf}{Prof. Edison Pignaton de Freitas}
+
+* =printf=
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula02-v1_slide_38.pdf}{Prof. Edison Pignaton de Freitas}
+
+* =printf= (exemplo)
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula02-v1_slide_39.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Atribuição
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula02-v1_slide_37.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Elementos léxicos
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula02-algor-estrutprogr_slide_06.pdf}{Prof. Claudio Jung}
+
+* Sintaxe sensível a maiúsculas e minúsculas
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula02-algor-estrutprogr_slide_07.pdf}{Prof. Claudio Jung}
+
+* Declarações de nomes                                             :noexport:
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula02-algor-estrutprogr_slide_09.pdf}{Prof. Claudio Jung}
+
+* Definição de identificadores
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula02-algor-estrutprogr_slide_10.pdf}{Prof. Claudio Jung}
+
+* Palavras reservadas
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula02-algor-estrutprogr_slide_11.pdf}{Prof. Claudio Jung}
+
+* Comentários C99
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula02-algor-estrutprogr_slide_12.pdf}{Prof. Claudio Jung}
+
+* Diretivas de pré-processamento
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula02-algor-estrutprogr_slide_13.pdf}{Prof. Claudio Jung}
+
+* A biblioteca =stdio.h=
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula02-algor-estrutprogr_slide_14.pdf}{Prof. Claudio Jung}
+
+* Exercício resolvido em aula
+
+Veja o algoritmo fornecido.
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula02-Sequencial_slide_22.pdf}{Profa. Mara Abel}
+
+* Melhorar o algoritmo
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula02-Sequencial_slide_23.pdf}{Profa. Mara Abel}
+
+* Solução do exercício
+
+#+BEGIN_SRC C :tangle e/programa-conversao-real-dolar.c
+/* Calcula e conversão de Real para Dolar */
+#include <stdio.h> // biblioteca com operações de I/O
+int main()
+{
+  float Preco, Taxa;          // Valores em real declarados float
+  float PrecoEmDolar;         // tipo da variável resultante
+  printf("Valor em real:\n"); // mensagem impressa na tela
+  scanf("%f", &Preco);        // leitura da informação digitada
+  printf("Taxa conversao :\n");
+  scanf("%f", &Taxa);
+  PrecoEmDolar = Preco *Taxa;
+  printf("Preco em dolar: %f\n", PrecoEmDolar); // mostra
+  return 0; // encerra o programa e retorna zero ao Sist Op
+}
+#+END_SRC
+
+* Exercício
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula02-Sequencial_slide_25.pdf}{Profa. Mara Abel}
+
+* Dois exercícios para a próxima aula
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula02-Sequencial_slide_26.pdf}{Profa. Mara Abel}
+
+* Emacs setup                                                      :noexport:
+
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'org-latex-packages-alist '("" "minted"))
+(setq org-latex-listings 'minted)
+(setq org-latex-minted-options '(("style" "Tango") ("bgcolor" "white") ("frame" "lines") ("linenos" "false") ("fontsize" "\\small")))
+(setq org-latex-pdf-process '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+#+END_SRC
+
+#+RESULTS:
+| pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f |

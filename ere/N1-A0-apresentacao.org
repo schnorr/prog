@@ -1,0 +1,169 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Algoritmos
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr \linebreak Prof. Renan Maffei
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+
+#+latex: \newcommand{\mytitle}{Apresentação linebreak Algoritmos e Programação}
+#+latex: \mytitleslide
+
+* Os professores
+
+Prof. Lucas M. Schnorr \hfill \to aulas téoricas
++ Prédio 43425, Sala 202
++ [[http://www.inf.ufrgs.br/~schnorr][http://www.inf.ufrgs.br/~schnorr]]
++ schnorr@inf.ufrgs.br
+
+#+latex: \vfill
+
+Prof. Renan Maffei \hfill \to práticas
++ Prédio 43424, Sala 224
++ [[http://www.inf.ufrgs.br/~rqmaffei][http://www.inf.ufrgs.br/~rqmaffei]]
++ rqmaffei@inf.ufrgs.br
+     
+* Motivação
+
+#+BEGIN_CENTER
+Por que fazer INF01202?
+
+Algoritmos e Programação
+#+END_CENTER
+
+* Motivação \to Adquirir *Pensamento Computacional*
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula01_completa_slide_18.pdf}{Prof. Edison Pignaton de Freitas}
+* Objetivo Geral
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula01_completa_slide_17.pdf}{Prof. Edison Pignaton de Freitas}
+* Mais objetivos 
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula01_completa_slide_19.pdf}{Prof. Edison Pignaton de Freitas}
+#+latex: %\cortesia{../../../Algoritmos/Mara/Teoricas/Aula01-Introducao_slide_17.pdf}{Profa. Mara Abel}
+* Funcionamento das aulas
+
+A presença será aferida (75% de frequência evita FF)
+- São 45 encontros no total, portanto 12 faltas implica em FF
+
+#+latex: \vfill
+
+Realizar exercícios propostos em aula prática
+
+#+latex: \vfill
+
+Perguntar sempre em caso de dúvida
+- seja ator do teu aprendizado
+
+* Plano, cronograma, bibliografia, projeto
+
++ Súmula, conteúdo programático, bibliografia e cronograma
++ Procedimentos didáticos, laboratórios
++ Trabalhos, provas e avaliação
+  
+#+BEGIN_CENTER
+Consulte no Portal do Aluno da UFRGS, ou uma cópia em
+
+https://gitlab.com/schnorr/prog/tree/master/plano
+#+END_CENTER
+
+* Bibliografia (Geral)
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula01_completa_slide_13.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Bibliografia (Específica da Linguagem C)
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula01_completa_slide_20.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Avaliação
+
+*Duas provas* (P1 e P2)
+- Testará os aspectos teóricos da disciplina
+- As provas englobam os assuntos vistos até então
+
+*Exercícios Práticos* (AP)
+- Realizados nas aulas práticas
+
+*Trabalho Final* (TF)
+- Respeito das especificações, linguagem C
+- Testes
+
+#+latex: \vfill\pause
+
+#+BEGIN_CENTER
+Nota final
+
+P1 \times 0.30 + P2 \times 0.45 + AP \times 0.15 + TF \times 0.10
+#+END_CENTER
+
+#+latex: \pause
+
+#+BEGIN_CENTER
+Mapeamento para conceito
+
+8.5 -- 10 \to A
+
+7.5 -- 8.4 \to B
+
+6.0 -- 7.4 \to C
+
+0.0 -- 5.9 \to D
+#+END_CENTER
+* Recuperação
+
+Se o aluno não atingir nota 6,0 na Média Final, poderá realizar uma
+prova de recuperação sobre toda a matéria. Se a média entre a prova de
+recuperação e a nota final da disciplina for maior ou igual a 6,0, o
+aluno será aprovado com C.
+
+#+BEGIN_CENTER
+(Media Final + Prova Recuperacao) / 2 >= 6,0 \to Conceito C
+#+END_CENTER
+
+A apresentação do Trabalho Final, mesmo que não execute perfeitamente,
+é pré-requisito para a realização da recuperação.
+
+* Algoritmo para avaliação
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula01-Introducao_slide_20.pdf}{Profa. Mara Abel}
+* Algoritmo para avaliação (no caso de recuperação)
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula01-Introducao_slide_21.pdf}{Profa. Mara Abel}
+* Ferramenta EAD
+
+#+BEGIN_CENTER
+Aulas Teóricas:
+
+https://gitlab.com/schnorr/prog/
+#+END_CENTER
+
+#+BEGIN_CENTER
+Aulas Práticas:
+
+https://moodle.inf.ufrgs.br/course/view.php?id=338
+
+Senha para auto-inscrição: ~ALG_PROG_2019_2CD~
+#+END_CENTER
+
+Em dúvidas
+- Discuta com os colegas
+- Converse com o monitor
+- [[https://gitlab.com/schnorr/prog/issues][Abra uma Issue no GitLab]]
+- Converse com os professores
+* Cronograma
+
+#+BEGIN_CENTER
+Sempre atualizado em
+
+https://gitlab.com/schnorr/prog/tree/master/cronograma
+
+note que há uma versão em PDF
+#+END_CENTER
+
+
+

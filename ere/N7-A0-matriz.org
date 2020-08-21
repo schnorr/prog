@@ -1,0 +1,434 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Algoritmos
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+
+#+latex: \newcommand{\mytitle}{Arranjos Multidimensionais}
+#+latex: \mytitleslide
+
+* Configuração                                                     :noexport:
+
+#+BEGIN_SRC emacs-lisp
+(setq org-latex-listings 'minted
+      org-latex-packages-alist '(("" "minted"))
+      org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+(setq org-latex-minted-options
+       '(("frame" "lines")
+         ("fontsize" "\\scriptsize")))
+#+END_SRC
+
+#+RESULTS:
+| frame    | lines       |
+| fontsize | \scriptsize |
+* Sumário
+
+- Revisão rápida sobre vetores
+  - Com motivação para matrizes
+- Matrizes!
+  - Declaração
+  - Utilização
+  - Inicialização automática
+- Exemplos
+  - #1 (ler e armazenar notas em uma matriz)
+  - #2 (imprimir matriz na tela)
+  - #3 (operações comuns)
+- Arranjos multidimensionais (com mais de duas dimensões)
+  - 3D
+  - 4D e além
+- Matrizes de caracteres
+- Exercícios
+  - #1 (Matriz transposta)
+  - #2 (Sistema de Equações Lineares)
+
+* Revisão Vetor #1
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula13/aula13_slide_14.pdf}{Prof. Marcelo Walter}
+
+* Revisão Vetor #2
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula13/aula13_slide_15.pdf}{Prof. Marcelo Walter}
+
+* Revisão Vetor #3
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula13/aula13_slide_16.pdf}{Prof. Marcelo Walter}
+
+* Revisão Vetor #4 (Motivação para matrizes!)
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula13/aula13_slide_17.pdf}{Prof. Marcelo Walter}
+
+* Matrizes!
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula13/aula13_slide_18.pdf}{Prof. Marcelo Walter}
+
+* Matrizes (coordenadas em duas dimensões)
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula13/aula13_slide_19.pdf}{Prof. Marcelo Walter}
+
+* Declaração (sintaxe)
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula12-Matriz1_slide_04.pdf}{Prof. Mara Abel}
+
+* Utilização (sintaxe)
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula13/aula13_slide_21.pdf}{Prof. Marcelo Walter}
+
+* Inicialização automática
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula13/aula13_slide_22.pdf}{Prof. Marcelo Walter}
+
+* Como uma matriz é registrada em memória
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula12-Matriz1_slide_05.pdf}{Prof. Mara Abel}
+
+* Exemplo #1 (ler e armazenar notas em uma matriz)
+
+Ler e armazenar as 4 notas de cada um dos alunos de uma turma (10
+alunos).  Calcular e informar a média da primeira nota. Quantos alunos
+tem a primeira nota superior a esta média?
+
+#+latex: \vfill
+
+Como fica a declaração da matriz?
+- 10 alunos
+- 4 notas
+
+#+latex: \pause
+
+#+BEGIN_SRC C
+float notas[10][4]; 
+#+END_SRC
+
+Haveria outra forma?
+
+#+latex: \pause
+
+- 4 notas
+- 10 alunos
+
+#+BEGIN_SRC C
+float notas[4][10];
+#+END_SRC
+
+* (#1) Code ~a17-notas.c~
+
+Vamos codificar juntos!
+- Em que ordem vamos ler as notas?
+
+#+latex: \vfill
+
+#+latex: \begin{multicols}{2}
+#+attr_latex: :options fontsize=\scriptsize
+#+BEGIN_SRC C :tangle e/a17-notas.c
+#include <stdio.h>
+#define NALUNOS 10
+#define NNOTAS 4
+int main(){
+  //10 alunos, cada um com 4 notas
+  float notas[NALUNOS][NNOTAS];
+  int a, n, soma, contador = 0;
+  float media;
+  for (a = 0; a < NALUNOS; a++){
+    for (n = 0; n < NNOTAS; n++){
+      scanf("%f", &notas[a][n]);
+    }
+  }
+
+  soma = 0;
+  for (a = 0; a < NALUNOS; a++){
+    soma += notas[a][0];
+  }
+  media = (float)soma/NALUNOS;
+  //printf da media
+
+  contador = 0;
+  for (a = 0; a < NALUNOS; a++){
+    if (notas[a][0] > media) contador++;
+  }
+  //printf do contador
+  return 0;
+}
+#+END_SRC
+#+latex: \end{multicols}\vspace{-0.3cm}
+
+* Exemplo #2 (imprimir matriz na tela)
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula13/aula13_slide_31.pdf}{Prof. Marcelo Walter}
+
+* (#2) Code ~a17-imprime-matriz.c~
+
+#+latex: \begin{multicols}{2}
+#+attr_latex: :options fontsize=\scriptsize
+#+BEGIN_SRC C :tangle e/a17-imprime-matriz.c
+#include <stdio.h>
+#include <stdlib.h>
+
+//Limites da nossa matriz
+#define NL 10
+#define NC 3
+
+//Limites de valores aleatórios
+#define MIN 1
+#define MAX 99
+
+int main(){
+  //A matriz m e seus índices
+  int m[NL][NC];
+  int l, c;
+
+  // Define a semente para aleatórios
+  srand(0);
+
+  // inicializar a matriz
+  // com valores aleatórios
+  for (l = 0; l < NL; l++){
+    for (c = 0; c < NC; c++){
+      m[l][c] = MIN+(rand()%(MAX-MIN+1));
+    }
+  }
+
+  // imprimir a matriz
+  for (l = 0; l < NL; l++){
+    for (c = 0; c < NC; c++){
+      printf("%2d", m[l][c]);
+      if (c+1 < NC){
+	printf(" ");
+      }
+    }
+    printf("\n");
+  }
+  return 0;
+}
+#+END_SRC
+#+latex: \end{multicols}\vspace{-0.3cm}
+* Exemplo #3 (operações comuns)
+
+Dada uma matriz inteira ~m~ com número de linhas igual a ~NL~ e número de
+colunas igual a ~NC~, preenchê-la com números aleatórios de -10 a 10 e
+imprimir:
+
+1. o maior elemento de cada coluna da matriz
+2. a média dos elementos de cada linha
+3. o produto de todos os elementos diferentes de zero
+4. quantos elementos são negativos
+5. posição ocupada (linha-coluna) por um elemento cujo valor será lido
+   pelo programa (via teclado). Informar se houver mais de uma
+   ocorrencia, ou se o elemento não estiver presente na matriz
+
+* (#3) Code ~a17-init.c~
+
+#+latex: \vspace{-0.7cm}\begin{multicols}{3}
+#+attr_latex: :options fontsize=\tiny
+#+BEGIN_SRC C :tangle e/a17-init.c
+#include <stdio.h>
+#include <stdlib.h>
+//Limites da nossa matriz
+#define NL 10
+#define NC 3
+
+//Limites de valores aleatórios
+#define MI -10
+#define MA 10
+int main(){
+  //A matriz m e seus índices
+  int m[NL][NC];
+  int l, c;
+
+  // Define a semente
+  srand(0);
+
+  // inicializar a matriz
+  // com valores aleatórios
+  for (l = 0; l < NL; l++){
+    for (c = 0; c < NC; c++){
+      m[l][c] = MI+
+	(rand()%(MA-MI+1));
+    }
+  }
+
+  //imprime a matriz
+  for (l = 0; l < NL; l++){
+    for (c = 0; c < NC; c++){
+      printf("%2d", m[l][c]);
+      if (c+1 < NC){
+	printf(" ");
+      }
+    }
+    printf("\n");
+  }
+
+  //#3.1 maior por coluna
+  for (c = 0; c < NC; c++){
+    int maior = m[0][c];
+    for (l = 0; l < NL; l++){
+      if (m[l][c] > maior)
+	maior = m[l][c];
+    }
+    printf("#3.1 C. %d é %d.\n",
+	   c, maior);
+  }
+
+  //#3.2 media por linha
+  for (l = 0; l < NL; l++){
+    int soma = 0;
+    for (c = 0; c < NC; c++){
+      soma += m[l][c];
+    }
+    printf("#3.2 M. %d é %.2f.\n",
+	   l, (float)soma/NC);
+  }
+
+  //#3.3 produto de não zeros
+  int produto = 1;
+  for (l = 0; l < NL; l++){
+    for (c = 0; c < NC; c++){
+      if (m[l][c])
+	produto *= m[l][c];
+    }
+  }
+  printf("#3.3 P. %d\n", produto);
+
+  //#3.4 quantos negativos
+  int negativos = 0;
+  for (l = 0; l < NL; l++){
+    for (c = 0; c < NC; c++){
+      if (m[l][c] < 0)
+	negativos++;
+    }
+  }
+  printf("#3.4 N. %d\n", negativos);
+
+  //#3.5 Buscar valor
+  int valor, achou, pl, pc;
+  printf("Entre com valor -> ");
+  scanf("%d", &valor);
+  achou = 0;
+  for (l = 0; l < NL; l++){
+    for (c = 0; c < NC; c++){
+      if (m[l][c] == valor){
+	achou = 1;
+	pl = l;
+	pc = c;
+      }
+    }
+  }
+  if (achou){
+    printf("#3.5 Achou@[%d][%d]\n",
+      pl, pc);
+  }else{
+    printf("#3.5 Não achou.\n");
+  }
+  return 0;
+}
+#+END_SRC
+#+latex: \end{multicols}\vspace{-0.3cm}
+* Caso geral, multidimensional (> 2 dimensões)
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula12-Matriz1_slide_10.pdf}{Prof. Mara Abel}
+
+* Declaração 3D
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula12-Matriz1_slide_11.pdf}{Prof. Mara Abel}
+
+* Utilização 3D
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula12-Matriz1_slide_12.pdf}{Prof. Mara Abel}
+
+* 4D e além
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula13_slide_37.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Exemplo 4D
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula13_slide_38.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Matrizes de Caracteres
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula13/aula13_slide_40.pdf}{Prof. Marcelo Walter}
+
+* Código
+
+#+latex: \vspace{-0.7cm}\begin{multicols}{2}
+#+attr_latex: :options fontsize=\scriptsize
+#+BEGIN_SRC C :tangle e/a17-matrizes-caracteres.c
+#include <stdio.h>
+#include<string.h>
+#define TAM_TURMA 40
+#define TAM_NOME 20
+int main() {
+  char nome[TAM_TURMA][TAM_NOME];
+  float nota[TAM_TURMA];
+  int freq[TAM_TURMA];
+  char tela[TAM_TURMA+10];
+  int tam, i;
+  // leitura das entradas
+  printf("Tamanho da turma: ");
+  scanf("%d", &tam);
+  getchar();
+  for (i = 0;
+       i < tam && i < TAM_TURMA;
+       i++) {
+    printf("Nome %d:", i);
+    fgets(nome[i], TAM_NOME, stdin);
+    nome[i][strlen(nome[i])-1] = '\0';
+    printf("[%s]\n", nome[i]);
+    printf("Nota %d:", i);
+    scanf("%f", &nota[i]);
+    printf("Frequência %d:", i);
+    scanf("%d", &freq[i]);
+  }
+
+
+  printf("\n\n");
+  // imprime os nomes dos alunos
+  // e o conceito final
+  for (i = 0;
+       i < tam && i < TAM_TURMA;
+       i++) {
+    strcpy(tela, nome[i]);
+    if (freq[i] < .75 * 45)
+      strcat(tela, ": conceito FF");
+    else
+      if (nota[i]>8.4)
+	strcat(tela, ": conceito A");
+      else
+	if (nota[i]>7.4)
+	  strcat(tela, ": conceito B");
+	else
+	  if (nota[i]>5.9)
+	    strcat(tela, ": conceito C");
+	  else
+	    strcat(tela, ": conceito D");
+    printf("%s\n", tela);
+  }
+  return 0;
+}
+#+END_SRC
+#+latex: \end{multicols}\vspace{-0.3cm}
+
+* Exercício #1 (Matriz transposta)
+
+Preencha (com números aleatórios de 1 a 99, supondo que a semente de
+números aleatórios seja 0) uma matriz quadrada (de inteiros) de ordem
+10 e obtenha a sua transposta. Imprima as duas matrizes para
+averiguação.
+
+* Exercício #2 (Sistema de Equações Lineares)
+
+Suponha um =n= máximo.
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula13-matrizes_slide_29.pdf}{Prof. Claudio Jung}

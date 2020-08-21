@@ -1,0 +1,343 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Algoritmos
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+
+#+latex: \newcommand{\mytitle}{Comando de laço =while=}
+#+latex: \mytitleslide
+
+* Configuração                                                     :noexport:
+
+#+BEGIN_SRC emacs-lisp
+(setq org-latex-listings 'minted
+      org-latex-packages-alist '(("" "minted"))
+      org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+(setq org-latex-minted-options
+       '(("frame" "lines")
+         ("fontsize" "\\scriptsize")))
+#+END_SRC
+
+#+RESULTS:
+| frame    | lines       |
+| fontsize | \scriptsize |
+* Motivação
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula09-while_dowhile_slide_01.pdf}{Prof. Claudio Jung}
+
+* Sumário
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula09/aula09_slide_03.pdf}{Prof. Marcelo Walter}
+
+* Outros tipos de laços
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula009-completa_slide_04.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Apresentação do =while= (enquanto)
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula09/aula09_slide_04.pdf}{Prof. Marcelo Walter}
+
+* Funcionamento do comando =while=
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula09/aula09_slide_05.pdf}{Prof. Marcelo Walter}
+
+* Observação
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula09/aula09_slide_06.pdf}{Prof. Marcelo Walter}
+
+* Exemplos
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula09/aula09_slide_07.pdf}{Prof. Marcelo Walter}
+
+* Back to the example
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula09-while_dowhile_slide_07.pdf}{Prof. Claudio Jung}
+
+* Code
+
+#+attr_latex: :options fontsize=\tiny
+#+BEGIN_SRC C :tangle e/a09-newton-raphson.c
+/* Programa para calcular raiz quadrada de 2 usando Newton-Raphson
+Entrada: numero de iteracoes (inteiro) e “chute” inicial
+Saida: valor aproximado de raiz de 2*/
+#include <stdio.h>
+#include <math.h>
+#include <float.h>
+int main() {
+  double xinic, x1, x2; // aproximacao inicial e valores usados na iteracao
+  double dif, tol; //diferença
+  printf("Entre o erro tolerado:\n");
+  scanf("%lf", &tol);
+  printf("Entre a aproximacao inicial de raiz de 2:\n");
+  scanf("%lf", &xinic);
+
+  x1 = xinic;
+  dif = DBL_MAX;
+  while(dif > tol) {
+    x2 = x1 - (x1*x1-2)/(2*x1);
+    dif = fabs(x1 - x2);
+    printf("%f valor aproximado é %1.15f\n", dif, x2);
+    x1 = x2;
+  }
+  printf("sqrt(2)         : %1.15f\n"
+         "Valor aproximado: %1.15f\n", sqrt(2), x2);
+  return 0;
+}
+#+END_SRC
+* Outro exemplo (notas dos alunos)
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula09/aula09_slide_08.pdf}{Prof. Marcelo Walter}
+
+* Code
+
+#+BEGIN_SRC C :tangle e/a09-processa-notas.c
+//Processa notas dos alunos de uma turma
+#include <stdio.h>
+int main ( )
+{
+  float n1, n2, n3; //notas de um aluno
+  float media, soma; // média do aluno e acumulador de médias da turma
+  int al = 0; //variável de contar alunos
+  soma=0; // inicializa acumulador de médias
+  printf("Informe notas do aluno %d: ", al + 1);
+  scanf("%f", &n1); // lê só a primeira nota do 1o aluno
+  while (n1 <= 10) { // só executa se a 1a nota for <= 10
+    al = al + 1; // conta este aluno
+    scanf("%f%f", &n2, &n3); // lê as outras nota do aluno
+    media = (n1 + n2 + n3)/3;
+    soma = soma + media;
+    printf("\nMedia do aluno %d : %6.2f\n", al, media);
+    printf("Informe notas do aluno %d: ",al + 1);
+    scanf("%f", &n1); // lê só a primeira nota do próximo aluno
+  }
+  if (al > 0) // só calcula média da turma se existir 1 (ou mais) aluno
+    printf("\nMedia da turma: %.2f\n", soma/al);
+  return 0;
+}
+#+END_SRC
+
+* Execução de teste
+
+#+begin_src shell :results output
+gcc a09-processa-notas.c; echo "10.0 9.2 2.2 3.2 4.5 2.1 11" | ./a.out 
+#+end_src
+
+#+RESULTS:
+: Informe notas do aluno 1: 
+: Media do aluno 1 :   7.13
+: Informe notas do aluno 2: 
+: Media do aluno 2 :   3.27
+: Informe notas do aluno 3: 
+: Media da turma: 5.20
+* Seguindo adiante
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula09-while_dowhile_slide_11.pdf}{Prof. Claudio Jung}
+
+* Apresentação do =do ... while= (faça ... enquanto)
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula09/aula09_slide_11.pdf}{Prof. Marcelo Walter}
+
+* Funcionamento do comando =while=
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula09/aula09_slide_12.pdf}{Prof. Marcelo Walter}
+
+* Observação
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula09/aula09_slide_13.pdf}{Prof. Marcelo Walter}
+
+* Exemplos
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula009-completa_slide_19.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Back to the example
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula009-completa_slide_15.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Code
+
+#+attr_latex: :options fontsize=\scriptsize
+#+BEGIN_SRC C :tangle e/a09-newton-raphson-do-while.c
+/* Programa para calcular raiz quadrada de 2 usando Newton-Raphson
+Entrada: numero de iteracoes (inteiro) e “chute” inicial
+Saida: valor aproximado de raiz de 2*/
+#include <stdio.h>
+#include <math.h>
+int main() {
+  double xinic, x1, x2; // aproximacao inicial e valores usados na iteracao
+  double dif, tol; //diferença
+  printf("Entre o erro tolerado:\n");
+  scanf("%lf", &tol);
+  printf("Entre a aproximacao inicial de raiz de 2:\n");
+  scanf("%lf", &xinic);
+  x1 = xinic;
+  //dif = DBL_MAX; //não é mais necessário
+  do {
+    x2 = x1 - (x1*x1-2)/(2*x1);
+    dif = fabs(x1 - x2);
+    printf("%f valor aproximado é %1.15f\n", dif, x2);
+    x1 = x2;
+  } while(dif > tol);
+  printf("sqrt(2)         : %1.15f\n"
+         "Valor aproximado: %1.15f\n", sqrt(2), x2);
+  return 0;
+}
+#+END_SRC
+
+* Outro exemplo (notas dos alunos)
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula09/aula09_slide_16.pdf}{Prof. Marcelo Walter}
+
+* Code
+
+#+BEGIN_SRC C :tangle e/a09-processa-notas-dowhile.c
+//Processa notas dos alunos de uma turma
+#include <stdio.h>
+int main ( )
+{
+  float n1, n2, n3; //notas de um aluno
+  float media, soma; // média do aluno e acumulador de médias da turma
+  int al = 0; //variável de contar alunos
+  soma=0; // inicializa acumulador de médias
+  printf("Informe notas do aluno %d: ", al + 1);
+  scanf("%f", &n1); // lê só a primeira nota do 1o aluno
+  if (n1 <= 10) { // só executa se a 1a nota for <= 10
+    do {
+      al = al + 1; // conta este aluno
+      scanf("%f%f", &n2, &n3); // lê as outras nota do aluno
+      media = (n1 + n2 + n3)/3;
+      soma = soma + media;
+      printf("\nMedia do aluno %d : %6.2f\n", al, media);
+      printf("Informe notas do aluno %d: ",al + 1);
+      scanf("%f", &n1); // lê só a primeira nota do próximo aluno
+    }while(n1 <= 10);
+  }
+  if (al > 0) // só calcula média da turma se existir 1 (ou mais) aluno
+    printf("\nMedia da turma: %.2f\n", soma/al);
+  return 0;
+}
+#+END_SRC
+
+
+* Execução de teste                                                :noexport:
+
+#+begin_src shell :results output
+gcc a09-processa-notas-dowhile.c; echo "10.0 9.2 2.2 3.2 4.5 2.1 11" | ./a.out 
+#+end_src
+
+#+RESULTS:
+: Informe notas do aluno 1: 
+: Media do aluno 1 :   7.13
+: Informe notas do aluno 2: 
+: Media do aluno 2 :   3.27
+: Informe notas do aluno 3: 
+: Media da turma: 5.20
+
+* Verificação de erros com =while= e/ou =do while=
+
+Lembrando que caso o número seja negativo, o programa termina.
+
+#+BEGIN_SRC C :tangle e/a09-fatorial.c
+/*calcula o fatorial de um numero inteiro
+Entrada: numero inteiro positivo
+Saida: fatorial do numero ou mensagem de erro */
+#include <stdio.h>
+int main () {
+  int num, fat, i;
+  printf("Entre um numero inteiro positivo: " );
+  scanf("%d", &num);
+  if (num < 0)
+    printf("Tsk tsk, o número informado é negativo, "
+	   "portanto fatorial não definido.\n");
+  else { //implementação como na fórmula
+    fat = 1; // se for zero, está pronto
+    for (i= num; i >= 1; i--)
+      fat = fat * i;
+    printf ("Fatorial de %d eh %d.\n", num, fat);
+  }
+  return 0;
+}
+#+END_SRC
+
+* Validando a entrada
+
+#+BEGIN_SRC C :tangle e/a09-fatorial-valida.c
+/*calcula o fatorial de um numero inteiro
+Entrada: numero inteiro positivo
+Saida: fatorial do numero */
+#include <stdio.h>
+int main () {
+  int num, fat, i;
+  do {
+    printf("Entre um numero inteiro positivo: " );
+    scanf("%d", &num);
+  } while (num < 0);
+  fat = 1; // se for zero, está pronto
+  for (i= num; i >= 1; i--)
+    fat = fat * i;
+  printf ("Fatorial de %d eh %d.\n", num, fat);
+  return 0;
+}
+#+END_SRC
+
+* Permitindo múltiplos cálculos de fatorial
+
+Ao invés de terminar após o cálculo, pede outro número.
+
+#+BEGIN_SRC C :tangle e/a09-fatorial-valida-multiplos.c
+/*Repete várias vezes o cálculo do fatorial
+Entradas: numeros inteiros positivos
+Saida: fatorial do numero ou mensagem de erro */
+#include <stdio.h>
+int main () {
+  int num, fat, i, resposta;
+  do {
+    printf("Entre um numero inteiro positivo: " );
+    scanf("%d", &num);
+    while (num < 0){
+      printf("Número positivo!! Forneça novamente: " );
+      scanf("%d", &num);
+    }
+    fat = 1; // se for zero, está pronto
+    for (i= num; i >= 1; i--)
+      fat = fat * i;
+    printf ("Fatorial de %d eh %d.\n", num, fat);
+
+    printf ("Quer calcular outro número? Sim(1) ou Não(0): ");
+    scanf("%d", &resposta);
+  }while(resposta);
+  return 0;
+}
+#+END_SRC
+* Comparação
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula009-completa_slide_22.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Lembrando a Programação Estruturada
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula009-completa_slide_23.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Uso
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula009-completa_slide_28.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Exercício #1
+
+Refazer o exercício da taxa de crescimento com do-while ou while.
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula09/aula09_slide_21.pdf}{Prof. Marcelo Walter}
+
+

@@ -1,0 +1,438 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Algoritmos
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{systeme}
+
+#+latex: \newcommand{\mytitle}{Aula de Revisão da Parte #2}
+#+latex: \mytitleslide
+
+* Prova 2
+
+Extrato retirado do plano de 1202.
+
+#+latex: \bigskip
+
+#+BEGIN_QUOTE
+A prova P1 será realizada na metade do semestre e a prova P2 no final,
+considerando todo o conteúdo desenvolvido até a data das provas.
+#+END_QUOTE
+
+#+latex: \vfill
+
+*Atenção*: Local da prova:
+- Quarta 26/06/2019 13:30
+- 43424 - *Auditório Prof. Castilho*
+
+* Conteúdo
+
+Tudo que está em:
+
+#+latex: \bigskip
+
+#+BEGIN_CENTER
+[[https://gitlab.com/schnorr/prog/blob/master/conteudo/index.org][Veja o Conteúdo da disciplina]]
+#+END_CENTER
+
+* Resumo (Parte 1)
+
+|  *N* | *PDF*                                        | *KR*         |
+|----+--------------------------------------------+------------|
+| 01 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/introducao.pdf][Introdução de Algoritmos e Programação]]     |            |
+| 02 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/sequencial.pdf][Estrutura de um Programa em C]]              | C1         |
+| 04 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/tipos.pdf][Tipos de variáveis, expressões aritméticas]] | C2         |
+| 05 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/if.pdf][Comandos =if= e expressões lógicas]]           | C2, S3.2   |
+| 07 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/if-else.pdf][Comandos =if-else= aninhados]]                 | S3.3       |
+| 08 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/switch.pdf][Estrutura de seleção múltipla switch-case]]  | S3.4       |
+| 10 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/for.pdf][Comando iterativo =for=]]                    | S3.5       |
+| 11 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/maisfor.pdf][Comando iterativo =for=]] (bis)              | S3.5       |
+| 13 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/while.pdf][Comando iterativo =while=]]                  | S3.5, S3.6 |
+| 15 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/arranjos.pdf][Arranjos unidimensionais]]                   | S1.6, S5.3 |
+| 16 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/strings.pdf][Strings]]                                    | S1.9, S5.5 |
+| 17 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/matriz.pdf][Matriz]]                                     | S5.7       |
+| 18 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/maismatriz.pdf][Estudos de Caso com Matrizes]]               |            |
+
+* Resumo (Parte 2)
+
+|  *N* | *PDF*                                         | *KR*     |
+|----+---------------------------------------------+--------|
+| 23 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/funcoes.pdf][Subprogramas e Funções]]                      | C4     |
+| 25 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/parametros.pdf][Funções e seus Parâmetros]]                   | C4     |
+| 26 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/referencias.pdf][Referências e Ponteiros]]                     | *C5*     |
+| 28 | (Continuação 16/21) [[http://www.inf.ufrgs.br/~schnorr/inf1202/referencias.pdf][Referências e Ponteiros]] | C5     |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/ponteiros.pdf][Ponteiros]] (com passagem por referência)     | C5     |
+| 29 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/passagem-matrizes.pdf][Passagem de matrizes]]                        | C5     |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/ordenamento-bolha.pdf][Ordenamento Bolha]]                           |        |
+| 31 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/estruturas.pdf][Estruturas]]                                  | C6     |
+| 32 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/typedef.pdf][Estruturas (sim, de novo)]]                   | C6     |
+| 34 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/arquivo.pdf][Arquivo]]                                     | C7, C8 |
+| 35 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/aleatorio.pdf][Arquivo binário (acesso aleatório)]]          | C8     |
+| 37 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/arq-texto.pdf][Arquivo Texto]]                               | C7     |
+| 38 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/arq-texto-p2.pdf][Arquivo Texto e Conversão/Tokens]]            |        |
+| 40 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/recursividade.pdf][Recursividade]]                               | S4.10  |
+| 41 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/estruturacao.pdf][Estruturação de programas]]                   |        |
+* Simulado #1
+
+Considere a declaração ~int vet[4] = {2, 4, 6, 8}~.
+
+#+latex: \vfill
+
+Utilizando a notação de ponteiro:
+
+1. Escreva um comando printf para imprimir diretamente o conteúdo do
+   3o elemento do vetor
+
+   #+BEGIN_SRC C
+   printf("%d", *(vet+2));
+   #+END_SRC
+
+2. Escreva um comando printf para imprimir diretamente o endereço do
+   último elemento.
+
+   #+BEGIN_SRC C
+   printf("%d", vet+3);
+   #+END_SRC
+
+3. Qual a saída de printf ("%d" , ++(*vet)) ?
+
+   #+BEGIN_SRC text
+   3
+   #+END_SRC
+
+4. Supondo que o vetor fosse armazenado na posição 4086 de memória e
+   que, nessa máquina, um inteiro ocupe dois bytes, quais as posições
+   de vet[1], vet[2] e de vet+3?
+
+   #+BEGIN_EXAMPLE
+   vet[1] = (vet+1) = 4086+2 = 4088
+   vet[2] = (vet+2) = 4086+4 = 4090
+   vet+3  = 4086+6 = 4092
+   #+END_EXAMPLE
+
+5. Por que os índices começam em 0 na linguagem C?
+
+   Para evitar uma subtração do tamanho do tipo a cada acesso.
+
+* Simulado #2
+
+Escreva uma FUNÇÃO RECURSIVA que analisa um arranjo de inteiros v e um
+inteiro n recebidos como parâmetros e retorna 1 se o arranjo contiver
+o número n e 0 no caso contrário. Defina os demais parâmetros
+necessários à função.
+
+*Uma solução*
+
+#+BEGIN_SRC C
+#define TAMANHO 5
+
+int recursiva (int v[], int n, int tamanho) {
+  if (tamanho == 0) return 0;
+  else if (n == v[tamanho-1]) return 1;
+  else return recursiva(v, n, tamanho-1);
+}
+
+int recur (int *v, int n, int tamanho) {
+  if (tamanho == 0) return 0;
+  else if (*v == n) return 1;
+  else return recur(v+1, n, tamanho-1);
+}
+
+int recur3 (int v[], int n, int tamanho, int indice){
+  if (tamanho == 0) return 0;
+  else if (v[indice] == n) return 1;
+  else return recur3(v, n, tamanho-1, indice+1);
+}
+
+int main(){
+  int achou = 0;
+  int vetor[TAMANHO] = {3, 5, 29, 392, 3943};
+  achou = recursiva(vetor, 392, TAMANHO);
+  printf("achou = %d\n", achou);
+  printf("achou = %d\n", recur(vetor, 392, TAMANHO));
+}
+#+END_SRC
+
+#+RESULTS:
+| achou | = | 1 |
+| achou | = | 1 |
+
+* Simulado #3
+
+Escreva uma função que recebe um string entrada s1, e devolve, em
+outro string saida s2, o string original sem os espaços
+brancos. Indique como seria a chamada no programa principal (declare
+as variáveis necessárias para a chamada).
+
+*Uma solução*:
+
+#+begin_src C :results output :session :exports both
+void simul3 (char *s1, char *s2) {
+  while(*s1 != '\0'){
+    if (*s1 != ' ') {
+      *s2 = *s1;
+      s2++;
+    }
+    s1++;
+  }
+  *s2 = '\0';
+}
+
+int main(){
+  char s1[] = "o universo está em expansão";
+  char s2[1000];
+  simul3(s1, s2);
+  printf("s1 vale o seguinte [%s]\n", s1);
+  printf("s2 vale o seguinte [%s]\n", s2);
+  return 0;
+}
+#+END_SRC
+
+#+RESULTS:
+: s1 vale o seguinte [o universo está em expansão]
+: s2 vale o seguinte [ouniversoestáemexpansão]
+
+* Simulado #4
+
+#+latex: \small
+
+Uma loja de eletrodomésticos quer manter um cadastro dos produtos
+disponíveis. Faça um programa em C que inicialmente leia do usuário os
+dados de eletrodomésticos a saber: número de código, nome do
+eletrodoméstico e preço, e armazene estes dados num arquivo
+binário. Este arquivo deve ser salvo com o nome ~eletro.bin~. Após a
+leitura dos dados, armazenar em 2 arquivos texto os dados dos
+eletrodomésticos caros (aqueles cujo preço é superior a R$500) e os
+eletrodomésticos baratos (aqueles com preço inferior ou igual a
+R$500). O primeiro arquivo tem o nome ~caro.txt~ e o segundo
+~barato.txt~. Para cada produto deve ser armazenado nos arquivos texto
+apenas o nome e preço do produto, um produto por linha. Utilize
+structs para armazenar os dados dos eletrodomésticos. O seu programa
+deve ter necessariamente as funções abaixo:
+
+a) Uma função ~void esc_bin(FILE *fp)~ que lê do usuário e armazena num
+   arquivo binário cujo ponteiro é recebido como parâmetro as
+   informações de uma quantidade indeterminada de eletrodomésticos. A
+   inserção de eletrodomésticos encerra quando o usuário responder ‘N’
+   ou ‘n’ à pergunta "Adicionar mais um?"
+
+b) Uma função ~void esc_texto(FILE *fp, char nome[], float preco)~ que
+   escreve numa mesma linha no arquivo texto apontado por fp, o nome e
+   preço de um eletrodoméstico recebidos como parâmetro.
+
+*Uma solução:*
+
+#+BEGIN_SRC C :tangle e/p2-simul-4.c
+#include <stdio.h>
+
+typedef struct {
+  int codigo;
+  char nome[32];
+  float preco;
+} eletro_t;
+
+void limpa_buffer() {
+  char c;
+  while ((c = getchar()) != '\n' && c != EOF);
+}
+
+void esc_bin(FILE *fp) {
+    eletro_t eletro = {0};
+    int enquanto_quiser_ler = 1;
+    char escolha;
+    do {
+      printf("Codigo: ");
+      scanf("%d", &eletro.codigo); //ler codigo em &eletro.codigo
+      limpa_buffer();
+      printf("Nome: ");
+      fgets(eletro.nome, 32, stdin); //ler nome de no máximo 31 bytes em eletro.nome
+      printf("Preco: ");
+      scanf("%f", &eletro.preco); //ler preço em &eletro.preco
+      fwrite(&eletro, sizeof(eletro_t), 1, fp);
+      printf("Continuar? (s ou n): ");
+      scanf(" %c", &escolha);
+      if(escolha == 'n') {
+         enquanto_quiser_ler = 0;
+      }
+    } while(enquanto_quiser_ler);
+}
+
+void esc_texto(FILE *fp, char nome[], float preco) {
+  fprintf(fp, "%s %f\n", nome, preco);
+}
+
+int main() {
+  FILE *fp = fopen("eletro.bin", "r+");
+  if(fp == NULL){
+    printf("Erro fatal.\n");
+    return 0;
+  }
+  esc_bin(fp);
+  fseek(fp, 0L, SEEK_SET); // como um rewind(fp)
+  FILE *caro = fopen("caro.txt", "w");
+  FILE *barato = fopen("barato.txt", "w");
+  eletro_t eletro;
+  int elementos_lidos;
+  do {
+    elementos_lidos = fread(&eletro, sizeof(eletro_t), 1, fp);
+    if (elementos_lidos == 1){
+      if(eletro.preco > 500) {
+	   esc_texto(caro, eletro.nome, eletro.preco);
+      }else{
+	   esc_texto(barato, eletro.nome, eletro.preco);
+	}
+    }
+  }while(elementos_lidos == 1);
+  fclose(caro);
+  fclose(barato);
+  fclose(fp);
+}
+#+END_SRC
+
+#+RESULTS:
+
+* Simulado #5
+
+Considere um arquivo texto arquivo.txt já existente. Escreva um
+programa em C que leia o arquivo, leia dois caracteres do teclado,
+troque cada ocorrência do primeiro caractere pelo segundo, e grave
+novamente o arquivo (com o mesmo nome).
+
+*Uma solução*:
+
+~arquivo.txt~
+#+BEGIN_SRC text :tangle arquivo.txt
+o universo esta se expandindo
+#+END_SRC
+
+programa:
+#+BEGIN_SRC C
+#include <stdio.h>
+int main() {
+  // Ler do teclado com fgetc
+  char c_origem, c_destino;
+  c_origem = fgetc(stdin);
+  c_destino = fgetc(stdin);
+
+  // Ler do arquivo char by char
+  FILE *fp = fopen("arquivo.txt", "r+");
+  char c = fgetc(fp);
+  while(c != EOF){
+    if (c == c_origem) {
+      fseek(fp, -1, SEEK_CUR);
+      fputc(c_destino, fp);
+    }
+    c = fgetc(fp);
+  }
+  fclose(fp);
+  return 0;
+}
+#+END_SRC
+
+#+RESULTS:
+
+* Simulado #6
+
+Escreva uma função recursiva ~float funcao(float p, int n)~ que recebe
+como entrada um valor real p > 0 e um valor inteiro n. Se n for menor
+ou igual a zero, a função deve retornar o valor zero. Caso contrário,
+deve retornar o valor da soma.
+
+#+BEGIN_EXPORT latex
+\\\bigskip
+
+$\frac{1}{1^p} + \frac{1}{2^p} + \frac{1}{3^p} +  ... +\frac{1}{n^p}$
+#+END_EXPORT
+
+*Uma solução*:
+
+#+BEGIN_SRC C :libs "-lm"
+#include <math.h>
+#include <stdio.h>
+
+float funcao(float p, int n) {
+  if (n <= 0) return 0;
+  float elemento = 1/pow(n, p);
+  return elemento+funcao(p, n-1);
+}
+
+int main() {
+  printf("%f\n", funcao(2.3, 3));
+}
+#+END_SRC
+
+#+RESULTS:
+: 1.282977
+
+* Simulado #7
+
+Escreva uma função que recebe como parâmetro apenas uma string de no
+máximo 30 caracteres e inverte os caracteres da string. A nova string
+invertida é escrita em cima da string recebida como parâmetro.
+Exemplo ilustrativo:
+
+#+BEGIN_EXAMPLE
+Entre com uma string: O rato roeu a roupa do rei de roma.
+String invertida: .amor ed ier od apuor a ueor otar O
+#+END_EXAMPLE
+
+*Uma solução sem recursão*
+
+#+begin_src C :results output :session :exports both
+#include<stdio.h>
+#include<string.h>
+
+void inverte(char *s) {
+  char grande[30];
+  int i;
+  for (i = 0; i < strlen(s); i++){
+    grande[i] = s[strlen(s) -1 - i];
+  }
+  grande[i] = '\0';
+  strcpy(s, grande);
+}
+
+int main() {
+  char s[] = "O rato roeu a roupa do rei de roma.";
+  printf("Entre com uma string: %s\n", s);
+  inverte(s);
+  printf("String invertida: %s\n", s);
+}
+#+END_SRC
+
+#+RESULTS:
+: Entre com uma string: O rato roeu a roupa do rei de roma.
+: String invertida: .amor ed ier od apuor a ueor otar O
+
+* Funções auxiliares
+
+| strcmp(<s1>, <s2>)                              | // retorna 0 se os strings forem iguais.           |
+| strcpy(<str_destino>, <str_origem>)             | // copia string origem no string destino           |
+| strlen(<string>)                                | // retorna tamanho da string                       |
+| feof()                                          | // retorna 1 se o cabeçote está no fim do arquivo  |
+| fread(<&buffer>, <tamelem>, <quant>, <FILE *>)  | // arquivo binario                                 |
+| fwrite(<&buffer>, <tamelem>, <quant>, <FILE *>) | // arquivo binario                                 |
+| fgets(<&strbuffer>,<tamanho>,<FILE*>)           | // arquivo texto                                   |
+| fputs(<&strbuffer>,<FILE*>)                     | // arquivo texto                                   |
+| fprintf(<FILE *>,<formato>,<var1,var2,...>)     | // arquivo texto                                   |
+| fscanf(<FILE *>,<formato>,<&var1,&var2,...>)    | // arquivo texto                                   |
+| atoi(vetorchar)                                 | // converte string para inteiro                    |
+| atof(vetorchar)                                 | // converte string para real                       |
+| strtok(<string>, <separador>)                   | // separa a string em partes                       |
+| fopen(<nome>, <modo>)                           | // abre o arquivo no modo desejado                 |
+| fclose(<FILE*>)                                 | // fecha o arquivo                                 |
+| fseek(<FILE *>, <desl>, <origem>)               | // reposiciona o cabeçote a <desl> bytes da origem |
+|                                                 | // (origem: SEEK_SET, SEEK_CUR ou SEEK_END)        |

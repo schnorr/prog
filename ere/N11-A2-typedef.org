@@ -1,0 +1,444 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Algoritmos
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{systeme}
+
+#+latex: \newcommand{\mytitle}{~typedef~ e o operador seta ``->'' @@latex}
+#+latex: \mytitleslide
+
+* Sumário
+
+- Comando ~typedef~
+- Passagem de estruturas por referência
+- Ponteiros para estruturas
+
+* Como se declara um novo tipo na linguagem C?
+
+#+attr_latex: :options fontsize=\large
+#+BEGIN_SRC C
+// Declaração do novo tipo (de usuário)
+struct aluno {
+  char nome[TAMANHO];
+  float nota[NRNOTAS];
+  float media;
+  char conceito;
+};
+
+// Declaração de duas variáveis do novo tipo
+struct aluno a1, a2;
+#+END_SRC
+
+* O comando ~typedef~
+
+#+BEGIN_CENTER
+A linguagem C provê um mecanismo para atribuirmos
+
+nomes para novos tipos de dados com o comando ~typedef~.
+#+END_CENTER
+
+#+latex: \pause
+
+Facilita a legibilidade!
+
+#+attr_latex: :options fontsize=\large
+#+BEGIN_SRC C
+// Declaração do novo tipo (de usuário) chamado aluno_t
+typedef struct aluno {
+  char nome[TAMANHO];
+  float nota[NRNOTAS];
+  float media;
+  char conceito;
+} aluno_t;
+
+// Declaração de duas variáveis do novo tipo
+aluno_t a1, a2;
+#+END_SRC
+
+* (Déjà Vu) Integração
+
+E declaração de ~func1~ e ~func2~ com o tipo definido pelo programador
+
+#+BEGIN_SRC C :tangle e/a32-declara-estrutura-uso.c
+#include <stdio.h>
+
+typedef struct funcionario {
+  int codigo;
+  char nome[30];
+  char cargo[10];
+  int depto;
+  float salario;
+} funcionario_t;
+
+int main() {
+  funcionario_t func1, func2;
+
+  return 0;
+}
+#+END_SRC
+
+* (Déjà Vu) Inicialização
+
+A ordem segue a ordem da declaração da estrutura!
+
+#+BEGIN_SRC C :tangle e/a32-estrutura-inicializada.c
+#include <stdio.h>
+
+typedef struct funcionario {
+  int codigo;
+  char nome[30];
+  char cargo[10];
+  int depto;
+  float salario;
+} funcionario_t;
+
+int main() {
+  funcionario_t func1 = {2314, "Lucas", "Professor",  42, 123.45};
+  funcionario_t func2 = {2315, "Alpha", "Professora", 43, 123.46};
+  return 0;
+}
+#+END_SRC
+
+* (Déjà Vu) Acesso (aos campos)
+
+Campos são acessados individualmente com o operador ~.~
+
+#+BEGIN_SRC C :tangle e/a32-acesso-campos.c :results output :exports both
+#include <stdio.h>
+
+typedef struct funcionario {
+  int codigo;
+  char nome[30];
+  char cargo[15];
+  int depto;
+  float salario;
+} funcionario_t;
+
+int main() {
+  funcionario_t f = {2315, "Alpha", "Professora", 43, 123.46};
+  f.codigo = 2317;  //vamos alterar o código
+  printf("Código: %d\nNome: %s\nCargo: [%s]\nDepartamento: %d\nSalário: %f\n",
+	 f.codigo, f.nome, f.cargo, f.depto, f.salario);
+  return 0;
+}
+#+END_SRC
+
+#+RESULTS:
+: Código: 2317
+: Nome: Alpha
+: Cargo: [Professora]
+: Departamento: 43
+: Salário: 123.459999
+
+* (Déjà Vu) Atribuição
+
+Única atribuição permitida: uma variável de tipo de usuário só recebe
+o valor de variáveis que sejam do mesmo tipo de usuário. O atribuição
+implica em uma cópia da memória.
+
+#+BEGIN_SRC C :tangle e/a32-atribuicao.c :results output :exports both
+#include <stdio.h>
+
+typedef struct funcionario {
+  int codigo;
+  char nome[30];
+  char cargo[15];
+  int depto;
+  float salario;
+} funcionario_t;
+
+int main() {
+  funcionario_t f1 = {2315, "Alpha", "Professora", 43, 123.46};
+  funcionario_t f2;
+  f2 = f1; // <-- veja aqui a atribuição
+  printf("Código: %d\nNome: %s\nCargo: [%s]\nDepartamento: %d\nSalário: %f\n",
+	 f2.codigo, f2.nome, f2.cargo, f2.depto, f2.salario);
+  return 0;
+}
+#+END_SRC
+
+* Declaração de variáveis de tipos de usuário (lembrete!)
+
+Com nome (lembrete), sintaxe
+#+BEGIN_EXAMPLE
+struct identificador {
+  tipo1 campo1, campo2;
+  tipo2 campo3;
+  //...
+  tipoN campoN;
+};
+#+END_EXAMPLE
+
+#+latex: \pause
+
+*Sem nome*
+#+BEGIN_EXAMPLE
+struct {
+  tipo1 campo1, campo2;
+  //...
+  tipoN campoN;
+};
+#+END_EXAMPLE
+
+#+latex: \pause
+
+Usamos exclusivamente para declarar variáveis, de imediato. Exemplo:
+- A variável de nome ~professor~ é declarada
+#+BEGIN_SRC C
+struct {
+  int codigo;
+  float salario;
+} professor;
+#+END_SRC
+* Com ~typedef~
+
+Com nome (lembrete), sintaxe
+#+BEGIN_EXAMPLE
+typedef struct identificador {
+  tipo1 campo1, campo2;
+  tipo2 campo3;
+  //...
+  tipoN campoN;
+} identificador_t;
+#+END_EXAMPLE
+
+#+latex: \pause
+
+*Sem nome*
+#+BEGIN_EXAMPLE
+typedef struct {
+  tipo1 campo1, campo2;
+  //...
+  tipoN campoN;
+} identificador_t;
+#+END_EXAMPLE
+
+#+latex: \pause
+
+#+BEGIN_CENTER
+#+latex: {\Large
+Muita Atenção!!
+#+latex: }
+#+END_CENTER
+
+Qual a diferença entre as duas construções abaixo?
+
+#+latex: \begin{multicols}{2}
+#+BEGIN_SRC C
+struct {
+  int codigo;
+  float salario;
+} professor;
+
+typedef struct {
+  int codigo;
+  float salario;
+} professor;
+#+END_SRC
+#+latex: \end{multicols}
+
+* Vejamos...
+
+Este programa compila? Okay... mas porquê?
+
+#+BEGIN_SRC C :tangle e/a32-vejamos.c
+struct {
+  int codigo;
+  float salario;
+} professor;
+
+typedef struct {
+  int codigo;
+  float salario;
+} professor_t;
+
+int main(){
+  professor_t p;
+  professor p;
+  return 0;
+}
+#+END_SRC
+* Passagem de estruturas por referência (motivação)
+
+Qual o ``problema'' dos protótipos abaixo?
+
+#+attr_latex: :options fontsize=\large
+#+BEGIN_SRC C :tangle e/a32-problema.c
+#include <stdio.h>
+#include <string.h>
+#define TAMANHO 15
+#define NRNOTAS 3
+typedef struct aluno {
+  char nome[TAMANHO];
+  float nota[NRNOTAS];
+  float media;
+  char conceito;
+} aluno_t;
+aluno_t le (void);
+void mostra (aluno_t aluno);
+aluno_t def_media (aluno_t aluno);
+aluno_t def_conceito (aluno_t aluno);
+#+END_SRC
+
+#+latex: \pause
+
+Passagem _por valor_!
+
+* Passagem de estruturas por referência (motivação)
+
+Nova versão com passagem por referência
+
+#+attr_latex: :options fontsize=\Large
+#+BEGIN_SRC C :tangle e/a32-por_ref.c
+void le (aluno_t *aluno);
+void mostra (aluno_t *aluno);
+void def_media (aluno_t *aluno);
+void def_conceito (aluno_t *aluno);
+#+END_SRC
+
+* Mas como fica a implementação?
+
+Importante: operador ~.~ tem maior precedência do que o operador ~*~.
+
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C :tangle e/a32-por_ref_implem_le.c :main no
+#include <string.h>
+#include <stdio.h>
+typedef struct {
+  char nome[15];
+  float nota[3];
+} aluno_t;
+void le (aluno_t *aluno) {
+  int i;
+  printf("Nome: ");
+  fgets((*aluno).nome, 15, stdin);
+  (*aluno).nome[strlen((*aluno).nome)-1] = '\0';
+  for (i = 0; i < 3; i++){
+    printf("Nota %d: ", i);
+    scanf("%f", (*aluno).nota[i]);
+  }
+}
+#+END_SRC
+
+* Exemplo completo
+
+#+latex: \begin{multicols}{2}
+#+BEGIN_SRC C :tangle e/a32-aluno.c
+#include <stdio.h>
+#include <string.h>
+#define NRNOTAS 3
+#define NRALUNOS 3
+typedef struct {
+  char nome[15];
+  float nota[NRNOTAS];
+} aluno_t;
+
+void le (aluno_t *a) {
+  int i;
+  printf("Nome: ");
+  fgets((*a).nome, 15, stdin);
+  (*a).nome[strlen((*a).nome)-1] ='\0';
+  for (i = 0; i < NRNOTAS; i++){
+    printf("Nota %d: ", i);
+    scanf("%f", &(*a).nota[i]);
+  }
+}
+
+void mostra (aluno_t *a) {
+  int j;
+  printf("Aluno \'%s\' (Notas: ",
+	 (*a).nome);
+  for (j = 0; j < NRNOTAS; j++) {
+    printf("%.2f", (*a).nota[j]);
+    if (j+1 < NRNOTAS) printf(" ");
+  }
+  printf(")");
+  return;
+}
+
+int main() {
+  aluno_t alunos[NRALUNOS] = {0};
+  int i;
+  for (i = 0; i < NRALUNOS; i++) {
+    le(&alunos[i]);
+    mostra(&alunos[i]);
+  }
+  return 0;
+}
+#+END_SRC
+#+latex: \end{multicols}
+* Operador seta ``->''
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula23/aula23_slide_12.pdf}{Prof. Marcelo Walter}
+
+* Exemplo completo (com o operador seta)
+
+#+latex: \begin{multicols}{2}
+#+BEGIN_SRC C :tangle e/a32-aluno-seta.c
+#include <stdio.h>
+#include <string.h>
+#define NRNOTAS 3
+#define NRALUNOS 3
+typedef struct {
+  char nome[15];
+  float nota[NRNOTAS];
+} aluno_t;
+
+void le (aluno_t *a) {
+  int i;
+  printf("Nome: ");
+  fgets(a->nome, 15, stdin);
+  a->nome[strlen(a->nome)-1] ='\0';
+  for (i = 0; i < NRNOTAS; i++){
+    printf("Nota %d: ", i);
+    scanf("%f", &a->nota[i]);
+  }
+}
+
+void mostra (aluno_t *a) {
+  int j;
+  printf("Aluno \'%s\' (Notas: ",
+	 a->nome);
+  for (j = 0; j < NRNOTAS; j++) {
+    printf("%.2f", a->nota[j]);
+    if (j+1 < NRNOTAS) printf(" ");
+  }
+  printf(")\n");
+  return;
+}
+
+int main() {
+  aluno_t alunos[NRALUNOS] = {0};
+  int i;
+  for (i = 0; i < NRALUNOS; i++) {
+    le(&alunos[i]);
+    mostra(&alunos[i]);
+  }
+  return 0;
+}
+#+END_SRC
+#+latex: \end{multicols}
+* Exercício #1
+
+Refazer o exercício da aula anterior
+- com o comando ~typedef~ e o com o emprego do operador seta.
+
+* Exercício #2
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula23-estruturas2_slide_27.pdf}{Prof. Claudio Jung}
+
+

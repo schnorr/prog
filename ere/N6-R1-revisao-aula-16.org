@@ -1,0 +1,445 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Algoritmos
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+
+#+latex: \newcommand{\mytitle}{Revisão Aula 16}
+#+latex: \mytitleslide
+
+* Configuração                                                     :noexport:
+
+#+BEGIN_SRC emacs-lisp
+(setq org-latex-listings 'minted
+      org-latex-packages-alist '(("" "minted"))
+      org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+(setq org-latex-minted-options
+       '(("frame" "lines")
+         ("fontsize" "\\scriptsize")))
+#+END_SRC
+
+#+RESULTS:
+| frame    | lines       |
+| fontsize | \scriptsize |
+* #0 (Exercício de Ordenação de Arranjos)
+
+Tente fazer em casa a implementação deste algoritmo de ordenação por
+seleção (principalmente considerando que não há aula prática nesta
+sexta-feira). Veremos a solução na próxima aula.
+
+#+latex: \pause
+
+#+BEGIN_CENTER
+Foco apenas na parte de ordenamento de arranjos.
+#+END_CENTER
+
+* Estratégia
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula13/aula13_slide_03.pdf}{Prof. Marcelo Walter}
+
+* (#0) Code
+
+#+latex: \begin{multicols}{2}
+#+attr_latex: :options fontsize=\scriptsize
+#+BEGIN_SRC C :tangle e/rev-a16-ordenamento.c
+#include <stdio.h>
+#include <stdlib.h>
+#define LIM_ARRANJO 4
+#define MIN 1
+#define MAX 35
+int main() {
+  int a[LIM_ARRANJO], aux;
+  int i, j; // índices do arranjo
+  srand(0);
+  //Obter valores aleatórios
+  //e imprimir na tela
+  printf("Antes -> ");
+  for (i = 0; i < LIM_ARRANJO; i++){
+    a[i] = MIN+(rand()%(MAX-MIN+1));
+    printf("%d ", a[i]);
+  }
+  printf("\n");
+  // Ordenação por Seleção
+  for (i = 0; i < LIM_ARRANJO; i++){
+    for (j = i; j < LIM_ARRANJO; j++){
+      if (a[j] < a[i]){
+	aux = a[i];
+	a[i] = a[j];
+	a[j] = aux;
+      }
+    }
+  }
+  // Imprimir o resultado do ordenamento
+  printf("Após  -> ");
+  for (i = 0; i < LIM_ARRANJO; i++){
+    printf("%d ", a[i]);
+  }
+  printf("\n");
+}
+#+END_SRC
+#+latex: \end{multicols}\vspace{-0.3cm}
+
+* Notas sobre esta solução
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula13/aula13_slide_05.pdf}{Prof. Marcelo Walter}
+
+* Exercício #1 (Implementação de código de manuseio)
+
+Implemente, empregando o comando =for=, a funcionalidade destas funções
+- =strcpy=
+- =strcat=
+- =strlen=
+- =strcmp=
+
+* (#1) =rev-a16-strcpy.c=
+
+#+attr_latex: :options fontsize=\scriptsize
+#+BEGIN_SRC C :tangle e/rev-a16-strcpy.c
+/* Programa que copia caracteres da string o para a string d */
+#include <stdio.h>
+#include <string.h>
+#define TAMANHO 10
+int main(){
+  char o[TAMANHO];
+  char d[TAMANHO];
+  int i;
+  //ler a entrada
+  printf("Entrada -> ");
+  fgets(o, TAMANHO, stdin);
+  //remover o \n substituindo-o por \0
+  o[strlen(o)-1] = '\0';
+
+  //copiar para destino
+  for (i = 0; i < TAMANHO && o[i] != '\0'; i++){
+    d[i] = o[i];
+  }
+  d[i] = '\0';
+  printf ("Saída -> [%s]\n", d);
+  return 0;
+}
+#+END_SRC
+
+* (#1) =rev-a16-strcat.c=
+
+#+latex: \begin{multicols}{2}
+#+attr_latex: :options fontsize=\scriptsize
+#+BEGIN_SRC C :tangle e/rev-a16-strcat.c
+/* Programa que concatena caracteres
+   da string d no final da string o */
+#include <stdio.h>
+#include <string.h>
+#define TAMANHO 20
+int main(){
+  char o[TAMANHO];
+  char d[TAMANHO];
+  int i, j;
+
+  //ler a entrada o
+  printf("Entrada o -> ");
+  fgets(o, TAMANHO, stdin);
+  //remover o \n substituindo-o por \0
+  o[strlen(o)-1] = '\0';
+
+  //ler a entrada d
+  printf("Entrada d -> ");
+  fgets(d, TAMANHO, stdin);
+  //remover o \n substituindo-o por \0
+  d[strlen(d)-1] = '\0';
+
+  //Vamos encontrar o índice do \0
+  for (i = 0;
+       i < TAMANHO && o[i] != '\0';
+       i++);
+
+  //Vamos iniciar a concatenação
+  //a partir de i
+  for (j = 0;
+       i < TAMANHO && d[j] != '\0';
+       i++, j++){
+    o[i] = d[j];
+  }
+  o[i] = '\0';
+
+  printf ("Saída em o -> [%s]\n", o);
+  printf ("Imprimir cada caractere\n");
+  for (i = 0;
+       i < TAMANHO && o[i] != '\0';
+       i++){
+    printf("%d [%c]\n", i, o[i]);
+  }
+  return 0;
+}
+#+END_SRC
+#+latex: \end{multicols}
+
+* (#1) =rev-a16-strlen.c=
+
+#+attr_latex: :options fontsize=\scriptsize
+#+BEGIN_SRC C :tangle e/rev-a16-strlen.c
+/* Programa que conta quantos caracteres tem em uma string */
+#include <stdio.h>
+#include <string.h>
+#define TAMANHO 20
+int main(){
+  char o[TAMANHO];
+  int tamanho;
+  int i, j;
+
+  //ler a entrada o
+  printf("Entrada o -> ");
+  fgets(o, TAMANHO, stdin);
+  //remover o \n substituindo-o por \0
+  o[strlen(o)-1] = '\0';
+
+  //Vamos encontrar o índice do \0 na origem o
+  for (i = 0; i < TAMANHO && o[i] != '\0'; i++);
+  tamanho = i;
+  printf("O tamanho é de %d caracteres (strlen diz que é de %d)\n",
+	 tamanho, strlen(o));
+  return 0;
+}
+#+END_SRC
+
+* (#1) ~rev-a16-strcmp.c~
+
+#+latex: \begin{multicols}{2}
+#+attr_latex: :options fontsize=\scriptsize
+#+BEGIN_SRC C :tangle e/rev-a16-strcmp.c
+/* Programa que compara duas strings,
+   definindo a diferença entre as duas
+   que pode ser: 0 (se iguais),
+   valor negativo ou positivo
+   (se diferentes) */
+#include <stdio.h>
+#include <string.h>
+#define TAMANHO 20
+
+int main(){
+  char s1[TAMANHO];
+  char s2[TAMANHO];
+  int i;
+  int flag;
+
+  //ler a entrada s1
+  printf("Entrada s1 -> ");
+  fgets(s1, TAMANHO, stdin);
+  //remover o \n substituindo-o por \0
+  s1[strlen(s1)-1] = '\0';
+
+  //ler a entrada s2
+  printf("Entrada s2 -> ");
+  fgets(s2, TAMANHO, stdin);
+  //remover o \n substituindo-o por \0
+  s2[strlen(s2)-1] = '\0';
+
+  i = 0;
+  flag = 0;
+  while (s1[i] != '\0' && flag == 0){
+    printf("[%c] [%c]\n", s1[i], s2[i]);
+    flag = s1[i] - s2[i];
+    i++;
+  }
+  flag = s1[i] - s2[i];
+
+  printf("Resultado é %d"
+	 " (strcmp diz %d)\n",
+	 flag, strcmp(s1, s2))
+  return 0;
+}
+#+END_SRC
+#+latex: \end{multicols}
+
+* Exercício #2 (Procura por caractere)
+
+Escreva um programa que lê um texto contendo até MAXIMO caracteres,
+depois lê 1 caractere e informa a primeira posição do texto onde este
+caractere ocorre (ou que não existe tal caractere no texto).
+
+* (#2) Code ~rev-a16-procura-caractere.c~
+
+#+latex: \begin{multicols}{2}
+#+attr_latex: :options fontsize=\scriptsize
+#+BEGIN_SRC C :tangle e/rev-a16-procura-caractere.c
+/* Procura por caractere */
+#include <stdio.h>
+#include <string.h>
+#define TAMANHO 200
+
+int main(){
+  char s1[TAMANHO];
+  char c;
+  int i, flag;
+  //ler a entrada s1
+  printf("Entrada s1 -> ");
+  fgets(s1, TAMANHO, stdin);
+  //remover o \n substituindo-o por \0
+  s1[strlen(s1)-1] = '\0';
+  //ler o caractere c
+  printf("Caractere -> ");
+  scanf(" %c", &c);
+
+  i = 0;
+  flag = 0;
+  while (s1[i] != '\0' && flag == 0){
+    if (s1[i] == c){
+      flag = 1;
+    }
+    i++;
+  }
+  if (flag){
+    printf("[%c] encontrado "
+	   "na posição %d\n", c, i-1);
+  }else{
+    printf("[%c] não encontrado.\n", c);
+  }
+  return 0;
+}
+#+END_SRC
+#+latex: \end{multicols}
+
+* Exercício #3 (Procura por /string/)
+
+Escreva um programa que lê um texto contendo até MAXIMO caracteres,
+depois lê uma /string/ com até TAMANHO caracteres, e informa a posição
+do texto onde esta /string/ ocorre (ou que não existe tal caractere no
+texto). Caso a /string/ apareça mais de uma vez, todas as ocorrências
+devem ser informadas.
+
+* (#3) Code ~rev-a16-procura-string.c~
+
+#+latex: \begin{multicols}{2}
+#+attr_latex: :options fontsize=\scriptsize
+#+BEGIN_SRC C :tangle e/rev-a16-procura-string.c
+/* Procura por s2 em s1 */
+#include <stdio.h>
+#include <string.h>
+#define MAXIMO 100
+#define TAMANHO 10
+int main(){
+  char s1[MAXIMO];
+  char s2[TAMANHO];
+  int i, j, k, flag;
+
+  //ler a entrada s1
+  printf("Entrada s1 -> ");
+  fgets(s1, MAXIMO, stdin);
+  //remover o \n substituindo-o por \0
+  s1[strlen(s1)-1] = '\0';
+
+  //ler a entrada s2
+  printf("Entrada s2 -> ");
+  fgets(s2, TAMANHO, stdin);
+  //remover o \n substituindo-o por \0
+  s2[strlen(s2)-1] = '\0';
+
+  for (i = 0;
+       i < MAXIMO && s1[i] != '\0';
+       i++) {
+    j = i;
+    k = 0;
+    flag = 0;
+    while (k < TAMANHO &&
+	   s1[j] != '\0' &&
+	   s2[k] != '\0' &&
+	   flag == 0){
+      flag = s1[j] - s2[k];
+      j++;  
+      k++;
+    }
+    if (flag == 0){
+      printf("[%s] encontrado "
+	     "na posição %d\n", s2, i);
+    }
+  }
+  return 0;
+}
+#+END_SRC
+#+latex: \end{multicols}
+* (#3) Alternative Code
+
+Veja em [[./rev-a16-procura-string-brun.c]].
+
+#+BEGIN_SRC C :tangle e/rev-a16-procura-string-brun.c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define TAMANHO_TEXTAO  100
+#define TAMANHO_TEXTINHO 10
+
+int main()
+{
+    char textao[TAMANHO_TEXTAO];
+    char textinho[TAMANHO_TEXTINHO];
+    int contador1, contador2, contador3;
+    int achei_o_textinho_no_textao;
+    int cheguei_no_final_do_textinho;
+    int cheguei_no_final_do_textao;
+    int diferenca_textinho_textao;
+    int textinho_diferente_do_textao;
+
+    printf("Digite o textao: ");
+    fgets(textao, TAMANHO_TEXTAO, stdin);
+
+    int tamanho_da_entrada_textao = strlen(textao);
+    textao[tamanho_da_entrada_textao - 1] = '\0';
+
+
+    printf("Digite o textinho: ");
+    fgets(textinho, TAMANHO_TEXTINHO, stdin);
+
+    int tamanho_da_entrada_textinho = strlen(textinho);
+    textinho[tamanho_da_entrada_textinho - 1] = '\0';
+
+    for(contador1 = 0; contador1 < TAMANHO_TEXTAO; contador1++){
+        contador2 = contador1;
+        contador3 = 0;
+        diferenca_textinho_textao = 0;
+        textinho_diferente_do_textao = 0;
+        cheguei_no_final_do_textinho = 0;
+        cheguei_no_final_do_textao = 0;
+
+        while(!cheguei_no_final_do_textinho &&
+              !cheguei_no_final_do_textao &&
+              !textinho_diferente_do_textao){
+
+            diferenca_textinho_textao = textinho[contador3] - textao[contador2];
+
+            contador2++;
+            contador3++;
+
+            if(diferenca_textinho_textao != 0)
+                textinho_diferente_do_textao = 1;
+
+            if(contador3 >= TAMANHO_TEXTINHO)
+                cheguei_no_final_do_textinho = 1;
+
+            if(textinho[contador3] == '\0')
+                cheguei_no_final_do_textinho = 1;
+
+            if(textao[contador2] == '\0')
+                cheguei_no_final_do_textao = 1;
+
+        }
+        if(textinho_diferente_do_textao == 0){
+            printf("[%s] encontrado na posicao %d\n", textinho, contador1);
+        }
+    }
+    return 0;
+}
+
+#+END_SRC

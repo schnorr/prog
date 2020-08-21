@@ -1,0 +1,379 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Algoritmos
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{systeme}
+
+#+latex: \newcommand{\mytitle}{Funções e seus Parâmetros}
+#+latex: \mytitleslide
+
+* Sumário
+
+Funções que somente retornam valores
+- #1 Menu que retorna opção selecionada
+
+*Funções com Parâmetros*
+
+Funções que somente recebem valores como parâmetros
+- #2 Imprime n vezes c
+  - #2++ "Desafio"
+- #3 Imprime intervalo ASCII
+Funções que recebem e retornam valores (caso entrada/saída)
+- #4 Sequência de Fibonacci
+- #5 Combinação de n elements, p a p
+Forma de passagem de parâmetros
+- Por valor
+
+#+latex: \vfill
+
+Exercício
+- Calcular o valor de e^x
+
+* (Exemplo #1) Rever o código ~a25-menu.c~
+
+Como podemos fazer com que o próprio menu retornasse a opção?
+
+#+BEGIN_SRC C :tangle e/a25-menu.c
+#include <stdio.h>
+
+void menu_de_opcoes(void);
+
+int main() {
+  int opcao;
+  menu_de_opcoes();
+  scanf("%d", &opcao);
+  printf("A opção selecionada foi a '%d'.\n", opcao);
+  return 0;
+}
+
+void menu_de_opcoes (void) {
+  printf("Opções disponíveis:\n"
+	 "------------------\n\n"
+	 "   1 - soma de dois valores reais\n"
+	 "   2 - se é divisor do número\n"
+	 "   3 - sequência de números pares\n"
+	 "   4 - se número é perfeito\n\n"
+	 "-> Informe a opção desejada: ");
+  return;
+}
+#+END_SRC
+
+* (#1) Possível solução em ~a25-menu-retorno.c~
+
+#+BEGIN_SRC C :tangle e/a25-menu-retorno.c
+#include <stdio.h>
+
+int menu_de_opcoes(void);   //protótipo
+
+int main() {
+  int opcao;
+  opcao = menu_de_opcoes();
+  printf("A opção selecionada foi a '%d'.\n", opcao);
+  return 0;
+}
+
+int menu_de_opcoes (void) { //implementação
+  int opcao;
+  printf("Opções disponíveis:\n"
+	 "------------------\n\n"
+	 "   1 - soma de dois valores reais\n"
+	 "   2 - se é divisor do número\n"
+	 "   3 - sequência de números pares\n"
+	 "   4 - se número é perfeito\n\n"
+	 "-> Informe a opção desejada: ");
+  scanf("%d", &opcao);
+  return opcao;
+}
+#+END_SRC
+
+* *Funções com Parâmetros*
+
+Vejamos com um exemplo simples
+- A função ~calcula_media~ recebe três parâmetros (formais)
+  - Parâmetros formais são vistos como variáveis locais
+- A função ~main~ chama ~calcula_media~ com três argumentos (reais)
+- Vinculação entre argumentos e parâmetros é pela _posição_
+
+#+BEGIN_SRC C :tangle e/a25-calcula-media-tres.c
+#include <stdio.h>
+void calcula_media(float n1, float n2, float n3) {
+  float m;
+  m = (n1 + n2 + n3) / 3;
+  printf("A media vale %3.2f\n", m);
+  return;
+}
+
+int main() {
+  float a,b,c;
+  a = 3.2;
+  b = 5.4;
+  c = -11.7;
+  calcula_media(a, b, c); //chamada da função
+  return 0;
+}
+#+END_SRC
+
+* (Exemplo #2) Imprime n vezes c
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula17-FuncoesVoid1_slide_14.pdf}{Prof. Mara Abel}
+
+* (#2) Código ~a25-imprime-parametros.c~
+
+#+attr_latex: :options fontsize=\small
+#+BEGIN_SRC C :tangle e/a25-imprime-parametros.c
+#include <stdio.h>
+//protótipo da função (apenas sua declaração)
+void imprime(char c, int n);
+//função principal
+int main() {
+  int num = 10;
+  char letra = 'a';
+  imprime(letra, num);
+  return 0;
+}
+//a implementação da função (com cabeçalho idêntico ao protótipo)
+void imprime(char c, int n) {
+  int i;
+  for (i = 0; i < n; i++)
+    printf("%c", c);
+  printf("\n");
+  return;
+}
+#+END_SRC
+
+* (#2) "Desafio"
+
+Alterar a =main= de ~a25-imprime-parametros.c~ para que a saída seja
+
+#+BEGIN_EXAMPLE
+a
+bb
+ccc
+dddd
+eeeee
+ffffff
+ggggggg
+hhhhhhhh
+iiiiiiiii
+jjjjjjjjjj
+kkkkkkkkkkk
+-> llllllllllll
+mmmmmmmmmmm
+nnnnnnnnnn
+ooooooooo
+pppppppp
+qqqqqqq
+rrrrrr
+sssss
+tttt
+uuu
+vv
+x
+#+END_EXAMPLE
+
+* (Exemplo #3) Imprime intervalo ASCII
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula17-FuncoesVoid1_slide_17.pdf}{Prof. Mara Abel}
+
+* (#3) Código ~a25-ascii-parametros.c~
+
+#+BEGIN_SRC C :tangle e/a25-ascii-parametros.c
+#include <stdio.h>
+void imprime_ascii(int inicio, int fim);   //protótipo
+
+int main(){
+  int a, b;
+  printf("Entre o primeiro valor: ");
+  scanf("%d", &a);
+  printf("Entre o segundo valor: ");
+  scanf("%d", &b);
+  if (a < b)
+    imprime_ascii(a, b);
+  else
+    imprime_ascii(b, a);
+  return 0;
+}
+
+void imprime_ascii(int inicio, int fim) { //implementação
+  int i;
+  for (i = inicio; i <= fim; i++)
+    printf("%c ", (char)i);
+  printf("\n");
+  return;
+}
+#+END_SRC
+* (Exemplo #4) Sequência de Fibonnaci
+
+Construa uma função que imprima todos os números da sequência de
+fibonacci, retornando o último valor calculado (da posição que foi
+pedida).
+
+* (#4) Código ~a25-fibonacci.c~
+
+#+latex: \vspace{-0.3cm}\begin{multicols}{2}
+#+BEGIN_SRC C :tangle e/a25-fibonacci.c
+#include<stdio.h>
+//protótipo
+int fibonacci (int posicao);
+
+int main() {
+  int pos, f;
+  printf("Entre inteiro positivo: " );
+  scanf("%d", &pos);
+  f = fibonacci(pos);
+  printf("Valor fib(%d) é %d\n",
+	 pos, f);
+  return 0;
+}
+
+//implementação
+int fibonacci (int posicao) {
+  int fib; //valor na posição
+  int t_1 = 1; //valor na posição ant.
+  int t_2 = 0; //valor na posição ant. ant.
+  int i;
+  for (i = 0; i <= posicao; i++){
+    switch (i){
+      case 0:
+	fib = 0; break;
+      case 1:
+	fib = 1; break;
+      default:
+	fib = t_2 + t_1;
+	t_2 = t_1;
+	t_1 = fib;
+    }
+    printf ("fib(%d) = %d\n", i, fib);
+  }
+  return fib;
+}
+#+END_SRC
+#+latex: \end{multicols}
+
+* (Exemplo #5) Combinação de n elementos, p a p
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/Aula018_-funcoes_comparametros_slide_23.pdf}{Prof. Edison Pignaton de Freitas}
+
+* (#5) Planejamento
+
+Em três funções
+1. ~main~
+   - Lê os valores n e p
+   - Calcula combinação de n elementos, p a p
+     - ~n!/(p! * (n-p)!)~
+2. ~fatorial~ de um valor
+   - Recebe um valor
+   - Calcula seu fatorial
+   - Retorna fatorial
+3. ~combinacoes~ de n elementos, p a p
+   - Recebe n e p
+   - Calcula ~n!/(p! * (n-p)!)~ chamando a função ~fatorial~
+   - Retorna o valor calculado para quem chamou
+
+* (#5) Código ~a25-combinacoes.c~
+
+#+BEGIN_SRC C :tangle e/a25-combinacoes.c
+#include<stdio.h>
+int fatorial (int n); //protótipo
+int combinacoes (int n, int p); //protótipo
+int main() {
+  int n, p, c;
+  printf("digite n e p: ");
+  scanf("%d%d", &n, &p);
+  printf("Combinacoes de %d elems. %d a %d = %d\n", n, p, p, combinacoes (n, p));
+  return 0;
+}
+
+int fatorial(int n) {
+  int i, fat = 0;
+  if (n >= 0){
+    fat = 1;
+    for(i = n; i >= 1 ; i--)
+      fat = fat * i;
+  }
+  return fat;
+}
+
+int combinacoes(int n, int p) {
+  return fatorial(n) / (fatorial(p) * fatorial(n-p));
+}
+#+END_SRC
+* Forma de passagem de parâmetros
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula17-FuncoesVoid1_slide_22.pdf}{Prof. Mara Abel}
+
+* Vejamos um exemplo com o código ~a25-troca.c~
+
+#+attr_latex: :options fontsize=\scriptsize
+#+BEGIN_SRC C :tangle e/a25-troca.c
+#include <stdio.h>
+void troca (int x, int y) {
+  int temp;
+  temp = x;
+  x = y;
+  y = temp;
+  return;
+}
+int main() {
+  int a, b;
+  a = 5;
+  b = 10;
+  printf("#1: a = %d, b = %d\n", a, b);
+  troca(a, b);
+  printf("#2: a = %d, b = %d\n", a, b);
+  return 0;
+}
+#+END_SRC
+
+O que é impresso em #2?
+
+#+latex: \pause
+
+#+begin_src shell :results output :exports both :dir e
+gcc a25-troca.c; ./a.out
+#+end_src
+
+#+RESULTS:
+: #1 a = 5, b = 10
+: #2 a = 5, b = 10
+
+* Por quê?
+
+#+BEGIN_CENTER
+Os valores não foram trocados porque a
+
+passagem de parâmetros foi realizada por valor.
+#+END_CENTER
+
+- variável local x é inicializada com conteúdo de a (argumento)
+- variável local y é inicializada com conteúdo de b (argumento)
+- dentro do subprograma, os valores de x e y são trocados, mas esta
+  mudança é feita sobre as cópias locais dos valores e não é propagada
+  para fora do subprograma. Portanto, a e b permanecem com os valores
+  originais.
+
+#+latex: \pause\vfill
+
+#+BEGIN_CENTER
+/Veremos solução na próxima aula com passagem por referência/
+
+E também *ponteiros*!
+#+END_CENTER
+
+* Exercício #1: Cálculo de e^x com funções
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/Aula018_-funcoes_comparametros_slide_27.pdf}{Prof. Edison Pignaton de Freitas}

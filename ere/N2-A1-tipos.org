@@ -1,0 +1,393 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Algoritmos
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+
+#+latex: \newcommand{\mytitle}{Tipos de Dados, Declaração e tipos de variáveis, Operadores e expressão aritmética e lógica}
+#+latex: \mytitleslide
+
+* Configuração                                                     :noexport:
+
+#+BEGIN_SRC emacs-lisp
+(setq org-latex-listings 'minted
+      org-latex-packages-alist '(("" "minted"))
+      org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+(setq org-latex-minted-options
+       '(("frame" "lines")
+         ("fontsize" "\\scriptsize")))
+#+END_SRC
+
+#+RESULTS:
+| frame    | lines       |
+| fontsize | \scriptsize |
+* O que veremos hoje
+
+- Tipos de dados na declaração de variáveis
+- Expressões aritméticas e lógicas
+
+* Tipos de dados
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula03-SequencialExpressoes_slide_10.pdf}{Prof. Mara Abel}
+
+#+BEGIN_CENTER
+Melhor jeito de se saber o tamanho é com o comando =sizeof=
+#+END_CENTER
+
+* Vejamos um exemplo com sizeof
+
+#+BEGIN_SRC C :tangle e/exemplo-sizeof.c
+/* Programa que fornece o tamanho do tipo */
+#include <stdio.h>
+int main ()
+{
+  printf ("char     = %d\n", sizeof(char));
+  printf ("int      = %d\n", sizeof(int));
+  printf ("long int = %d\n", sizeof(long int));
+  printf ("float    = %d\n", sizeof(float));
+  printf ("double   = %d\n", sizeof(double));
+  return 0;
+}
+#+END_SRC
+
+A implementação destes tipos:
+- inteiros, do menor ao maior valor inteiro que cabe no tamanho
+- ponto-flutuante (=float=, =double=), veja a norma IEEE 754, em pt-br \\
+  https://pt.wikipedia.org/wiki/IEEE_754
+- Tabela ASCII para o tipo =char=
+
+* Tabela ASCII
+
+[[./img/asciifull.jpg]]
+
+#+attr_latex: :width .5\linewidth
+[[./img/extend.jpg]]
+* Presença do tipo na declaração de variáveis
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula03-SequencialExpressoes_slide_14.pdf}{Prof. Mara Abel}
+
+* Inicialização de variáveis na declaração
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula03-SequencialExpressoes_slide_20.pdf}{Prof. Mara Abel}
+
+* Vejamos um exemplo
+
+#+BEGIN_SRC C :tangle e/exemplo-inicializacao-variaveis.c
+/* Programa para realizar testes de inicializacao de variaveis na declaracao */
+#include <stdio.h>
+int main ()
+{
+  int v = 3;
+  printf ("O valor da variavel v eh %d.\n", v);
+  return 0;
+}
+#+END_SRC
+
+
+#+begin_src shell :results output :dir e
+gcc exemplo-inicializacao-variaveis.c -o exemplo-inicializacao-variaveis
+./exemplo-inicializacao-variaveis
+#+end_src
+
+#+BEGIN_CENTER
+Caso não seja inicializada, a variável tem qual valor?
+#+END_CENTER
+
+* Tipos no =scanf=
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula03-SequencialExpressoes_slide_15.pdf}{Prof. Mara Abel}
+
+* Tipos no =printf=
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula03-SequencialExpressoes_slide_16.pdf}{Prof. Mara Abel}
+
+* Contantes do pré-processador
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula03-SequencialExpressoes_slide_18.pdf}{Prof. Mara Abel}
+
+* Vejamos exemplos de constantes
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula03-SequencialExpressoes_slide_19.pdf}{Prof. Mara Abel}
+
+* O comando de atribuição ===
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula03-SequencialExpressoes_slide_17.pdf}{Prof. Mara Abel}
+
+#+BEGIN_CENTER
+Do lado direito da atribuição, temos uma *expressão*.
+#+END_CENTER
+
+* Expressões aritméticas
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula03/aula03_slide_18.pdf}{Prof. Marcelo Walter}
+
+* Operadores aritméticos sem utilizar bibliotecas externas
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula03_slide_21.pdf}{Prof. Edison Pignaton de Freitas}
+
+#+BEGIN_CENTER
+Todos estes operadores fazem parte da linguagem C.
+#+END_CENTER
+
+* Exemplo do uso de operadores aritméticos
+
+#+BEGIN_SRC C :tangle e/exemplo-operadores-aritmeticos.c
+/* Programa para ilustrar funcionamento dos operadores aritmeticos */
+#include <stdio.h>
+int main ()
+{
+  int val_1, val_2;
+  int divisao, resto;
+
+  val_1 = 13;
+  val_2 = 5;
+  divisao = val_1 / val_2;
+  resto = val_1 % val_2;
+  printf("Divisao inteira = %d Resto = %d\n", divisao, resto);
+  return 0;
+}
+#+END_SRC
+
+#+begin_src shell :results output :dir e
+gcc exemplo-operadores-aritmeticos.c -o exemplo-operadores-aritmeticos
+./exemplo-operadores-aritmeticos
+#+end_src
+
+#+RESULTS:
+: Divisão inteira = 2 Resto = 3
+
+* O resto da divisão inteira é útil sim
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula03_slide_23.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Vejamos
+
+** Com botes de 23 lugares
+
+ #+BEGIN_SRC C
+int passageiros = 950;
+int lugares_no_bote = 23;
+printf("%d %d\n",
+       passageiros / lugares_no_bote,
+       passageiros % lugares_no_bote);
+ #+END_SRC
+
+ #+RESULTS:
+ : 41 7
+
+** Com botes de 25 lugares
+
+ #+BEGIN_SRC C
+int passageiros = 950;
+int lugares_no_bote = 25;
+printf("%d %d\n",
+       passageiros / lugares_no_bote,
+       passageiros % lugares_no_bote);
+ #+END_SRC
+
+ #+RESULTS:
+ : 38 0
+
+* Funções matemáticas mais complexas com =math.h=
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula03-algoritmo_e_estrutura_C_slide_06.pdf}{Prof. Claudio Jung}
+
+* Exemplo de operações matemáticas
+
+#+BEGIN_SRC C :tangle e/exemplo-com-biblioteca-math.c
+/* Programa para ilustrar funcionamento de algumas
+   operacoes aritmeticas mais complexas. */
+#include <stdio.h>
+#include <math.h>
+int main(void)
+{
+  float val_1;
+  printf("Entre com valor float: ");
+  scanf("%f", &val_1);
+
+  printf("Valor fornecido como entrada: [%f]\n", val_1);
+  printf("Resultado do ceil           : [%f]\n", ceil(val_1));
+  printf("Resultado do floor          : [%f]\n", floor(val_1));
+  printf("Resultado do round          : [%f]\n", round(val_1));
+  return 0;
+}
+#+END_SRC
+
+
+#+begin_src shell :results output :dir e
+gcc exemplo-com-biblioteca-math.c -o exemplo-com-biblioteca-math -lm
+./exemplo-com-biblioteca-math
+#+end_src
+
+* Outras saídas possíveis do exemplo
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula03_slide_26.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Precedência e associatividade de operadores em C
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula03/aula03_slide_25.pdf}{Prof. Marcelo Walter}
+
+#+BEGIN_CENTER
+Qual é a associatividade de operadores?
+
+Exemplo ilustrativo: =a + b + c=
+#+END_CENTER
+
+* Equivalência entre álgebra e C
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula03-algoritmo_e_estrutura_C_slide_11.pdf}{Prof. Claudio Jung}
+
+* Relação entre tipos e expressões aritméticas
+
+Vejams um exemplo representativo
+
+#+BEGIN_SRC C :tangle e/exemplo-tipos-expressoes-aritmeticas.c
+/* Exemplo para ilustrar um problema com expressoes aritmeticas */
+#include<stdio.h>
+int main()
+{
+  float num_real;
+  int x=1, y=2, z=1;
+
+  num_real = x/2 + y/2 + z/2;
+
+  printf("Resultado: [%f]\n", num_real);
+  return 0;
+}
+#+END_SRC
+
+Qual é o resultado?
+
+#+latex: \pause
+
+#+begin_src shell :results output :dir e
+gcc exemplo-tipos-expressoes-aritmeticas.c -o exemplo-tipos-expressoes-aritmeticas
+./exemplo-tipos-expressoes-aritmeticas
+#+end_src
+
+#+RESULTS:
+: Resultado: [1.000000]
+
+* Constatação: resultados parciais são do tipo inteiro
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula03/aula03_slide_26.pdf}{Prof. Marcelo Walter}
+
+* Modeladores (/casts/) para explicitamente trocar o tipo
+
+#+BEGIN_SRC C :tangle e/exemplo-tipos-expressoes-aritmeticas-cast.c
+/* Exemplo para ilustrar um problema com expressoes aritmeticas */
+#include <stdio.h>
+int main()
+{
+  float num_real_0, num_real_1, num_real_2, num_real_3;  // variaveis reais
+  int x=1, y=2, z=1; // valores inteiros – inicializados na declaracao
+
+  num_real_0 = x/2        + y/2        +        z/2;
+  num_real_1 = (float)x/2 + y/2        +        z/2;
+  num_real_2 = (float)x/2 + (float)y/2 +        z/2;
+  num_real_3 = (float)x/2 + (float)y/2 + (float)z/2;
+
+  printf("Resultados -> "
+	 "C0: [%f] "
+	 "C1: [%f] "
+	 "C2: [%f] "
+	 "C3: [%f]\n", num_real_0, num_real_1, num_real_2, num_real_3);
+  return 0;
+}
+#+END_SRC
+
+#+latex: \pause\scriptsize
+
+#+begin_src shell :results output :dir e
+gcc exemplo-tipos-expressoes-aritmeticas-cast.c -o exemplo-tipos-expressoes-aritmeticas-cast
+./exemplo-tipos-expressoes-aritmeticas-cast
+#+end_src
+
+#+RESULTS:
+: Resultados -> C0: [1.000000] C1: [1.500000] C2: [1.500000] C3: [2.000000]
+
+* Operadores de Atribuição (atalhos)
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula03-algoritmo_e_estrutura_C_slide_10.pdf}{Prof. Claudio Jung}
+
+* Exercício
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula03-algoritmo_e_estrutura_C_slide_16.pdf}{Prof. Claudio Jung}
+
+* Análise e Definição do Problema
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula03-algoritmo_e_estrutura_C_slide_17.pdf}{Prof. Claudio Jung}
+
+* Algoritmo
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula03-algoritmo_e_estrutura_C_slide_18.pdf}{Prof. Claudio Jung}
+
+* Programa (página 1)
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula03-algoritmo_e_estrutura_C_slide_19.pdf}{Prof. Claudio Jung}
+
+* Programa (página 2)
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula03-algoritmo_e_estrutura_C_slide_20.pdf}{Prof. Claudio Jung}
+
+* Testes
+
+#+attr_latex: :options fontsize=\tiny
+#+BEGIN_SRC C :tangle e/exemplo-notas.c
+/* Calcula quantidade de cada cédula (ou moeda) tal que a soma dos
+   valores totalize um valor inteiro dado.
+   Entrada: valor inteiro
+   Saida: quandidade de cedulas/moedas de 100, 50, 20, 10, 5, 2 e 1
+   reais */
+#include <stdio.h>
+int main( )
+{
+  int valor, v; //valores inteiros lido e usado nos cálculos
+  int n100, n50,n20,n10,n5,n2,n1;
+  printf("Informe valor inteiro:");
+  scanf("%d", &valor);
+  v = valor; // copia, para preservar valor lido
+  n100 = v/100; // RESULTADO DA DIVISÃO INTEIRA POR 100
+  v = v%100;    // RESTO DA DIVISÃO INTEIRA POR 100
+  n50 = v/50;
+  v = v%50;
+  n20 = v/20;
+  v = v%20;
+  n10 = v/10;
+  v = v%10;
+  n5 = v/5;
+  v = v % 5;
+  n2 = v/2;    // RESULTADO DA DIVISÃO INTEIRA POR 2
+  n1 = v%2;    // RESTO DA DIVISÃO INTEIRA POR 2
+
+  //quebra 2 linhas e insere caracteres ,00 depois do valor:
+  printf("\n\nValor lido: R$%d,00\n",valor); // insere vírgula zero
+  printf("notas de 100: %d\n",n100);
+  printf("notas de 50: %d\n",n50);
+  printf("notas de 20: %d\n",n20);
+  printf("notas de 10: %d\n",n10);
+  printf("notas de 5: %d\n",n5);
+  printf("notas de 2: %d\n",n2);
+  printf("notas de 1: %d\n",n1);
+  return 0;
+}
+#+END_SRC
+
+* Exercício para casa
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula03-algoritmo_e_estrutura_C_slide_22.pdf}{Prof. Claudio Jung}
+

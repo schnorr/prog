@@ -1,0 +1,441 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Algoritmos
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{systeme}
+
+#+latex: \newcommand{\mytitle}{Aula de Revisão da Parte #1}
+#+latex: \mytitleslide
+
+* Configuração                                                     :noexport:
+
+#+BEGIN_SRC emacs-lisp
+(setq org-latex-listings 'minted
+      org-latex-packages-alist '(("" "minted"))
+      org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+(setq org-latex-minted-options
+       '(("frame" "lines")
+         ("fontsize" "\\scriptsize")))
+#+END_SRC
+
+#+RESULTS:
+| frame    | lines       |
+| fontsize | \scriptsize |
+* Conteúdos até o presente momento (Cronograma)
+
+#+latex: \small
+
+|  *N* |     *Quando* | *Assunto*                                                  |
+|----+------------+----------------------------------------------------------|
+|  1 | 2019-03-11 | Paradigmas de programação, programa,  algoritmo          |
+|  2 | 2019-03-13 | Algoritmo: atribuição, entrada e saída                   |
+|    |            | Estrutura de programa C: scanf, printf                   |
+|  4 | 2019-03-18 | Tipos de Dados, Declaração e tipos de variáveis          |
+|    |            | Operadores e expressão aritmética e lógica               |
+|  5 | 2019-03-20 | Comando de Seleção If                                    |
+|  7 | 2019-03-25 | Aninhamento de comandos If Else                          |
+|  8 | 2019-03-27 | Estrutura de seleção múltipla - comando switch           |
+| 10 | 2019-04-01 | Comando iterativo for                                    |
+| 11 | 2019-04-03 | Comandos iterativos while e do-while                     |
+| 13 | 2019-04-08 | Comandos iterativos while e do-while Exemplos            |
+| 15 | 2019-04-15 | Tipos estruturados básicos – arranjos de uma dimensão    |
+| 16 | 2019-04-17 | Classificação de vetores Strings: arranjos de caracteres |
+| 17 | 2019-04-22 | Arranjos com mais de uma dimensão: matrizes              |
+| 18 | 2019-04-24 | Busca e classificação em matrizes                        |
+
+* Conteúdos até o presente momento
+
+|  *N* | *PDF*                                        | *KR*         |
+|----+--------------------------------------------+------------|
+| 01 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/introducao.pdf][Introdução de Algoritmos e Programação]]     |            |
+|----+--------------------------------------------+------------|
+| 02 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/sequencial.pdf][Estrutura de um Programa em C]]              | C1         |
+|----+--------------------------------------------+------------|
+| 04 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/tipos.pdf][Tipos de variáveis, expressões aritméticas]] | C2         |
+|----+--------------------------------------------+------------|
+| 05 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/if.pdf][Comandos =if= e expressões lógicas]]           | C2, S3.2   |
+|----+--------------------------------------------+------------|
+| 07 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/if-else.pdf][Comandos =if-else= aninhados]]                 | S3.3       |
+|----+--------------------------------------------+------------|
+| 08 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/switch.pdf][Estrutura de seleção múltipla switch-case]]  | S3.4       |
+|----+--------------------------------------------+------------|
+| 10 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/for.pdf][Comando iterativo =for=]]                    | S3.5       |
+|----+--------------------------------------------+------------|
+| 11 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/maisfor.pdf][Comando iterativo =for=]] (bis)              | S3.5       |
+|----+--------------------------------------------+------------|
+| 13 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/while.pdf][Comando iterativo =while=]]                  | S3.5, S3.6 |
+|----+--------------------------------------------+------------|
+| 15 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/arranjos.pdf][Arranjos unidimensionais]]                   | S1.6, S5.3 |
+|----+--------------------------------------------+------------|
+| 16 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/strings.pdf][Strings]]                                    | S1.9, S5.5 |
+|----+--------------------------------------------+------------|
+| 17 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/matriz.pdf][Matriz]]                                     | S5.7       |
+|----+--------------------------------------------+------------|
+| 18 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/maismatriz.pdf][Estudos de Caso com Matrizes]]               |            |
+|----+--------------------------------------------+------------|
+* Simulado #1
+
+#+BEGIN_SRC C :results output :tangle e/simul-p1-q1.c
+#include <stdio.h>
+int main ()
+{
+int x, i, j;
+x = 8;
+for (i = 2; i < 5; i++)
+{
+j= 3;
+while (j > 0)
+{
+x = x+1;
+j = j-1;
+}
+printf( "X : %5d\n", x );
+}
+printf("- Fim - \n");
+return 0;
+}
+#+END_SRC
+
+Dado o programa acima, não identado, (1) apresente os valores e formato apresentados
+como saída. (2) Reescreva o programa acima de forma identada, ao lado do código,
+substituindo o FOR pelo comando WHILE e o WHILE por um comando DOWHILE,
+gerando as mesmas saídas.
+
+* (#1) Código
+
+- [X] Substituir o FOR pelo comando WHILE
+- [X] substituir o WHILE pelo comando DO-WHILE
+
+#+BEGIN_SRC C :results output :tangle e/simul-p1-q1-substituir.c
+#include <stdio.h>
+int main ()
+{
+  int x, i, j;
+  x = 8;
+  i = 2;
+  while (i < 5){
+
+    j= 3;
+    do {
+      x = x+1;
+      j = j-1;
+    }while(j > 0);
+    printf( "X : %5d\n", x );
+    i++;
+  }
+  printf("- Fim - \n");
+  return 0;
+}  
+#+END_SRC
+
+#+RESULTS:
+: X :    11
+: X :    14
+: X :    17
+: - Fim -
+
+* Simulado #2
+
+Algoritmo e programa para identificar a maior subsequência de números
+0 ou 1. Por exemplo, para a sequência
+
+#+BEGIN_SRC bash
+0 0 1 1 0 1 0 1 0 0 1 1 1 0 0 0 0 0 1 0 1 0
+#+END_SRC
+
+Deve ter como saída:
+- Posição 13
+- Tamanho 5
+- Sequência ~0 0 0 0 0~
+
+* (#2) Código
+
+#+latex: \vspace{-0.3cm}\begin{multicols}{2}
+#+attr_latex: :options fontsize=\tiny
+#+BEGIN_SRC C :results output :tangle e/simul-p1-q2.c
+#include <stdio.h>
+int main(){
+  int vet[] = {0, 0, 1, 1, 0, 1, 0, 1, 0, 0,
+	         1, 1, 1, 0, 0, 0, 0, 0, 1, 0,
+               1, 0};
+  int tam = 22;
+  int i;
+  int maior_tamanho = -1;
+  int maior_comeco = -1;
+  int comeco = 0;
+  int tamanho = 1;
+  int atual = vet[0];
+  for (i = 1; i < tam; i++){
+    if (vet[i] == atual){
+      tamanho++;
+      if (tamanho > maior_tamanho) {
+	  maior_tamanho = tamanho;
+    	  maior_comeco = comeco;
+      }
+    }else{
+      comeco = i;
+      tamanho = 1;
+      atual = vet[i];
+    }
+//    printf("%d %d %d %d\n",
+//           vet[i], atual, comeco, tamanho);
+  }
+  printf ("Posição %d\n", maior_comeco);
+  printf ("Tamanho %d\n", maior_tamanho);
+  printf ("Sequência ");
+  for (i = maior_comeco;
+       i < (maior_comeco+maior_tamanho); i++){
+    printf("%d ", vet[i]);
+  }
+  printf ("\n");
+  return 0;
+}
+#+END_SRC
+#+latex: \end{multicols}
+
+#+RESULTS:
+: Posição 13
+: Tamanho 5
+: Sequência 0 0 0 0 0
+
+* Simulado #3
+
+Faça um programa que identifica se um número inteiro qualquer é um número
+perfeito. Número perfeito é aquele cuja soma de seus divisores, exceto ele próprio, é igual
+ao número. O programa recebe um inteiro como entrada e fornece como saída uma
+mensagem dizendo se é perfeito ou não. Para identificar se é divisor use o resto da
+divisao: ~numero % divisor == 0~
+
+* (#3) Código
+
+#+BEGIN_SRC C :tangle e/simul-p1-q3.c
+#include <stdio.h>
+int main(){
+  int i;
+  int valor;
+  scanf("%d", &valor);
+  int soma = 0;
+  for (i = 0; i < valor; i++){
+    if (valor%i == 0){
+      soma += i; }
+  }
+  if (valor == soma){
+    printf("É número perfeito.\n");
+  }else{
+    printf("Não é número perfeito.\n");
+  }
+  return 0;
+}
+#+END_SRC
+
+* Simulado #4
+
+Dadas duas palavras (cadeia de caracteres) com no máximo 15
+caracteres, verificar se uma é a permutação circular da outra, não
+importando se os caracteres individuais são maiúsculos ou
+minúsculos. Para se obter a permutação circular de uma cadeia,
+transfere-se o primeiro caracter do início para o fim da mesma, o
+segundo caracter para a primeira posição e assim sucessivamente. Por
+exemplo, para a palavra AMORA, a permutação circular é MORAA.
+
+Exemplo de uso #1
+
+#+BEGIN_EXAMPLE
+Entre com a primeira palavra: Amora
+Entre com a segunda palavra: Moraa
+A segunda palavra eh permutação circular da primeira!
+#+END_EXAMPLE
+
+Exemplo de uso #2
+
+#+BEGIN_EXAMPLE
+Entre com a primeira palavra: Casa
+Entre com a segunda palavra: AMOR
+A segunda palavra nao eh permutação circular da primeira!
+#+END_EXAMPLE
+
+* (#4) Código
+
+#+latex: \vspace{-0.3cm}\begin{multicols}{2}
+#+attr_latex: :options fontsize=\tiny
+#+BEGIN_SRC C :tangle e/simul-p1-q4.c
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+#define SIZEPAL 15
+int main() {
+  char p1[SIZEPAL+1], p2[SIZEPAL+1], c1, c2;
+  int flag, t1, t2, t, i;
+
+  fgets(p1, SIZEPAL, stdin);
+  t1 = strlen(p1);
+  if (p1[t1-1] == '\n'){
+    p1[t1-1] = '\0';
+    t1 = strlen(p1);
+  }
+
+  fgets(p2, SIZEPAL, stdin);
+  t2 = strlen(p2);
+  if (p2[t2-1] == '\n'){
+    p2[t2-1] = '\0';
+    t2 = strlen(p2);
+  }
+
+  flag = 0;
+  if (t2 != t1){
+    flag = 1;
+  }else{
+    t = t2;
+    for (i = 0; i < (t-1); i++){
+      c1 = tolower(p1[i+1]);
+      c2 = tolower(p2[i]);
+	if(c2 != c1){
+	  flag = 1;
+	}
+    }
+    c1 = tolower(p1[0]);
+    c2 = tolower(p2[t-1]);
+    if (c2 != c1){
+      flag = 1;
+    }
+  }
+  if (flag == 0){
+    printf("[%s] _é_ permuta de [%s]\n", p2, p1);
+  }else{
+    printf("[%s] não é permuta de [%s]\n", p2, p1);
+  }
+  return 0;
+}
+#+END_SRC
+#+latex: \end{multicols}
+
+* Simulado #5
+
+Faça um programa que lê um conjunto de 20 valores inteiros e os armazena em 2 arrays
+unidimensionais conforme forem pares ou ímpares. Imprima o vetor com os elementos pares e em
+seguida aquele com os elementos ímpares. Cuide para imprimir somente os elementos válidos
+destes vetores. Lembre-se que o usuário tem liberdade de escolha para os 20 números, eles podem
+inclusive serem todos pares ou ímpares.
+
+Abaixo exemplo de execução:
+
+#+BEGIN_EXAMPLE
+Entre com os 20 valores:
+12 33 1 9 87 44 2 32 14 126 3 13 21 22 4 66 7 18 11 20
+Elementos do array com valores pares:
+12 44 2 32 14 126 22 4 66 18 20
+Elementos do array com valores impares:
+33 1 9 87 3 13 21 7 11
+#+END_EXAMPLE
+
+* (#5) Código
+
+#+latex: \vspace{-0.3cm}\begin{multicols}{2}
+#+attr_latex: :options fontsize=\tiny
+#+BEGIN_SRC C :tangle e/simul-p1-q5.c
+#include <stdio.h>
+#define NVAL 20
+int main(){
+  int pares[NVAL];
+  int impares[NVAL];
+  int n_pares = 0;
+  int n_impares = 0;
+  int i;
+  int valor;
+
+  printf("Entre com os 20 valores:\n");
+  for (i = 0; i < NVAL; i++){
+    scanf("%d", &valor);
+    if (valor % 2 == 0){
+      pares[n_pares] = valor;
+      n_pares++;
+    }else{
+      impares[n_impares] = valor;
+      n_impares++;
+    }
+  }
+  printf("Elementos do array com valores pares:\n");
+  for (i = 0; i < n_pares; i++){
+    printf("%d ", pares[i]);
+  }
+  printf("\n");
+  printf("Elementos do array com valores impares:\n");
+  for (i = 0; i < n_impares; i++){
+    printf("%d ", impares[i]);
+  }
+  printf("\n");
+  return 0;
+}
+#+END_SRC
+#+latex: \end{multicols}
+
+* Simulado #6
+
+Fazer um programa que leia o valor de X no intervalo (-0.5,0.75) e de
+Y no intervalo [-1,1] e calcule e imprima na tela o resultado do
+somatório abaixo. Faça consistência dos valores de entrada.
+
+#+latex: \vfill
+
+#+BEGIN_EXPORT latex
+$$
+S = \frac{X^{25} * Y^{1}}{1} + \frac{X^{24} * Y^{2}}{2} + ... + \frac{X^{2} * Y^{24}}{24} + \frac{X^{1} * Y^{25}}{25}
+$$
+#+END_EXPORT
+
+* (#6) Código
+
+#+latex: \vspace{-0.3cm}\begin{multicols}{2}
+#+attr_latex: :options fontsize=\tiny
+#+BEGIN_SRC C :tangle e/simul-p1-q6.c
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+int main() {
+  double S, termo, x, y, numx, numy;
+  int den, expx, expy, sinal;
+
+  do{
+    printf("Valor de x: ");
+    scanf("%lf", &x);
+  }while (x <= -0.5 || x >= 0.75);
+  do{
+    printf("Valor de y:");
+    scanf("%lf", &y);
+  }while (y < -1 || y > 1);
+
+  expx = 25;
+  expy = 1;
+  sinal = 1;
+  S = 0;
+
+  for (den = 1; den < 26; den++)  {
+    numx = pow(x, expx);
+    numy = pow(y, expy);
+    termo = sinal*numx*numy/den;
+    S += termo;
+    expx -= 1;
+    expy += 1;
+  }
+  printf("Valor de S: %lf\n", S);
+  return 0;
+}
+
+#+END_SRC
+#+latex: \end{multicols}

@@ -1,0 +1,343 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Algoritmos
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{systeme}
+
+#+latex: \newcommand{\mytitle}{Referências e Ponteiros}
+#+latex: \mytitleslide
+
+* Sumário
+
+Referências e Ponteiros
+- Motivação com o exemplo da troca
+- O que são ponteiros?
+- Declaração e operadores
+
+Exemplos
+- (#1) Ponteiros e conteúdo
+- (#2) Atribuição com ponteiros
+- (#3) Aritmética de ponteiros
+- (#4) O que será impresso na tela?
+
+Cuidados essenciais
+- Problemas comuns
+- Depurando problemas com ~gdb~
+
+#+latex: \vfill
+
+Passagem por referência
+- Caso com variáveis simples
+
+Exercício #1
+
+* Motivação: exemplo ~a26-troca.c~
+
+#+attr_latex: :options fontsize=\scriptsize
+#+BEGIN_SRC C :tangle e/a26-troca.c
+#include <stdio.h>
+void troca (int x, int y) {
+  int temp = x;
+  x = y;
+  y = temp;
+  return;
+}
+int main() {
+  int a = 5;
+  int b = 10;
+  printf("#1: a = %d, b = %d\n", a, b);
+  troca(a, b); //chamada de função, passagem por valor (é feita uma cópia)
+  printf("#2: a = %d, b = %d\n", a, b);
+  return 0;
+}
+#+END_SRC
+
+O que é impresso em #2?
+
+#+begin_src shell :results output :exports both :dir e
+gcc a25-troca.c; ./a.out
+#+end_src
+
+#+RESULTS:
+: #1 a = 5, b = 10
+: #2 a = 5, b = 10
+
+Como fazer então? \to Utilizar método de *passagem por referência*
+
+* Passagem de argumentos como *referências*
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula18/aula18_slide_09.pdf}{Prof. Marcelo Walter}
+
+* A ideia de *ponteiros*
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula18/aula18_slide_11.pdf}{Prof. Marcelo Walter}
+
+* Endereçamento de variáveis
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula18/aula18_slide_12.pdf}{Prof. Marcelo Walter}
+
+* O que são ponteiros?
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula18/aula18_slide_13.pdf}{Prof. Marcelo Walter}
+
+* Declaração de ponteiros
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula18/aula18_slide_14.pdf}{Prof. Marcelo Walter}
+
+* Um ponteiro tem que ter um tipo!
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula18/aula18_slide_15.pdf}{Prof. Marcelo Walter}
+
+* Operadores para lidar com ponteiros
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula18/aula18_slide_16.pdf}{Prof. Marcelo Walter}
+* Exemplo #1: Ponteiros e conteúdo
+
+#+BEGIN_SRC C :tangle e/a26-ponteiro-conteudo.c
+#include <stdio.h>
+int main() {
+  int alpha; // uma variável normal (tipo int)
+  int conta; // uma variável normal (tipo int)
+  int *var;  // uma variável normal que é um ponteiro para int
+
+  var = &conta; // var recebe o endereço de count
+  conta = 26;
+  alpha = *var; // alpha recebe o conteúdo apontado por var
+
+  printf("Todos os valores em hexadecimal:\n");
+  printf("alpha (endereço %x) = %x \n", &alpha, alpha);
+  printf("conta (endereço %x) = %x \n", &conta, conta);
+  printf("var   (endereço %x) = %x, conteúdo apontado %x\n", &var, var, *var);
+  return 0;
+}
+#+END_SRC
+
+* Exemplo #2: Atribuição com ponteiros
+
+Como qualquer variável, um ponteiro pode ser usado no lado direito de
+um comando de atribuição para passar seu valor para um outro ponteiro.
+
+#+BEGIN_SRC C :tangle e/a26-atribuicao.c
+#include <stdio.h>
+int main() {
+  int alpha = 200; // variável normal do tipo int
+  int *nova;       // variável normal do tipo int que é um ponteiro
+  int *terra;      // variável normal do tipo int que é um ponteiro
+
+  nova = &alpha;   // o ponteiro nova aponta para o endereço de alpha
+  terra = nova;    // o ponteiro terra também aponta para onde nova aponta
+
+  printf("Desvendar o endereço de onde encontra-se o ponteiro e seu valor\n");
+  printf("nova  (endereço %p): %p\n", &nova, nova);
+  printf("terra (endereço %p): %p\n", &terra, terra);
+  return 0;
+}
+#+END_SRC
+
+* Exemplo #3: Aritmética de ponteiros
+
+O valor considerado é o tamanho do tipo do ponteiro. Exemplo, ao somar 1
+no ponteiro, será somado o tamanho do tipo do ponteiro (4 se ~int~).
+
+#+BEGIN_SRC C :tangle e/a26-aritmetica.c :results output :exports both
+#include <stdio.h>
+int main() {
+  int *nova;       // variável normal do tipo int que é um ponteiro
+  int *terra;      // variável normal do tipo int que é um ponteiro
+  int *centauri;   // variável normal do tipo int que é um ponteiro
+  int alpha = 200; // variável normal do tipo int
+
+  nova = &alpha;   // o ponteiro nova aponta para o endereço de alpha
+  terra = nova;    // o ponteiro terra também aponta para onde nova aponta
+
+  printf("nova     (endereço %p): %p\n", &nova, nova);
+  printf("terra    (endereço %p): %p\n", &terra, terra);
+  centauri = terra + 1; // incrementar em 1 o valor do ponteiro terra
+  printf("centauri (endereço %p): %p\n", &centauri, centauri);
+  return 0;
+}
+#+END_SRC
+
+#+RESULTS:
+: nova     (endereço 0x7ffd4d4199b8): 0x7ffd4d4199a4
+: terra    (endereço 0x7ffd4d4199b0): 0x7ffd4d4199a4
+: centauri (endereço 0x7ffd4d4199a8): 0x7ffd4d4199a8
+
+
+#  //Vamos trabalhar com variáveis normais do tipo int (que não são ponteiros)
+#  int x = terra;
+#  int y = terra + 1;
+#  int z = x + 1;
+#  printf("x (valor de terra)     = %d\n"
+#         "y (valor de terra + 1) = %d\n"
+#         "z (valor de x + 1)     = %d\n", x, y, z);
+#  return 0;
+* Exemplo #4: O que será impresso na tela?
+
+#+BEGIN_SRC C :tangle e/a26-impresso.c :results output :exports both
+#include <stdio.h>
+int main() {
+  int x[] = {2, 4};
+  int *px;
+
+  px = &x;
+  printf("1# *px (%p) = %d\n", px, *px);
+  px = px + 1;
+  printf("2# *px (%p) = %d\n", px, *px);
+  px = px + 1;
+  printf("3# *px (%p) = %d\n", px, *px);
+  return 0;
+}
+#+END_SRC
+
+* Cuidados essenciais: problemas comuns @@latex:{\scriptsize@@ (~a26-tipo_errado.c~) @@latex:}@@
+
+Tipos incompatíveis: ~p~ é um ponteiro para inteiros, logo não pode
+apontar para uma variável do tipo ~float~.
+
+#+BEGIN_SRC C :tangle e/a26-tipo_errado.c
+#include <stdio.h>
+int main() {
+  float x = 100;
+  int *p;
+
+  p = &x;
+
+  printf("%p\n", p);
+  return 0;
+}
+#+END_SRC
+
+#+begin_src shell :results output :dir e :exports both
+gcc -Wall a26-tipo_errado.c 2>&1
+#+end_src
+
+#+RESULTS:
+: a26-tipo_errado.c: In function ‘main’:
+: a26-tipo_errado.c:6:5: warning: assignment to ‘int *’ from incompatible pointer type ‘float *’ [-Wincompatible-pointer-types]
+:    p = &x;
+:      ^
+
+* Cuidados essenciais
+
+1. Este programa compila?
+2. Se sim, ele executa normalmente?
+3. Se sim, ele deveria executar normalmente?
+
+#+BEGIN_SRC C :tangle e/a26-erro_comum.c
+#include <stdio.h>
+int main() {
+  int x = 10;
+  int *p;
+
+  ,*p = x;
+
+  printf("*p = %d\n", *p);
+  return 0;
+}
+#+END_SRC
+
+* Inicializem sempre seus ponteiros para ~NULL~
+
+~a26-inicializa.c~
+
+#+BEGIN_SRC C :tangle e/a26-inicializa.c
+#include <stdio.h>
+int main() {
+  int x = 10;
+  int *p;
+
+  p = NULL;
+
+  ,*p = x;
+
+  printf("*p = %d\n", *p);
+  return 0;
+}
+#+END_SRC
+
+#+RESULTS:
+
+* Depurando programas com ~gdb~
+
+Depurador: ``Que, aquilo ou quem depura, expurga ou limpa.''
+- O ~gdb~ é um programa que depura um outro programa
+
+#+latex: \vfill\pause
+
+Como usar?
+
+1. Compilar com o parâmetro ~-g~
+   #+begin_src shell :results output :dir e
+   gcc -g -Wall a26-inicializa.c -o binario_do_programa
+   #+end_src
+   #+latex: \pause
+2. Lançar o depurador passando o binário
+   #+begin_src shell :results output
+   gdb ./binario_do_programa
+   #+end_src
+   #+latex: \pause
+3. Fornecer o comando ~run~ ao programa ~gdb~
+   #+begin_src shell :results output
+   (gdb) run
+   #+end_src
+   #+latex: \pause
+4. Interpretar a saída
+   #+begin_src shell :results output
+   Program received signal SIGSEGV, Segmentation fault.
+   0x0000555555555153 in main () at a26-inicializa.c:6
+   6	  *p = x;
+   #+end_src
+
+
+* Passagem por referência ~a26-troca-ponteiro.c~
+
+#+attr_latex: :options fontsize=\scriptsize
+#+BEGIN_SRC C :tangle e/a26-troca-ponteiro.c
+#include <stdio.h>
+void troca (int *x, int *y) {
+  int temp = *x;
+  *x = *y;
+  *y = temp;
+  return;
+}
+int main() {
+  int a = 5;
+  int b = 10;
+  printf("#1: a = %d, b = %d\n", a, b);
+  troca(&a, &b); //chamada de função, passagem por valor (é feita uma cópia)
+  printf("#2: a = %d, b = %d\n", a, b);
+  return 0;
+}
+#+END_SRC
+
+O que é impresso em #2?
+
+#+begin_src shell :results output :exports both :dir e
+gcc a26-troca-ponteiro.c; ./a.out
+#+end_src
+
+#+RESULTS:
+: #1: a = 5, b = 10
+: #2: a = 10, b = 5
+
+* Passagem por referência
+Vetores e matrizes
+- /veremos na próxima aula/
+* Exercício #1
+
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula18/aula18_slide_28.pdf}{Prof. Marcelo Walter}

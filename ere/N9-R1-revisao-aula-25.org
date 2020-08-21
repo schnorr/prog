@@ -1,0 +1,260 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Algoritmos
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{systeme}
+
+#+latex: \newcommand{\mytitle}{Revisão Aula 25}
+#+latex: \mytitleslide
+
+* Configuração                                                     :noexport:
+
+#+BEGIN_SRC emacs-lisp
+(setq org-latex-listings 'minted
+      org-latex-packages-alist '(("" "minted"))
+      org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+(setq org-latex-minted-options
+       '(("frame" "lines")
+         ("fontsize" "\\scriptsize")))
+#+END_SRC
+
+#+RESULTS:
+| frame    | lines       |
+| fontsize | \scriptsize |
+
+* O que /essencialmente/ vimos na aula passada?
+
+1. Funções com parâmetros
+   - Exemplo mais completo onde uma função recebe e retorna valores
+   - A função pode ser vista como uma ``caixa preta'' @@latex:\\@@
+     #+latex: {\scriptsize
+     https://pt.wikipedia.org/wiki/Caixa_preta_(teoria_dos_sistemas)
+     #+latex: }
+2. Forma de passagem de parâmetros
+   - por valor, onde o argumento é copiado para o parâmetro formal
+   - por referência (veremos com mais detalhamento hoje)
+3. Exercício #1 do Cálculo de e^x com funções
+
+* 1. Funções com parâmetros @@latex:{\small@@ (~rev-a25-calcula-media-tres.c~) @@latex:}@@
+
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C :tangle e/rev-a25-calcula-media-tres.c
+#include <stdio.h>
+float calcula_media(float n1, float n2, float n3) {
+  float media;
+  media = (n1 + n2 + n3) / 3;
+  return media;
+}
+
+int main() {
+  float a, b, c, final;
+  a = 3.2;
+  b = 5.4;
+  c = -11.7;
+  final = calcula_media(a, b, c); //chamada da função
+  printf("A media vale %3.2f\n", final);
+  return 0;
+}
+#+END_SRC
+
+* 2. Passagem de parâmetros /por valor/ (~a25-troca.c~)
+
+#+attr_latex: :options fontsize=\scriptsize
+#+BEGIN_SRC C :tangle e/a25-troca.c
+#include <stdio.h>
+void troca (int x, int y) {
+  int temp;
+  temp = x;
+  x = y;
+  y = temp;
+  return;
+}
+int main() {
+  int a, b;
+  a = 5;
+  b = 10;
+  printf("#1: a = %d, b = %d\n", a, b);
+  troca(a, b);
+  printf("#2: a = %d, b = %d\n", a, b);
+  return 0;
+}
+#+END_SRC
+
+#+begin_src shell :results output :exports both :dir e
+gcc a25-troca.c; ./a.out
+#+end_src
+
+#+RESULTS:
+: #1 a = 5, b = 10
+: #2 a = 5, b = 10
+
+\to _/Por quê?/_
+* 3. Exercício #1: Cálculo de e^x com funções
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/Aula018_-funcoes_comparametros_slide_27.pdf}{Prof. Edison Pignaton de Freitas}
+
+* (#1) Interpretação do enunciado
+
+Teremos três funções (os protótipos foram impostos!) mais a ~main~:
+1. ~float potencia (float x, int n)~
+2. ~long long fatorial (int n)~
+3. ~float EnaX (float x)~
+
+#+latex: \pause\fill
+
+Interpretação
+1. "onde x é um valor real, lido do teclado"
+   - Variável ~float x~
+   - Lida com ~scanf("%f", &x)~ na função principal ~main~
+   #+latex: \pause
+2. "Os termos devem ser inseridos enquanto forem maiores do que 0,0001
+   (em valor absoluto)"
+   - O que é um termo? Vejamos a série, que é um somatório
+     #+BEGIN_EXPORT latex
+     \begin{equation}
+     e^x = \frac{x^0}{0!} + \frac{x^1}{1!} + \frac{x^2}{2!} + \frac{x^3}{3!} + ...
+     \end{equation}
+     #+END_EXPORT
+     #+latex: \pause
+   - Um termo é portanto um termo da série!
+     #+latex: \pause
+   - Se ~termo < 0.0001~, paramos a inclusão de termos no somatório
+     - E isso dentro da função ~EnaX~
+     #+latex: \pause
+3. Função ~potencia~ para x^0, x^1, ...; e ~fatorial~ para 0!, 1!, ...
+
+* (#1) Estratégia de implementação com módulos
+
+Três módulos
+1. MAIN (~rev-a25-enax-main.c~)
+   - Função principal, cuida da entrada (~scanf~) e saída (~printf~)
+2. ENAX (~rev-a25-enax.h~ e ~rev-a25-enax.c~)
+   - Função ~enax~
+3. AUX (~rev-a25-aux.h~ e ~rev-a25-aux.c~)
+   - Funções ~potencia~ e ~fatorial~
+
+#+latex: \vfill
+
+Módulos ENAX e AUX têm cabeçalho (arquivo ~.h~) e implementação (~.c~)
+- Cabeçalho (~.h~) tem somente protótipos
+- Implementação (~.c~) faz #include do cabeçalho
+  - Contém implementação das funções
+
+* (#1) Módulo MAIN @@latex:{\small@@ (~rev-a25-main.c~) @@latex:}@@
+
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C :tangle e/rev-a25-main.c
+#include <stdio.h>
+#include "rev-a25-enax.h" //contém protótipo da função enax
+
+int main() {
+  float x, resposta;
+  printf("Por favor, valor de x: ");
+  scanf("%f", &x);
+  resposta = enax(x); //chamada de função
+  printf("O valor de e elevado na %f é: %f\n", x, resposta);
+  return 0;
+}
+#+END_SRC
+
+* (#1) Módulo ENAX @@latex:{\small@@ (~rev-a25-enax.h~ e ~rev-a25-enax.c~) @@latex:}@@
+
+Arquivo ~rev-a25-enax.h~ (apenas com o protótipo!)
+
+#+BEGIN_SRC C :tangle e/rev-a25-enax.h :main no
+float enax (float x);
+#+END_SRC
+
+#+latex: \pause
+
+Arquivo ~rev-a25-enax.c~ (a implementação)
+
+#+BEGIN_SRC C :tangle e/rev-a25-enax.c :main no
+#include "rev-a25-enax.h"
+#include "rev-a25-aux.h" //contém protótipos
+
+float enax (float x) {
+  float ret = 0;
+  float termo = 0;
+  int i = 0;
+  do {
+    ret += termo;
+    termo = potencia(x, i) / fatorial(i);
+    i++;
+  }while (fabs(termo) > 0.0001);
+  return ret;
+}
+#+END_SRC
+
+* (#1) Módulo AUX @@latex:{\small@@ (~rev-a25-aux.h~ e ~rev-a25-aux.c~) @@latex:}@@
+
+Arquivo ~rev-a25-aux.h~ (apenas com os protótipos!)
+
+#+BEGIN_SRC C :tangle e/rev-a25-aux.h :main no
+float potencia (float x, int n);
+long long fatorial (int n);
+#+END_SRC
+
+#+latex: \pause
+
+Arquivo ~rev-a25-aux.c~ (as implementações)
+
+#+latex: %\vspace{-0.3cm}\begin{multicols}{1}
+#+attr_latex: :options fontsize=\scriptsize
+#+BEGIN_SRC C :tangle e/rev-a25-aux.c :main no
+float potencia (float x, int n) {
+  float ret = 1;
+  while(n > 0) {
+    ret *= x;
+    n--;
+  }
+  return ret;
+}
+long long fatorial (int n) {
+  long long ret = 0;
+  if (n >= 0){
+    ret = 1;
+    while(n > 0){
+      ret *= n;
+      n--;
+    }
+  }
+  return ret;
+}
+#+END_SRC
+#+latex: %\end{multicols}
+
+* (#1) Compilação e testes
+
+Para compilar, passamos ao compilador os três módulos (arquivos ~.c~):
+
+#+BEGIN_SRC bash :results output :exports both :dir e
+gcc -Wall rev-a25-main.c rev-a25-enax.c rev-a25-aux.c -lm
+#+END_SRC
+
+#+RESULTS:
+
+Teste
+
+#+BEGIN_SRC bash :results output :exports both :dir e
+echo "3" | ./a.out
+#+END_SRC
+
+#+RESULTS:
+: Por favor, valor de x: O valor de e elevado na 3.000000 é: 20.085537

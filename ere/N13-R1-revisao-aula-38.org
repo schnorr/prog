@@ -1,0 +1,156 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Algoritmos
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: @@latex:\copyleft@@
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{systeme}
+
+#+latex: \newcommand{\mytitle}{Revisão Aula 38}
+#+latex: \mytitleslide
+
+* Exercício #1
+
+O arquivo texto ~matriz.txt~ contém, na primeira linha, as dimensões de
+uma matriz separadas por um espaço (linha e coluna). Nas linhas
+seguintes, contém os elementos de uma matriz (inteiros) com a dimensão
+especificada. Considere que o número de linhas e de colunas não pode
+exceder uma constante DIMMAX.  Desenvolver um programa em C que:
+
+1. Leia o arquivo texto acima, armazenando os dados em uma matriz.
+2. +Imprima a matriz na tela, no formato de matriz+
+3. +Troque todos elementos negativos da matriz por zero.+
+4. Grave os elementos da matriz modificada no arquivo binário
+   ~matriz.bin~, linha por linha.
+5. Leia o arquivo ~matriz.bin~ em outra matriz, imprimindo-a na tela.
+
+* (#1) Planejamento
+
+O arquivo texto ~matriz.txt~ contém, na primeira linha, as dimensões de
+uma matriz separadas por um espaço (linha e coluna). Nas linhas
+seguintes, contém os elementos de uma matriz (inteiros) com a dimensão
+especificada.
+
+#+latex: \vfill
+
+Exemplo de entrada em ~matriz.txt~
+
+#+attr_latex: :options fontsize=\large
+#+BEGIN_SRC C :tangle e/matriz.txt :main no
+2 3
+5 8 +9
+-20
+3
+-4
+#+END_SRC
+
+* (#1) 1. Ler o arquivo texto, armazenando em uma matriz
+
+~e/rev-a38_1.c~
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C :tangle e/rev-a38_1.c
+#include <stdio.h>
+#define DIMMAX 20
+int main() {
+  int m[DIMMAX][DIMMAX];
+  int nl, nc, i, j;
+  FILE *fp = fopen("matriz.txt", "r");
+  fscanf(fp, "%d", &nl);
+  fscanf(fp, "%d", &nc);
+  for (i = 0; i < nl; i++){
+    for (j = 0; j < nc; j++){
+      fscanf(fp, "%d", &m[i][j]);
+    }
+  }
+  fclose(fp);
+  return 0;
+}
+#+END_SRC
+
+#+RESULTS:
+
+* (#1) 4. Grave os elementos em ~matriz.bin~, linha por linha
+
+~e/rev-a38_4.c~
+#+attr_latex: :options fontsize=\scriptsize
+#+BEGIN_SRC C :tangle e/rev-a38_4.c
+#include <stdio.h>
+#define DIMMAX 20
+int main() {
+  int m[DIMMAX][DIMMAX];
+  int nl, nc, i, j;
+  FILE *fp = fopen("matriz.txt", "r");
+  fscanf(fp, "%d", &nl);
+  fscanf(fp, "%d", &nc);
+  for (i = 0; i < nl; i++){
+    for (j = 0; j < nc; j++){
+      fscanf(fp, "%d", &m[i][j]);
+    }
+  }
+  fclose(fp);
+  fp = fopen("matriz.bin", "w");
+  for (i = 0; i < nl; i++){
+    fwrite(&m[i], sizeof(int), nc, fp);
+  }
+  fclose(fp);
+  return 0;
+}
+#+END_SRC
+
+#+RESULTS:
+* (#1) 5. Leia o arquivo ~matriz.bin~ em outra matriz
+
+~e/rev-a38_5.c~
+#+latex: \begin{multicols}{2}
+#+attr_latex: :options fontsize=\scriptsize
+#+BEGIN_SRC C :tangle e/rev-a38_5.c
+#include <stdio.h>
+#define DIMMAX 20
+int main() {
+  int m[DIMMAX][DIMMAX];
+  int nl, nc, i, j;
+  FILE *fp = fopen("matriz.txt", "r");
+  fscanf(fp, "%d", &nl);
+  fscanf(fp, "%d", &nc);
+  for (i = 0; i < nl; i++){
+    for (j = 0; j < nc; j++){
+      fscanf(fp, "%d", &m[i][j]);
+    }
+  }
+  fclose(fp);
+
+  fp = fopen("matriz.bin", "w");
+  for (i = 0; i < nl; i++){
+    fwrite(&m[i], sizeof(int), nc, fp);
+  }
+  fclose(fp);
+
+  fp = fopen("matriz.bin", "r");
+  int m2[DIMMAX][DIMMAX];
+  for (i = 0; i < nl; i++){
+    fread(&m2[i], sizeof(int), nc, fp);
+  }  
+  fclose(fp);
+  return 0;
+}
+#+END_SRC
+#+latex: \end{multicols}
+
+#+latex: \pause
+
+Por que não se pode fazer o seguinte para ler o arquivo binário?
+#+BEGIN_SRC C
+fread(&m2, sizeof(int), nc*nl, fp);
+#+END_SRC

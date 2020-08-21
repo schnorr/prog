@@ -1,0 +1,65 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Algoritmos
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{systeme}
+
+#+latex: \newcommand{\mytitle}{Estruturação de Programas}
+#+latex: \mytitleslide
+
+* Sumário
+
+Boas práticas de programação
+- Adoção de convenções de código
+
+Exemplos
+- Identificadores de variáveis
+- Valores constantes
+- Nome de funções
+- Tipos de dados
+- Comparação com zero e NULL
+- Identação
+
+Bom princípio geral
+- KIS + SWYM
+
+* Legibilidade?
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula30/aula30_slide_02.pdf}{Prof. Ingrid Nunes}
+* Legibilidade!
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula30/aula30_slide_03.pdf}{Prof. Ingrid Nunes}
+* Adotar uma convenção
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula30/aula30_slide_06.pdf}{Prof. Ingrid Nunes}
+* Quando adotar? Sempre!
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula30/aula30_slide_07.pdf}{Prof. Ingrid Nunes}
+* Convenção: identificadores de variáveis
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula30/aula30_slide_11.pdf}{Prof. Ingrid Nunes}
+* Convenção: valores constantes #1
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula30/aula30_slide_13.pdf}{Prof. Ingrid Nunes}
+* Convenção: valores constantes #2
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula30/aula30_slide_14.pdf}{Prof. Ingrid Nunes}
+* Convenção: nome de funções
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula30/aula30_slide_16.pdf}{Prof. Ingrid Nunes}
+* Convenção: tipos de dados
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula30/aula30_slide_19.pdf}{Prof. Ingrid Nunes}
+* Convenção: comparação com zero e NULL
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula30/aula30_slide_32.pdf}{Prof. Ingrid Nunes}
+* Convenção de identação #1
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula30/aula30_slide_33.pdf}{Prof. Ingrid Nunes}
+* Convenção de identação #2
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula30/aula30_slide_34.pdf}{Prof. Ingrid Nunes}
+* Bom princípio geral: KIS + SWYM
+#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula30/aula30_slide_36.pdf}{Prof. Ingrid Nunes}

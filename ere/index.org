@@ -1,0 +1,141 @@
+# -*- coding: utf-8 -*-"
+#+STARTUP: overview indent
+
+#+TITLE: Conteúdo
+
+#+OPTIONS: html-link-use-abs-url:nil html-postamble:auto
+#+OPTIONS: html-preamble:t html-scripts:t html-style:t
+#+OPTIONS: html5-fancy:nil tex:t
+#+HTML_DOCTYPE: xhtml-strict
+#+HTML_CONTAINER: div
+#+DESCRIPTION:
+#+KEYWORDS:
+#+HTML_LINK_HOME:
+#+HTML_LINK_UP:
+#+HTML_MATHJAX:
+#+HTML_HEAD:
+#+HTML_HEAD_EXTRA:
+#+SUBTITLE:
+#+INFOJS_OPT:
+#+CREATOR: <a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.2.2 (<a href="http://orgmode.org">Org</a> mode 9.0.1)
+#+LATEX_HEADER:
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+#+TAGS: noexport(n) deprecated(d)
+
+* Teóricas
+
+Os PDFs gerados estão [[http://www.inf.ufrgs.br/~schnorr/inf1202/][disponíveis aqui]], ou na listagem abaixo.
+
+A coluna *N* se refere ao número global do encontro conforme o [[../cronograma/index.org][cronograma]].
+
+A coluna *KR* se refere ao capítulo ou seção do livro:
+- The C Programming Language. Second Edition. Brian W. Kernighan/Dennis M. Ritchie
+
+|  *N* | *PDF*                                         | *KR*         | *ORG*                     |
+|----+---------------------------------------------+------------+-------------------------|
+| 01 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/apresentacao.pdf][Apresentação da disciplina]]                  |            | [[./apresentacao.org]]      |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/introducao.pdf][Introdução de Algoritmos e Programação]]      |            | [[./introducao.org]]        |
+|----+---------------------------------------------+------------+-------------------------|
+| 02 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-01.pdf][Revisão]]                                     |            | [[./revisao-aula-01.org]]   |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/sequencial.pdf][Estrutura de um Programa em C]]               | C1         | [[./sequencial.org]]        |
+|----+---------------------------------------------+------------+-------------------------|
+| 04 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-02.pdf][Revisão]]                                     |            | [[./revisao-aula-02.org]]   |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/tipos.pdf][Tipos de variáveis, expressões aritméticas]]  | C2         | [[./tipos.org]]             |
+|----+---------------------------------------------+------------+-------------------------|
+| 05 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-04.pdf][Revisão]]                                     |            | [[./revisao-aula-04.org]]   |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/if.pdf][Comandos =if= e expressões lógicas]]            | C2, S3.2   | [[./if.org]]                |
+|----+---------------------------------------------+------------+-------------------------|
+| 07 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-05.pdf][Revisão]]                                     |            | [[./revisao-aula-05.org]]   |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/if-else.pdf][Comandos =if-else= aninhados]]                  | S3.3       | [[./if-else.org]]           |
+|----+---------------------------------------------+------------+-------------------------|
+| 08 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-07.pdf][Revisão]]                                     |            | [[./revisao-aula-07.org]]   |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/switch.pdf][Estrutura de seleção múltipla switch-case]]   | S3.4       | [[./switch.org]]            |
+|----+---------------------------------------------+------------+-------------------------|
+| 10 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-08.pdf][Revisão]]                                     |            | [[./revisao-aula-08.org]]   |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/for.pdf][Comando iterativo =for=]]                     | S3.5       | [[./for.org]]               |
+|----+---------------------------------------------+------------+-------------------------|
+| 11 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-10.pdf][Revisão]]                                     |            | [[./revisao-aula-10.org]]   |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/maisfor.pdf][Comando iterativo =for=]] (bis)               | S3.5       | [[./maisfor.org]]           |
+|----+---------------------------------------------+------------+-------------------------|
+| 13 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-11.pdf][Revisão]]                                     |            | [[./revisao-aula-11.org]]   |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/while.pdf][Comando iterativo =while=]]                   | S3.5, S3.6 | [[./while.org]]             |
+|----+---------------------------------------------+------------+-------------------------|
+| 15 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-13.pdf][Revisão]]                                     |            | [[./revisao-aula-13.org]]   |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/arranjos.pdf][Arranjos unidimensionais]]                    | S1.6, S5.3 | [[./arranjos.org]]          |
+|----+---------------------------------------------+------------+-------------------------|
+| 16 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-15.pdf][Revisão]]                                     |            | [[./revisao-aula-15.org]]   |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/strings.pdf][Strings]]                                     | S1.9, S5.5 | [[./strings.org]]           |
+|----+---------------------------------------------+------------+-------------------------|
+| 17 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-16.pdf][Revisão]]                                     |            | [[./revisao-aula-16.org]]   |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/matriz.pdf][Matriz]]                                      | S5.7       | [[./matriz.org]]            |
+|----+---------------------------------------------+------------+-------------------------|
+| 18 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-17.pdf][Revisão]]                                     |            | [[./revisao-aula-17.org]]   |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/maismatriz.pdf][Estudos de Caso com Matrizes]]                |            | [[./maismatriz.org]]        |
+|----+---------------------------------------------+------------+-------------------------|
+| 20 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-18.pdf][Revisão]]                                     |            | [[./revisao-aula-18.org]]   |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-p1.pdf][Revisão Geral P1 + Simulado]]                 |            | [[./revisao-p1.org]]        |
+|----+---------------------------------------------+------------+-------------------------|
+| 23 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/comentarios-p1.pdf][Questões e Comentários da P1]]                |            | [[./comentarios-p1.org]]    |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/funcoes.pdf][Subprogramas e Funções]]                      | C4         | [[./funcoes.org]]           |
+|----+---------------------------------------------+------------+-------------------------|
+| 25 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-23.pdf][Revisão]]                                     |            | [[./revisao-aula-23.org]]   |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/parametros.pdf][Funções e seus Parâmetros]]                   | C4         | [[./parametros.org]]        |
+|----+---------------------------------------------+------------+-------------------------|
+| 26 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-25.pdf][Revisão]]                                     | S4.5       | [[./revisao-aula-25.org]]   |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/referencias.pdf][Referências e Ponteiros]]                     | *C5*         | [[./referencias.org]]       |
+|----+---------------------------------------------+------------+-------------------------|
+| 28 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-26.pdf][Revisão]]                                     |            | [[./revisao-aula-26.org]]   |
+|    | (Continuação 16/21) [[http://www.inf.ufrgs.br/~schnorr/inf1202/referencias.pdf][Referências e Ponteiros]] | C5         | [[./referencias.org]]       |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/ponteiros.pdf][Ponteiros]] (com passagem por referência)     | C5         | [[./ponteiros.org]]         |
+|----+---------------------------------------------+------------+-------------------------|
+| 29 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-28.pdf][Revisão]]                                     |            | [[./revisao-aula-28.org]]   |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/passagem-matrizes.pdf][Passagem de matrizes]]                        | C5         | [[./passagem-matrizes.org]] |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/ordenamento-bolha.pdf][Ordenamento Bolha]]                           |            | [[./ordenamento-bolha.org]] |
+|----+---------------------------------------------+------------+-------------------------|
+| 31 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-29.pdf][Revisão]]                                     |            | [[./revisao-aula-29.org]]   |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/estruturas.pdf][Estruturas]]                                  | C6         | [[./estruturas.org]]        |
+|----+---------------------------------------------+------------+-------------------------|
+| 32 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-31.pdf][Revisão]]                                     |            | [[./revisao-aula-31.org]]   |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/typedef.pdf][Estruturas (sim, de novo)]]                   | C6         | [[./typedef.org]]           |
+|----+---------------------------------------------+------------+-------------------------|
+| 34 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-32.pdf][Revisão]]                                     |            | [[./revisao-aula-32.org]]   |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/arquivo.pdf][Arquivo]]                                     | C7, C8     | [[./arquivo.org]]           |
+|----+---------------------------------------------+------------+-------------------------|
+| 35 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-34.pdf][Revisão]]                                     |            | [[./revisao-aula-34.org]]   |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/aleatorio.pdf][Arquivo binário (acesso aleatório)]]          | C8         | [[./aleatorio.org]]         |
+|----+---------------------------------------------+------------+-------------------------|
+| 37 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-35.pdf][Revisão]]                                     |            | [[./revisao-aula-35.org]]   |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/arq-texto.pdf][Arquivo Texto]]                               | C7         | [[./arq-texto.org]]         |
+|----+---------------------------------------------+------------+-------------------------|
+| 38 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-37.pdf][Revisão]]                                     |            | [[./revisao-aula-37.org]]   |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/arq-texto-p2.pdf][Arquivo Texto e Conversão/Tokens]]            |            | [[./arq-texto-p2.org]]      |
+|----+---------------------------------------------+------------+-------------------------|
+| 40 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-38.pdf][Revisão]]                                     |            | [[./revisao-aula-38.org]]   |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/recursividade.pdf][Recursividade]]                               | S4.10      | [[./recursividade.org]]     |
+|----+---------------------------------------------+------------+-------------------------|
+| 41 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-aula-40.pdf][Revisão]]                                     |            | [[./revisao-aula-40.org]]   |
+|    | [[http://www.inf.ufrgs.br/~schnorr/inf1202/estruturacao.pdf][Estruturação de programas]]                   |            | [[./estruturacao.org]]      |
+|----+---------------------------------------------+------------+-------------------------|
+| 43 | [[http://www.inf.ufrgs.br/~schnorr/inf1202/revisao-p2.pdf][Revisão Geral P2 + Simulado]]                 |            | [[./revisao-p2.org]]        |
+|----+---------------------------------------------+------------+-------------------------|
+
+
+Anotações aleatórias:
+- "To write a function that, when given an array of length n + 1
+  containing integers 1 through n, find the duplicate integer in an
+  array." from [[https://it.slashdot.org/story/19/05/25/0214208/how-i-cheated-on-my-microsoft-job-interview][How I Cheated On My Microsoft Job Interview]].
+  
+* Práticas
+
+O material das aulas práticas está disponível no Moodle @INF/UFRGS.
+
+[[https://moodle.inf.ufrgs.br/course/view.php?id=338][INF01202 Algoritmos e Programação (2019/2 Turmas C/D)]]
+
+A senha para auto-inscrição foi divulgada em aula.
+
+Converse com seu colega.
+
+# O material das aulas práticas está disponível no [[https://moodle.ufrgs.br][Moodle Acadêmico]].
+# - Turma C (clique [[https://moodle.ufrgs.br/course/view.php?id=68961][aqui]])
+# - Turma D (clique [[https://moodle.ufrgs.br/course/view.php?id=68962][aqui]])
