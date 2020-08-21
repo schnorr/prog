@@ -6,7 +6,7 @@
 #+EXPORT_EXCLUDE_TAGS: noexport
 #+EXPORT_SELECT_TAGS: export
 
-#+Title: Revisão Aula 26
+#+Title: Algoritmos
 #+Subtitle: *INF01202*
 #+Author: Prof. Lucas Mello Schnorr
 #+Date: \copyleft

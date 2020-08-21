@@ -6,7 +6,7 @@
 #+EXPORT_EXCLUDE_TAGS: noexport
 #+EXPORT_SELECT_TAGS: export
 
-#+Title: Algoritmos e Programação
+#+Title: Algoritmos
 #+Subtitle: *INF01202* \linebreak (ERE 2020/1)
 #+Author: Prof. Lucas Mello Schnorr \linebreak Prof. Renan Maffei
 #+Date: \copyleft
