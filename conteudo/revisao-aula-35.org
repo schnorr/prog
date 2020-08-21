@@ -18,6 +18,9 @@
 #+LATEX_HEADER: \usepackage{amsmath}
 #+LATEX_HEADER: \usepackage{systeme}
 
+#+latex: \newcommand{\mytitle}{Revisão Aula 35}
+#+latex: \mytitleslide
+
 * Revisão
 
 Estruturação de programas em módulos

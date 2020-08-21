@@ -18,6 +18,9 @@
 #+LATEX_HEADER: \usepackage{amsmath}
 #+LATEX_HEADER: \usepackage{systeme}
 
+#+latex: \newcommand{\mytitle}{Acesso Aleatório em Arquivos}
+#+latex: \mytitleslide
+
 * Sumário
 
 Em C (lidar com o conteúdo de arquivos)

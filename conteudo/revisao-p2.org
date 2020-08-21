@@ -18,6 +18,9 @@
 #+LATEX_HEADER: \usepackage{amsmath}
 #+LATEX_HEADER: \usepackage{systeme}
 
+#+latex: \newcommand{\mytitle}{Aula de Revisão da Parte #2}
+#+latex: \mytitleslide
+
 * Prova 2
 
 Extrato retirado do plano de 1202.

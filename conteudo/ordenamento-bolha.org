@@ -18,6 +18,9 @@
 #+LATEX_HEADER: \usepackage{amsmath}
 #+LATEX_HEADER: \usepackage{systeme}
 
+#+latex: \newcommand{\mytitle}{Ordenamento por Bolha @@latex}
+#+latex: \mytitleslide
+
 * Motivação
 
 #+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula20-exercicios_ponteiros_arrays_slide_01.pdf}{Prof. Claudio Jung}

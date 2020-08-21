@@ -16,6 +16,9 @@
 #+OPTIONS:   H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
 #+LATEX_HEADER: \input{org-babel.tex}
 
+#+latex: \newcommand{\mytitle}{Comando de seleção =switch-case=}
+#+latex: \mytitleslide
+
 * Configuração                                                     :noexport:
 
 #+BEGIN_SRC emacs-lisp

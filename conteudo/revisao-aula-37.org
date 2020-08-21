@@ -18,6 +18,9 @@
 #+LATEX_HEADER: \usepackage{amsmath}
 #+LATEX_HEADER: \usepackage{systeme}
 
+#+latex: \newcommand{\mytitle}{Revisão Aula 37}
+#+latex: \mytitleslide
+
 * TODO Exercícios
 
 1. Considere um arquivo texto já existente ~entrada.txt~. Faça um

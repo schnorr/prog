@@ -18,6 +18,9 @@
 #+LATEX_HEADER: \usepackage{amsmath}
 #+LATEX_HEADER: \usepackage{systeme}
 
+#+latex: \newcommand{\mytitle}{Estruturação de Programas}
+#+latex: \mytitleslide
+
 * Sumário
 
 Boas práticas de programação

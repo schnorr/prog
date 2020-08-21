@@ -18,6 +18,9 @@
 #+LATEX_HEADER: \usepackage{amsmath}
 #+LATEX_HEADER: \usepackage{systeme}
 
+#+latex: \newcommand{\mytitle}{Revisão Aula 29}
+#+latex: \mytitleslide
+
 * Exercício #1 (passagem de matrizes)
 
 #+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula19/aula19_slide_19.pdf}{Prof. Marcelo Walter}

@@ -18,6 +18,9 @@
 #+LATEX_HEADER: \usepackage{amsmath}
 #+LATEX_HEADER: \usepackage{systeme}
 
+#+latex: \newcommand{\mytitle}{Revisão Aula 34}
+#+latex: \mytitleslide
+
 * O que vimos na última aula?
 
 Em C (lidar com o conteúdo de arquivos)

@@ -16,6 +16,9 @@
 #+OPTIONS:   H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
 #+LATEX_HEADER: \input{org-babel.tex}
 
+#+latex: \newcommand{\mytitle}{Revisão Aula 01}
+#+latex: \mytitleslide
+
 * Pensamento Computacional
 
 #+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula02-v1_slide_02.pdf}{Prof. Edison Pignaton de Freitas}

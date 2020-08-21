@@ -18,6 +18,9 @@
 #+LATEX_HEADER: \usepackage{amsmath}
 #+LATEX_HEADER: \usepackage{systeme}
 
+#+latex: \newcommand{\mytitle}{Revisão Aula 25}
+#+latex: \mytitleslide
+
 * Configuração                                                     :noexport:
 
 #+BEGIN_SRC emacs-lisp

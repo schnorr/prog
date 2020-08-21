@@ -18,6 +18,9 @@
 #+LATEX_HEADER: \usepackage{amsmath}
 #+LATEX_HEADER: \usepackage{systeme}
 
+#+latex: \newcommand{\mytitle}{Passagem de matrizes}
+#+latex: \mytitleslide
+
 * Sumário
 
 Passagem de matrizes como parâmetro para funções

@@ -18,6 +18,9 @@
 #+LATEX_HEADER: \usepackage{amsmath}
 #+LATEX_HEADER: \usepackage{systeme}
 
+#+latex: \newcommand{\mytitle}{Arquivos}
+#+latex: \mytitleslide
+
 * Sumário
 Lidar com Arquivos
 - Introdução

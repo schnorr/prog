@@ -16,6 +16,9 @@
 #+OPTIONS:   H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
 #+LATEX_HEADER: \input{org-babel.tex}
 
+#+latex: \newcommand{\mytitle}{Introdução linebreak Algoritmos e Programação}
+#+latex: \mytitleslide
+
 * Programação
 #+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula01-Introducao_slide_02.pdf}{Profa. Mara Abel}
 * Atuação do Computador

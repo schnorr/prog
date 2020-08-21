@@ -18,6 +18,9 @@
 #+LATEX_HEADER: \usepackage{amsmath}
 #+LATEX_HEADER: \usepackage{systeme}
 
+#+latex: \newcommand{\mytitle}{Ponteiros e Vetores}
+#+latex: \mytitleslide
+
 * Sumário
 
 Ponteiros

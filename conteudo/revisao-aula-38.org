@@ -18,6 +18,9 @@
 #+LATEX_HEADER: \usepackage{amsmath}
 #+LATEX_HEADER: \usepackage{systeme}
 
+#+latex: \newcommand{\mytitle}{Revisão Aula 38}
+#+latex: \mytitleslide
+
 * Exercício #1
 
 O arquivo texto ~matriz.txt~ contém, na primeira linha, as dimensões de

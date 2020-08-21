@@ -16,6 +16,9 @@
 #+OPTIONS:   H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
 #+LATEX_HEADER: \input{org-babel.tex}
 
+#+latex: \newcommand{\mytitle}{Estrutura de um Programa em C}
+#+latex: \mytitleslide
+
 * Listagem de tópicos abordados
 
 #+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula02-Sequencial_slide_05.pdf}{Profa. Mara Abel}

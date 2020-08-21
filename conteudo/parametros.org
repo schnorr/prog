@@ -18,6 +18,9 @@
 #+LATEX_HEADER: \usepackage{amsmath}
 #+LATEX_HEADER: \usepackage{systeme}
 
+#+latex: \newcommand{\mytitle}{Funções e seus Parâmetros}
+#+latex: \mytitleslide
+
 * Sumário
 
 Funções que somente retornam valores

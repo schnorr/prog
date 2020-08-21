@@ -19,6 +19,9 @@
 #+LATEX_HEADER: \usepackage{systeme}
 #+LATEX_HEADER: \usepackage{boxedminipage}
 
+#+latex: \newcommand{\mytitle}{Questões e Comentários da P1}
+#+latex: \mytitleslide
+
 * Configuração                                                     :noexport:
 
 #+BEGIN_SRC emacs-lisp

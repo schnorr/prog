@@ -18,6 +18,9 @@
 #+LATEX_HEADER: \usepackage{amsmath}
 #+LATEX_HEADER: \usepackage{systeme}
 
+#+latex: \newcommand{\mytitle}{Tipos de Dados de Usuário @@latex}
+#+latex: \mytitleslide
+
 * Motivação
 
 #+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula22/aula22_slide_02.pdf}{Prof. Marcelo Walter}

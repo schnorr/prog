@@ -16,6 +16,9 @@
 #+OPTIONS:   H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
 #+LATEX_HEADER: \input{org-babel.tex}
 
+#+latex: \newcommand{\mytitle}{Apresentação linebreak Algoritmos e Programação}
+#+latex: \mytitleslide
+
 * Os professores
 
 Prof. Lucas M. Schnorr \hfill \to aulas téoricas
