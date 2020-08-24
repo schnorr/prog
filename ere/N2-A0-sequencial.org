@@ -19,7 +19,7 @@
 #+latex: \newcommand{\mytitle}{Estrutura de um Programa em C}
 #+latex: \mytitleslide
 
-* Listagem de tópicos abordados
+* Programas sequenciais
 
 #+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula02-Sequencial_slide_05.pdf}{Profa. Mara Abel}
 
@@ -112,12 +112,6 @@ int main( )
 * Declaração de variáveis
 
 #+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula02/aula02_slide_25.pdf}{Prof. Marcelo Walter}
-
-#+latex: \vfill
-
-#+BEGIN_CENTER
-Teste
-#+END_CENTER
 
 * =scanf=
 
