@@ -1,0 +1,199 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Algoritmos
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+
+#+latex: \newcommand{\mytitle}{Comando Condicional (if)}
+#+latex: \mytitleslide
+
+* Sumário
+
+- Comando condicional =if=
+  - Com um único comando
+- Exemplos
+  1. Ler valor, emitir mensagem se menor que 10
+  2. Processar uma venda de livros em uma livraria
+  3. Localização de um ponto no plano
+
+#+latex: \vfill\pause
+
+- Comando condicional =if=
+  - Com múltiplos comandos
+- Exemplos
+  1. Processar uma venda de livros, com desconto
+
+#+latex: \vfill\pause
+
+- Cuidados nos erros comuns
+
+* Motivação para comandos de seleção condicional
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula04_slide_21.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Comandos de seleção condicional
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula04_slide_22.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Comando =if= (condicional simples, com único comando)
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula04-If_else_slide_22.pdf}{Prof. Mara Abel}
+
+* Exemplo #1
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula04-If_else_slide_23.pdf}{Prof. Mara Abel}
+
+* Exemplo #2 (Enunciado e Algoritmo)
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula04-expressoes_e_if_slide_17.pdf}{Prof. Claudio Jung}
+
+* Exemplo #2 (Enunciado e Algoritmo Completo)
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula04-expressoes_e_if_slide_18.pdf}{Prof. Claudio Jung}
+
+* Exemplo #2 (Código em C)
+
+#+BEGIN_SRC C :tangle e/exemplo-livros.c
+/* processa uma venda e avisa caso se mais de 10
+unidades vendidas foram vendidas */
+#include<stdio.h>
+int main(void)
+{
+  char codigo;
+  int nro_livros;
+  float apagar;
+  printf("digite o codigo do produto e número de unidades:\n");
+  scanf(" %c %d",&codigo, &nro_livros);
+  if (codigo == 'a'|| codigo == 'A')
+    apagar = nro_livros*10;
+  if (codigo == 'b'|| codigo == 'B')
+    apagar = nro_livros*20;
+  if (codigo == 'c' || codigo == 'C')
+    apagar = nro_livros*30;
+  printf("o valor a pagar é de R$ %6.2f.\n",apagar);
+  if (nro_livros > 10)
+    printf("Foram vendidas mais de 10 unidades do tipo %c.\n", codigo);
+  return 0;
+}
+#+END_SRC
+
+#+begin_src shell :results output :dir e
+gcc exemplo-livros.c -o exemplo-livros
+#./exemplo-livros
+#+end_src
+
+#+RESULTS:
+
+* Exemplo #3 (Enunciado)
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula04-If_else_slide_27.pdf}{Prof. Mara Abel}
+
+* Exemplo #3 (Entendendo o Enunciado)
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula04_slide_35.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Exemplo #3 (Pensamento Computacional \to Passos)
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula04-If_else_slide_29.pdf}{Prof. Mara Abel}
+
+* Exemplo #3 (Algoritmo)
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula04-If_else_slide_30.pdf}{Prof. Mara Abel}
+
+* Exemplo #3 (Código em C)
+
+#+BEGIN_SRC C :tangle e/exemplo-coordenadas.c
+/* Obtem coordenadas e informa localização */
+#include <stdio.h>
+int main() {
+  float x, y; //Entrada
+  printf("Coordenadas: x = ");
+  scanf("%f", &x);
+  printf("e y = ");
+  scanf("%f", &y);
+  if ( x == 0 && y == 0 )
+    printf("\n Ponto na origem");
+  if ( x > 0 && y > 0 )
+    printf("\n Ponto no quadrante 1");
+  if ( x < 0 && y > 0 )
+    printf("\n Ponto no quadrante 2");
+  if ( x < 0 && y < 0 )
+    printf("\n Ponto no quadrante 3");
+  if ( x > 0 && y < 0 )
+    printf("\n Ponto no quadrante 4");
+  if ( x == 0 && y != 0 )
+    printf("\n Ponto no eixo dos y");
+  if ( x != 0 && y == 0 )
+    printf("\n Ponto no eixo dos x");
+  printf("\n");
+  return 0;
+}
+#+END_SRC
+
+#+begin_src shell :results output :dir e
+gcc exemplo-coordenadas.c -o exemplo-coordenadas
+./exemplo-coordenadas
+#+end_src
+
+#+RESULTS:
+: 
+:  Coordenadas: x = e y = 
+:  Ponto na origem
+* Comando =if= (cond. composto, com múltiplos comandos)
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula04_slide_33.pdf}{Prof. Edison Pignaton de Freitas}
+
+* Exemplo #4 (Livros, com desconto)
+
+#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula04-If_else_slide_34.pdf}{Prof. Mara Abel}
+
+* Exemplo #4 (Código em C)
+
+#+BEGIN_SRC C :tangle e/exemplo-livros-desconto.c
+/* processa uma venda e avisa caso se mais de 10
+unidades vendidas foram vendidas */
+#include<stdio.h>
+int main(void)
+{
+  char codigo;
+  int nro_livros;
+  float apagar;
+  printf("digite o codigo do produto e número de unidades:\n");
+  scanf(" %c %d",&codigo, &nro_livros);
+  if (codigo == 'a'|| codigo == 'A') {
+    apagar = nro_livros*10;
+    apagar = apagar * 0.90;
+  }
+  if (codigo == 'b'|| codigo == 'B')
+    apagar = nro_livros*20;
+  if (codigo == 'c' || codigo == 'C')
+    apagar = nro_livros*30;
+  printf("o valor a pagar é de R$ %6.2f.\n",apagar);
+  if (nro_livros > 10)
+    printf("Foram vendidas mais de 10 unidades do tipo %c.\n", codigo);
+  return 0;
+}
+#+END_SRC
+
+
+#+begin_src shell :results output :dir e
+gcc exemplo-livros-desconto.c -o exemplo-livros-desconto
+#./exemplo-livros-desconto
+#+end_src
+
+* Cuidados nos erros comuns
+
+- Confundir atribuição com comparação igual
+- Esquecer as chaves em comando condicional com múltiplos comandos

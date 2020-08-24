@@ -25,10 +25,7 @@
   - Operadores lógicos
   - Precedência de operadores
   - Operadores relacionados
-- Comando condicional =if=
-  - Com um único comando
-  - Com múltiplos comandos
-- Exemplo
+- Exemplos
 
 * Motivação
 
