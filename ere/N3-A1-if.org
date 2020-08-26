@@ -51,17 +51,73 @@
 
 #+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula04-If_else_slide_22.pdf}{Prof. Mara Abel}
 
-* Exemplo #1
+* Exemplo #1 - Enunciado, Algoritmo
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula04-If_else_slide_23.pdf}{Prof. Mara Abel}
+Ler um valor e, no caso de ser menor do que 10, emitir uma mensagem
 
-* Exemplo #2 (Enunciado e Algoritmo)
+#+BEGIN_SRC C :tangle e/exemplo-if-1.c
+/* Enunciado:
+   Ler um valor e, no caso de ser menor do que 10, emitir uma mensagem */
 
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula04-expressoes_e_if_slide_17.pdf}{Prof. Claudio Jung}
+/* Algoritmo:
+1. Início
+2. Ler Valor
+3. Se Valor < 10
+3.1 Escrever mensagem
+4. Fim */
 
-* Exemplo #2 (Enunciado e Algoritmo Completo)
+#include <stdio.h>
+int main() {
+  int valor;
+  printf("Valor 1:\n");
+  scanf("%d", &valor);
+  if (valor < 10)
+    printf("%d é menor que 10.\n", valor);
+  return 0;
+}
+#+END_SRC
 
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula04-expressoes_e_if_slide_18.pdf}{Prof. Claudio Jung}
+* Exemplo #2 - Enunciado, Algoritmo
+
+Processar uma venda de livros em uma livraria. Obter código do tipo de
+livro vendido (A, B, C) e número de unidades, calcular e informar
+valor a pagar. Valores por tipo: A (R$10,00); B (R$20,00); C
+(R$30,00). Caso tenham sido vendidos mais de 10 livros, emitir uma
+mensagem.
+
+#+latex: \vfill\pause
+
+#+BEGIN_EXPORT latex
+\setbeamertemplate{itemize/enumerate body begin}{\scriptsize}
+\setbeamertemplate{itemize/enumerate subbody begin}{\tiny}
+#+END_EXPORT
+
+#+latex: {\scriptsize
+Algoritmo ProcessaUmaVenda
+
+{ processa uma venda e avisa caso tenham sido vendidas mais de 10 unidades }
+
+entradas: codigo {do tipo do livro};
+          quantidade {de livros vendidos}
+
+saídas: total (valor total a ser pago);
+        mensagem (caso mais de 10 unidades vendidas)
+
+#+latex: \pause
+
+1. Início
+2. Ler código e quantidade
+3. Se código for A
+   1. total = quantidade * 10;
+4. Se código for B
+   1. total = quantidade * 20;
+5. Se código for C
+   1. total = quantidade * 30;
+6. Escrever total
+7. Se quantidade maior que 10
+   1. Escrever "mais de 10 livros vendidos"
+8. Fim.
+#+latex: }
 
 * Exemplo #2 (Código em C)
 
@@ -72,18 +128,18 @@ unidades vendidas foram vendidas */
 int main(void)
 {
   char codigo;
-  int nro_livros;
-  float apagar;
+  int quantidade;
+  float total;
   printf("digite o codigo do produto e número de unidades:\n");
-  scanf(" %c %d",&codigo, &nro_livros);
+  scanf(" %c %d", &codigo, &quantidade);
   if (codigo == 'a'|| codigo == 'A')
-    apagar = nro_livros*10;
+    total = quantidade * 10;
   if (codigo == 'b'|| codigo == 'B')
-    apagar = nro_livros*20;
+    total = quantidade * 20;
   if (codigo == 'c' || codigo == 'C')
-    apagar = nro_livros*30;
-  printf("o valor a pagar é de R$ %6.2f.\n",apagar);
-  if (nro_livros > 10)
+    total = quantidade * 30;
+  printf("o valor a pagar é de R$ %6.2f.\n",total);
+  if (quantidade > 10)
     printf("Foram vendidas mais de 10 unidades do tipo %c.\n", codigo);
   return 0;
 }
@@ -110,7 +166,38 @@ gcc exemplo-livros.c -o exemplo-livros
 
 * Exemplo #3 (Algoritmo)
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula04-If_else_slide_30.pdf}{Prof. Mara Abel}
+#+BEGIN_EXPORT latex
+\setbeamertemplate{itemize/enumerate body begin}{\scriptsize}
+\setbeamertemplate{itemize/enumerate subbody begin}{\tiny}
+#+END_EXPORT
+
+#+latex: {\scriptsize
+Algoritmo LocalizaQuadrante
+
+Entradas: x, y (coordenadas)
+
+Saída: mensagem (localização)
+
+#+latex: \pause
+
+1. Início
+2. Ler x e y
+3. Se x for 0 e y for 0
+   1. Escrever "ponto na origem" @@latex: \pause@@
+4. Se x maior que 0 e y maior que 0
+   1. Escrever "quadrante 1"
+5. Se x menor que 0 e y maior que 0
+   1. Escrever "quadrante 2"
+6. Se x menor que 0 e y menor que 0
+   1. Escrever "quadrante 3"
+7. Se x maior que 0 e y menor que 0
+   1. Escrever "quadrante 4"  @@latex: \pause@@
+8. Se x diferente de 0 e y igual a 0
+   1. Escrever "eixo dos x"
+9. Se x igual a 0 e y diferente de 0
+   1. Escrever "eixo dos y"
+10. Fim
+#+latex: }
 
 * Exemplo #3 (Código em C)
 
@@ -123,21 +210,20 @@ int main() {
   scanf("%f", &x);
   printf("e y = ");
   scanf("%f", &y);
-  if ( x == 0 && y == 0 )
-    printf("\n Ponto na origem");
-  if ( x > 0 && y > 0 )
-    printf("\n Ponto no quadrante 1");
-  if ( x < 0 && y > 0 )
-    printf("\n Ponto no quadrante 2");
-  if ( x < 0 && y < 0 )
-    printf("\n Ponto no quadrante 3");
-  if ( x > 0 && y < 0 )
-    printf("\n Ponto no quadrante 4");
-  if ( x == 0 && y != 0 )
-    printf("\n Ponto no eixo dos y");
-  if ( x != 0 && y == 0 )
-    printf("\n Ponto no eixo dos x");
-  printf("\n");
+  if (x == 0 && y == 0)
+    printf("Ponto na origem");
+  if (x > 0 && y > 0)
+    printf("Ponto no quadrante 1.\n");
+  if (x < 0 && y > 0)
+    printf("Ponto no quadrante 2.\n");
+  if (x < 0 && y < 0)
+    printf("Ponto no quadrante 3.\n");
+  if (x > 0 && y < 0)
+    printf("Ponto no quadrante 4.\n");
+  if (x != 0 && y == 0)
+    printf("Ponto no eixo dos x.\n");
+  if (x == 0 && y != 0)
+    printf("Ponto no eixo dos y.\n");
   return 0;
 }
 #+END_SRC
@@ -157,7 +243,46 @@ gcc exemplo-coordenadas.c -o exemplo-coordenadas
 
 * Exemplo #4 (Livros, com desconto)
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula04-If_else_slide_34.pdf}{Prof. Mara Abel}
+Processar uma venda de livros em uma livraria. Obter código do tipo de
+livro vendido (A, B, C) e número de unidades, calcular e informar
+valor a pagar. Valores por tipo: A (R$10,00); B (R$20,00); C
+(R$30,00). *Se o livro for do Tipo A, dar 10% de desconto.* Caso
+tenham sido vendidos mais de 10 livros, emitir uma mensagem.
+
+#+latex: \vfill\pause
+
+#+BEGIN_EXPORT latex
+\setbeamertemplate{itemize/enumerate body begin}{\scriptsize}
+\setbeamertemplate{itemize/enumerate subbody begin}{\tiny}
+#+END_EXPORT
+
+#+latex: {\scriptsize
+Algoritmo ProcessaUmaVenda
+
+{ processa uma venda e avisa caso tenham sido vendidas mais de 10 unidades }
+
+entradas: codigo {do tipo do livro};
+          quantidade {de livros vendidos}
+
+saídas: total (valor total a ser pago);
+        mensagem (caso mais de 10 unidades vendidas)
+
+#+latex: \pause
+
+1. Início
+2. Ler código e quantidade
+3. Se código for A
+   1. total = quantidade * 10;
+   2. total = total * 0.9; // desconto de 10%!
+4. Se código for B
+   1. total = quantidade * 20;
+5. Se código for C
+   1. total = quantidade * 30;
+6. Escrever total
+7. Se quantidade maior que 10
+   1. Escrever "mais de 10 livros vendidos"
+8. Fim.
+#+latex: }
 
 * Exemplo #4 (Código em C)
 
@@ -168,20 +293,20 @@ unidades vendidas foram vendidas */
 int main(void)
 {
   char codigo;
-  int nro_livros;
-  float apagar;
+  int quantidade;
+  float total;
   printf("digite o codigo do produto e número de unidades:\n");
-  scanf(" %c %d",&codigo, &nro_livros);
+  scanf(" %c %d", &codigo, &quantidade);
   if (codigo == 'a'|| codigo == 'A') {
-    apagar = nro_livros*10;
-    apagar = apagar * 0.90;
+    total = quantidade * 10;
+    total = total * 0.90;
   }
   if (codigo == 'b'|| codigo == 'B')
-    apagar = nro_livros*20;
+    total = quantidade*20;
   if (codigo == 'c' || codigo == 'C')
-    apagar = nro_livros*30;
-  printf("o valor a pagar é de R$ %6.2f.\n",apagar);
-  if (nro_livros > 10)
+    total = quantidade*30;
+  printf("o valor a pagar é de R$ %6.2f.\n",total);
+  if (quantidade > 10)
     printf("Foram vendidas mais de 10 unidades do tipo %c.\n", codigo);
   return 0;
 }
@@ -196,4 +321,20 @@ gcc exemplo-livros-desconto.c -o exemplo-livros-desconto
 * Cuidados nos erros comuns
 
 - Confundir atribuição com comparação igual
-- Esquecer as chaves em comando condicional com múltiplos comandos
+  #+BEGIN_SRC C
+  if (codigo = 'b'|| codigo == 'B')
+    total = quantidade*20;  
+  #+END_SRC
+
+#+latex: \pause
+
+- Esquecer as chaves em comando ~if~ com múltiplos comandos dentro
+  #+BEGIN_SRC C
+  //...
+  if (codigo == 'a'|| codigo == 'A')
+    total = quantidade * 10;
+    total = total * 0.90;
+  if (codigo == 'b'|| codigo == 'B')
+    total = quantidade*20;
+  //...
+  #+END_SRC
