@@ -132,9 +132,9 @@ int main(void)
   float total;
   printf("digite o codigo do produto e número de unidades:\n");
   scanf(" %c %d", &codigo, &quantidade);
-  if (codigo == 'a'|| codigo == 'A')
+  if (codigo == 'a' || codigo == 'A')
     total = quantidade * 10;
-  if (codigo == 'b'|| codigo == 'B')
+  if (codigo == 'b' || codigo == 'B')
     total = quantidade * 20;
   if (codigo == 'c' || codigo == 'C')
     total = quantidade * 30;
@@ -297,11 +297,11 @@ int main(void)
   float total;
   printf("digite o codigo do produto e número de unidades:\n");
   scanf(" %c %d", &codigo, &quantidade);
-  if (codigo == 'a'|| codigo == 'A') {
+  if (codigo == 'a' || codigo == 'A') {
     total = quantidade * 10;
     total = total * 0.90;
   }
-  if (codigo == 'b'|| codigo == 'B')
+  if (codigo == 'b' || codigo == 'B')
     total = quantidade*20;
   if (codigo == 'c' || codigo == 'C')
     total = quantidade*30;
