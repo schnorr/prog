@@ -41,6 +41,10 @@
 Comando =if-else=
 - Normais
 - Aninhados (simples e compostos)
+Exercícios
+1. Calcular e informar as raízes de uma equação do 2o grau
+2. Imprimir os três valores em ordem crescente
+3. Mapeamento de código para resultado obedecendo tabela
 
 * Comandos de seleção condicional
 
@@ -52,7 +56,37 @@ Comando =if-else=
 
 * Exemplo em Algoritmo
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula05_slide_18.pdf}{Prof. Edison Pignaton de Freitas}
+Fazer um programa que leia um número natural e informe se o número
+lido é par ou ímpar.
+
+#+latex: \pause\vfill
+
+#+BEGIN_EXPORT latex
+\setbeamertemplate{itemize/enumerate body begin}{\scriptsize}
+\setbeamertemplate{itemize/enumerate subbody begin}{\tiny}
+#+END_EXPORT
+
+#+latex: {\scriptsize
+Algoritmo ParOuÍmpar
+
+{ Verifica se um valor lido do teclado é par ou ímpar }
+
+entrada: o valor a ser testado
+
+saídas: Mensagem de par ou ímpar
+
+#+latex: \pause\vfill
+
+1. Início
+2. Ler o valor
+3. Se o valor é par \\
+      3.1 Escrever "Par" \\
+   Senão \\
+      3.2 Escrever "Ímpar"
+4. Fim.
+#+latex: }
+
+#+latex: %\cortesia{../../../Algoritmos/Edison/Teoricas/aula05_slide_18.pdf}{Prof. Edison Pignaton de Freitas}
 
 * Exemplo em C
 
@@ -80,13 +114,79 @@ int main()
 
 #+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula05_slide_20.pdf}{Prof. Edison Pignaton de Freitas}
 
-* Revistando a venda de livros
+* Revisitando a venda de livros
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula05_slide_21.pdf}{Prof. Edison Pignaton de Freitas}
+#+latex: {\small
+Processar uma venda de livros em uma livraria. Obter código do tipo de
+livro vendido (A, B, C) e número de unidades, calcular e informar
+valor a pagar. Valores por tipo: A (R$10,00); B (R$20,00); C
+(R$30,00). Caso tenham sido vendidos mais de 10 livros, emitir uma
+mensagem.
+#+latex: }
 
-* Algoritmo com aninhamento de ifs
+#+BEGIN_EXPORT latex
+\setbeamertemplate{itemize/enumerate body begin}{\scriptsize}
+\setbeamertemplate{itemize/enumerate subbody begin}{\tiny}
+#+END_EXPORT
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula05_slide_22.pdf}{Prof. Edison Pignaton de Freitas}
+#+latex: {\scriptsize
+Algoritmo ProcessaUmaVenda
+
+{ processa uma venda e avisa caso tenham sido vendidas mais de 10 unidades }
+
+entradas: codigo {do tipo do livro};
+          quantidade {de livros vendidos}
+
+saídas: total (valor total a ser pago);
+        mensagem (caso mais de 10 unidades vendidas)
+
+1. Início
+2. Ler código e quantidade
+3. Se código for A
+   1. total = quantidade * 10;
+4. Se código for B
+   1. total = quantidade * 20;
+5. Se código for C
+   1. total = quantidade * 30;
+6. Escrever total
+7. Se quantidade maior que 10
+   1. Escrever "mais de 10 livros vendidos"
+8. Fim.
+#+latex: }\pause
+
+_Problema_: Repetição desnecessária dos testes
+
+* Resolvendo o problema com aninhamento de ifs
+
+#+BEGIN_EXPORT latex
+\setbeamertemplate{itemize/enumerate body begin}{\scriptsize}
+\setbeamertemplate{itemize/enumerate subbody begin}{\tiny}
+#+END_EXPORT
+
+#+latex: {\scriptsize
+Algoritmo ProcessaUmaVenda
+
+{ processa uma venda e avisa caso tenham sido vendidas mais de 10 unidades }
+
+entradas: codigo {do tipo do livro};
+          quantidade {de livros vendidos}
+
+saídas: total (valor total a ser pago);
+        mensagem (caso mais de 10 unidades vendidas)
+
+1. Início
+2. Ler código e quantidade
+3. Se código for A
+   - 3.1 total = quantidade * 10;
+   Senão Se código for B
+      - 3.2 total = quantidade * 20;
+   Senão Se código for C
+      - 3.3 total = quantidade * 30;
+6. Escrever total
+7. Se quantidade maior que 10
+   1. Escrever "mais de 10 livros vendidos"
+8. Fim.
+#+latex: }
 
 * Código em C
 
@@ -171,6 +271,8 @@ Múltiplos testes relacionais entre maiúscula e minúscula
     apagar = nro_livros * 30;
 #+END_SRC
 
+#+latex: \pause
+
 Usar =toupper= (ou =tolower=)
 
 #+BEGIN_SRC C
@@ -210,6 +312,8 @@ int main()
   return 0;
 }
 #+END_SRC
+
+#+latex: \pause
 
 Conclusão
 - O que faz =toupper=?
@@ -280,6 +384,10 @@ int main() {
   return 0;
 }
 #+END_SRC
+
+#+latex: \pause
+
+_Problema_: Vários testes desnecessários... vejamos uma alternativa!
 
 * Empregando =if-else= (solução #2)
 
