@@ -134,6 +134,7 @@ Mas esta é uma boa solução?
 Para a entrada 10, o programa calcula 10\times9\times8\times7\times6\times5\times4\times3\times2\times1.
 - Em cada iteração, imprimir na tela
 
+~a08-fatorial-solucao-2.c~
 #+BEGIN_SRC C :tangle e/a08-fatorial-solucao-2.c
 #include <stdio.h>
 int main () {
@@ -173,6 +174,7 @@ Saída: valor de fibonacci de todas as posições até aquela informada
 Quais alterações são necessárias?
 - Repetir o cálculo para todos as posições até a informada
 
+~a08-fibonacci-comeco.c~
 #+BEGIN_SRC C :tangle e/a08-fibonacci-comeco.c
 #include<stdio.h>
 int main(){

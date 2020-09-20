@@ -38,8 +38,7 @@
 * #0 (Exercício de Ordenação de Arranjos)
 
 Tente fazer em casa a implementação deste algoritmo de ordenação por
-seleção (principalmente considerando que não há aula prática nesta
-sexta-feira). Veremos a solução na próxima aula.
+seleção. Veremos a solução na próxima aula.
 
 #+latex: \pause
 
@@ -253,7 +252,8 @@ int main(){
     flag = s1[i] - s2[i];
     i++;
   }
-  flag = s1[i] - s2[i];
+  if(s2[i] != '\0')
+    flag = s1[i] - s2[i];
 
   printf("Resultado é %d"
 	 " (strcmp diz %d)\n",
