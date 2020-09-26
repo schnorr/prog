@@ -52,7 +52,7 @@ Exercícios
 - #5 (multiplicação de matrizes)
 
 Desafio
-- Campo minado
+- Procura de pedras preciosas
 
 * (Revisão) Arranjos multidimensionais
 
@@ -587,15 +587,16 @@ Tabela #2
 | C           |   1.2 |
 | D           |   2.8 |
 
-* Desafio (inspiração no campo minado)
+* Desafio
 
 *Parte #1* (básica)
 
-Um campo minado regular pode ser representado por uma matriz. Faça um
-programa que distribua, em posições aleatórias, uma quantidade
-específica de minas. Em um segundo momento, para todas as posições
-onde não há minas, defina a quantidade de vizinhos (norte, sul, leste,
-oeste) com minas. A quantidade de minas deve ser definida como uma
+Um campo de pedras preciosas pode ser representado por uma
+matriz. Faça um programa que distribua, em posições aleatórias, uma
+quantidade específica de pedras preciosas. Em um segundo momento, para
+todas as posições onde não existem pedras preciosas, defina a
+quantidade de vizinhos (norte, sul, leste, oeste) com pedras
+preciosas. A quantidade de pedras preciosas deve ser definida como uma
 porcentagem da quantidade de posições possíveis da matriz.
 
 #+latex: \vfill
@@ -606,6 +607,7 @@ Transforme em um jogo com interação do usuário.
 - As posições devem estar reveladas ou não
 - A cada passo, o usuário escolhe uma coordenada
   - Programa revela aquela posição
-    - Se for mina, bum!, /game over/
-    - Se não for mina, revela o espaço livre de minas no entorno
+    - Se for pedra preciosas, parabéns, você encontrou!
+    - Se não for pedra preciosa, revela o espaço livre de pedras preciosas no entorno
+
 
