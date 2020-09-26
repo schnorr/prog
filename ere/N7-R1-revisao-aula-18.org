@@ -37,6 +37,140 @@
 #+RESULTS:
 | frame    | lines       |
 | fontsize | \scriptsize |
+* Exercício #1 (diferentes formas geométricas)
+
+#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula14_slide_22.pdf}{Prof. Edison Pignaton de Freitas}
+* (#1) Code ~rev-a18-formas.c~
+
+
+#+latex: \vspace{-0.3cm}\begin{multicols}{2}
+#+attr_latex: :options fontsize=\tiny
+#+BEGIN_SRC C :tangle e/rev-a18-mult.c
+#include <stdio.h>
+#include <stdlib.h> // srand rand
+//dimensões da matriz esparsa
+#define MAXL 18 // número de linhas
+#define MAXC 18 // número de colunas
+// para geração de números aleatórios
+#define MIN 10
+#define MAX 99
+
+int main(){
+  int m[MAXL][MAXC] = { 0 };
+  int i;
+  int j;
+  int k;
+  int acumulador;
+
+  // preenchimento com números aleatórios entre MIN e MAX
+  // obedecendo o fator que indica valores não nulos
+  srand(0);
+  for (i = 0; i < MAXL; i++) {
+    for (j = 0; j < MAXC; j++) {
+      m[i][j] = MIN+(rand()%(MAX-MIN+1));
+    }
+  }
+
+  printf("Matriz\n");
+  for (i = 0; i < MAXL; i++) {
+    for (j = 0; j < MAXC; j++) {
+      printf("%3d", m[i][j]);
+    }
+    printf("\n");
+  }
+  /* 1111111111111111111111111111111 */
+  printf("\n-1-\n");
+  for (i = 0; i < MAXL; i++) {
+    for (j = 0; j < MAXC; j++) {
+      if (i >= 1 && i < MAXL-1 &&
+	  j >= 1 && j < MAXC-1) {
+	printf("%3d", m[i][j]);
+      }else{
+	printf(" __");
+      }
+    }
+    printf("\n");
+  }
+  
+  /* 2222222222222222222222222222222 */
+  printf("\n-2-\n");
+  for (i = 0; i < MAXL; i++) {
+    for (j = 0; j < MAXC; j++) {
+      if (j == 0 || j == MAXC-1 || i == j) {
+	printf("%3d", m[i][j]);
+      }else{
+	printf(" __");
+      }
+    }
+    printf("\n");
+  }
+  
+  /* 3333333333333333333333333333333 */
+  printf("\n-3-\n");
+  k = 3;
+  for (i = 0; i < MAXL; i++) {
+    for (j = 0; j < MAXC; j++) {
+      if (j == 0 || i%2 == 0 && j < k) {
+	printf("%3d", m[i][j]);
+      }else{
+	printf(" __");
+      }
+    }
+    printf("\n");
+    if (i % 2 == 0){
+      k++;
+    }
+  }
+  
+  /* 4444444444444444444444444444444 */  
+  printf("\n-4-\n");
+  for (i = 0; i < MAXL; i++) {
+    for (j = 0; j < MAXC; j++) {
+      if (j > i) {
+	printf("%3d", m[i][j]);
+      }else{
+	printf(" __");
+      }
+    }
+    printf("\n");
+  }
+  
+  /* 5555555555555555555555555555555 */
+  printf("\n-5-\n");
+  for (i = 0; i < MAXL; i++) {
+    for (j = 0; j < MAXC; j++) {
+      if (j < MAXL-i-1) {
+	printf("%3d", m[i][j]);
+      }else{
+	printf(" __");
+      }
+    }
+    printf("\n");
+  }
+  
+  /* 6666666666666666666666666666666 */
+  printf("\n-6-\n");
+  k = 1;
+  for (i = 0; i < MAXL; i++) {
+    for (j = 0; j < MAXC; j++) {
+      if (j >= k && j < MAXC-k) {
+	printf("%3d", m[i][j]);
+      }else{
+	printf(" __");
+      }
+    }
+    printf("\n");
+    if (i >= MAXL/2) {
+      k--;
+    }else{
+      k++;
+    }
+  }
+  return 0;
+}
+#+END_SRC
+#+latex: \end{multicols}
+
 * Exercício #2 (multiplicação de matrizes)
 
 Seja
