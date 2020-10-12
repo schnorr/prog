@@ -112,22 +112,18 @@ https://en.wikipedia.org/wiki/Source_lines_of_code
 
 #+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula16/Aula16-funcoesvoid_semparametros_slide_10.pdf}{Prof. Marcelo Walter}
 
-* Linux 5.1 (/Released on May 5th 2019/, in US 5/1)
+* Linux 5.6 (/Released on 2020/)
 
 #+BEGIN_CENTER
-Linux 5.1 Should Be Released Today With
-
-~IO_uring~, Faster zRAM, More Icelake
-
-https://www.phoronix.com/scan.php?px=Linux-5.1-Today
+https://en.wikipedia.org/wiki/Linux_kernel#Codebase
 #+END_CENTER
 
 #+latex: \vfill
 
 #+BEGIN_QUOTE
-For those wondering about the size of Linux 5.1, here is the *cloc*
-output as of 5.1 Git this morning... 17.8 million lines of code, 3.3
-million lines of comments, and 3.2 million blank lines.
+As of 2020, the 5.6 release of the Linux kernel had around 33 million
+lines of code, roughly 14% of the code is part of the "core" (arch,
+kernel and mm directories) while 60% is drivers.
 #+END_QUOTE
 
 * Ferramenta ~cloc~
