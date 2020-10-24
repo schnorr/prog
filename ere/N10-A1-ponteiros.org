@@ -51,7 +51,7 @@ Passagem de vetores como referência
 
 * Exemplo #1 ~a28-aritmetica.c~
 
-#+BEGIN_SRC C :tangle a28-aritmetica.c
+#+BEGIN_SRC C :tangle e/a28-aritmetica.c
 #include <stdio.h>
 int main() {
   int i, *pi1, *pi2;
@@ -83,7 +83,7 @@ int main() {
 
 * Exemplo #2 ~a28-semelhancas.c~
 
-#+BEGIN_SRC C :tangle a28-semelhancas.c
+#+BEGIN_SRC C :tangle e/a28-semelhancas.c
 #include <stdio.h>
 #define TAM 2
 int main()
@@ -113,7 +113,7 @@ int main()
 
 * Exemplo #3 ~a28-diferencas.c~
 
-#+BEGIN_SRC C :tangle a28-diferencas.c
+#+BEGIN_SRC C :tangle e/a28-diferencas.c
 #include <stdio.h>
 #define TAM 3
 int main() {
@@ -145,7 +145,7 @@ gcc a28-diferencas.c 2> x; cat x
 
 Strings são vetores de caracteres.
 
-#+BEGIN_SRC C :tangle a28-strings.c
+#+BEGIN_SRC C :tangle e/a28-strings.c
 #include <stdio.h>
 int main() {
   char str[80] = "Alpha Centauri";
@@ -174,7 +174,7 @@ int main() {
 Faça uma função ~le_vetor~ de floats que receba como parâmetro o vetor a
 ser preenchido e o número de elementos a serem lidos:
 
-#+BEGIN_SRC C :tangle a28-levetor.c :main no
+#+BEGIN_SRC C :tangle e/a28-levetor.c :main no
 #include <stdio.h>
 #define TAM 3
 
@@ -189,7 +189,7 @@ void le_vetor(float vetor[], int num_vet) { //leitura de um vetor de floats
 
 #+latex: \pause
 
-#+BEGIN_SRC C :tangle a28-levetor.c :main no
+#+BEGIN_SRC C :tangle e/a28-levetor.c :main no
 int main() {
   int i; //contador
   float vec[TAM];
@@ -210,7 +210,7 @@ int main() {
 Faça uma função ~void~ que receba como parâmetro uma string e converta
 todos seus caracteres para maiúsculas.
 
-#+BEGIN_SRC C :tangle a28-upper.c :main no
+#+BEGIN_SRC C :tangle e/a28-upper.c :main no
 #include <stdio.h>
 void nosso_upper (char str[])  {
   int i = 0; //contador inicializado na primeira posicao da string
@@ -225,7 +225,7 @@ void nosso_upper (char str[])  {
 
 Uma segunda versão:
 
-#+BEGIN_SRC C :tangle a28-upper.c :main no
+#+BEGIN_SRC C :tangle e/a28-upper.c :main no
 void nosso_upper_v2 (char str[])  {
   while(*str != '\0'){
     ,*str = toupper(*str);
@@ -238,7 +238,7 @@ void nosso_upper_v2 (char str[])  {
 Faça uma função ~void inverte(char* str1, char* str2)~, que copie
 o conteúdo de str1 invertido (caracteres de trás para frente) em str2.
 
-#+BEGIN_SRC C :tangle a28-inverte.c
+#+BEGIN_SRC C :tangle e/a28-inverte.c
 #include <stdio.h>
 #include <string.h>
 #define TAM 20
@@ -255,7 +255,7 @@ int main() {
 
 #+latex: \pause
 
-#+BEGIN_SRC C :tangle a28-inverte.c :main no
+#+BEGIN_SRC C :tangle e/a28-inverte.c :main no
 void inverte(char* str1, char* str2) {
   int i, n = strlen(str1);
   for (i = 0; i < n; i++)
@@ -275,7 +275,7 @@ para a posição do maior elemento do vetor
 
 #+latex: \pause
 
-#+BEGIN_SRC C :tangle a28-maior.c :main no
+#+BEGIN_SRC C :tangle e/a28-maior.c :main no
 #include <stdio.h>
 // função tipo ponteiro inteiro
 int *maior(int vet[], int tamanho) {
@@ -290,7 +290,7 @@ int *maior(int vet[], int tamanho) {
 
 #+latex: \pause
 
-#+BEGIN_SRC C :tangle a28-maior.c
+#+BEGIN_SRC C :tangle e/a28-maior.c
 int main() {
   int vet[] = {3, 1, 8, 4}, *m = NULL;
   m = maior (vet, 4);
