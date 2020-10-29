@@ -35,6 +35,9 @@ Em C (lidar com arquivos)
 
 * Cabeçote de leitura/gravação
 #+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula25-arquivos_binarios_slide_07.pdf}{Prof. Claudio Jung}
+* Acesso *não sequencial* no arquivo
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula25-arquivos_binarios_slide_11.pdf}{Prof. Claudio Jung}
+
 * Rebobinar ~rewind~ (rebobina a posição do cabeçote)
 
 Protótipo
@@ -108,23 +111,6 @@ arquivo = fopen("atletas.bin", "r");
 fseek(arquivo, 0, SEEK_END);
 printf("Posição atual: %ld\n", ftell(arquivo));
 #+END_SRC
-* Funções de manipulação externa de arquivos 
-
-Protótipos
-#+attr_latex: :options fontsize=\normalsize
-#+BEGIN_SRC C
-int rename(const char *oldpath, const char *newpath);
-int remove(const char *pathname);
-#+END_SRC
-
-#+latex: \vfill\pause
-
-Outras funções de ~stdio.h~
-- Procure no DuckDuckGo: man stdio
-
-* Acesso *não sequencial* no arquivo
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula25-arquivos_binarios_slide_11.pdf}{Prof. Claudio Jung}
-
 * Exemplo #1: InsereNoFim-AindaMelhor
 
 Resolvendo o problema de uma maneira mais elegante:
@@ -418,6 +404,20 @@ Vamos gerar a base e criar índices:
 #+RESULTS:
 
 Atualizar a idade do ~muvucofasido~ para 31.
+
+* Funções de manipulação externa de arquivos 
+
+Protótipos
+#+attr_latex: :options fontsize=\normalsize
+#+BEGIN_SRC C
+int rename(const char *oldpath, const char *newpath);
+int remove(const char *pathname);
+#+END_SRC
+
+#+latex: \vfill\pause
+
+Outras funções de ~stdio.h~
+- Procure no DuckDuckGo: man stdio
 
 * Exercício #1: Calcular estatísticas
 
