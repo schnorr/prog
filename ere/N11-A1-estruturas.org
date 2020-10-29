@@ -88,7 +88,7 @@ struct funcionario {
 };
 
 int main() {
-  struct functionario func1, func2;
+  struct funcionario func1, func2;
 
   return 0;
 }
@@ -226,8 +226,7 @@ struct funcionario {
 Como inicializar, usar, atribuir, ...
 #+BEGIN_SRC C :tangle e/a31-estrutura-aninhada.c
 int main() {
-  struct funcionario f1 = {2315, "Alpha", {"Bento", 9500, "Poa", "RS"} };
-  struct funcionario f2;
+  struct funcionario f1 = {2315, "Alpha", {"Bento", 9500, "Poa", "RS"} }, f2;
   f2 = f1; // <-- veja aqui a atribuição
   printf("Código: %d\nNome: %s\n", f2.codigo, f2.nome);
   printf("Endereço: %s, %d - %s, %s\n",
