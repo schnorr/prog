@@ -18,7 +18,7 @@
 #+LATEX_HEADER: \usepackage{amsmath}
 #+LATEX_HEADER: \usepackage{systeme}
 
-#+latex: \newcommand{\mytitle}{Revisão Aula 34}
+#+latex: \newcommand{\mytitle}{Revisão N12 A0}
 #+latex: \mytitleslide
 
 * O que vimos na última aula?
@@ -242,7 +242,6 @@ int main() {
 #+begin_src shell :results output :exports both
 rm -f LeMostra
 gcc -Wall -g \
-    e/rev-a34/GeraSalva-Nomes.c \
     e/rev-a34/LeMostra.c \
     -o e/rev-a34/LeMostra
 #+end_src
