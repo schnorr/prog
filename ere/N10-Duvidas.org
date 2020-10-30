@@ -1,0 +1,28 @@
+#+TITLE: Dúvidas da semana N10
+
+* N10
+** Dúvida #1
+*** Texto
+Nos slides e aulas da semana 10 foram dados apenas exemplos de
+passagem de matriz por referência onde haviam definições de variáveis
+globais. No enunciado da tarefa 10b é dito que as dimensões da matriz
+serão informadas pelo usuário, logo não é possível definir tais
+dimensões de forma global. Como devo proceder? Imagino que seja
+possível definir, depois de informadas pelo usuário, de forma global,
+os valores dados, mas não sei como, ou então, que seja possível fazer
+a passagem da matriz sem variáveis globais, mas também não sei como.
+*** Enunciado do Exercício 10.b
+
+Faça uma função que receba uma matriz de inteiros positivos (=m_in=), uma
+matriz de floats (=m_out=) de mesmo tamanho de =m_in=, e a quantidade de
+linhas (L) e colunas (C) das matrizes. A função deve colocar em =m_out=
+os elementos normalizados de =m_in=, ou seja, cada elemento de =m_in= deve
+ser dividido pela soma de todos os elementos dela (portanto, a soma de
+todos os elementos de =m_out= deve ser igual a 1). O programa principal
+deve ler a matriz de inteiros positivos (se o usuário informar um
+número inválido, peça para ele informar novamente), chamar a função e
+depois imprimir a matriz de floats, com duas casas decimais.
+
+OBS: a passagem de matrizes (arrays multidimensionais) por parametro
+em uma função permite que a primeira dimensão da matriz seja variavel,
+mas que as demais dimensões sejam fixas.
