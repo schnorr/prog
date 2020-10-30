@@ -18,10 +18,10 @@
 #+LATEX_HEADER: \usepackage{amsmath}
 #+LATEX_HEADER: \usepackage{systeme}
 
-#+latex: \newcommand{\mytitle}{Revisão Aula 37}
+#+latex: \newcommand{\mytitle}{Revisão N13 R0}
 #+latex: \mytitleslide
 
-* TODO Exercícios
+* Exercícios
 
 1. Considere um arquivo texto já existente ~entrada.txt~. Faça um
    programa que faça uma cópia desse arquivo texto para outro
@@ -35,9 +35,9 @@
    arquivo texto existente por outro. As alterações devem ser gravadas
    no mesmo arquivo!
 
-* Respostas                                                        :noexport:
-** 1.
+* 1.
 
+=rev-a37_1.c=
 #+BEGIN_SRC C :tangle e/rev-a37_1.c
 #include <stdio.h>
 int main() {
@@ -48,7 +48,8 @@ int main() {
   char c;
   arquivo_entrada = fopen("entrada.txt", "r");
   arquivo_saida = fopen("saida.txt", "w");
-  if (!arquivo_entrada || !arquivo_saida){
+  if (arquivo_entrada == NULL ||
+      arquivo_saida == NULL){
     printf("Erro na abertura dos arquivos de entrada e saída.\n");
   }else{
     while ((c = fgetc(arquivo_entrada)) != EOF) {
@@ -63,8 +64,9 @@ int main() {
 }
 #+END_SRC
 
-** 2.
+* 2.
 
+=rev-a37_2.c=
 #+BEGIN_SRC C :tangle e/rev-a37_2.c
 #include <stdio.h>
 #define TAMANHO_DA_LINHA 80
@@ -85,8 +87,9 @@ int main() {
 }
 #+END_SRC
 
-** 3.
+* 3.
 
+=rev-a37_3.c=
 #+BEGIN_SRC C :tangle e/rev-a37_3.c
 #include <stdio.h>
 int main() {

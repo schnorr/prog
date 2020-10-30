@@ -182,6 +182,7 @@ Exemplo de ~entrada.txt~:
 #+END_EXAMPLE
 * (#1) Solução possível
 
+=a38-soma-doubles.c=
 #+BEGIN_SRC C :tangle e/a38-soma-doubles.c
 #include <stdio.h>
 #include <string.h>
@@ -240,11 +241,49 @@ Desenvolver um programa em C que leia um arquivo texto contendo
 código, nomes e duas notas, em formato CSV, listando os conteúdos
 formatados e calculando a média das notas lidas.  O programa ao
 executar lê o arquivo dados.txt, como este exemplo:
-#+BEGIN_EXAMPLE
+#+BEGIN_SRC text :tangle e/dados.txt
 4,Marina Bastos,8.5,5.6
 13,Joao Super da Silva,2.3,9.8
 33,Sonja Sperb,4.5,7.8
-#+END_EXAMPLE
+#+end_src
+
+* (#2) Solução possível
+
+
+=a38-convergencia.c=
+#+latex: \tiny{
+#+BEGIN_SRC C :tangle e/a38-convergencia.c
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+int main() {
+  char stringao[256], *pch = NULL; // armazena linha lida
+  FILE *arq = NULL;
+  char nome[32]; // nome da pessoa
+  int codigo;    // código da pessoa
+  float n1, n2;  // notas da pessoa
+  arq = fopen("dados.txt", "r");
+  if (arq == NULL) return 0;
+  while (fgets (stringao, sizeof(stringao), arq) != NULL) {
+    pch = strtok(stringao, ",");
+    codigo = atoi(pch);
+    pch = strtok(NULL, ",");
+    strncpy(nome, pch, sizeof(nome));
+    pch = strtok(NULL, ",");
+    n1 = atof(pch);
+    pch = strtok(NULL, ",");
+    n2 = atof(pch);
+    printf("\nCódigo: %d\nNome: %s\nMédia: %f\n", codigo, nome, (n1+n2)/2);
+  }
+  fclose(arq);
+  return 0;
+}
+#+END_SRC
+#+latex: }
+
+
+
+
 * Exercício #1
 
 O arquivo texto ~matriz.txt~ contém, na primeira linha, as dimensões de
