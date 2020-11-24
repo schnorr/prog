@@ -18,7 +18,7 @@
 #+LATEX_HEADER: \usepackage{amsmath}
 #+LATEX_HEADER: \usepackage{systeme}
 
-#+latex: \newcommand{\mytitle}{~typedef~ e o operador seta ``->'' @@latex}
+#+latex: \newcommand{\mytitle}{~typedef~ e o operador seta ``->''}
 #+latex: \mytitleslide
 
 * Sumário

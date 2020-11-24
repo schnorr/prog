@@ -107,6 +107,7 @@ Como fazer então? \to Utilizar método de *passagem por referência*
 #+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula18/aula18_slide_16.pdf}{Prof. Marcelo Walter}
 * Exemplo #1: Ponteiros e conteúdo
 
+=a26-ponteiro-conteudo.c=
 #+BEGIN_SRC C :tangle e/a26-ponteiro-conteudo.c
 #include <stdio.h>
 int main() {
@@ -131,6 +132,7 @@ int main() {
 Como qualquer variável, um ponteiro pode ser usado no lado direito de
 um comando de atribuição para passar seu valor para um outro ponteiro.
 
+=a26-atribuicao.c=
 #+BEGIN_SRC C :tangle e/a26-atribuicao.c
 #include <stdio.h>
 int main() {
@@ -153,6 +155,7 @@ int main() {
 O valor considerado é o tamanho do tipo do ponteiro. Exemplo, ao somar 1
 no ponteiro, será somado o tamanho do tipo do ponteiro (4 se ~int~).
 
+=a26-aritmetica.c=
 #+BEGIN_SRC C :tangle e/a26-aritmetica.c :results output :exports both
 #include <stdio.h>
 int main() {
@@ -188,6 +191,7 @@ int main() {
 #  return 0;
 * Exemplo #4: O que será impresso na tela?
 
+=a26-impresso.c=
 #+BEGIN_SRC C :tangle e/a26-impresso.c :results output :exports both
 #include <stdio.h>
 int main() {
@@ -209,6 +213,7 @@ int main() {
 Tipos incompatíveis: ~p~ é um ponteiro para inteiros, logo não pode
 apontar para uma variável do tipo ~float~.
 
+=a26-tipo_errado.c=
 #+BEGIN_SRC C :tangle e/a26-tipo_errado.c
 #include <stdio.h>
 int main() {
@@ -238,6 +243,7 @@ gcc -Wall a26-tipo_errado.c 2>&1
 2. Se sim, ele executa normalmente?
 3. Se sim, ele deveria executar normalmente?
 
+=a26-erro_comum.c=
 #+BEGIN_SRC C :tangle e/a26-erro_comum.c
 #include <stdio.h>
 int main() {
@@ -254,7 +260,6 @@ int main() {
 * Inicializem sempre seus ponteiros para ~NULL~
 
 ~a26-inicializa.c~
-
 #+BEGIN_SRC C :tangle e/a26-inicializa.c
 #include <stdio.h>
 int main() {
@@ -302,7 +307,6 @@ Como usar?
    0x0000555555555153 in main () at a26-inicializa.c:6
    6	  *p = x;
    #+end_src
-
 
 * Passagem por referência ~a26-troca-ponteiro.c~
 

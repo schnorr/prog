@@ -96,6 +96,7 @@ int putc(int c, FILE *stream);
 
 *Objetivo*: salva em arquivo texto NUMEL valores inteiros, um por linha
 
+=a37-fprintf.c=
 #+BEGIN_SRC C :tangle e/a37-fprintf.c
 #include <stdio.h>
 #define MIN 345  // número mínimo para geração aleatório de valor inteiro
@@ -124,6 +125,7 @@ int main() {
 *Objetivo*: salvar em arquivo o valor de uma /string/
 - A função ~fputs~ não permite usar formatação
 
+=a37-fputs.c=
 #+BEGIN_SRC C :tangle e/a37-fputs.c
 #include <stdio.h>
 int main() {
@@ -148,6 +150,7 @@ int main() {
 *Objetivo*: escrever caractere por caractere no arquivo
 - E escrever uma string, caractere por caractere
 
+=a37-fputc.c=
 #+BEGIN_SRC C :tangle e/a37-fputc.c
 #include <stdio.h>
 int main() {
@@ -195,6 +198,7 @@ int getc(FILE *stream);
 *Objetivo*: ler de um arquivo texto NUMEL valores inteiros, um por linha
 - Imprimir na tela o número lido
 
+=a37-fscanf.c=
 #+BEGIN_SRC C :tangle e/a37-fscanf.c
 #include <stdio.h>
 #define NUMEL 23 // número de elementos
@@ -220,7 +224,8 @@ int main() {
 - A função ~fgets~ não permite usar formatação!
 - Perceba como o ~fgets~ captura o terminador da linha ~\n~
 
-#+BEGIN_SRC C :tangle e/a37-fputs.c :results output 
+=a37-fgets.c=
+#+BEGIN_SRC C :tangle e/a37-fgets.c :results output 
 #include <stdio.h>
 #define TAMANHO 30
 int main() {
@@ -245,6 +250,7 @@ int main() {
  
 *Objetivo*: ler caractere por caractere no arquivo
 
+=a37-fgetc.c=
 #+BEGIN_SRC C :tangle e/a37-fgetc.c :results output 
 #include <stdio.h>
 int main() {
@@ -271,6 +277,7 @@ Programa que cria arquivo CSV registros com nome, idade e altura.
 - Em um arquivo CSV, campos são separados por vírgula
 - Um registro por linha, sendo que a primeira é o cabeçalho
 
+=a37-cria-csv.c=
 #+BEGIN_SRC C :tangle e/a37-cria-csv.c
 #include <stdio.h>
 #define NATLETAS 3
@@ -299,6 +306,7 @@ int main() {
 
 Programa que lê um CSV com registros com nome, idade e altura.
 
+=a37-atleta-texto-leitura.c=
 #+BEGIN_SRC C :tangle e/a37-atleta-texto-leitura.c :results output 
 #include <stdio.h>
 #define TAMANHO 32
@@ -337,12 +345,13 @@ Exemplo ``Avançado'' #2: Ler arquivo ~CSV~
 * Comparar ~fscanf~ com ~fgets~
 
 Entrada
-#+BEGIN_SRC txt :tangle Teste.txt
+#+BEGIN_SRC text :tangle Teste.txt
 Palavra 1
 Palavra 2
 Esta eh uma longa linha
 #+END_SRC
 
+=a37-compara-fscanf-fgets.c=
 #+BEGIN_SRC C :tangle e/a37-compara-fscanf-fgets.c
 #include <stdio.h>
 #define NUMCHAR 256

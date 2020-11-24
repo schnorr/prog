@@ -1,0 +1,195 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Algoritmos
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{systeme}
+
+#+latex: \newcommand{\mytitle}{Revisão Ordenamento Bolha}
+#+latex: \mytitleslide
+
+* Exercício #1 (ordenamento + busca)
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula20-exercicios_ponteiros_arrays_slide_01.pdf}{Prof. Claudio Jung}
+
+* (#1) Código (módulo de ordenamento)
+
+~rev-a29-bolha-melhor.c~
+#+BEGIN_SRC C :tangle e/rev-a29-bolha-melhor.c :main no
+#include<stdio.h>
+void ordena_pela_bolha (int *v, int tamanho) {
+  int i, sinal, aux, fim;
+  fim = tamanho - 1;
+  do {
+    sinal = 0;
+    for (i = 0; i < fim; i++)
+      if (v[i] > v[i+1]) {
+	aux = v[i];
+	v[i] = v[i+1];
+	v[i+1] = aux;
+	sinal = 1;
+      }
+    fim--;
+  } while (sinal == 1);
+}
+#+end_src
+
+~rev-a29-bolha-melhor.h~
+#+BEGIN_SRC C :tangle e/rev-a29-bolha-melhor.h :main no
+void ordena_pela_bolha (int *v, int tamanho);
+#+END_SRC
+
+* (#1) Código (módulo de procura)
+
+Mudanças
+- Retorna um ponteiro para a posição no arranjo
+- Ou ~NULL~ caso não encontrar
+
+~rev-a29-procura.c~
+#+BEGIN_SRC C :tangle e/rev-a29-procura.c :main no
+#include<stdio.h>
+int *procura_valor (int *v, int tamanho, int valor) {
+  int i;
+  for (i = 0; i < tamanho; i++){
+    if (*(v + i) == valor)
+      return v+i;
+  }
+  return NULL;
+}
+#+end_src
+
+~rev-a29-procura.h~
+#+BEGIN_SRC C :tangle e/rev-a29-procura.h :main no
+int *procura_valor (int *v, int tamanho, int valor);
+#+END_SRC
+
+* (#1) Código (módulo principal)
+
+~rev-a29-principal.c~
+#+BEGIN_SRC C :tangle e/rev-a29-principal.c
+#include <stdio.h>
+#include <stdlib.h>
+#include <limits.h>
+#include "rev-a29-bolha-melhor.h"
+#include "rev-a29-procura-binaria.h"
+#define TAMVETOR 1000
+int vetor[TAMVETOR];
+int main() {
+  int i, valor;
+  scanf("%d", &valor);
+  int *p;
+  srand(0);
+  for (i = 0; i < TAMVETOR; i++) {
+    ,*(vetor+i) = rand()%1000;
+  }
+  ordena_pela_bolha (vetor, TAMVETOR);
+  p = procura_binaria_valor (vetor, TAMVETOR, valor);
+  if (p != NULL)
+    printf("Achou %d na posição %d\n", *p, p-vetor);
+  else
+    printf("Não achou o valor %d\n", valor);
+  return 0;
+}
+#+END_SRC
+
+* Comentários
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula20-exercicios_ponteiros_arrays_slide_11.pdf}{Prof. Claudio Jung}
+
+* (#1) Código (módulo de procura binária)
+
+~rev-a29-procura-binaria.c~
+#+BEGIN_SRC C :tangle e/rev-a29-procura-binaria.c :main no
+#include<stdio.h>
+#include <math.h>
+int *procura_binaria_valor (int *v, int tamanho, int valor) {
+  int achou = 0, inicio = 0, fim = tamanho, meio;
+  while (achou == 0 && fabs(fim-inicio) > 1){
+    meio = inicio + (fim - inicio)/2;
+    printf("valor do meio = %d, %d %d\n", v[meio], inicio, fim);
+    if (v[meio] == valor) //achou o valor
+      achou = 1;
+    else if(v[meio] > valor) //valor está na primeira metade
+      fim = meio;
+    else //valor está na segunda metade
+      inicio = meio;
+  }
+  if (*(v+meio) == valor)
+    return v+meio;
+  else
+    return NULL;
+}
+#+end_src
+
+~rev-a29-procura.h~
+#+BEGIN_SRC C :tangle e/rev-a29-procura-binaria.h :main no
+int *procura_binaria_valor (int *v, int tamanho, int valor);
+#+END_SRC
+
+* Exercício #2 (ordenar matriz de strings)
+
+#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula20-exercicios_ponteiros_arrays_slide_18.pdf}{Prof. Claudio Jung}
+
+* (#2) Código 
+
+~rev-a29-ordena-matriz-strings.c~
+#+BEGIN_SRC C :tangle e/rev-a29-ordena-matriz-strings.c :main no
+/* Exemplo de função que ordena em ordem crescente um array de strings */
+#include <stdio.h>
+#include <string.h>
+#define MAXLIN 5
+#define MAXCOL 40
+void ClassificaBolhaStrings (char nomes[][MAXCOL], int nlin) {
+  char aux[MAXCOL]; //string temporario para trocas de linhas
+  int ind, fim, sinal;
+  fim = nlin - 1; //indica até onde o array ainda não está ordenado
+  do {
+    sinal = 0; // indica se houve alguma troca nesta passagem
+    for (ind = 0; ind < fim; ind++)
+      if (strcmp(nomes[ind], nomes[ind + 1]) > 0) { //compara duas strings
+	strcpy(aux, nomes[ind]);
+	strcpy(nomes[ind], nomes[ind + 1]);
+	strcpy(nomes[ind + 1], aux);
+	sinal = 1;
+      }
+    fim--;
+  } while (sinal == 1 && fim > 0); // para quando não houver troca de posicoes
+  return;
+}
+#+END_SRC
+
+* (#2) Código (função principal)
+
+~rev-a29-ordena-matriz-strings.c~ (continuação)
+#+BEGIN_SRC C :tangle e/rev-a29-ordena-matriz-strings.c
+/* Exemplo de função que ordena em ordem crescente um array de strings */
+int main() {
+  char matriz[MAXLIN][MAXCOL];
+  int ind;
+  fflush(stdin);
+  for (ind = 0; ind < MAXLIN; ind++) {
+    printf("Entre o nome da pessoa %d:", ind + 1);
+    fgets(matriz[ind], MAXCOL, stdin);
+    matriz[ind][strlen(matriz[ind])-1] = '\0';
+  }
+  ClassificaBolhaStrings(matriz, MAXLIN);
+  printf("Array de strings ordenado:\n");
+  for (ind = 0; ind < MAXLIN; ind++) {
+    printf("%s\n", matriz[ind]);
+  }
+  return 0;
+}
+#+END_SRC

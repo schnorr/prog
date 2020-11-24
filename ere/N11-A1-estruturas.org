@@ -18,7 +18,7 @@
 #+LATEX_HEADER: \usepackage{amsmath}
 #+LATEX_HEADER: \usepackage{systeme}
 
-#+latex: \newcommand{\mytitle}{Tipos de Dados de Usuário @@latex}
+#+latex: \newcommand{\mytitle}{Tipos de Dados de Usuário}
 #+latex: \mytitleslide
 
 * Motivação
@@ -60,6 +60,8 @@ struct identificador {
 #+latex: \pause
 
 Exemplo de uma estrutura para funcionário
+
+=a31-declara-estrutura.c=
 #+BEGIN_SRC C :tangle e/a31-declara-estrutura.c
 struct funcionario {
   int codigo;
@@ -73,6 +75,7 @@ struct funcionario {
 * Integração de declaração de tipo no programa
 E declaração de ~func1~ e ~func2~ com o tipo definido pelo programador
 
+=a31-declara-estrutura-uso.c=
 #+BEGIN_SRC C :tangle e/a31-declara-estrutura-uso.c
 #include <stdio.h>
 
@@ -85,7 +88,7 @@ struct funcionario {
 };
 
 int main() {
-  struct functionario func1, func2;
+  struct funcionario func1, func2;
 
   return 0;
 }
@@ -95,6 +98,7 @@ int main() {
 
 A ordem segue a ordem da declaração da estrutura!
 
+=a31-estrutura-inicializada.c=
 #+BEGIN_SRC C :tangle e/a31-estrutura-inicializada.c
 #include <stdio.h>
 
@@ -117,9 +121,9 @@ int main() {
 
 Campos são acessados individualmente com o operador ~.~
 
+=a31-acesso-campos.c=
 #+BEGIN_SRC C :tangle e/a31-acesso-campos.c :results output :exports both
 #include <stdio.h>
-
 struct funcionario {
   int codigo;
   char nome[30];
@@ -127,7 +131,6 @@ struct funcionario {
   int depto;
   float salario;
 };
-
 int main() {
   struct funcionario f = {2315, "Alpha", "Professora", 43, 123.46};
   f.codigo = 2317;  //vamos alterar o código
@@ -146,6 +149,7 @@ int main() {
 
 * Preenchimento de campos por leitura
 
+=a31-leitura-com-scanf.c=
 #+BEGIN_SRC C :tangle e/a31-leitura-com-scanf.c :results output :exports both
 #include <stdio.h>
 
@@ -174,6 +178,7 @@ int main() {
 o valor de variáveis que sejam do mesmo tipo de usuário. O atribuição
 implica em uma cópia da memória.
 
+=a31-atribuicao.c=
 #+BEGIN_SRC C :tangle e/a31-atribuicao.c :results output :exports both
 #include <stdio.h>
 
@@ -197,6 +202,7 @@ int main() {
 
 * Um tipo de usuário pode conter outros tipos de usuário
 
+=a31-estrutura-aninhada.c=
 #+BEGIN_SRC C :tangle e/a31-estrutura-aninhada.c :main no
 #include <stdio.h>
 struct endereco {
@@ -206,9 +212,7 @@ struct endereco {
   char estado[3];
 };
 #+END_SRC
-
 #+latex: \pause
-
 #+BEGIN_SRC C :tangle e/a31-estrutura-aninhada.c :main no
 struct funcionario {
   int codigo;
@@ -222,8 +226,7 @@ struct funcionario {
 Como inicializar, usar, atribuir, ...
 #+BEGIN_SRC C :tangle e/a31-estrutura-aninhada.c
 int main() {
-  struct funcionario f1 = {2315, "Alpha", {"Bento", 9500, "Poa", "RS"} };
-  struct funcionario f2;
+  struct funcionario f1 = {2315, "Alpha", {"Bento", 9500, "Poa", "RS"} }, f2;
   f2 = f1; // <-- veja aqui a atribuição
   printf("Código: %d\nNome: %s\n", f2.codigo, f2.nome);
   printf("Endereço: %s, %d - %s, %s\n",
@@ -250,6 +253,7 @@ Podemos criar funções que tenham como retorno um tipo de usuário
 (/struct/).  Por exemplo, podemos criar uma função que faça a leitura
 dos campos de um funcionário, retornando a struct correspondente.
 
+=a31-estruturas-retornadas.c=
 #+BEGIN_SRC C :tangle e/a31-estruturas-retornadas.c
 #include <stdio.h>
 #define NFUNCS 2
@@ -278,6 +282,7 @@ int main() {
 
 Recebe estrutura como parâmetro por valor.
 
+=a31-estruturas-recebidas.c=
 #+BEGIN_SRC C :tangle e/a31-estruturas-recebidas.c
 #include <stdio.h>
 #define NFUNCS 2

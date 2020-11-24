@@ -18,7 +18,7 @@
 #+LATEX_HEADER: \usepackage{amsmath}
 #+LATEX_HEADER: \usepackage{systeme}
 
-#+latex: \newcommand{\mytitle}{Revisão Aula 35}
+#+latex: \newcommand{\mytitle}{Revisão N12 R1}
 #+latex: \mytitleslide
 
 * Revisão
@@ -127,13 +127,21 @@ Why is “while (!feof(file))” always wrong?
 
 https://stackoverflow.com/questions/5431941/why-is-while-feoffile-always-wrong#26557243
 
+#+latex: \vfill
+
+- Sistema operacional é concorrente
+  - Ou seja, se executa "ao mesmo tempo" que nosso programa
+- Não há como antecipar se ela falhará ou não
+  - Testar =feof= não garante que uma leitura subsequente funcionará
+- Devemos tentar fazer a operação, e verificar seu retorno
+
 * (#1) Código melhorado (considera erro na leitura)
 
 ~Estatistica-Esqueleto.c~
 #+BEGIN_SRC C :tangle e/rev-a34/Estatistica-Esqueleto.c
 #include "GeraSalva.h"
 int main() {
-  int bytes_lidos;
+  int lidos;
   int idade, altura;
   FILE *arquivo = fopen(FATLETAS, "r");
   if (arquivo == NULL) {
@@ -142,10 +150,11 @@ int main() {
   }
   fseek(arquivo, sizeof(int)+sizeof(char)*32, SEEK_SET);
   do {
-    bytes_lidos = fread(&idade, sizeof(int), 1, arquivo);
-    bytes_lidos += fread(&altura, sizeof(int), 1, arquivo);
+    lidos = fread(&idade, sizeof(int), 1, arquivo);
+    lidos += fread(&altura, sizeof(int), 1, arquivo);
+    // atualiza estatísticas se lidos == 2
     fseek(arquivo, sizeof(char)*32, SEEK_CUR);
-  }while(bytes_lidos != 0);
+  }while(lidos == 2);
   fclose(arquivo);
   return 0;
 }
