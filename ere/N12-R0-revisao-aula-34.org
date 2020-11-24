@@ -188,7 +188,7 @@ rm -f GeraSalva
 gcc -Wall -g \
     e/rev-a34/GeraSalva-Nomes.c \
     e/rev-a34/GeraSalva.c \
-    -o e/rev-a34/LeMostra
+    -o e/rev-a34/GeraSalva
 #+end_src
 
 #+RESULTS:
