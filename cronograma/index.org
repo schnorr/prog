@@ -115,7 +115,8 @@ A mescla entre aulas teóricas e práticas é feita automaticamente.
 | Teórica | Funções e seus Parâmetros                    |
 | Teórica | Referências e Ponteiros                      |
 | Teórica | Ponteiros, Passagem de Matrizes              |
-| Teórica | Ordenamento Bolha, Estruturas I              |
+| Teórica | Ordenamento Bolha                            |
+| Teórica | Estruturas I                                 |
 | Teórica | Estruturas II                                |
 | Teórica | Arquivo Binário I (acesso sequencial)        |
 | Teórica | Arquivo Binário II (acesso aleatório)        |
@@ -206,7 +207,7 @@ suppressMessages(library(lubridate));
 suppressMessages(library(tidyverse));
 suppressMessages(library(xtable));
 
-dates <- tibble(Dia=seq(ymd("2020-08-19"), ymd("2020-12-03"), by="days")) %>%
+dates <- tibble(Dia=seq(ymd("2021-01-25"), ymd("2021-05-29"), by="days")) %>%
     # Define o dia da semana
     mutate(DiaDaSemana = wday(Dia)) %>%
     # Remove dias onde não haverá aula
@@ -218,7 +219,7 @@ dias_disponiveis %>%
 
 dias_disponiveis %>%
     # Aulas práticas em quais dias da semana (sexta = 6, ...)
-    filter(DiaDaSemana %in% c(6)) -> dates.praticas;
+    filter(DiaDaSemana %in% c(5)) -> dates.praticas;
 #+end_src
 
 #+RESULTS: def_dates
@@ -350,8 +351,8 @@ cronograma %>%
 #+begin_src R :results output :session :exports both
 cronograma.modelo.filename = "data/be/43e1ff-0a91-4c3f-9e17-1fa62e6795ce/layout-cronograma.tex"
 cronograma.modelo = readChar(cronograma.modelo.filename, file.info(cronograma.modelo.filename)$size);
-turma = "I e J";
-semestre = "ERE 2020/1";
+turma = "C/D";
+semestre = "ERE 2020/2";
 cronograma.modelo <- gsub("TURMA", turma, cronograma.modelo);
 cronograma.modelo <- gsub("SEMESTRE", semestre, cronograma.modelo);
 cronograma.modelo <- gsub("TABELA", gsub("\\\\", "\\\\\\\\", cronograma.tex), cronograma.modelo);
@@ -359,14 +360,6 @@ write(cronograma.modelo, "cronograma.tex");
 system2("rm", "-f cronograma.pdf")
 system2("rubber", " --pdf cronograma.tex")
 #+end_src
-
-#+RESULTS:
-: 
-: compiling cronograma.tex...
-
-#+RESULTS: modelo_cronograma
-: 
-: compiling cronograma.tex...
 
 * Cronograma
 
