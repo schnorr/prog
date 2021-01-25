@@ -361,6 +361,10 @@ system2("rm", "-f cronograma.pdf")
 system2("rubber", " --pdf cronograma.tex")
 #+end_src
 
+#+RESULTS: modelo_cronograma
+: 
+: compiling cronograma.tex...
+
 * Cronograma
 
 O cronograma também está [[./cronograma.pdf][disponível em formato PDF]].
