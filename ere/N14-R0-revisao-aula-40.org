@@ -18,7 +18,7 @@
 #+LATEX_HEADER: \usepackage{amsmath}
 #+LATEX_HEADER: \usepackage{systeme}
 
-#+latex: \newcommand{\mytitle}{Revisão Aula 40}
+#+latex: \newcommand{\mytitle}{N14 R0}
 #+latex: \mytitleslide
 
 * Exercícios #1
