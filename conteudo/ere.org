@@ -8,7 +8,7 @@
 
 #+Title: Algoritmos
 #+Subtitle: *INF01202* \linebreak (ERE 2020/1)
-#+Author: Prof. Lucas Mello Schnorr \linebreak Prof. Renan Maffei
+#+Author: Prof. Lucas Mello Schnorr \linebreak Prof. Vinicius Garcia Pinto
 #+Date: \copyleft
 
 #+LaTeX_CLASS: beamer
@@ -28,10 +28,10 @@ Prof. Lucas M. Schnorr \hfill \to aulas téoricas
 
 #+latex: \vfill
 
-Prof. Renan Maffei \hfill \to práticas
-+ Prédio 43424, Sala 224
-+ [[http://www.inf.ufrgs.br/~rqmaffei][http://www.inf.ufrgs.br/~rqmaffei]]
-+ rqmaffei@inf.ufrgs.br
+Prof. Vinicius Garcia Pinto \hfill \to práticas
++ Prédio 43413, Sala 205
++ [[http://www.inf.ufrgs.br/~vgpinto][http://www.inf.ufrgs.br/~vgpinto]]
++ vgpinto@inf.ufrgs.br
      
 * Motivação \to Adquirir *Pensamento Computacional*
 
@@ -80,9 +80,8 @@ retorno; recursão; arquivos.
 
 * Funcionamento das aulas
 
-Sempre consulte o Moodle Institucional da UFRGS (https://moodle.ufrgs.br)
-- Turma J: https://moodle.ufrgs.br/course/view.php?id=74643
-- Turma I: https://moodle.ufrgs.br/course/view.php?id=74642
+Sempre consulte a disciplina no Moodle Institucional da UFRGS:
+- https://moodle.ufrgs.br/course/view.php?id=82074
 
 As aulas teóricas serão assíncronas.
 - Vídeos pré-gravados (como este) serão disponibilizados toda semana
@@ -97,7 +96,7 @@ As aulas práticas serão síncronas, durante o horário das aulas práticas.
 - Terminal para executar comandos de compilação e execução
 - Tela com a projeção dos slides
 
-(vamos ver uma demonstração)
+# (vamos ver uma demonstração)
 
 * Plano, cronograma, bibliografia, projeto
 
@@ -106,7 +105,7 @@ As aulas práticas serão síncronas, durante o horário das aulas práticas.
 + Avaliação
   
 #+BEGIN_CENTER
-Consulte no Portal do Aluno da UFRGS (ERE 2020/1).
+Consulte no Portal do Aluno da UFRGS (ERE 2020/2).
 #+END_CENTER
 
 Vamos revisar juntos alguns elementos.
@@ -152,7 +151,7 @@ Conversão
 #+latex: \pause
 
 Detalhamentos
-- FF é inaplicável (Parágrafo 2o, do Artigo 44, da Resolução no 11/2013 do CEPE) 
+- FF é inaplicável (Parágrafo 2o, do Artigo 44, da Resolução no 11/2020 do CEPE) 
 - Se estudante deixar de participar, conceito será NI (Não Informado)
   com a justificativa ``COVID-19'', tratado até o fim de 2020/2, após
   o fim da pandemia
@@ -219,16 +218,10 @@ Senão
 * Ferramenta AVA
 
 #+BEGIN_CENTER
-Sempre consulte o Moodle Institucional da UFRGS
+Sempre consulte a disciplina no Moodle Institucional da UFRGS
 
-(https://moodle.ufrgs.br)
+(https://moodle.ufrgs.br/course/view.php?id=82074)
 #+END_CENTER
-
-Por turma
-- Turma I
-  - https://moodle.ufrgs.br/course/view.php?id=74642
-- Turma J
-  - https://moodle.ufrgs.br/course/view.php?id=74643
 
 * Cronograma
 ** Texto
@@ -243,8 +236,8 @@ Vamos revisá-lo juntos.
 #+latex: \vspace{2cm}
 
 Encontros síncronos (AP):
-- Turma I \to Sex 13:30
-- Turma J \to Sex 15:30
+- Turma C \to Qui 13:30
+- Turma D \to Qui 15:30
 
 ** Esquerda
 :PROPERTIES:
