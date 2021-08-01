@@ -39,7 +39,10 @@ Linguagens imperativas /vs/ Linguagens Funcionais
 
 #+latex: \vfill
 
-Exercício #1: palíndroma recursiva
+Implemente com funções recursivas
+1. Contagem: número de dígitos de um número inteiro
+2. Contagem: quantidade de caracteres de uma /string/
+3. Busca binária recursiva em arranjo ordenado
 
 * Recursividade: o que é?
 
@@ -306,7 +309,7 @@ Linguagens funcionais
   - Quantidade de caracteres de uma /string/
 - Busca binária recursiva em arranjo ordenado
 
-* Exercícios #1
+* Exercícios
 
 Implemente com funções recursivas
 1. Contagem: número de dígitos de um número inteiro
