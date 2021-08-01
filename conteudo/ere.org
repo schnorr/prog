@@ -28,10 +28,7 @@ Prof. Lucas M. Schnorr \hfill \to aulas téoricas
 
 #+latex: \vfill
 
-Prof. Vinicius Garcia Pinto \hfill \to práticas
-+ Prédio 43413, Sala 205
-+ [[http://www.inf.ufrgs.br/~vgpinto][http://www.inf.ufrgs.br/~vgpinto]]
-+ vgpinto@inf.ufrgs.br
+Prof. por definir em 01/08/2021 \hfill \to práticas
      
 * Motivação \to Adquirir *Pensamento Computacional*
 
@@ -80,8 +77,7 @@ retorno; recursão; arquivos.
 
 * Funcionamento das aulas
 
-Sempre consulte a disciplina no Moodle Institucional da UFRGS:
-- https://moodle.ufrgs.br/course/view.php?id=82074
+Sempre consulte a disciplina no Moodle Institucional da UFRGS!
 
 As aulas teóricas serão assíncronas.
 - Vídeos pré-gravados (como este) serão disponibilizados toda semana
@@ -105,7 +101,7 @@ As aulas práticas serão síncronas, durante o horário das aulas práticas.
 + Avaliação
   
 #+BEGIN_CENTER
-Consulte no Portal do Aluno da UFRGS (ERE 2020/2).
+Consulte no Portal do Aluno da UFRGS.
 #+END_CENTER
 
 Vamos revisar juntos alguns elementos.
@@ -219,8 +215,6 @@ Senão
 
 #+BEGIN_CENTER
 Sempre consulte a disciplina no Moodle Institucional da UFRGS
-
-(https://moodle.ufrgs.br/course/view.php?id=82074)
 #+END_CENTER
 
 * Cronograma
@@ -236,8 +230,8 @@ Vamos revisá-lo juntos.
 #+latex: \vspace{2cm}
 
 Encontros síncronos (AP):
-- Turma C \to Qui 13:30
-- Turma D \to Qui 15:30
+- Turma I \to Sex 13:30
+- Turma J \to Sex 15:30
 
 ** Esquerda
 :PROPERTIES:
