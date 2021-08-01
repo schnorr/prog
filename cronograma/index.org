@@ -94,39 +94,39 @@ A mescla entre aulas teóricas e práticas é feita automaticamente.
 
 #+NAME: listagem_de_encontros_teoricos
 #+header: :colnames yes
-| Setor   | Descrição                                    |
-|---------+----------------------------------------------|
-| Teórica | Apresentação da disciplina, Introdução Geral |
-| Teórica | Estrutura de um Programa em C                |
-| Teórica | Tipos de variáveis, expressões aritméticas   |
-| Teórica | Comandos if e expressões lógicas             |
-| Teórica | Comandos if-else aninhados                   |
-| Teórica | Estrutura de seleção múltipla switch-case    |
-| Teórica | Comando iterativo for                        |
-| Teórica | Comando iterativo for (bis)                  |
-| Teórica | Comando iterativo while                      |
-| Teórica | Arranjos unidimensionais (vetores)           |
-| Teórica | Strings                                      |
-| Teórica | Arranjos multidimensionais (matrizes)        |
-| Teórica | Estudos de Caso com Matrizes                 |
-| Teórica | (Fechamento Notas AP1, Anúncio do TF)        |
-| Teórica | (Recuperação AP1)                            |
-| Teórica | Subprogramas e Funções                       |
-| Teórica | Funções e seus Parâmetros                    |
-| Teórica | Referências e Ponteiros                      |
-| Teórica | Ponteiros, Passagem de Matrizes              |
-| Teórica | Ordenamento Bolha                            |
-| Teórica | Estruturas I                                 |
-| Teórica | Estruturas II                                |
-| Teórica | Arquivo Binário I (acesso sequencial)        |
-| Teórica | Arquivo Binário II (acesso aleatório)        |
-| Teórica | Arquivo Texto I (visão geral)                |
-| Teórica | Arquivo Texto II (conversão/tokens)          |
-| Teórica | Recursividade                                |
-| Teórica | Depuração de programas                       |
-| Teórica | (Apresentação dos trabalhos finais)          |
-| Teórica | (Fechamento Notas AP2, TF)                   |
-| Teórica | (Recuperação MF)                             |
+| Setor   | Descrição                                  |
+|---------+--------------------------------------------|
+| Teórica | Apresentação da disciplina                 |
+| Teórica | Introdução Geral                           |
+| Teórica | Estrutura de um Programa em C              |
+| Teórica | Tipos de variáveis, expressões aritméticas |
+| Teórica | Comandos if e expressões lógicas           |
+| Teórica | Comandos if-else aninhados                 |
+| Teórica | Estrutura de seleção múltipla switch-case  |
+| Teórica | Comando iterativo for                      |
+| Teórica | Comando iterativo for (bis)                |
+| Teórica | Comando iterativo while                    |
+| Teórica | Arranjos unidimensionais (vetores)         |
+| Teórica | Strings                                    |
+| Teórica | Arranjos multidimensionais (matrizes)      |
+| Teórica | Estudos de Caso com Matrizes               |
+| Teórica | (Fechamento Notas AP1)                     |
+| Teórica | (Recuperação AP1)                          |
+| Teórica | Subprogramas e Funções                     |
+| Teórica | Funções e seus Parâmetros                  |
+| Teórica | Referências e Ponteiros                    |
+| Teórica | Passagem de Matrizes, Ordenamento Bolha    |
+| Teórica | Estruturas I                               |
+| Teórica | Estruturas II                              |
+| Teórica | Arquivo Binário I (acesso sequencial)      |
+| Teórica | Arquivo Binário II (acesso aleatório)      |
+| Teórica | Arquivo Texto I (visão geral)              |
+| Teórica | Arquivo Texto II (conversão/tokens)        |
+| Teórica | Recursividade                              |
+| Teórica | Depuração de programas                     |
+| Teórica | (Apresentação dos trabalhos finais)        |
+| Teórica | (Fechamento Notas AP2, TF)                 |
+| Teórica | (Recuperação MF)                           |
 
 *** Práticas
 
@@ -134,14 +134,14 @@ A mescla entre aulas teóricas e práticas é feita automaticamente.
 #+header: :colnames yes
 | Setor   | Descrição                                   |
 |---------+---------------------------------------------|
-| Prática | Introdução ao sistema EAD e ao compilador C |
+| Prática | Introdução ao sistema AVA e ao compilador C |
 | Prática | Programa sequencial                         |
 | Prática | Comandos if e if-else                       |
 | Prática | Comandos switch e for                       |
 | Prática | Comandos for e while                        |
 | Prática | Vetor e Strings                             |
 | Prática | Busca e classificação com matrizes          |
-| Prática |                                             |
+| Prática | (Anúncio do TF)                             |
 | Prática | Funções                                     |
 | Prática | Referências e Ponteiros                     |
 | Prática | Estruturas                                  |
@@ -192,7 +192,7 @@ suppressMessages(library(lubridate));
 suppressMessages(library(tidyverse));
 suppressMessages(library(xtable));
 
-dataDaRecuperação <- ymd("2020-12-01");
+dataDaRecuperação <- ymd("2020-12-04");
 #+end_src
 
 #+RESULTS: def_recup
@@ -207,7 +207,7 @@ suppressMessages(library(lubridate));
 suppressMessages(library(tidyverse));
 suppressMessages(library(xtable));
 
-dates <- tibble(Dia=seq(ymd("2021-01-25"), ymd("2021-05-29"), by="days")) %>%
+dates <- tibble(Dia=seq(ymd("2021-08-02"), ymd("2021-12-04"), by="days")) %>%
     # Define o dia da semana
     mutate(DiaDaSemana = wday(Dia)) %>%
     # Remove dias onde não haverá aula
@@ -219,7 +219,7 @@ dias_disponiveis %>%
 
 dias_disponiveis %>%
     # Aulas práticas em quais dias da semana (sexta = 6, ...)
-    filter(DiaDaSemana %in% c(5)) -> dates.praticas;
+    filter(DiaDaSemana %in% c(6)) -> dates.praticas;
 #+end_src
 
 #+RESULTS: def_dates
@@ -235,21 +235,15 @@ suppressMessages(library(tidyverse));
 suppressMessages(library(xtable));
 
 teoricas %>%
-    mutate(Order = rep(1:15, each=2)) %>%
+    mutate(Order = c(rep(1:15, each=2), 16)) %>%
     bind_rows(praticas %>%
-              mutate(Order = 1:15)) %>%
+              mutate(Order = 1:(nrow(.)))) %>%
     arrange(Order, desc(Setor)) %>%
     select(-Order) %>%
     as_tibble() -> aulas;
 #+end_src
 
 #+RESULTS: def_junta_praticas_teoricas
-: 
-: Error: Problem with `mutate()` input `Order`.
-: [31m✖[39m Input `Order` can't be recycled to size 14.
-: [34mℹ[39m Input `Order` is `1:15`.
-: [34mℹ[39m Input `Order` must be size 14 or 1, not 15.
-: [90mRun `rlang::last_error()` to see where the error occurred.[39m
 
 **** Mapeamento das aulas sobre as datas
 
@@ -280,10 +274,6 @@ Sys.setlocale("LC_TIME","en_US.utf8") -> ignore;
 #+end_src
 
 #+RESULTS: def_cronograma
-: 
-: Warning message:
-: In Sys.setlocale("LC_TIME", "pt_BR.utf8") :
-:   OS reports request to set locale to "pt_BR.utf8" cannot be honored
 
 *** Exporta cronograma em TEX
 **** New
@@ -293,23 +283,25 @@ Sys.setlocale("LC_TIME","en_US.utf8") -> ignore;
 #+begin_src R :results output :session :exports both
 options(crayon.enabled=FALSE)
 cronograma %>%
-    mutate(Semana = lead(week(Dia))) %>%
-    mutate(Semana = ifelse(is.na(Semana), max(week(Dia))+1, Semana)) %>%
+    mutate(Semana = lag(week(Dia))) %>%
+    mutate(Semana = ifelse(is.na(Semana), min(week(Dia)), Semana)) %>%
+    select(Semana, everything()) %>%
+    print %>%
     mutate(Semana = as.integer(Semana - min(Semana)+1)) %>%
     mutate(DiaDaSemana = ifelse(DiaDaSemana == "Friday", "Sexta", "")) %>%
     mutate(Síncrono = ifelse(Setor == "Prática", "Sim", "")) %>%
     mutate(Encontro = ifelse(Síncrono == "Sim", Encontro, "")) %>%
     mutate(Setor = case_when(Setor == "Teórica" ~ "", TRUE ~ .$Setor)) %>%
     mutate(N = 1:n()) %>%
-    slice(-23) %>%
+#    slice(-24) %>% # This removes P8 (empty prática)
     group_by(Setor) %>%
     mutate(O = case_when(Setor == "Prática" & Descrição != "" ~ paste0("P", 1:n()), TRUE ~ "")) %>%
     ungroup %>%
     mutate(N = 1:n()) %>%
-    select(N, Semana, Data = Encontro, Dia = DiaDaSemana, Síncrono, O, Descrição) -> cronograma.output
+    select(N, Semana, Data = Encontro, Síncrono, Prática = O, Descrição) -> cronograma.output
 cronograma.output %>%
     as.data.frame() %>%
-    xtable(., align = "rrrrllll") %>%
+    xtable(., align = "rrrllll") %>%
     print (print.results=FALSE,
            booktabs = TRUE,
            include.rownames=FALSE,
@@ -343,6 +335,23 @@ cronograma %>%
 #+RESULTS:
 
 #+RESULTS: def_cronograma_tex
+#+begin_example
+
+# A tibble: 45 x 8
+   Semana Setor  Descrição           Dia        DiaDaSemana Encontro     N     O
+    <dbl> <chr>  <chr>               <date>     <chr>       <chr>    <int> <int>
+ 1     31 Teóri… Apresentação da di… 2021-08-02 segunda     2021-08…     1     1
+ 2     31 Teóri… Introdução Geral    2021-08-04 quarta      2021-08…     2     2
+ 3     31 Práti… Introdução ao sist… 2021-08-06 sexta       2021-08…     3     1
+ 4     32 Teóri… Estrutura de um Pr… 2021-08-09 segunda     2021-08…     4     3
+ 5     32 Teóri… Tipos de variáveis… 2021-08-11 quarta      2021-08…     5     4
+ 6     32 Práti… Programa sequencial 2021-08-13 sexta       2021-08…     6     2
+ 7     33 Teóri… Comandos if e expr… 2021-08-16 segunda     2021-08…     7     5
+ 8     33 Teóri… Comandos if-else a… 2021-08-18 quarta      2021-08…     8     6
+ 9     33 Práti… Comandos if e if-e… 2021-08-20 sexta       2021-08…     9     3
+10     34 Teóri… Estrutura de seleç… 2021-08-23 segunda     2021-08…    10     7
+# … with 35 more rows
+#+end_example
 
 ** Cronograma (em PDF)
 
@@ -351,8 +360,8 @@ cronograma %>%
 #+begin_src R :results output :session :exports both
 cronograma.modelo.filename = "data/be/43e1ff-0a91-4c3f-9e17-1fa62e6795ce/layout-cronograma.tex"
 cronograma.modelo = readChar(cronograma.modelo.filename, file.info(cronograma.modelo.filename)$size);
-turma = "C/D";
-semestre = "ERE 2020/2";
+turma = "I/J";
+semestre = "ERE 2021/1";
 cronograma.modelo <- gsub("TURMA", turma, cronograma.modelo);
 cronograma.modelo <- gsub("SEMESTRE", semestre, cronograma.modelo);
 cronograma.modelo <- gsub("TABELA", gsub("\\\\", "\\\\\\\\", cronograma.tex), cronograma.modelo);
@@ -376,51 +385,54 @@ cronograma.output %>%
 #+end_src
 
 #+RESULTS:
-|  N | Semana |       Data | Dia   | Síncrono | O   | Descrição                                    |
-|----+--------+------------+-------+----------+-----+----------------------------------------------|
-|  1 |      1 |            |       |          |     | Apresentação da disciplina, Introdução Geral |
-|  2 |      1 | 2020-08-21 | Sexta | Sim      | P1  | Introdução ao sistema EAD e ao compilador C  |
-|  3 |      2 |            |       |          |     | Estrutura de um Programa em C                |
-|  4 |      2 |            |       |          |     | Tipos de variáveis, expressões aritméticas   |
-|  5 |      2 | 2020-08-28 | Sexta | Sim      | P2  | Programa sequencial                          |
-|  6 |      3 |            |       |          |     | Comandos if e expressões lógicas             |
-|  7 |      3 |            |       |          |     | Comandos if-else aninhados                   |
-|  8 |      3 | 2020-09-04 | Sexta | Sim      | P3  | Comandos if e if-else                        |
-|  9 |      4 |            |       |          |     | Estrutura de seleção múltipla switch-case    |
-| 10 |      4 |            |       |          |     | Comando iterativo for                        |
-| 11 |      4 | 2020-09-11 | Sexta | Sim      | P4  | Comandos switch e for                        |
-| 12 |      5 |            |       |          |     | Comando iterativo for (bis)                  |
-| 13 |      5 |            |       |          |     | Comando iterativo while                      |
-| 14 |      5 | 2020-09-18 | Sexta | Sim      | P5  | Comandos for e while                         |
-| 15 |      6 |            |       |          |     | Arranjos unidimensionais (vetores)           |
-| 16 |      6 |            |       |          |     | Strings                                      |
-| 17 |      6 | 2020-09-25 | Sexta | Sim      | P6  | Vetor e Strings                              |
-| 18 |      7 |            |       |          |     | Arranjos multidimensionais (matrizes)        |
-| 19 |      7 |            |       |          |     | Estudos de Caso com Matrizes                 |
-| 20 |      7 | 2020-10-02 | Sexta | Sim      | P7  | Busca e classificação com matrizes           |
-| 21 |      8 |            |       |          |     | (Fechamento Notas AP1, Anúncio do TF)        |
-| 22 |      8 |            |       |          |     | (Recuperação AP1)                            |
-| 23 |      9 |            |       |          |     | Subprogramas e Funções                       |
-| 24 |      9 |            |       |          |     | Funções e seus Parâmetros                    |
-| 25 |      9 | 2020-10-16 | Sexta | Sim      | P8  | Funções                                      |
-| 26 |     10 |            |       |          |     | Referências e Ponteiros                      |
-| 27 |     10 |            |       |          |     | Ponteiros, Passagem de Matrizes              |
-| 28 |     10 | 2020-10-23 | Sexta | Sim      | P9  | Referências e Ponteiros                      |
-| 29 |     11 |            |       |          |     | Ordenamento Bolha, Estruturas I              |
-| 30 |     11 |            |       |          |     | Estruturas II                                |
-| 31 |     11 | 2020-10-30 | Sexta | Sim      | P10 | Estruturas                                   |
-| 32 |     12 |            |       |          |     | Arquivo Binário I (acesso sequencial)        |
-| 33 |     12 |            |       |          |     | Arquivo Binário II (acesso aleatório)        |
-| 34 |     12 | 2020-11-06 | Sexta | Sim      | P11 | Arquivos binários                            |
-| 35 |     13 |            |       |          |     | Arquivo Texto I (visão geral)                |
-| 36 |     13 |            |       |          |     | Arquivo Texto II (conversão/tokens)          |
-| 37 |     13 | 2020-11-13 | Sexta | Sim      | P12 | Arquivos texto                               |
-| 38 |     14 |            |       |          |     | Recursividade                                |
-| 39 |     14 |            |       |          |     | Depuração de programas                       |
-| 40 |     14 | 2020-11-20 | Sexta | Sim      | P13 | Recursividade                                |
-| 41 |     15 |            |       |          |     | (Apresentação dos trabalhos finais)          |
-| 42 |     15 |            |       |          |     | (Fechamento Notas AP2, TF)                   |
-| 43 |     16 |            |       |          |     | (Recuperação MF)                             |
+|  N | Semana |       Data | Síncrono | Prática | Descrição                                   |
+|----+--------+------------+----------+---------+---------------------------------------------|
+|  1 |      1 |            |          |         | Apresentação da disciplina                  |
+|  2 |      1 |            |          |         | Introdução Geral                            |
+|  3 |      1 | 2021-08-06 | Sim      | P1      | Introdução ao sistema AVA e ao compilador C |
+|  4 |      2 |            |          |         | Estrutura de um Programa em C               |
+|  5 |      2 |            |          |         | Tipos de variáveis, expressões aritméticas  |
+|  6 |      2 | 2021-08-13 | Sim      | P2      | Programa sequencial                         |
+|  7 |      3 |            |          |         | Comandos if e expressões lógicas            |
+|  8 |      3 |            |          |         | Comandos if-else aninhados                  |
+|  9 |      3 | 2021-08-20 | Sim      | P3      | Comandos if e if-else                       |
+| 10 |      4 |            |          |         | Estrutura de seleção múltipla switch-case   |
+| 11 |      4 |            |          |         | Comando iterativo for                       |
+| 12 |      4 | 2021-08-27 | Sim      | P4      | Comandos switch e for                       |
+| 13 |      5 |            |          |         | Comando iterativo for (bis)                 |
+| 14 |      5 |            |          |         | Comando iterativo while                     |
+| 15 |      5 | 2021-09-03 | Sim      | P5      | Comandos for e while                        |
+| 16 |      6 |            |          |         | Arranjos unidimensionais (vetores)          |
+| 17 |      6 |            |          |         | Strings                                     |
+| 18 |      6 | 2021-09-10 | Sim      | P6      | Vetor e Strings                             |
+| 19 |      7 |            |          |         | Arranjos multidimensionais (matrizes)       |
+| 20 |      7 |            |          |         | Estudos de Caso com Matrizes                |
+| 21 |      7 | 2021-09-17 | Sim      | P7      | Busca e classificação com matrizes          |
+| 22 |      8 |            |          |         | (Fechamento Notas AP1, Anúncio do TF)       |
+| 23 |      8 |            |          |         | (Recuperação AP1)                           |
+| 24 |      8 | 2021-09-24 | Sim      | P8      | (Aula prática para recuperação)             |
+| 25 |      9 |            |          |         | Subprogramas e Funções                      |
+| 26 |      9 |            |          |         | Funções e seus Parâmetros                   |
+| 27 |      9 | 2021-10-01 | Sim      | P9      | Funções                                     |
+| 28 |     10 |            |          |         | Referências e Ponteiros                     |
+| 29 |     10 |            |          |         | Ponteiros, Passagem de Matrizes             |
+| 30 |     10 | 2021-10-08 | Sim      | P10     | Referências e Ponteiros                     |
+| 31 |     11 |            |          |         | Ordenamento Bolha                           |
+| 32 |     11 |            |          |         | Estruturas I                                |
+| 33 |     11 | 2021-10-15 | Sim      | P11     | Estruturas                                  |
+| 34 |     12 |            |          |         | Estruturas II                               |
+| 35 |     12 |            |          |         | Arquivo Binário I (acesso sequencial)       |
+| 36 |     12 | 2021-10-22 | Sim      | P12     | Arquivos binários                           |
+| 37 |     13 |            |          |         | Arquivo Binário II (acesso aleatório)       |
+| 38 |     13 |            |          |         | Arquivo Texto I (visão geral)               |
+| 39 |     13 | 2021-10-29 | Sim      | P13     | Arquivos texto                              |
+| 40 |     14 |            |          |         | Arquivo Texto II (conversão/tokens)         |
+| 41 |     14 |            |          |         | Recursividade                               |
+| 42 |     14 | 2021-11-05 | Sim      | P14     | Recursividade                               |
+| 43 |     15 |            |          |         | Depuração de programas                      |
+| 44 |     15 |            |          |         | (Apresentação dos trabalhos finais)         |
+| 45 |     15 |            |          |         | (Fechamento Notas AP2, TF)                  |
+| 46 |     16 |            |          |         | (Recuperação MF)                            |
 
 #+begin_src R :results value table :session :exports output :colnames yes
 cronograma %>%
