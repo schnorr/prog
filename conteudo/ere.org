@@ -28,7 +28,8 @@ Prof. Lucas M. Schnorr \hfill \to aulas téoricas
 
 #+latex: \vfill
 
-Prof. por definir em 01/08/2021 \hfill \to práticas
+Prof. Pedro Henrique Narloch \hfill \to práticas
++ pedro.narloch@inf.ufrgs.br
      
 * Motivação \to Adquirir *Pensamento Computacional*
 
