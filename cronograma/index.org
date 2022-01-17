@@ -192,7 +192,7 @@ suppressMessages(library(lubridate));
 suppressMessages(library(tidyverse));
 suppressMessages(library(xtable));
 
-dataDaRecuperação <- ymd("2020-12-04");
+dataDaRecuperação <- ymd("2022-05-30");
 #+end_src
 
 #+RESULTS: def_recup
@@ -207,7 +207,7 @@ suppressMessages(library(lubridate));
 suppressMessages(library(tidyverse));
 suppressMessages(library(xtable));
 
-dates <- tibble(Dia=seq(ymd("2021-08-02"), ymd("2021-12-04"), by="days")) %>%
+dates <- tibble(Dia=seq(ymd("2022-01-17"), ymd("2022-05-18"), by="days")) %>%
     # Define o dia da semana
     mutate(DiaDaSemana = wday(Dia)) %>%
     # Remove dias onde não haverá aula
@@ -219,7 +219,7 @@ dias_disponiveis %>%
 
 dias_disponiveis %>%
     # Aulas práticas em quais dias da semana (sexta = 6, ...)
-    filter(DiaDaSemana %in% c(6)) -> dates.praticas;
+    filter(DiaDaSemana %in% c(5)) -> dates.praticas;
 #+end_src
 
 #+RESULTS: def_dates
@@ -274,6 +274,10 @@ Sys.setlocale("LC_TIME","en_US.utf8") -> ignore;
 #+end_src
 
 #+RESULTS: def_cronograma
+: 
+: Warning message:
+: In Sys.setlocale("LC_TIME", "pt_BR.utf8") :
+:   OS reports request to set locale to "pt_BR.utf8" cannot be honored
 
 *** Exporta cronograma em TEX
 **** New
@@ -337,19 +341,19 @@ cronograma %>%
 #+RESULTS: def_cronograma_tex
 #+begin_example
 
-# A tibble: 45 x 8
-   Semana Setor  Descrição           Dia        DiaDaSemana Encontro     N     O
-    <dbl> <chr>  <chr>               <date>     <chr>       <chr>    <int> <int>
- 1     31 Teóri… Apresentação da di… 2021-08-02 segunda     2021-08…     1     1
- 2     31 Teóri… Introdução Geral    2021-08-04 quarta      2021-08…     2     2
- 3     31 Práti… Introdução ao sist… 2021-08-06 sexta       2021-08…     3     1
- 4     32 Teóri… Estrutura de um Pr… 2021-08-09 segunda     2021-08…     4     3
- 5     32 Teóri… Tipos de variáveis… 2021-08-11 quarta      2021-08…     5     4
- 6     32 Práti… Programa sequencial 2021-08-13 sexta       2021-08…     6     2
- 7     33 Teóri… Comandos if e expr… 2021-08-16 segunda     2021-08…     7     5
- 8     33 Teóri… Comandos if-else a… 2021-08-18 quarta      2021-08…     8     6
- 9     33 Práti… Comandos if e if-e… 2021-08-20 sexta       2021-08…     9     3
-10     34 Teóri… Estrutura de seleç… 2021-08-23 segunda     2021-08…    10     7
+# A tibble: 45 × 8
+   Semana Setor   Descrição          Dia        DiaDaSemana Encontro     N     O
+    <dbl> <chr>   <chr>              <date>     <chr>       <chr>    <int> <int>
+ 1      3 Teórica Apresentação da d… 2022-01-17 Monday      2022-01…     1     1
+ 2      3 Teórica Introdução Geral   2022-01-19 Wednesday   2022-01…     2     2
+ 3      3 Prática Introdução ao sis… 2022-01-20 Thursday    2022-01…     3     1
+ 4      3 Teórica Estrutura de um P… 2022-01-24 Monday      2022-01…     4     3
+ 5      4 Teórica Tipos de variávei… 2022-01-26 Wednesday   2022-01…     5     4
+ 6      4 Prática Programa sequenci… 2022-01-27 Thursday    2022-01…     6     2
+ 7      4 Teórica Comandos if e exp… 2022-01-31 Monday      2022-01…     7     5
+ 8      5 Teórica Comandos if-else … 2022-02-02 Wednesday   2022-02…     8     6
+ 9      5 Prática Comandos if e if-… 2022-02-03 Thursday    2022-02…     9     3
+10      5 Teórica Estrutura de sele… 2022-02-07 Monday      2022-02…    10     7
 # … with 35 more rows
 #+end_example
 
@@ -360,8 +364,8 @@ cronograma %>%
 #+begin_src R :results output :session :exports both
 cronograma.modelo.filename = "data/be/43e1ff-0a91-4c3f-9e17-1fa62e6795ce/layout-cronograma.tex"
 cronograma.modelo = readChar(cronograma.modelo.filename, file.info(cronograma.modelo.filename)$size);
-turma = "I/J";
-semestre = "ERE 2021/1";
+turma = "C/D";
+semestre = "ERE 2021/2";
 cronograma.modelo <- gsub("TURMA", turma, cronograma.modelo);
 cronograma.modelo <- gsub("SEMESTRE", semestre, cronograma.modelo);
 cronograma.modelo <- gsub("TABELA", gsub("\\\\", "\\\\\\\\", cronograma.tex), cronograma.modelo);
@@ -372,7 +376,8 @@ system2("rubber", " --pdf cronograma.tex")
 
 #+RESULTS: modelo_cronograma
 : 
-: compiling cronograma.tex...
+: compiling cronograma.tex
+: executing: pdflatex \nonstopmode \input{cronograma.tex}
 
 * Cronograma
 
