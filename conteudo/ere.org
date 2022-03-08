@@ -21,15 +21,20 @@
 
 * Os professores
 
-Prof. Lucas M. Schnorr \hfill \to aulas téoricas
+Prof. Lucas M. Schnorr \hfill \to aulas téoricas assíncronas
 + Prédio 43425, Sala 202
 + [[http://www.inf.ufrgs.br/~schnorr][http://www.inf.ufrgs.br/~schnorr]]
 + schnorr@inf.ufrgs.br
 
+#+latex: \bigskip\pause
+
+Prof. Marcello da Rocha Macarthy \hfill \to aulas práticas *presenciais*
++ marcello.macarthy@inf.ufrgs.br
+
 #+latex: \vfill
 
-Prof. Pedro Henrique Narloch \hfill \to práticas
-+ pedro.narloch@inf.ufrgs.br
+Turmas C/D
+- Práticas *presenciais* nas quintas 13:30 (C) e 15:30 (D)
      
 * Motivação \to Adquirir *Pensamento Computacional*
 
@@ -230,9 +235,14 @@ Vamos revisá-lo juntos.
 
 #+latex: \vspace{2cm}
 
-Encontros síncronos (AP):
-- Turma I \to Sex 13:30
-- Turma J \to Sex 15:30
+Encontros presenciais (AP):
+- Turma C \to Qui 13:30
+- Turma D \to Qui 15:30
+
+#+latex: \bigskip
+
+_Atenção_: Portaria 207 de 11/01/2022, o retorno ao presencial será no 07/02.
+
 
 ** Esquerda
 :PROPERTIES:
@@ -240,7 +250,7 @@ Encontros síncronos (AP):
 :END:
 
 #+latex: \vspace{-2cm}
-#+attr_latex: :width 1.1\textwidth
+#+attr_latex: :width 1.05\textwidth
 [[../cronograma/cronograma.pdf]]
 
 
