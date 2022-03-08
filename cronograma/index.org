@@ -124,9 +124,6 @@ A mescla entre aulas teóricas e práticas é feita automaticamente.
 | Teórica | Arquivo Texto II (conversão/tokens)        |
 | Teórica | Recursividade                              |
 | Teórica | Depuração de programas                     |
-| Teórica | (Apresentação dos trabalhos finais)        |
-| Teórica | (Fechamento Notas AP2, TF)                 |
-| Teórica | (Recuperação MF)                           |
 
 *** Práticas
 
@@ -166,7 +163,7 @@ daysOff <- c(
 #ymd("2020-04-11"), # Não letivo
 #ymd("2020-04-15"), # (ERAD/RS)
 #ymd("2020-04-16"), # (ERAD/RS)
-#ymd("2020-04-21"), # Tiradentes
+ymd("2022-04-21") # Tiradentes
 #ymd("2020-05-01"), # Trabalho
                     # Sexta (aula prática será por EAD)
 #ymd("2020-05-16"), # Portas Abert
@@ -274,10 +271,6 @@ Sys.setlocale("LC_TIME","en_US.utf8") -> ignore;
 #+end_src
 
 #+RESULTS: def_cronograma
-: 
-: Warning message:
-: In Sys.setlocale("LC_TIME", "pt_BR.utf8") :
-:   OS reports request to set locale to "pt_BR.utf8" cannot be honored
 
 *** Exporta cronograma em TEX
 **** New
@@ -287,11 +280,11 @@ Sys.setlocale("LC_TIME","en_US.utf8") -> ignore;
 #+begin_src R :results output :session :exports both
 options(crayon.enabled=FALSE)
 cronograma %>%
-    mutate(Semana = lag(week(Dia))) %>%
-    mutate(Semana = ifelse(is.na(Semana), min(week(Dia)), Semana)) %>%
+    mutate(Semana = week(Dia)) %>%
+    mutate(Semana = ifelse(is.na(Semana), min(week(Dia)), Semana)-2) %>%
     select(Semana, everything()) %>%
     print %>%
-    mutate(Semana = as.integer(Semana - min(Semana)+1)) %>%
+    mutate(Semana = as.integer(Semana)) %>%
     mutate(DiaDaSemana = ifelse(DiaDaSemana == "Friday", "Sexta", "")) %>%
     mutate(Síncrono = ifelse(Setor == "Prática", "Sim", "")) %>%
     mutate(Encontro = ifelse(Síncrono == "Sim", Encontro, "")) %>%
@@ -341,20 +334,20 @@ cronograma %>%
 #+RESULTS: def_cronograma_tex
 #+begin_example
 
-# A tibble: 45 × 8
+# A tibble: 42 × 8
    Semana Setor   Descrição          Dia        DiaDaSemana Encontro     N     O
     <dbl> <chr>   <chr>              <date>     <chr>       <chr>    <int> <int>
- 1      3 Teórica Apresentação da d… 2022-01-17 Monday      2022-01…     1     1
- 2      3 Teórica Introdução Geral   2022-01-19 Wednesday   2022-01…     2     2
- 3      3 Prática Introdução ao sis… 2022-01-20 Thursday    2022-01…     3     1
- 4      3 Teórica Estrutura de um P… 2022-01-24 Monday      2022-01…     4     3
- 5      4 Teórica Tipos de variávei… 2022-01-26 Wednesday   2022-01…     5     4
- 6      4 Prática Programa sequenci… 2022-01-27 Thursday    2022-01…     6     2
- 7      4 Teórica Comandos if e exp… 2022-01-31 Monday      2022-01…     7     5
- 8      5 Teórica Comandos if-else … 2022-02-02 Wednesday   2022-02…     8     6
- 9      5 Prática Comandos if e if-… 2022-02-03 Thursday    2022-02…     9     3
-10      5 Teórica Estrutura de sele… 2022-02-07 Monday      2022-02…    10     7
-# … with 35 more rows
+ 1      1 Teórica Apresentação da d… 2022-01-17 segunda     2022-01…     1     1
+ 2      1 Teórica Introdução Geral   2022-01-19 quarta      2022-01…     2     2
+ 3      1 Prática Introdução ao sis… 2022-01-20 quinta      2022-01…     3     1
+ 4      2 Teórica Estrutura de um P… 2022-01-24 segunda     2022-01…     4     3
+ 5      2 Teórica Tipos de variávei… 2022-01-26 quarta      2022-01…     5     4
+ 6      2 Prática Programa sequenci… 2022-01-27 quinta      2022-01…     6     2
+ 7      3 Teórica Comandos if e exp… 2022-01-31 segunda     2022-01…     7     5
+ 8      3 Teórica Comandos if-else … 2022-02-02 quarta      2022-02…     8     6
+ 9      3 Prática Comandos if e if-… 2022-02-03 quinta      2022-02…     9     3
+10      4 Teórica Estrutura de sele… 2022-02-07 segunda     2022-02…    10     7
+# … with 32 more rows
 #+end_example
 
 ** Cronograma (em PDF)
@@ -394,50 +387,46 @@ cronograma.output %>%
 |----+--------+------------+----------+---------+---------------------------------------------|
 |  1 |      1 |            |          |         | Apresentação da disciplina                  |
 |  2 |      1 |            |          |         | Introdução Geral                            |
-|  3 |      1 | 2021-08-06 | Sim      | P1      | Introdução ao sistema AVA e ao compilador C |
+|  3 |      1 | 2022-01-20 | Sim      | P1      | Introdução ao sistema AVA e ao compilador C |
 |  4 |      2 |            |          |         | Estrutura de um Programa em C               |
 |  5 |      2 |            |          |         | Tipos de variáveis, expressões aritméticas  |
-|  6 |      2 | 2021-08-13 | Sim      | P2      | Programa sequencial                         |
+|  6 |      2 | 2022-01-27 | Sim      | P2      | Programa sequencial                         |
 |  7 |      3 |            |          |         | Comandos if e expressões lógicas            |
 |  8 |      3 |            |          |         | Comandos if-else aninhados                  |
-|  9 |      3 | 2021-08-20 | Sim      | P3      | Comandos if e if-else                       |
+|  9 |      3 | 2022-02-03 | Sim      | P3      | Comandos if e if-else                       |
 | 10 |      4 |            |          |         | Estrutura de seleção múltipla switch-case   |
 | 11 |      4 |            |          |         | Comando iterativo for                       |
-| 12 |      4 | 2021-08-27 | Sim      | P4      | Comandos switch e for                       |
+| 12 |      4 | 2022-02-10 | Sim      | P4      | Comandos switch e for                       |
 | 13 |      5 |            |          |         | Comando iterativo for (bis)                 |
 | 14 |      5 |            |          |         | Comando iterativo while                     |
-| 15 |      5 | 2021-09-03 | Sim      | P5      | Comandos for e while                        |
+| 15 |      5 | 2022-02-17 | Sim      | P5      | Comandos for e while                        |
 | 16 |      6 |            |          |         | Arranjos unidimensionais (vetores)          |
 | 17 |      6 |            |          |         | Strings                                     |
-| 18 |      6 | 2021-09-10 | Sim      | P6      | Vetor e Strings                             |
+| 18 |      6 | 2022-02-24 | Sim      | P6      | Vetor e Strings                             |
 | 19 |      7 |            |          |         | Arranjos multidimensionais (matrizes)       |
 | 20 |      7 |            |          |         | Estudos de Caso com Matrizes                |
-| 21 |      7 | 2021-09-17 | Sim      | P7      | Busca e classificação com matrizes          |
-| 22 |      8 |            |          |         | (Fechamento Notas AP1, Anúncio do TF)       |
+| 21 |      7 | 2022-03-03 | Sim      | P7      | Busca e classificação com matrizes          |
+| 22 |      8 |            |          |         | (Fechamento Notas AP1)                      |
 | 23 |      8 |            |          |         | (Recuperação AP1)                           |
-| 24 |      8 | 2021-09-24 | Sim      | P8      | (Aula prática para recuperação)             |
+| 24 |      8 | 2022-03-10 | Sim      | P8      | (Anúncio do TF)                             |
 | 25 |      9 |            |          |         | Subprogramas e Funções                      |
 | 26 |      9 |            |          |         | Funções e seus Parâmetros                   |
-| 27 |      9 | 2021-10-01 | Sim      | P9      | Funções                                     |
+| 27 |      9 | 2022-03-17 | Sim      | P9      | Funções                                     |
 | 28 |     10 |            |          |         | Referências e Ponteiros                     |
-| 29 |     10 |            |          |         | Ponteiros, Passagem de Matrizes             |
-| 30 |     10 | 2021-10-08 | Sim      | P10     | Referências e Ponteiros                     |
-| 31 |     11 |            |          |         | Ordenamento Bolha                           |
-| 32 |     11 |            |          |         | Estruturas I                                |
-| 33 |     11 | 2021-10-15 | Sim      | P11     | Estruturas                                  |
-| 34 |     12 |            |          |         | Estruturas II                               |
-| 35 |     12 |            |          |         | Arquivo Binário I (acesso sequencial)       |
-| 36 |     12 | 2021-10-22 | Sim      | P12     | Arquivos binários                           |
-| 37 |     13 |            |          |         | Arquivo Binário II (acesso aleatório)       |
-| 38 |     13 |            |          |         | Arquivo Texto I (visão geral)               |
-| 39 |     13 | 2021-10-29 | Sim      | P13     | Arquivos texto                              |
-| 40 |     14 |            |          |         | Arquivo Texto II (conversão/tokens)         |
-| 41 |     14 |            |          |         | Recursividade                               |
-| 42 |     14 | 2021-11-05 | Sim      | P14     | Recursividade                               |
-| 43 |     15 |            |          |         | Depuração de programas                      |
-| 44 |     15 |            |          |         | (Apresentação dos trabalhos finais)         |
-| 45 |     15 |            |          |         | (Fechamento Notas AP2, TF)                  |
-| 46 |     16 |            |          |         | (Recuperação MF)                            |
+| 29 |     10 |            |          |         | Passagem de Matrizes, Ordenamento Bolha     |
+| 30 |     10 | 2022-03-24 | Sim      | P10     | Referências e Ponteiros                     |
+| 31 |     11 |            |          |         | Estruturas I                                |
+| 32 |     11 |            |          |         | Estruturas II                               |
+| 33 |     11 | 2022-03-31 | Sim      | P11     | Estruturas                                  |
+| 34 |     12 |            |          |         | Arquivo Binário I (acesso sequencial)       |
+| 35 |     12 |            |          |         | Arquivo Binário II (acesso aleatório)       |
+| 36 |     12 | 2022-04-07 | Sim      | P12     | Arquivos binários                           |
+| 37 |     13 |            |          |         | Arquivo Texto I (visão geral)               |
+| 38 |     13 |            |          |         | Arquivo Texto II (conversão/tokens)         |
+| 39 |     13 | 2022-04-14 | Sim      | P13     | Arquivos texto                              |
+| 40 |     14 |            |          |         | Recursividade                               |
+| 41 |     14 |            |          |         | Depuração de programas                      |
+| 42 |     15 | 2022-04-28 | Sim      | P14     | Recursividade                               |
 
 #+begin_src R :results value table :session :exports output :colnames yes
 cronograma %>%
@@ -448,5 +437,4 @@ cronograma %>%
 #+RESULTS:
 |        Dia | Descrição         |
 |------------+-------------------|
-| 2020-10-07 | (Recuperação AP1) |
-| 2020-11-30 | (Recuperação MF)  |
+| 2022-03-09 | (Recuperação AP1) |
