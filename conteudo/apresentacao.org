@@ -70,6 +70,10 @@ Consulte no Portal do Aluno da UFRGS, ou uma cópia em
 https://moodle.ufrgs.br/course/view.php?id=102337
 #+END_CENTER
 
+#+latex: \vfill
+
+Vamos revisar os pontos juntos!
+
 * Bibliografia (Geral)
 
 #+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula01_completa_slide_13.pdf}{Prof. Edison Pignaton de Freitas}
@@ -120,7 +124,7 @@ recuperação e a nota final da disciplina for maior ou igual a 6,0, o
 aluno será aprovado com C.
 
 #+BEGIN_CENTER
-(Media Final + Prova Recuperacao) / 2 >= 6,0 \to Conceito C
+(Media Final \times 0.4 + Prova Recuperação \times 0.6) >= 6,0 \to Conceito C
 #+END_CENTER
 
 A apresentação do Trabalho Final, mesmo que não execute perfeitamente,
