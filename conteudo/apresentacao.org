@@ -22,16 +22,12 @@
 * Os professores
 
 Prof. Lucas M. Schnorr \hfill \to aulas téoricas
-+ Prédio 43425, Sala 202
-+ [[http://www.inf.ufrgs.br/~schnorr][http://www.inf.ufrgs.br/~schnorr]]
 + schnorr@inf.ufrgs.br
 
 #+latex: \vfill
 
-Prof. Renan Maffei \hfill \to práticas
-+ Prédio 43424, Sala 224
-+ [[http://www.inf.ufrgs.br/~rqmaffei][http://www.inf.ufrgs.br/~rqmaffei]]
-+ rqmaffei@inf.ufrgs.br
+Prof. Gabriel Luca Nazar \hfill \to práticas
++ glnazar@inf.ufrgs.br
      
 * Motivação
 
@@ -71,7 +67,7 @@ Perguntar sempre em caso de dúvida
 #+BEGIN_CENTER
 Consulte no Portal do Aluno da UFRGS, ou uma cópia em
 
-https://gitlab.com/schnorr/prog/tree/master/plano
+https://moodle.ufrgs.br/course/view.php?id=102337
 #+END_CENTER
 
 * Bibliografia (Geral)
@@ -137,33 +133,48 @@ A apresentação do Trabalho Final, mesmo que não execute perfeitamente,
 * Ferramenta EAD
 
 #+BEGIN_CENTER
-Aulas Teóricas:
+Aulas Teóricas e Práticas:
 
-https://gitlab.com/schnorr/prog/
+https://moodle.ufrgs.br/course/view.php?id=102337
 #+END_CENTER
 
-#+BEGIN_CENTER
-Aulas Práticas:
-
-https://moodle.inf.ufrgs.br/course/view.php?id=338
-
-Senha para auto-inscrição: ~ALG_PROG_2019_2CD~
-#+END_CENTER
+#+latex: \vfill
 
 Em dúvidas
+- Seja ator do teu aprendizado
 - Discuta com os colegas
 - Converse com o monitor
-- [[https://gitlab.com/schnorr/prog/issues][Abra uma Issue no GitLab]]
 - Converse com os professores
+
 * Cronograma
+** Texto
+:PROPERTIES:
+:BEAMER_col: 0.2
+:END:
 
-#+BEGIN_CENTER
-Sempre atualizado em
+_Cronograma_
 
-https://gitlab.com/schnorr/prog/tree/master/cronograma
+#+latex: \bigskip
 
-note que há uma versão em PDF
-#+END_CENTER
+Verifique Moodle
+
+#+latex: \bigskip
+
+Vamos revisá-lo juntos.
+
+#+latex: \bigskip
+
+Não haverá aula entre os dias 16/07 e 31/07.
+
+** Esquerda
+:PROPERTIES:
+:BEAMER_col: 0.8
+:END:
+
+#+latex: \vspace{-1.5cm}
+#+attr_latex: :width .85\textwidth
+[[/home/schnorr/svn/navajo/2022/cronograma/algprog/Cronograma_2022-1.pdf]]
+
 
 
 
