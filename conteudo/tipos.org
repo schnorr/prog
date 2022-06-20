@@ -42,7 +42,29 @@
 
 * Tipos de dados
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula03-SequencialExpressoes_slide_10.pdf}{Prof. Mara Abel}
+- Determina, para uma variável
+  - o tamanho de área de memória reservada para o dado
+  - os possíveis valores para o conteúdo
+
+#+latex: \pause\vfill
+
+- Na linguagem C, os tipos primitivos são
+
+  | *Tipo*   |    *Tamanho* | *Valores válidos*                     |
+  |        | (em bytes) |                                     |
+  |--------+------------+-------------------------------------|
+  | ~char~   |          1 | Caracteres em Código ASCII          |
+  | ~int~    |          4 | -2^31 -- 2^31                         |
+  | ~float~  |          4 | -1^S \times M \times 2^E  \approx ± 10^{-38} ... 10^{38}    |
+  |        |            | S: 1 bit para o sinal               |
+  |        |            | M: 23 bits para a mantissa          |
+  |        |            | E: 8 bits para o expoente           |
+  | ~double~ |          8 | -1^S \times M \times 2^E  \approx  ± 10^{-308} ... 10^{308} |
+  |        |            | S: 1 bit para o sinal               |
+  |        |            | M: 52 bits para a mantissa          |
+  |        |            | E: 11 bits para o expoente          |
+
+#+latex: \pause
 
 #+BEGIN_CENTER
 Melhor jeito de se saber o tamanho é com o comando =sizeof=
@@ -66,9 +88,9 @@ int main ()
 
 A implementação destes tipos:
 - inteiros, do menor ao maior valor inteiro que cabe no tamanho
-- ponto-flutuante (=float=, =double=), veja a norma IEEE 754, em pt-br \\
-  https://pt.wikipedia.org/wiki/IEEE_754
-- Tabela ASCII para o tipo =char=
+- ponto-flutuante (=float=, =double=), veja a norma IEEE 754, em inglês \\
+  https://en.wikipedia.org/wiki/IEEE_754
+- Vejamos a tabela ASCII para o tipo =char=
 
 * Tabela ASCII
 
@@ -78,11 +100,26 @@ A implementação destes tipos:
 [[./img/extend.jpg]]
 * Presença do tipo na declaração de variáveis
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula03-SequencialExpressoes_slide_14.pdf}{Prof. Mara Abel}
+É obrigatório declarar todas as variáveis utilizadas
+- O compilador precisa saber da existência delas
+  - Reservar espaço na memória, etc
 
-* Inicialização de variáveis na declaração
+Sintaxe:
+- ~<tipo> <nome_da_variável>;~
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula03-SequencialExpressoes_slide_20.pdf}{Prof. Mara Abel}
+#+latex: \pause
+
+Nomes das variáveis
+- Primeiro caractere: letra, sublinhado
+- Demais caracteres: letra, sublinhado, dígitos
+
+#+latex: \pause\vfill
+
+Podemos associar um valor à variável na sua declaração.
+- *Inicialização de uma variável*
+
+Sintaxe:
+- ~<tipo> <nome_da_variável> = <valor>;~
 
 * Vejamos um exemplo
 
