@@ -233,13 +233,24 @@ gcc exemplo-com-biblioteca-math.c -o exemplo-com-biblioteca-math -lm
 ./exemplo-com-biblioteca-math
 #+end_src
 
-* Outras saídas possíveis do exemplo
-
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula03_slide_26.pdf}{Prof. Edison Pignaton de Freitas}
-
 * Precedência e associatividade de operadores em C
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula03/aula03_slide_25.pdf}{Prof. Marcelo Walter}
+#+latex: %\cortesia{../../../Algoritmos/Marcelo/aulas/aula03/aula03_slide_25.pdf}{Prof. Marcelo Walter}
+
+| Ordem | Operador |
+|-------+----------|
+|     1 | Funções  |
+|     2 | ~*~ ~/~ ~%~    |
+|     3 | ~+~ ~-~      |
+
+Google: ``precedence order in c''
+Wikipedia: https://en.wikipedia.org/wiki/Operators_in_C_and_C%2B%2B#Operator_precedence
+
+Podemos usar parênteses para modificar a precedência:
+#+begin_src C :exports code
+val_final = val1 * val2 + 5;
+val_final = val1 * (val2 + 5);
+#+end_src
 
 #+BEGIN_CENTER
 Qual é a associatividade de operadores?
@@ -274,7 +285,7 @@ Qual é o resultado?
 
 #+latex: \pause
 
-#+begin_src shell :results output :dir e
+#+begin_src shell :exports both :dir e
 gcc exemplo-tipos-expressoes-aritmeticas.c -o exemplo-tipos-expressoes-aritmeticas
 ./exemplo-tipos-expressoes-aritmeticas
 #+end_src
@@ -282,9 +293,13 @@ gcc exemplo-tipos-expressoes-aritmeticas.c -o exemplo-tipos-expressoes-aritmetic
 #+RESULTS:
 : Resultado: [1.000000]
 
-* Constatação: resultados parciais são do tipo inteiro
+#+latex: \pause\vfill
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula03/aula03_slide_26.pdf}{Prof. Marcelo Walter}
+#+begin_center
+Constatação: resultados parciais são do tipo inteiro
+#+end_center
+
+#+latex: %\cortesia{../../../Algoritmos/Marcelo/aulas/aula03/aula03_slide_26.pdf}{Prof. Marcelo Walter}
 
 * Modeladores (/casts/) para explicitamente trocar o tipo
 
@@ -322,7 +337,18 @@ gcc exemplo-tipos-expressoes-aritmeticas-cast.c -o exemplo-tipos-expressoes-arit
 
 * Operadores de Atribuição (atalhos)
 
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula03-algoritmo_e_estrutura_C_slide_10.pdf}{Prof. Claudio Jung}
+#+latex: %\cortesia{../../../Algoritmos/Claudio/Teorica/Aula03-algoritmo_e_estrutura_C_slide_10.pdf}{Prof. Claudio Jung}
+
+| *Operador* | *Exemplo* | *Comentário*               |
+|----------+---------+--------------------------|
+| ~=~        | ~x = y;~  | Atribui o valor de y a x |
+| ~++~       | ~x++;~    | x = x + 1                |
+| ~--~       | ~x--;~    | x = x - 1                |
+| ~+=~       | ~x += y;~ | x = x + y                |
+| ~-=~       | ~x -= y;~ | x = x - y                |
+| ~*=~       | ~x *= y;~ | x = x * y                |
+| ~/=~       | ~x /= y;~ | x = x / y                |
+| ~%=~       | ~x %= y;~ | x = x % y                |
 
 * Exercício
 
