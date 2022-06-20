@@ -8,7 +8,7 @@
 
 #+Title: Algoritmos
 #+Subtitle: *INF01202*
-#+Author: Prof. Lucas Mello Schnorr \linebreak Prof. Renan Maffei
+#+Author: Prof. Lucas Mello Schnorr
 #+Date: \copyleft
 
 #+LaTeX_CLASS: beamer
