@@ -8,13 +8,13 @@ int main ( )
   scanf ("%d", &cod);
   if (cod == 1)
     printf ("\nMensagem 1\n");
-  else if (cod == 2)
+  if (cod == 2)
     printf ("\nMensagem 2\n");
-  else if (cod == 3)
+  if (cod == 3)
     printf ("\nMensagem 3\n");
-  else if (cod == 4)
+  if (cod == 4)
     printf ("\nMensagem 4\n");
-  else
+  if (cod < 1 || cod > 4)
     printf ("\nMensagem de erro\n");
   return 0;
 }

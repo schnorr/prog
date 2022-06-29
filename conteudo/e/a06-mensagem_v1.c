@@ -14,7 +14,7 @@ int main ( )
     printf ("\nMensagem 3\n");
   else if (cod == 4)
     printf ("\nMensagem 4\n");
-  else
+  else if (cod < 1 || cod > 4)
     printf ("\nMensagem de erro\n");
   return 0;
 }
