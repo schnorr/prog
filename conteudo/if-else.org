@@ -217,10 +217,10 @@ Conclusão
 
 * Relembrando o problema dos quadrantes
 
-Veja em [[./exemplo-coordenadas.c]]
+Veja em [[./a05-exemplo-coordenadas.c]]
 
 #+attr_latex: :options fontsize=\tiny
-#+BEGIN_SRC C :tangle e/exemplo-coordenadas.c
+#+BEGIN_SRC C :tangle e/a05-exemplo-coordenadas.c
 /* Obtem coordenadas e informa localização */
 #include <stdio.h>
 int main() {
