@@ -17,4 +17,5 @@ int main () {
   media_idades = (float) soma_idades/5;
   printf("A media das 5 idades lidas eh %.2f.\n", media_idades);
   printf("Existem %d pessoas menores de 18 anos.\n", conta_menos_de_18);
+  return 0;
 }
