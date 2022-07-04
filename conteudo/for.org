@@ -42,61 +42,235 @@ Laços iterativos (/loops/)
 - O comando =for=
 - Estudos de caso
 
-* Motivação com enunciado (1 aluno)
+* Motivação #1
 
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula07-for_slide_06.pdf}{Prof. Claudio Jung}
+#+begin_center
+Faça um programa que leia a média de um aluno e, baseado no valor
+obtido, informe se o aluno está aprovado ou reprovado.  Considerar
+como aprovado o aluno que obtiver média >= 6.0.
+#+end_center
 
-* Possível solução
+#+latex: \pause\vfill
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula07-For2017_slide_05.pdf}{Prof. Mara Abel}
+Uma possível solução
+#+begin_src text
+Algoritmo UmConceito
+{ Informa se um aluno foi ou não aprovado }
+entrada: média
+saída: "Aprovado" ou "Reprovado"
+1. Ler Média
+2. Se Média >= 6.0
+     escrever "Aprovado"
+   Senão
+     escrever "Reprovado"
+3. Terminar
+#+end_src
 
-* Motivação com enunciado (turma de 5 alunos)
+* Motivação #2
 
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula07-for_slide_09.pdf}{Prof. Claudio Jung}
+#+begin_center
+Como o anterior, mas assuma uma turma de 3 alunos.
+#+end_center
 
-* Possível solução
-
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula07-For2017_slide_06.pdf}{Prof. Mara Abel}
+#+latex: \pause\vfill
+Uma possível solução
+#+latex: {\scriptsize
+#+begin_src text
+Algoritmo AprovadoReprovado
+{ Informa se alunos foram ou não aprovados }
+entrada: n1, n2, n3, med1, med2, med3
+saída: para cada aluno, "Aprovado" ou "Reprovado"
+1. Ler todas as variáveis de entrada
+2. Se med1 >= 6.0
+     escrever n1, "Aprovado"
+   Senão
+     escrever n1, "Reprovado"
+3. Se med2 >= 6.0
+     escrever n2, "Aprovado"
+   Senão
+     escrever n2, "Reprovado"
+4. Se med3 >= 6.0
+     escrever n3, "Aprovado"
+   Senão
+     escrever n3, "Reprovado"
+5. Terminar
+#+end_src
+#+latex: }
 
 * Uma versão melhorada com menos variáveis
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula07_slide_25.pdf}{Prof. Edison Pignaton de Freitas}
+#+begin_src text
+Algoritmo AprovadoReprovado
+{ Informa se alunos foram ou não aprovados }
+entrada: numero, media
+saída: para cada aluno, "Aprovado" ou "Reprovado"
+1. Ler numero, media
+2. Se media >= 6.0
+     escrever numero, "Aprovado"
+   Senão
+     escrever numero, "Reprovado"
+3. Ler numero, media
+4. Se media >= 6.0
+     escrever numero, "Aprovado"
+   Senão
+     escrever numero, "Reprovado"
+5. Ler numero, media
+6. Se media >= 6.0
+     escrever numero, "Aprovado"
+   Senão
+     escrever numero, "Reprovado"
+7. Terminar
+#+end_src
+
+#+begin_center
+O que podemos observar neste algoritmo?
+
+*Repetição de passos idênticos*
+
+(queremos repetir alguns passos várias vezes)
+#+end_center
 
 * Uma versão ainda melhor, com menos código!
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula07-For2017_slide_08.pdf}{Prof. Mara Abel}
+#+begin_src text
+Algoritmo AprovadoReprovado
+{ Informa se alunos foram ou não aprovados }
+entrada: quantidade_de_alunos, numero, media
+saída: para cada aluno, "Aprovado" ou "Reprovado"
+1. Ler quantidade_de_alunos
+2. Repetir quantidade_de_alunos vezes
+   2.1 Ler numero, media
+   2.2 Se media >= 6.0
+          escrever numero, "Aprovado"
+       Senão
+          escrever numero, "Reprovado"
+3. Terminar
+#+end_src
 
-* Repetir, repetir, repetir, ... (/aka/ laços de repetição)
+#+begin_center
+Temos aí um ``mecanismo de repetição'' _estruturado_
+#+end_center
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula07_slide_27.pdf}{Prof. Edison Pignaton de Freitas}
+* Laços estruturados de repetição
 
-* Plano da semana
+Objetivo
+- Repetir um comando (ou um bloco de) um número finito de vezes
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula07-For2017_slide_09.pdf}{Prof. Mara Abel}
+#+latex: \pause\vfill
+
+Controle da repetição
+- Contagem
+  - Repetir uma determinada quantidade de vezes
+- Teste com expressão lógica ou relacional
+  - Repetir _enquanto_ uma condição não for atingida
+  - Repetir _até_ uma condição ser atingida
+
+#+latex: \pause\vfill
+
+Comandos iterativos
+- *para* / *for*
+- *enquanto* / *while*
+- *faça... enquanto* / *do-while*
 
 * O comando =for=
 
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula07-for_slide_15.pdf}{Prof. Claudio Jung}
+Na linguagem C
+#+begin_src C
+for (/*lista de comandos*/; /*expressão lógica*/; /*lista de comandos*/) {
+   // bloco de comandos
+}
+#+end_src
+Exemplo
+#+begin_src C
+int i;
+for (i = 0; i < 5; i++){
+  printf("%d\n", i);
+}
+#+end_src
 
-* Detalhamento
+#+latex: \pause\vfill
 
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula07-for_slide_16.pdf}{Prof. Claudio Jung}
+Na linguagem de algoritmos
+#+begin_src text
+1. para(inicializações; condição; incremento/decrementos)
+   1.1 comando #1
+   1.2 comando #2
+#+end_src
 
-* Sintaxe
+#+begin_center
+Vamos ver como funciona o fluxograma...
+#+end_center
+
+* Detalhamento do comando =for=
+
+#+begin_src C
+for (/*#1*/; /*#2*/; /*#3*/) {
+   // #4
+   // #5
+}
+#+end_src
+
+#1
+- especificação do valor inicial de uma ou mais variáveis de controle
+- executado apenas uma vez, antes da primeira execução do comando
+
+#2
+- expressão lógica de controle do laço
+- verificado se é verdade antes de cada iteração
+
+#3
+- alteração das variáveis de controle do laço \\
+  (incrementos ou decrementos)
+- executado após os comandos do bloco
+
+#4 e #5
+- comandos do bloco, executados sempre
+  - após #2 (se verdadeiro)
+  - antes de #3
+
+* Sintaxe do comando =for=
+
+Um laço for com dois comandos na inicialização e no último termo
+
+#+begin_src C
+#define QUANTAS_VEZES 5
+int i;
+for (i = 0, j = 3; i < QUANTAS_VEZES; i++, j--){
+  printf("%d %d\n", i, j);
+}
+#+end_src
 
 Todas as expressões do comando =for= são opcionais.
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula07_slide_30.pdf}{Prof. Edison Pignaton de Freitas}
-#+latex: %\cortesia{../../../Algoritmos/Claudio/Teorica/Aula07-for_slide_17.pdf}{Prof. Claudio Jung}
+#+latex: \vfill\pause
 
-* Voltando ao alg. do exemplo motivacional -- Exemplo #1
+Variáveis de controle para o comando =for=
+- O tipo é usualmente =int= (ou derivados, =long=, =long long=, =char=)
+- Podem ser lidas no bloco
+- Mas, normalmente, não as alteramos no bloc
+  - Apenas no terceiro termo do =for=
 
-alg. = algoritmo
+* Voltando ao algoritmo motivacional -- Exemplo #1
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula07_slide_32.pdf}{Prof. Edison Pignaton de Freitas}
+#+begin_src text
+Algoritmo AprovadoReprovado
+{ Informa se alunos foram ou não aprovados }
+entrada: quantidade_de_alunos, numero, media
+intermediária: contador
+saída: para cada aluno, "Aprovado" ou "Reprovado"
+1. Ler quantidade_de_alunos
+2. Para (contador = 1; contador <= quantidade_de_alunos; contador = contador + 1)
+   2.1 Ler numero, media
+   2.2 Se media >= 6.0
+          escrever numero, "Aprovado"
+       Senão
+          escrever numero, "Reprovado"
+3. Terminar
+#+end_src
 
 * Exemplo #1: Em C
 
+=a07-for-aprovado-reprovado.c=
 Com comando de incremento
 - Do valor 1 até menor igual que 5
 
@@ -123,6 +297,7 @@ int main() {
 
 * Exemplo #1: Em C (decremento)
 
+=a07-for-aprovado-reprovado-dec.c=
 Com comando de _decremento_
 - Do valor 5 até o maior que 0
 
@@ -165,6 +340,7 @@ Planejamento
 
 * Exemplo #2 (código)
 
+=a07-pares.c=
 Perceba o incremento de 2 em 2.
 
 #+BEGIN_SRC C :tangle e/a07-pares.c
@@ -203,15 +379,14 @@ int main() {
 * Exemplo #3 (enunciado)
 
 #+BEGIN_CENTER
-Faça um programa que imprima a tabela ASCII
+Faça um programa que imprima a tabela ASCII de =A= até =z=,
 
-de =A= até =z=, representando na saída o valor
-
-em caractere e em bases octal, decimal e hexadecimal.
+mostrando o caractere em bases octal, decimal e hexadecimal.
 #+END_CENTER
 
 #+latex:\pause\vfill
 
+=a07-ascii.c=
 #+BEGIN_SRC C :tangle e/a07-ascii.c
 #include <stdio.h>
 int main() {
@@ -228,6 +403,7 @@ Qual o valor da variável ``letra'' antes no comando =return 0;=?
 
 #+latex: \vfill\pause
 
+=a07-ascii-v2.c=
 #+BEGIN_SRC C :tangle e/a07-ascii-v2.c
 #include <stdio.h>
 int main() {
@@ -240,25 +416,26 @@ int main() {
 }
 #+END_SRC
 
-* Variáveis de controle para o comando =for=
-
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula07-for_slide_25.pdf}{Prof. Claudio Jung}
 * Exemplo #4 (enunciado)
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula07_slide_39.pdf}{Prof. Edison Pignaton de Freitas}
+#+begin_center
+Calcular a idade média de um grupo de pessoas
+#+end_center
 
-* Exemplo #4 (estratégia com acumulador)
+#+latex: \pause\vfill
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula07_slide_40.pdf}{Prof. Edison Pignaton de Freitas}
+Estratégia com uma variável de _acumulação_
+- Recebe um valor inicial (tipicamente o valor zero)
+- Acumulamos periodicamente valores nela
 
-* Exemplo #4 (código)
-
+#+latex: \pause\vfill
+=a07-idades.c=
 #+BEGIN_SRC C :tangle e/a07-idades.c
 // Calcula a idade média de 5 pessoas
 # include <stdio.h>
 int main () {
-  int soma_idades, idade, contador;
-  float media_idades;
+  int soma_idades /* o acumulador */, idade, contador;
+  float media_idades; // variável de saída
   soma_idades = 0; // inicializa acumulador em 0
   for (contador = 1; contador <= 5; contador ++) {
     printf("informe idade [%d]: ", contador); // utiliza contador
@@ -274,14 +451,15 @@ int main () {
 
 * Exemplo #5 (enunciado)
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula07_slide_43.pdf}{Prof. Edison Pignaton de Freitas}
-
-* Exemplo #5 (estratégia com contador)
-
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula07_slide_44.pdf}{Prof. Edison Pignaton de Freitas}
-
-* Exemplo #5 (código)
-
+#+begin_center
+Calcular a idade média de um grupo de n pessoas, onde n é conhecido,
+informando quantas pessoas do grupo tem idade inferior a 18 anos
+#+end_center
+#+latex: \vfill\pause
+Estratégia com variável de _contagem_ (inicia com zero, incrementa de um)
+#+latex: \vfill\pause
+=a07-idades-18.c=
+#+latex: {\scriptsize
 #+BEGIN_SRC C :tangle e/a07-idades-18.c
 /* Calcula a idade média de 5 pessoas e conta menores de idade do grupo: */
 # include <stdio.h>
@@ -302,16 +480,27 @@ int main () {
   media_idades = (float) soma_idades/5;
   printf("A media das 5 idades lidas eh %.2f.\n", media_idades);
   printf("Existem %d pessoas menores de 18 anos.\n", conta_menos_de_18);
+  return 0;
 }
-
 #+END_SRC
+#+latex: }
 * Reflexão sobre valores fixos no código
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula07_slide_47.pdf}{Prof. Edison Pignaton de Freitas}
+#+begin_center
+Nos problemas anteriores, o que temos que alterar no
 
-* Uso de =#define= (como já visto na aula sobre tipos)
+programa para a leitura de uma quantidade diferente de
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula07_slide_49.pdf}{Prof. Edison Pignaton de Freitas}
+valores, ao invés de sempre 5?
+#+end_center
+
+Vamos reforçar a importância do uso de contantes
+- Uso do =#define= (como já visto na aula sobre tipos)
+- O nome da constante deve estar integralmente em maiúsculas
+
+#+begin_src C
+#define NUMPESSOAS 5
+#+end_src
 
 * Exemplo #6 (código)
 
@@ -344,21 +533,36 @@ Hora de ver coisas /off-the-record/ com o comando =for=.
 
 * Exercício #1 (Fatorial)
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula07_slide_53.pdf}{Prof. Edison Pignaton de Freitas}
+Utilizando o comando iterativo for, faça um algoritmo / programa em C
+que calcule o fatorial de um número inteiro positivo informado.
+
+#+latex: \pause\vfill
+
+Como calcular o fatorial de um número?
+
+Regra geral
+  - n! = n\times(n-1)! para n > 0
+  - n! = 1 para n == 0
+
+Ou seja
+- Fatorial de n é n\times(n-1)\times(n-2)\times...\times2\times1
 
 * Exercício #2 (Fibonacci)
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula07-For2017_slide_30.pdf}{Prof. Mara Abel}
+Faça um algoritmo e o programa em C correspondente que leia um valor
+inteiro e informe o número equivalente de termos da Série de
+Fibonacci.
 
-* Exercício #2 (Entendendo Fibonacci e Estratégia)
+#+latex: \pause\vfill
 
-#+BEGIN_CENTER
+Entendendo a sequência de fibonacci e a estratégia
+
 Sugestão de video
 
 https://www.youtube.com/watch?v=eVbOxWVC_GY
 
 Usar o comando =for=
-#+END_CENTER
+
 
 
 
