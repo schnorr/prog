@@ -5,9 +5,7 @@ int main(){
   scanf("%d", &pos);
   if (pos < 0) printf("Tsk tsk, a posição informada é negativa\n");
   else {
-
     //o que fazer aqui para resolver nosso objetivo?
-
     if (pos == 0)
       fib = 0;
     else if (pos == 1)
