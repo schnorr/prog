@@ -41,7 +41,6 @@
 Laços iterativos (/loops/)
 - Erros frequentes no comando =for=
 - Comandos =for= aninhados
-  - Mais fatorial e fibonacci
 - Tamanho do tipo =int= em fatorial e fibonacci
 - Mais estudos de caso
   1. Tabuada
@@ -51,18 +50,86 @@ Laços iterativos (/loops/)
 - Miscelânea
 - Exercícios
 
-* Erros frequentes (ponto e vírgula acidental)
+* Erros frequentes #1
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula08/aula08_slide_12.pdf}{Prof. Marcelo Walter}
+#+begin_center
+Qual o problema?
+#+end_center
 
-* Erros frequentes (esquecimento de bloco)
+#+begin_src C
+#include <stdio.h>
+int main () {
+  int i, soma = 0;
+  for (i = 0; i < 100; i++);
+    soma = soma + i;
+  return 0;
+}
+#+end_src
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula08/aula08_slide_13.pdf}{Prof. Marcelo Walter}
+#+latex: \pause
 
-* Erros frequentes (laços infinitos)
+#+begin_center
+Ponto e vírgula acidental
+#+end_center
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula08/aula08_slide_14.pdf}{Prof. Marcelo Walter}
-* Estudo de caso do fatorial (aninhar laços =for=)
+* Erros frequentes #2
+
+#+begin_center
+Qual o problema?
+#+end_center
+
+#+begin_src C
+#include <stdio.h>
+int main () {
+  int i, soma = 0;
+  for (i = 0; i < 100; i++)
+    soma = soma + i;
+    printf("O termo %d vale %d.\n", i, soma);
+  return 0;
+}
+#+end_src
+
+#+latex: \pause
+
+#+begin_center
+Esquecimento de bloco
+#+end_center
+
+* Erros frequentes #3
+
+#+begin_center
+Qual o problema?
+#+end_center
+
+Programa #1
+#+begin_src C
+#include <stdio.h>
+int main () {
+  int i;
+  for (i = 5; i < 10; i--)
+    printf("%d\n", i);
+  return 0;
+}
+#+end_src
+
+Programa #2
+#+begin_src C
+#include <stdio.h>
+int main () {
+  int i, j = 2;
+  for (i = 1; i < j; i++, j++)
+    printf("%d %d\n", i, j);
+  return 0;
+}
+#+end_src
+
+#+latex: \pause
+
+#+begin_center
+Laços infinitos
+#+end_center
+
+* Estudo de caso do fatorial (aninhar laços =for=)                   :noexport:
 
 Ao invés de calcular o fatorial de um número, calcular
 
@@ -74,7 +141,7 @@ Entrada: um número inteiro positivo
 
 Saída: fatorial de todos os números até um número informado na entrada
 
-* Tomando por base o exemplo anterior
+* Tomando por base o exemplo anterior                              :noexport:
 
 Quais alterações são necessárias?
 - Repetir o cálculo para todos os números até o informado
@@ -88,11 +155,9 @@ int main () {
   if (num < 0)
     printf("Tsk tsk, o número informado é negativo.\n");
   else {
-
     //o que fazer aqui para resolver nosso objetivo?
-
     fat = 1; // se for zero, está pronto
-    for (i= num; i >= 1; i--)
+    for (i = num; i >= 1; i--)
       fat = fat * i;
     printf ("Fatorial de %d eh %d.\n", num, fat);
   }
@@ -100,7 +165,7 @@ int main () {
 }
 #+END_SRC
 
-* Uma primeira possível solução
+* Uma primeira possível solução                                    :noexport:
 
 #+BEGIN_SRC C :tangle e/a08-fatorial-solucao-1.c
 #include <stdio.h>
@@ -129,7 +194,7 @@ Para a entrada 10, o programa calcula 10\times9\times8\times7\times6\times5\time
 Mas esta é uma boa solução?
 - Um =for= aninhado em outro, repetição de cálculo
 
-* Uma segunda possível solução
+* Uma segunda possível solução                                     :noexport:
 
 Para a entrada 10, o programa calcula 10\times9\times8\times7\times6\times5\times4\times3\times2\times1.
 - Em cada iteração, imprimir na tela
@@ -156,7 +221,7 @@ int main () {
 }
 #+END_SRC
 
-* Estudo de caso do fibonnaci (aninhar laços =for=)
+* Estudo de caso do fibonnaci (aninhar laços =for=)                  :noexport:
 
 Ao invés de calcular o valor fibonacci de uma posição, calcular
 
@@ -168,7 +233,7 @@ Entrada: um número inteiro positivo
 
 Saída: valor de fibonacci de todas as posições até aquela informada
 
-* Tomando por base o exemplo anterior
+* Tomando por base o exemplo anterior                              :noexport:
 
 Quais alterações são necessárias?
 - Repetir o cálculo para todos as posições até a informada
@@ -181,9 +246,7 @@ int main(){
   scanf("%d", &pos);
   if (pos < 0) printf("Tsk tsk, a posição informada é negativa\n");
   else {
-
     //o que fazer aqui para resolver nosso objetivo?
-
     if (pos == 0)
       fib = 0;
     else if (pos == 1)
@@ -202,7 +265,7 @@ int main(){
   return 0;
 }
 #+END_SRC
-* Uma possível solução
+* Uma possível solução                                             :noexport:
 
 #+BEGIN_SRC C :tangle e/a08-fibonacci-solucao.c
 #include<stdio.h>
@@ -252,21 +315,30 @@ O que acontece se testarmos Fibonacci de 50?
 
 * Comandos =for= aninhados 
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula08/aula08_slide_15.pdf}{Prof. Marcelo Walter}
+#+begin_src C
+for (/*lista de comandos*/; /*expressão lógica*/; /*lista de comandos*/) {
+   // bloco de comandos
+}
+#+end_src
+O ``bloco de comandos'' pode conter comandos =for=
+- Todo o bloco é executado a cada iteração
 
-* Vejamos o exemplo
+#+latex: \pause
 
+Vejamos o exemplo =a08-ka-ele.c=
 #+BEGIN_SRC C :tangle e/a08-ka-ele.c
 #include <stdio.h>
 int main(){
   int ka, ele;
   for (ka = 1; ka <= 2; ka++)
-    for (ele=2; ele<=6;ele= ele + 2)
+    for (ele = 2; ele<=6; ele = ele + 2)
       printf("ka -> %d -- ele -> %d\n", ka, ele);
 }
 #+END_SRC
 
-#+begin_src shell :results output :dir e
+#+latex: {\scriptsize
+
+#+begin_src shell :results output :exports both :dir e
 gcc a08-ka-ele.c; ./a.out
 #+end_src
 
@@ -278,18 +350,38 @@ gcc a08-ka-ele.c; ./a.out
 : ka -> 2 -- ele -> 4
 : ka -> 2 -- ele -> 6
 
-* Funcionamento de =for= aninhado
-
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula08/aula08_slide_16.pdf}{Prof. Marcelo Walter}
+#+latex: }
 
 * Estudo de caso #1 (Tabuada)
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula08/aula08_slide_17.pdf}{Prof. Marcelo Walter}
+#+begin_center
+Faça um programa que gere o resultado da tabuada de todos os números
+de 0 a 10. O resultado deve aparecer como abaixo. Dica: use dois
+comandos for aninhados, um para controlar os multiplicadores e outro
+para controlar os multiplicandos.
+#+end_center
 
-Façamos de 0 a 10.
+#+begin_src text
+Tabuada de 0:
+1 x 0 = 0
+2 x 0 = 0
+...
+
+Tabuada de 1:
+1 x 1 = 1
+2 x 1 = 2
+...
+10 x 1 = 10
+
+Tabuada de 2:
+1 x 2 = 2
+2 x 2 = 4
+...
+#+end_src
 
 * (#1: Tabuada) Uma solução possível
 
+=a08-tabuada.c=
 #+BEGIN_SRC C :tangle e/a08-tabuada.c
 /* gera a tabuada dos números de 0 a 10:
 Entrada: não há
@@ -317,10 +409,32 @@ O que acontece se assim fizermos?
 
 * Estudo de caso #2 (Newton-Raphson)
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula008_slide_08.pdf}{Prof. Edison Pignaton de Freitas}
+*Cálculo aproximado da raiz de 2*
+
+A raiz de 2 pode ser aproximada através do algoritmo de Newton-
+Raphson. Partindo de uma aproximação inicial x0 (um chute), podem ser
+encontradas aproximações sucessivas através da equação de recorrência
+abaixo:
+
+#+latex: \vfill
+
+#+begin_export latex
+$x_n = x_{n-1} - \frac{x^{2}_{n-1} - 2}{2 . x_{n-1}}$
+
+$x_0 = val$
+#+end_export
+
+sendo =val= um chute inicial fornecido pelo usuário.
+
+#+latex: \vfill
+
+Escreva um programa em C que tenha como entrada o número de iterações
+(niter) e a aproximação inicial (x0), e forneça como saída a
+aproximação para a raiz de 2 com esse número de iterações.
 
 * (#2 Newton-Raphson) Uma solução possível
 
+=a08-newton-raphson.c=
 #+BEGIN_SRC C :tangle e/a08-newton-raphson.c
 /* Programa para calcular raiz quadrada de 2 usando Newton-Raphson
 Entrada: numero de iteracoes (inteiro) e “chute” inicial
@@ -330,16 +444,16 @@ Saida: valor aproximado de raiz de 2*/
 int main() {
   int niter; // Entrada: numero de iteracoes
   int i;     // Variável auxiliar para contar as iterações
-  double xinic, x1, x2; // aproximacao inicial e valores usados na iteracao
+  double x0, x1, x2; // aproximacao inicial e valores usados na iteracao
   printf("Entre o numero de iteracoes:\n");
   scanf("%d", &niter);
   printf("Entre a aproximacao inicial de raiz de 2:\n");
-  scanf("%lf", &xinic);
+  scanf("%lf", &x0);
 
-  x1 = xinic;
+  x1 = x0;
   for (i = 0; i < niter; i++) {
     x2 = x1 - (x1*x1-2)/(2*x1);
-    printf("Em iteração %d, valor aproximado é %1.15f\n", i, x2);
+    printf("Na iteração %d, valor aproximado é %1.15f\n", i, x2);
     x1 = x2;
   }
   printf("sqrt(2)         : %1.15f\n"
@@ -350,10 +464,20 @@ int main() {
 
 * Estudo de caso #3 (Maior-Menor)
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula008_slide_11.pdf}{Prof. Edison Pignaton de Freitas}
+#+begin_center
+Faça um programa para ler uma sequencia de 5 inteiros
+
+que apresente ao final o maior e o menor dos valores lidos.
+#+end_center
+
+Idéia de solução: inicializamos uma variável menor com o maior valor
+possível e vice-versa. Na medida que vamos lendo os valores,
+verificamos se o novo valor lido satisfaz ou não o critério de maior
+ou menor e trocamos se for o caso.
 
 * (#3 Maior-Menor) Uma solução possível com 4 números
 
+=a08-maior-menor.c=
 #+BEGIN_SRC C :tangle e/a08-maior-menor.c
 #include <stdio.h>
 #include <limits.h>
@@ -375,7 +499,7 @@ int main (){
 
 #+latex: \tiny\pause
 
-#+begin_src shell :results output :dir e
+#+begin_src shell :results output :exports both :dir e
 gcc a08-maior-menor.c; echo "282 93912187 2 -12292" | ./a.out
 #+end_src
 
@@ -386,9 +510,28 @@ gcc a08-maior-menor.c; echo "282 93912187 2 -12292" | ./a.out
 : Entre com o numero 2: Iteração 2, até agora: 2 (menor), 93912187 (maior)
 : Entre com o numero 3: Iteração 3, até agora: -12292 (menor), 93912187 (maior)
 : O menor numero eh -12292, e o maior eh 93912187
+
 * Estudo de caso #4 (Série de potência)
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula008_slide_13-crop.pdf}{Prof. Edison Pignaton de Freitas}
+Várias funções matemáticas podem ser escritas através de
+séries de potências. Por exemplo, para qualquer número real
+x, a exponencial de x pode ser calculada via:
+
+#+begin_export latex
+\vfill
+$e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!} = \frac{x^0}{0!} + \frac{x^1}{1!} + \frac{x^2}{2!} + \frac{x^3}{3!} + \frac{x^4}{4!} + ...$
+\vfill
+#+end_export
+
+Podemos truncar a série, ou seja, definir uma quantidade finita de
+termos, e calcular a exponencial de forma aproximada usando essa
+quantidade de termos.
+
+#+latex: \vfill
+
+Escreva um programa em C que tenha como entrada o número de termos, o
+valor de x, e retorne como saída a aproximação da função exponencial
+com essa quantidade de termos.
 
 * (#4 Série de potência) Uma solução possível
 
@@ -469,11 +612,42 @@ gcc a08-serie-potencia.c -lm; echo "3 6" | ./a.out
 : Na iteração 5, valor 18.400000
 : Valor calculado : 18.400000
 : Valor de exp( 3): 20.085537
-* Inicializações ou incrementos / decrementos múltiplos
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula008_slide_27.pdf}{Prof. Edison Pignaton de Freitas}
-* Exemplo
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula008_slide_28.pdf}{Prof. Edison Pignaton de Freitas}
 * Exercício #1 (Newton-Raphson com erro)
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula09/aula09_slide_14.pdf}{Prof. Marcelo Walter}
+
+*Cálculo aproximado da raiz de 2*
+
+A raiz de 2 pode ser aproximada através do algoritmo de Newton-
+Raphson. Partindo de uma aproximação inicial x0 (um chute), podem ser
+encontradas aproximações sucessivas através da equação de recorrência
+abaixo:
+
+#+latex: \vfill
+
+#+begin_export latex
+$x_n = x_{n-1} - \frac{x^{2}_{n-1} - 2}{2 . x_{n-1}}$
+
+$x_0 = val$
+#+end_export
+
+sendo =val= um chute inicial fornecido pelo usuário.
+
+#+latex: \vfill
+
+*Enunciado:* Escreva um programa em C que tenha como entradas a
+aproximação inicial =x0= e uma tolerância =tol= para o erro, e forneça
+como saída a aproximação para a raiz de 2 com esta tolerância. A
+tolerância expressa o erro mínimo a ser obtido entre duas parcelas
+sucessivas. Então para calcular o erro mínimo, faça a diferença entre
+duas parcelas sucessivas, comparando-a com a tolerância fornecida. Se
+for menor, estamos satisfeitos e podemos parar.
+
 * Exercício #2 (Taxa de Crescimento)
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula09/aula09_slide_21.pdf}{Prof. Marcelo Walter}
+
+- O Brasil, com 214 milhões de habitantes, cresce a uma taxa anual de
+  1.34% enquanto os Estados Unidos com 332 milhões crescem a uma taxa
+  anual de 1.09%.
+- Calcule o número de anos que levará para o Brasil ultrapassar os
+  Estados Unidos em número de habitantes, considerando-se que a cada
+  ano a taxa dos Estados Unidos diminua em 0.1%. A taxa nunca fica
+  negativa, no máximo a população permanece a mesma.
+- Resposta esperada: ??? anos
