@@ -26,14 +26,15 @@ REVISAO= revisao-aula-01.pdf \
 	 revisao-aula-41.pdf \
 	 comentarios-p1.pdf
 
-ORIGINA= apresentacao.pdf \
-	 introducao.pdf \
-	 sequencial.pdf \
-	 if.pdf \
-	 if-else.pdf \
-	 switch.pdf \
-	 for.pdf \
-	 maisfor.pdf \
+ORIGINA= aula01-apresentacao.pdf \
+	 aula01-introducao.pdf \
+	 aula02-sequencial.pdf \
+	 aula03-tipos.pdf \
+	 aula04-if.pdf \
+	 aula05-if-else.pdf \
+	 aula06-switch.pdf \
+	 aula07-for.pdf \
+	 aula08-maisfor.pdf \
 	 while.pdf \
 	 arranjos.pdf \
 	 strings.pdf \
