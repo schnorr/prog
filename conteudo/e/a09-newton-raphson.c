@@ -5,22 +5,21 @@ Saida: valor aproximado de raiz de 2*/
 #include <math.h>
 #include <float.h>
 int main() {
-  double xinic, x1, x2; // aproximacao inicial e valores usados na iteracao
+  double x0, xn; // aproximacao inicial e valores usados na iteracao
   double dif, tol; //diferença
   printf("Entre o erro tolerado:\n");
   scanf("%lf", &tol);
   printf("Entre a aproximacao inicial de raiz de 2:\n");
-  scanf("%lf", &xinic);
+  scanf("%lf", &x0);
 
-  x1 = xinic;
   dif = DBL_MAX;
   while(dif > tol) {
-    x2 = x1 - (x1*x1-2)/(2*x1);
-    dif = fabs(x1 - x2);
-    printf("%f valor aproximado é %1.15f\n", dif, x2);
-    x1 = x2;
+    xn = x0 - (x0*x0-2)/(2*x0);
+    dif = fabs(x0 - xn);
+    printf("%f valor aproximado é %1.15f\n", dif, xn);
+    x0 = xn;
   }
   printf("sqrt(2)         : %1.15f\n"
-         "Valor aproximado: %1.15f\n", sqrt(2), x2);
+         "Valor aproximado: %1.15f\n", sqrt(2), xn);
   return 0;
 }

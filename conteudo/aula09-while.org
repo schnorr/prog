@@ -16,7 +16,7 @@
 #+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
 #+LATEX_HEADER: \input{org-babel.tex}
 
-#+latex: \newcommand{\mytitle}{Comando de laço =while=}
+#+latex: \newcommand{\mytitle}{Comando de laço =while= e =do-while=}
 #+latex: \mytitleslide
 
 * Configuração                                                     :noexport:
@@ -37,38 +37,203 @@
 | fontsize | \scriptsize |
 * Motivação
 
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula09-while_dowhile_slide_01.pdf}{Prof. Claudio Jung}
+Relembrando...
+
+#+latex: \begin{boxedminipage}{\linewidth}\scriptsize
+
+*Cálculo aproximado da raiz de 2*
+
+A raiz de 2 pode ser aproximada através do algoritmo de Newton-
+Raphson. Partindo de uma aproximação inicial x0 (um chute), podem ser
+encontradas aproximações sucessivas através da equação de recorrência
+abaixo:
+
+#+latex: \vfill
+
+#+begin_export latex
+$x_n = x_{n-1} - \frac{x^{2}_{n-1} - 2}{2 . x_{n-1}}$
+
+$x_0 = val$
+#+end_export
+
+sendo =val= um chute inicial fornecido pelo usuário.
+
+#+latex: \vfill
+
+*Enunciado:* Escreva um programa em C que tenha como entradas a
+aproximação inicial =x0= e uma tolerância =tol= para o erro, e forneça
+como saída a aproximação para a raiz de 2 com esta tolerância. A
+tolerância expressa o erro mínimo a ser obtido entre duas parcelas
+sucessivas. Então para calcular o erro mínimo, faça a diferença entre
+duas parcelas sucessivas, comparando-a com a tolerância fornecida. Se
+for menor, estamos satisfeitos e podemos parar.
+
+#+latex: \end{boxedminipage}
+
+#+latex: \pause
+
+Observações
+1. Não sabemos de antemão o número de iterações
+2. Sabemos a _condição de parada_
+   - ``faça a diferença entre duas parcelas sucessivas, comparando-a
+     com a tolerância fornecida. Se for menor, estamos satisfeitos e
+     podemos parar.''
 
 * Sumário
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula09/aula09_slide_03.pdf}{Prof. Marcelo Walter}
+Laços iterativos (/loops/)
+- +*para* / *for*+
+- *enquanto* / *while*
+- *faça... enquanto* / *do-while*
 
-* Outros tipos de laços
+#+latex: \pause
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula009-completa_slide_04.pdf}{Prof. Edison Pignaton de Freitas}
+Usados em situações onde não sabemos quantas repetições serão necessárias
+- ``enquanto não chover'', ficarei na praia
+- ``enquanto o ônibus não chega'', observo os ciclistas passarem
 
-* Apresentação do =while= (enquanto)
+* O comando =while=
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula09/aula09_slide_04.pdf}{Prof. Marcelo Walter}
+Na linguagem C
+#+begin_src C
+while (/*expressão lógica*/) {
+   // bloco de comandos
+}
+#+end_src
+#+latex: \pause
+Exemplo
+#+begin_src C
+int onibusChegou = FALSO;
+while (onibusChegou == FALSO) {
+  observoCiclitas(); // Uma função de uma biblioteca hipotética
+  if (onibusEstaNaParada() == VERDADE) {
+    onibusChegou = VERDADE;
+  }
+}
+#+end_src
+#+latex: \pause
+Na linguagem de algoritmos
+#+begin_src text
+1. enquanto(condição)
+   1.1 comando #1
+   1.2 comando #2
+#+end_src
 
-* Funcionamento do comando =while=
+#+begin_center
+Vamos ver como funciona o fluxograma...
+#+end_center
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula09/aula09_slide_05.pdf}{Prof. Marcelo Walter}
+* Detalhamento do comando =while=
 
-* Observação
+#+begin_src C
+while (/*#1*/) {
+   // #2
+   // #3
+}
+#+end_src
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula09/aula09_slide_06.pdf}{Prof. Marcelo Walter}
+#1
+- expressão lógica de controle do laço
+- verificado se é verdade antes de cada iteração
 
-* Exemplos
+#2 e #3
+- comandos do bloco, executados sempre
+  - sempre após verificação se #1 é verdadeiro 
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula09/aula09_slide_07.pdf}{Prof. Marcelo Walter}
+#+latex: \pause
 
-* Back to the example
+Notas adicionais
+- Se #1 for falso desde o início, nenhuma iteração é executada
+- Sempre evitar laço infinito: efeitos de #2 e #3 levam #1 ser falso
 
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula09-while_dowhile_slide_07.pdf}{Prof. Claudio Jung}
+* Exemplos para verificar conhecimento
 
-* Code
+O que será impresso na tela?
 
+** Left
+:PROPERTIES:
+:BEAMER_col: 0.4
+:END:
+
+#+begin_src C
+int a = 1;
+while (a < 5)
+  a = a + 1;
+printf("%d\n", a);
+#+end_src
+
+#+latex: \pause\vfill
+
+#+begin_src C
+for(a = 1; a <= 5; a++)
+  printf("%d\n", a);
+
+a = 1;
+while (a <= 5){
+  printf("%d\n", a);
+  a++;
+}
+#+end_src
+
+#+latex: \pause
+
+** Right
+:PROPERTIES:
+:BEAMER_col: 0.4
+:END:
+
+#+begin_src C
+int a = 6, b = 0;
+while (a-2 > b+1) {
+  printf("%d %d\n", a, b);
+  a--;
+}
+printf("%d\n", a);
+#+end_src
+
+* Exemplo #1: voltando ao exemplo de motivação
+
+#+latex: \begin{boxedminipage}{\linewidth}\tiny
+
+*Cálculo aproximado da raiz de 2*
+
+A raiz de 2 pode ser aproximada através do algoritmo de Newton-
+Raphson. Partindo de uma aproximação inicial x0 (um chute), podem ser
+encontradas aproximações sucessivas através da equação de recorrência
+abaixo:
+
+#+latex: \vfill
+
+#+begin_export latex
+$x_n = x_{n-1} - \frac{x^{2}_{n-1} - 2}{2 . x_{n-1}}$
+
+$x_0 = val$
+#+end_export
+
+sendo =val= um chute inicial fornecido pelo usuário.
+
+#+latex: \vfill
+
+*Enunciado:* Escreva um programa em C que tenha como entradas a
+aproximação inicial =x0= e uma tolerância =tol= para o erro, e forneça
+como saída a aproximação para a raiz de 2 com esta tolerância. A
+tolerância expressa o erro mínimo a ser obtido entre duas parcelas
+sucessivas. Então para calcular o erro mínimo, faça a diferença entre
+duas parcelas sucessivas, comparando-a com a tolerância fornecida. Se
+for menor, estamos satisfeitos e podemos parar.
+
+#+latex: \end{boxedminipage}
+
+#+latex: \pause\vfill
+
+A tolerância expressa o erro mínimo a ser obtido entre duas parcelas
+sucessivas. Então para calcular o erro mínimo, faça a diferença entre
+duas parcelas sucessivas, comparando-a com a tolerância fornecida. Se
+for menor, estamos satisfeitos e podemos parar.
+
+* Exemplo #1: código
+
+=a09-newton-raphson.c=
 #+attr_latex: :options fontsize=\tiny
 #+BEGIN_SRC C :tangle e/a09-newton-raphson.c
 /* Programa para calcular raiz quadrada de 2 usando Newton-Raphson
@@ -78,32 +243,39 @@ Saida: valor aproximado de raiz de 2*/
 #include <math.h>
 #include <float.h>
 int main() {
-  double xinic, x1, x2; // aproximacao inicial e valores usados na iteracao
+  double x0, xn; // aproximacao inicial e valores usados na iteracao
   double dif, tol; //diferença
   printf("Entre o erro tolerado:\n");
   scanf("%lf", &tol);
   printf("Entre a aproximacao inicial de raiz de 2:\n");
-  scanf("%lf", &xinic);
+  scanf("%lf", &x0);
 
-  x1 = xinic;
   dif = DBL_MAX;
   while(dif > tol) {
-    x2 = x1 - (x1*x1-2)/(2*x1);
-    dif = fabs(x1 - x2);
-    printf("%f valor aproximado é %1.15f\n", dif, x2);
-    x1 = x2;
+    xn = x0 - (x0*x0-2)/(2*x0);
+    dif = fabs(x0 - xn);
+    printf("%f valor aproximado é %1.15f\n", dif, xn);
+    x0 = xn;
   }
   printf("sqrt(2)         : %1.15f\n"
-         "Valor aproximado: %1.15f\n", sqrt(2), x2);
+         "Valor aproximado: %1.15f\n", sqrt(2), xn);
   return 0;
 }
 #+END_SRC
-* Outro exemplo (notas dos alunos)
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula09/aula09_slide_08.pdf}{Prof. Marcelo Walter}
+* Exemplo #2: Notas dos alunos
 
-* Code
+Objetivo: Processar as notas de alunos
+- Não sabemos de antemão quantos alunos há no total;
+- Para cada aluno, ler suas três notas, calcular e informar a média;
+- Para encerrar a turma, informar a primeira nota com valor superior a
+  10 (valor inválido servindo como sinal de encerramento de leitura de
+  notas);
+- No final, informar a média da turma.
 
+* Exemplo #2: código
+
+=a09-processa-notas.c=
 #+BEGIN_SRC C :tangle e/a09-processa-notas.c
 //Processa notas dos alunos de uma turma
 #include <stdio.h>
@@ -130,9 +302,9 @@ int main ( )
 }
 #+END_SRC
 
-* Execução de teste
+* Exemplo #2: Execução de teste
 
-#+begin_src shell :results output
+#+begin_src shell :results output :exports both :dir e
 gcc a09-processa-notas.c; echo "10.0 9.2 2.2 3.2 4.5 2.1 11" | ./a.out 
 #+end_src
 
@@ -143,32 +315,170 @@ gcc a09-processa-notas.c; echo "10.0 9.2 2.2 3.2 4.5 2.1 11" | ./a.out
 : Media do aluno 2 :   3.27
 : Informe notas do aluno 3: 
 : Media da turma: 5.20
-* Seguindo adiante
 
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula09-while_dowhile_slide_11.pdf}{Prof. Claudio Jung}
+* Sumário: seguindo adiante
 
-* Apresentação do =do ... while= (faça ... enquanto)
+Laços iterativos (/loops/)
+- +*para* / *for*+
+- +*enquanto* / *while*+
+- *faça... enquanto* / *do-while*
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula09/aula09_slide_11.pdf}{Prof. Marcelo Walter}
+* O comando =do-while=
 
-* Funcionamento do comando =while=
+Na linguagem C
+#+begin_src C
+do {
+   // bloco de comandos
+} while (/*expressão lógica*/);
+#+end_src
+#+latex: \pause
+Exemplo
+#+begin_src C
+int onibusChegou = FALSO;
+do {
+  observoCiclitas(); // Uma função de uma biblioteca hipotética
+  if (onibusEstaNaParada() == VERDADE) {
+    onibusChegou = VERDADE;
+  }
+} while (onibusChegou == FALSO);
+#+end_src
+#+latex: \pause
+Na linguagem de algoritmos
+#+begin_src text
+1. faça
+   1.1 comando #1
+   1.2 comando #2
+   enquanto (condição)
+#+end_src
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula09/aula09_slide_12.pdf}{Prof. Marcelo Walter}
+#+begin_center
+Vamos ver como funciona o fluxograma...
+#+end_center
 
-* Observação
+* Detalhamento do comando =do-while=
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula09/aula09_slide_13.pdf}{Prof. Marcelo Walter}
+#+begin_src C
+do {
+   // #2
+   // #3
+} while (/*#1*/);
+#+end_src
 
-* Exemplos
+#1
+- expressão lógica de controle do laço
+- verificação *no final de cada iteração*
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula009-completa_slide_19.pdf}{Prof. Edison Pignaton de Freitas}
+#2 e #3
+- comandos do bloco, executados *pelo menos uma vez*
 
-* Back to the example
+#+latex: \pause
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula009-completa_slide_15.pdf}{Prof. Edison Pignaton de Freitas}
+Notas adicionais
+- Se #1 for falso desde o início, *a primeira iteração ainda é executada*
+- Sempre evitar laço infinito: efeitos de #2 e #3 levam #1 ser falso
 
-* Code
+* Exemplos para verificar conhecimento
 
+O que será impresso na tela?
+
+** Left
+:PROPERTIES:
+:BEAMER_col: 0.4
+:END:
+
+#+begin_src C
+int a = 0;
+do {
+  a++;
+  printf("%d\n", a);
+} while(a < 5);
+#+end_src
+
+#+latex: \pause\vfill
+
+#+begin_src C
+for(a = 1; a <= 5; a++)
+  printf("%d\n", a);
+
+a = 1;
+do {
+  printf("%d\n", a);
+  a++;
+} while (a <= 5);
+#+end_src
+
+#+latex: \pause
+
+** Right
+:PROPERTIES:
+:BEAMER_col: 0.4
+:END:
+
+#+begin_src C
+int numero, achou = 0;
+do {
+  scanf("%d", &numero);
+  printf("%d\n", numero);
+  if (numero == 250)
+    achou = 1;
+} while(!achou);
+#+end_src
+
+#+latex: \pause
+
+#+begin_src C
+int numero, continuar;
+do {
+  scanf("%d", &numero);
+  printf("%d\n", numero);
+
+  printf("Informar outro? Digite:\n"
+         "1 para sim,\n"
+         "0 para não)\n");
+  scanf("%d", &continuar);
+} while(continuar);
+#+end_src
+
+* Exemplo #1: voltando ao exemplo de motivação
+
+#+latex: \begin{boxedminipage}{\linewidth}\tiny
+
+*Cálculo aproximado da raiz de 2*
+
+A raiz de 2 pode ser aproximada através do algoritmo de Newton-
+Raphson. Partindo de uma aproximação inicial x0 (um chute), podem ser
+encontradas aproximações sucessivas através da equação de recorrência
+abaixo:
+
+#+latex: \vfill
+
+#+begin_export latex
+$x_n = x_{n-1} - \frac{x^{2}_{n-1} - 2}{2 . x_{n-1}}$
+
+$x_0 = val$
+#+end_export
+
+sendo =val= um chute inicial fornecido pelo usuário.
+
+#+latex: \vfill
+
+*Enunciado:* Escreva um programa em C que tenha como entradas a
+aproximação inicial =x0= e uma tolerância =tol= para o erro, e forneça
+como saída a aproximação para a raiz de 2 com esta tolerância. A
+tolerância expressa o erro mínimo a ser obtido entre duas parcelas
+sucessivas. Então para calcular o erro mínimo, faça a diferença entre
+duas parcelas sucessivas, comparando-a com a tolerância fornecida. Se
+for menor, estamos satisfeitos e podemos parar.
+
+#+latex: \end{boxedminipage}
+
+#+latex: \pause\vfill
+
+Vamos usar =do-while=.
+
+* Exemplo #1: código
+
+=a09-newton-raphson-do-while.c=
 #+attr_latex: :options fontsize=\scriptsize
 #+BEGIN_SRC C :tangle e/a09-newton-raphson-do-while.c
 /* Programa para calcular raiz quadrada de 2 usando Newton-Raphson
@@ -177,37 +487,46 @@ Saida: valor aproximado de raiz de 2*/
 #include <stdio.h>
 #include <math.h>
 int main() {
-  double xinic, x1, x2; // aproximacao inicial e valores usados na iteracao
-  double dif, tol; //diferença
+  double x0, xn; // aproximacao inicial e valores usados na iteracao
+  double tol;
   printf("Entre o erro tolerado:\n");
   scanf("%lf", &tol);
   printf("Entre a aproximacao inicial de raiz de 2:\n");
-  scanf("%lf", &xinic);
-  x1 = xinic;
+  scanf("%lf", &x0);
   //dif = DBL_MAX; //não é mais necessário
   do {
-    x2 = x1 - (x1*x1-2)/(2*x1);
-    dif = fabs(x1 - x2);
-    printf("%f valor aproximado é %1.15f\n", dif, x2);
-    x1 = x2;
+    xn = x0 - (x0*x0-2)/(2*x0);
+    dif = fabs(x0 - xn);
+    printf("%f valor aproximado é %1.15f\n", dif, xn);
+    x0 = xn;
   } while(dif > tol);
   printf("sqrt(2)         : %1.15f\n"
-         "Valor aproximado: %1.15f\n", sqrt(2), x2);
+         "Valor aproximado: %1.15f\n", sqrt(2), xn);
   return 0;
 }
 #+END_SRC
 
-* Outro exemplo (notas dos alunos)
+* Exemplo #2: Notas dos alunos
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula09/aula09_slide_16.pdf}{Prof. Marcelo Walter}
+Objetivo: Processar as notas de alunos
+- Não sabemos de antemão quantos alunos há no total;
+- Para cada aluno, ler suas três notas, calcular e informar a média;
+- Para encerrar a turma, informar a primeira nota com valor superior a
+  10 (valor inválido servindo como sinal de encerramento de leitura de
+  notas);
+- No final, informar a média da turma.
 
-* Code
+#+latex: \vfill
 
+Vamos usar =do-while=.
+
+* Exemplo #2: código
+
+=a09-processa-notas-dowhile.c=
 #+BEGIN_SRC C :tangle e/a09-processa-notas-dowhile.c
 //Processa notas dos alunos de uma turma
 #include <stdio.h>
-int main ( )
-{
+int main () {
   float n1, n2, n3; //notas de um aluno
   float media, soma; // média do aluno e acumulador de médias da turma
   int al = 0; //variável de contar alunos
@@ -220,7 +539,7 @@ int main ( )
       scanf("%f%f", &n2, &n3); // lê as outras nota do aluno
       media = (n1 + n2 + n3)/3;
       soma = soma + media;
-      printf("\nMedia do aluno %d : %6.2f\n", al, media);
+      printf("Media do aluno %d : %6.2f\n", al, media);
       printf("Informe notas do aluno %d: ",al + 1);
       scanf("%f", &n1); // lê só a primeira nota do próximo aluno
     }while(n1 <= 10);
@@ -231,18 +550,15 @@ int main ( )
 }
 #+END_SRC
 
-
 * Execução de teste                                                :noexport:
 
-#+begin_src shell :results output
+#+begin_src shell :results output :dir e :exports both
 gcc a09-processa-notas-dowhile.c; echo "10.0 9.2 2.2 3.2 4.5 2.1 11" | ./a.out 
 #+end_src
 
 #+RESULTS:
-: Informe notas do aluno 1: 
-: Media do aluno 1 :   7.13
-: Informe notas do aluno 2: 
-: Media do aluno 2 :   3.27
+: Informe notas do aluno 1: Media do aluno 1 :   7.13
+: Informe notas do aluno 2: Media do aluno 2 :   3.27
 : Informe notas do aluno 3: 
 : Media da turma: 5.20
 

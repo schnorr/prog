@@ -1,7 +1,6 @@
 //Processa notas dos alunos de uma turma
 #include <stdio.h>
-int main ( )
-{
+int main () {
   float n1, n2, n3; //notas de um aluno
   float media, soma; // média do aluno e acumulador de médias da turma
   int al = 0; //variável de contar alunos
@@ -14,7 +13,7 @@ int main ( )
       scanf("%f%f", &n2, &n3); // lê as outras nota do aluno
       media = (n1 + n2 + n3)/3;
       soma = soma + media;
-      printf("\nMedia do aluno %d : %6.2f\n", al, media);
+      printf("Media do aluno %d : %6.2f\n", al, media);
       printf("Informe notas do aluno %d: ",al + 1);
       scanf("%f", &n1); // lê só a primeira nota do próximo aluno
     }while(n1 <= 10);
