@@ -16,7 +16,7 @@
 #+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
 #+LATEX_HEADER: \input{org-babel.tex}
 
-#+latex: \newcommand{\mytitle}{Revisão Aula 13}
+#+latex: \newcommand{\mytitle}{Revisão Aula =while= e =do-while=}
 #+latex: \mytitleslide
 
 * Configuração                                                     :noexport:
@@ -37,13 +37,25 @@
 | fontsize | \scriptsize |
 * Exercício #1
 
-Refazer o exercício da taxa de crescimento com do-while ou while.
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula09/aula09_slide_21.pdf}{Prof. Marcelo Walter}
+Refazer com =do-while= ou =while=.
+
+#+latex: \vfill
+
+- O Brasil, com 214 milhões de habitantes, cresce a uma taxa anual de
+  1.34% enquanto os Estados Unidos com 332 milhões crescem a uma taxa
+  anual de 1.09%.
+- Calcule o número de anos que levará para o Brasil ultrapassar os
+  Estados Unidos em número de habitantes, considerando-se que a cada
+  ano a taxa dos Estados Unidos diminua em 0.1%. A taxa nunca fica
+  negativa, no máximo a população permanece a mesma.
+- Resposta esperada: ??? anos
+
 * (#1 Taxa de Crescimento Brazil /vs/ EUA)
 
+=rev-a09-taxa.c=
 #+attr_latex: :options fontsize=\scriptsize
-#+BEGIN_SRC C :tangle e/rev-a13-taxa.c
+#+BEGIN_SRC C :tangle e/rev-a09-taxa.c
 /* Programa para satisfazer o enunciado sobre a taxa de crescimento com while */
 #include <stdio.h>
 int main() {

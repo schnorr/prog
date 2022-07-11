@@ -659,7 +659,7 @@ Como terminar o laço de repetição?
 - Única forma: *a condição se tornar falsa*
 - Uso do =break= quebra a programação estruturada
 
-* Usos
+* Usos dos comandos de repetição
 
 =for=
 - Quantidade de repetições conhecidas de antemão
