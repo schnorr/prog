@@ -2,9 +2,8 @@
 #include <stdio.h>
 int main () {
   float n1, n2, n3; //notas de um aluno
-  float media, soma; // média do aluno e acumulador de médias da turma
+  float media, soma = 0; // média do aluno e acumulador de médias da turma
   int al = 0; //variável de contar alunos
-  soma=0; // inicializa acumulador de médias
   printf("Informe notas do aluno %d: ", al + 1);
   scanf("%f", &n1); // lê só a primeira nota do 1o aluno
   if (n1 <= 10) { // só executa se a 1a nota for <= 10

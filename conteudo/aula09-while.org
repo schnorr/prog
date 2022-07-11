@@ -528,9 +528,8 @@ Vamos usar =do-while=.
 #include <stdio.h>
 int main () {
   float n1, n2, n3; //notas de um aluno
-  float media, soma; // média do aluno e acumulador de médias da turma
+  float media, soma = 0; // média do aluno e acumulador de médias da turma
   int al = 0; //variável de contar alunos
-  soma=0; // inicializa acumulador de médias
   printf("Informe notas do aluno %d: ", al + 1);
   scanf("%f", &n1); // lê só a primeira nota do 1o aluno
   if (n1 <= 10) { // só executa se a 1a nota for <= 10
@@ -638,22 +637,54 @@ int main () {
   return 0;
 }
 #+END_SRC
-* Comparação
+* Comparação entre os comandos de repetição
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula009-completa_slide_22.pdf}{Prof. Edison Pignaton de Freitas}
+| *Comando*  | *Condição*      | *Repetições* |
+|          | (verificação) |   (mínimo) |
+|----------+---------------+------------|
+| =for=      | início        |          0 |
+| =while=    | início        |          0 |
+| =do-while= | final         |          1 |
 
-* Lembrando a Programação Estruturada
+#+latex: \vfill
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula009-completa_slide_23.pdf}{Prof. Edison Pignaton de Freitas}
+Em todos os casos:
+- Para dar continuidade, a condição deve ser verdadeira.
 
-* Uso
+#+latex: \vfill\pause
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula009-completa_slide_28.pdf}{Prof. Edison Pignaton de Freitas}
+_Reforço sobre a Programação Estruturada_
 
-* Exercício #1
+Como terminar o laço de repetição?
+- Única forma: *a condição se tornar falsa*
+- Uso do =break= quebra a programação estruturada
 
-Refazer o exercício da taxa de crescimento com do-while ou while.
+* Usos
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula09/aula09_slide_21.pdf}{Prof. Marcelo Walter}
+=for=
+- Quantidade de repetições conhecidas de antemão
+- O controle é inteiramente controlado pelo cabeçalho
 
+=while= e =do-while=
+- Repetir enquanto uma condição for verdadeira
+- O bloco de comandos altera variáveis utilizadas na condição
+  - Deve-se prever que a condição se torne falsa
 
+#+latex: \pause
+- O bloco deve ser sempre executado pelo menos 1\times \rightarrow =do-while=
+- O bloco pode não ser executado nem uma vez \rightarrow =while=
+
+* Exercício #1 (Taxa de Crescimento)
+
+Refazer com =do-while= ou =while=.
+
+#+latex: \vfill
+
+- O Brasil, com 214 milhões de habitantes, cresce a uma taxa anual de
+  1.34% enquanto os Estados Unidos com 332 milhões crescem a uma taxa
+  anual de 1.09%.
+- Calcule o número de anos que levará para o Brasil ultrapassar os
+  Estados Unidos em número de habitantes, considerando-se que a cada
+  ano a taxa dos Estados Unidos diminua em 0.1%. A taxa nunca fica
+  negativa, no máximo a população permanece a mesma.
+- Resposta esperada: ??? anos
