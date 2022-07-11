@@ -66,6 +66,7 @@ for menor, estamos satisfeitos e podemos parar.
 
 * (#1 Newton-Raphson com erro) Uma solução possível
 
+=rev-a08-newton-raphson.c=
 #+attr_latex: :options fontsize=\tiny
 #+BEGIN_SRC C :tangle e/rev-a08-newton-raphson.c
 /* Programa para calcular raiz quadrada de 2 usando Newton-Raphson
@@ -103,7 +104,7 @@ int main() {
 * Exemplo da compilação e execução
 
 #+attr_latex: :options fontsize=\small
-#+begin_src shell :results output :dir e
+#+begin_src shell :results output :exports both :dir e
 gcc rev-a08-newton-raphson.c # Compila
 
 echo "100 0.00000000001 5" | ./a.out # Executa com parâmetros
@@ -138,6 +139,7 @@ Valor aproximado: 1.414213562373095
 
 * (#2 Taxa de Crescimento Brazil /vs/ EUA)
 
+=rev-a08-taxa.c=
 #+attr_latex: :options fontsize=\scriptsize
 #+BEGIN_SRC C :tangle e/rev-a08-taxa.c
 /* Programa para satisfazer o enunciado sobre a taxa de crescimento */
@@ -162,4 +164,16 @@ int main() {
   return 0;
 }
 #+END_SRC
+
+* Exemplo da compilação e execução
+
+#+attr_latex: :options fontsize=\small
+#+begin_src shell :results output :exports both :dir e
+gcc rev-a08-taxa.c # Compila
+
+./a.out # Executa
+#+end_src
+
+#+RESULTS:
+: Anos: 38
 
