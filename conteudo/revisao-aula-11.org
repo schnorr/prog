@@ -16,7 +16,7 @@
 #+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
 #+LATEX_HEADER: \input{org-babel.tex}
 
-#+latex: \newcommand{\mytitle}{Revisão Aula 11}
+#+latex: \newcommand{\mytitle}{Revisão Aula ``Mais =for= para nós''}
 #+latex: \mytitleslide
 
 * Configuração                                                     :noexport:
@@ -36,7 +36,34 @@
 | frame    | lines       |
 | fontsize | \scriptsize |
 * Exercício #1 (Newton-Raphson com erro)
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula09/aula09_slide_14.pdf}{Prof. Marcelo Walter}
+
+*Cálculo aproximado da raiz de 2*
+
+A raiz de 2 pode ser aproximada através do algoritmo de Newton-
+Raphson. Partindo de uma aproximação inicial x0 (um chute), podem ser
+encontradas aproximações sucessivas através da equação de recorrência
+abaixo:
+
+#+latex: \vfill
+
+#+begin_export latex
+$x_n = x_{n-1} - \frac{x^{2}_{n-1} - 2}{2 . x_{n-1}}$
+
+$x_0 = val$
+#+end_export
+
+sendo =val= um chute inicial fornecido pelo usuário.
+
+#+latex: \vfill
+
+*Enunciado:* Escreva um programa em C que tenha como entradas a
+aproximação inicial =x0= e uma tolerância =tol= para o erro, e forneça
+como saída a aproximação para a raiz de 2 com esta tolerância. A
+tolerância expressa o erro mínimo a ser obtido entre duas parcelas
+sucessivas. Então para calcular o erro mínimo, faça a diferença entre
+duas parcelas sucessivas, comparando-a com a tolerância fornecida. Se
+for menor, estamos satisfeitos e podemos parar.
+
 * (#1 Newton-Raphson com erro) Uma solução possível
 
 #+attr_latex: :options fontsize=\tiny
@@ -99,7 +126,15 @@ Valor aproximado: 1.414213562373095
 #+end_example
 
 * Exercício #2 (Taxa de Crescimento)
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula09/aula09_slide_21.pdf}{Prof. Marcelo Walter}
+
+- O Brasil, com 214 milhões de habitantes, cresce a uma taxa anual de
+  1.34% enquanto os Estados Unidos com 332 milhões crescem a uma taxa
+  anual de 1.09%.
+- Calcule o número de anos que levará para o Brasil ultrapassar os
+  Estados Unidos em número de habitantes, considerando-se que a cada
+  ano a taxa dos Estados Unidos diminua em 0.1%. A taxa nunca fica
+  negativa, no máximo a população permanece a mesma.
+- Resposta esperada: ??? anos
 
 * (#2 Taxa de Crescimento Brazil /vs/ EUA)
 
@@ -112,10 +147,10 @@ int main() {
   double popBRA, popEUA;
   double taxaBRA, taxaEUA;
 
-  popBRA = 203.0;
-  popEUA = 318.0;
-  taxaBRA = 1.5 / 100;
-  taxaEUA = 1.3 / 100;
+  popBRA = 214.0;
+  popEUA = 332.0;
+  taxaBRA = 1.34 / 100;
+  taxaEUA = 1.09 / 100;
 
   for (ano = 0; popBRA < popEUA; ano++){
     popBRA += popBRA * taxaBRA;
