@@ -5,7 +5,7 @@ REVISAO= revisao-aula-01.pdf \
 	 revisao-aula-07.pdf \
 	 revisao-aula-08.pdf \
 	 revisao-aula-10.pdf \
-	 revisao-aula-11.pdf \
+	 revisao-aula08.pdf \
 	 revisao-aula-13.pdf \
 	 revisao-aula-15.pdf \
 	 revisao-aula-16.pdf \
@@ -35,8 +35,8 @@ ORIGINA= aula01-apresentacao.pdf \
 	 aula06-switch.pdf \
 	 aula07-for.pdf \
 	 aula08-maisfor.pdf \
-	 while.pdf \
-	 arranjos.pdf \
+	 aula09-while.pdf \
+	 aula10-arranjos.pdf \
 	 strings.pdf \
 	 matriz.pdf \
 	 maismatriz.pdf \
