@@ -37,7 +37,25 @@
 | fontsize | \scriptsize |
 * Motivação (Parte #1)
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula11/aula11_slide_02.pdf}{Prof. Marcelo Walter}
+#+begin_center
+Ler as notas de 30 alunos.
+
+Calcular e informar a média da turma.
+#+end_center
+
+#+begin_src text
+Algoritmo MédiaTurma
+{ Obtém as notas de 30 alunos e informa a média */
+entrada: 30 notas
+saída: média das 30 notas lidas
+1. Zerar somatório das notas
+2. Repetir 30 vezes (para cada aluno)
+   2.1 Obter a nota de um aluno
+   2.2 Acrescentar esta nota ao somatório de notas
+3. Calcular a média
+4. Informar a média
+5. Terminar
+#+end_src
 
 * Código =a15-media.c=
 
@@ -64,10 +82,32 @@ int main () {
 
 * Motivação (Parte #2)
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula11/aula11_slide_04.pdf}{Prof. Marcelo Walter}
+#+begin_center
+Ler as notas de 30 alunos.
+
+Calcular e informar a média da turma.
+
+Informar, ainda, as notas que são superiores à média calculada.
+#+end_center
+
+#+begin_src text
+Algoritmo MédiaTurma
+{ Obtém as notas de 30 alunos e informa a média */
+entrada: 30 notas
+saída: média das 30 notas lidas
+1. Zerar somatório das notas
+2. Repetir 30 vezes (para cada aluno)
+   2.1 Obter a nota de um aluno
+   2.2 Acrescentar esta nota ao somatório de notas
+3. Calcular a média
+4. Informar a média
+5. Informar as notas superiores à média
+6. Terminar
+#+end_src
 
 * Código =a15-maior.c=
 
+E se tivéssemos 1000 alunos?
 #+attr_latex: :options fontsize=\tiny
 #+BEGIN_SRC C :tangle e/a15-maior.c
 /*calcula media de uma turma. Entradas: notas de 30 alunos.  Saida: media da turma */
@@ -123,9 +163,6 @@ int main () {
   return 0;
 }
 #+END_SRC
-* Motivação (Parte #3)
-
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula11-arrays1_slide_03.pdf}{Prof. Claudio Jung}
 * Sumário
 
 - Motivação
@@ -143,33 +180,135 @@ int main () {
 
 * Arranjo (/aka/ Vetor)
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula11_slide_09.pdf}{Prof. Edison Pignaton de Freitas}
+#+begin_center
+Guarda um conjunto de elementos.
 
-* Características de Arranjos
+Todos os elementos são do mesmo tipo.
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula11_slide_10.pdf}{Prof. Edison Pignaton de Freitas}
+Permite acesso aleatório a qualquer posição.
+#+end_center
+
+Representação gráfica de um arranjo
+|   | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 |  8 |
+| / | < | < | < | < | < | < | < | < | <> |
+|---+---+---+---+---+---+---+---+---+----|
+|   |   |   |   |   |   |   |   |   |    |
+|---+---+---+---+---+---+---+---+---+----|
+
+Índice
+- Identifica a posição de um elemento no arranjo
+- O primeiro é sempre zero
+
+#+latex: \pause\vfill
+
+Um arranjo tem um nome e um tamanho máximo na declaração
+- O nome é comum para todos os elementos daquele arranjo
+- O tamanho indica a capacidade máxima de valores
 
 * *Declaração* de arranjos na Linguagem C
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula11_slide_11.pdf}{Prof. Edison Pignaton de Freitas}
+Na linguagem C
+#+begin_src text
+<tipo> <nome>[<capacidade>];
+#+end_src
+- tipo: int, float, double, ...
+- nome: um identificador da variável arranjo
+- capacidade: um número natural não nulo
+
+#+latex: \pause\vfill
+
+#+begin_src C
+float nota[9];
+#+end_src
+|   | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 |  8 |
+| / | < | < | < | < | < | < | < | < | <> |
+|---+---+---+---+---+---+---+---+---+----|
+|   |   |   |   |   |   |   |   |   |    |
+|---+---+---+---+---+---+---+---+---+----|
+
+#+begin_src C
+int numeros[4];
+#+end_src
+|   | 0 | 1 | 2 | 3 |
+| / | < | < | < | < |
+|---+---+---+---+---|
+|   |   |   |   |   |
+|---+---+---+---+---|
 
 * *Utilização* de arranjos na Linguagem C
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula11_slide_12.pdf}{Prof. Edison Pignaton de Freitas}
+Na linguagem C
+#+begin_src text
+<nome>[<expressão>];
+#+end_src
+- nome: o identificador da variável arranjo já declarada
+- expressão: constante, identificador, ou expressão
+  - Uma vez avaliada, deve resultar em um valor inteiro válido
+    - Entre 0 e a capacidade declarada
 
-* O índice do arranjo
+#+latex: \pause\vfill
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula11_slide_13.pdf}{Prof. Edison Pignaton de Freitas}
+#+begin_src C
+int i = 4;
+float nota[9];
+scanf("%f", &nota[5]);
+
+nota[1] = 7.5;
+nota[2] = nota[1] + 2;
+if(nota[1] > 6.0){
+  printf("Aprovado.\n");
+}
+nota[i] = 5.6;
+#+end_src
+
+|   | 0 |   1 |   2 | 3 |   4 | 5  | 6 | 7 |  8 |
+| / | < |   < |   < | < |   < | <  | < | < | <> |
+|---+---+-----+-----+---+-----+----+---+---+----|
+|   |   | 7.5 | 9.5 |   | 5.6 | XX |   |   |    |
+|---+---+-----+-----+---+-----+----+---+---+----|
+
+XX: local onde será registrado o valor lido pelo =scanf=
 
 * Inicialização do arranjo
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula11_slide_14.pdf}{Prof. Edison Pignaton de Freitas}
+Ao serem criados, arranjos, como as demais variáveis, contêm lixo.
+
+Devemos sempre inicializá-los com valores padrão
+1. Em tempo de compilação, automaticamente
+2. Em tempo de execução, por atribuição (com um =for= por exemplo)
 
 * #1 Inicialização (em tempo de compilação)
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula11_slide_15.pdf}{Prof. Edison Pignaton de Freitas}
+Forma geral
+#+begin_src text
+<tipo> <nome>[<capacidade>] = {<valor_0>, <valor_1>, ..., <valor_2>};
+#+end_src
 
-* Onde ficam guardados esses dados de inicialização?
+#+latex: \vfill
+
+Exemplo
+#+begin_src C
+int v[3] = {10, 20, 30};
+#+end_src
+|   |  0 |  1 |  2 |
+| / |  < |  < | <> |
+|---+----+----+----|
+|   | 10 | 20 | 30 |
+|---+----+----+----|
+
+#+latex: \pause
+
+Posições não inicializadas (no final) são preenchidas com zeros
+#+begin_src C
+int v[5] = {10, 20, 30};
+#+end_src
+|   |  0 |  1 |  2 | 3 |  4 |
+| / |  < |  < |  < | < | <> |
+|---+----+----+----+---+----|
+|   | 10 | 20 | 30 | 0 | 0  |
+|---+----+----+----+---+----|
+
+* Onde ficam guardados esses dados de inicialização?               :noexport:
 
 #+BEGIN_CENTER
 Observe a diferença de tamanho do
@@ -203,13 +342,30 @@ wc -c a15-init-arranjo-2.o
 #+RESULTS:
 : 968 a15-init-arranjo-2.o
 
-* #2 Inicialização (por atribuição)
+* #2 Inicialização (em tempo de execução)
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula11_slide_16.pdf}{Prof. Edison Pignaton de Freitas}
+Declaramos somente
+#+begin_src C
+float z[5];
+#+end_src
+Mas depois codificamos
+#+begin_src C
+z[0] = 2.7;
+z[1] = 3.5;
+z[2] = 4.2;
+z[3] = 5.6;
+z[4] = 4.5;
+#+end_src
 
-* #3 Inicialização (por leitura de dados do usuário)
+#+latex: \pause\vfill
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula11_slide_17.pdf}{Prof. Edison Pignaton de Freitas}
+Podemos também inicializar com valores do usuário
+#+begin_src C
+#define CAPACIDADE 1000
+int i, valor[CAPACIDADE];
+for (i = 0; i < CAPACIDADE; i++)
+  scanf("%d", &valor[i]);
+#+end_src
 
 * Exemplo #1 (das notas dos alunos)
 
