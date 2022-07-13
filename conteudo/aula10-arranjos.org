@@ -759,3 +759,25 @@ Faça um _algoritmo_ e um _programa em C_ para
    1. Informe o valor médio
 5. Procure a posição que tem o valor mais próximo do valor médio
    1. Informe a posição
+
+* ZIP                                                              :noexport:
+
+#+begin_src bash
+zip /tmp/S5.zip e/a15*.c
+#+end_src
+
+#+RESULTS:
+| adding: | e/a15-aleatorio-2.c     | (deflated | 31%) |
+| adding: | e/a15-aleatorio.c       | (deflated | 27%) |
+| adding: | e/a15-aleatorios.c      | (deflated | 29%) |
+| adding: | e/a15-init-arranjo-1.c  | (deflated |  7%) |
+| adding: | e/a15-init-arranjo-2.c  | (stored   |  0%) |
+| adding: | e/a15-init-arranjo.c    | (deflated |  7%) |
+| adding: | e/a15-maior.c           | (deflated | 73%) |
+| adding: | e/a15-maior-melhorado.c | (deflated | 50%) |
+| adding: | e/a15-media.c           | (deflated | 41%) |
+| adding: | e/a15-notas-codigos.c   | (deflated | 57%) |
+| adding: | e/a15-precos-0.c        | (deflated | 46%) |
+| adding: | e/a15-precos-1.c        | (deflated | 47%) |
+| adding: | e/a15-precos-2.c        | (deflated | 48%) |
+| adding: | e/a15-precos.c          | (deflated | 44%) |
