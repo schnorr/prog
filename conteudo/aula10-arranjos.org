@@ -252,7 +252,7 @@ Na linguagem C
 int i = 4;
 float nota[9];
 scanf("%f", &nota[5]);
-
+nota[0] = 0.1;
 nota[1] = 7.5;
 nota[2] = nota[1] + 2;
 if(nota[1] > 6.0){
@@ -261,11 +261,11 @@ if(nota[1] > 6.0){
 nota[i] = 5.6;
 #+end_src
 
-|   | 0 |   1 |   2 | 3 |   4 | 5  | 6 | 7 |  8 |
-| / | < |   < |   < | < |   < | <  | < | < | <> |
-|---+---+-----+-----+---+-----+----+---+---+----|
-|   |   | 7.5 | 9.5 |   | 5.6 | XX |   |   |    |
-|---+---+-----+-----+---+-----+----+---+---+----|
+|   |   0 |   1 |   2 | 3 |   4 | 5  | 6 | 7 |  8 |
+| / |   < |   < |   < | < |   < | <  | < | < | <> |
+|---+-----+-----+-----+---+-----+----+---+---+----|
+|   | 0.1 | 7.5 | 9.5 |   | 5.6 | XX |   |   |    |
+|---+-----+-----+-----+---+-----+----+---+---+----|
 
 XX: local onde será registrado o valor lido pelo =scanf=
 
@@ -369,7 +369,13 @@ for (i = 0; i < CAPACIDADE; i++)
 
 * Exemplo #1 (das notas dos alunos)
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula11_slide_18.pdf}{Prof. Edison Pignaton de Freitas}
+#+begin_center
+Ler as notas de 30 alunos.
+
+Calcular e informar a média da turma.
+
+Informar, ainda, as notas que são superiores à média calculada.
+#+end_center
 
 * (#1) Código =a15-maior-melhorado.c=
 
@@ -380,11 +386,11 @@ Saidas: media da turma, e impressao das notas maiores do que a media*/
 #include <stdio.h>
 #define NUMALUNOS 30
 int main () {
-  float nota [NUMALUNOS] ; //arranjo para as notas
+  float nota[NUMALUNOS] ; //arranjo para as notas
   float media, soma;
   int aluno; // variavel de controle da repeticao
   soma = 0; // inicializa soma
-  for (aluno = 0; aluno < NUMALUNOS ; aluno++) { //para cada aluno
+  for (aluno = 0; aluno < NUMALUNOS; aluno++) { //para cada aluno
     scanf ("%f", &nota[aluno]); // obtem nota
     printf("Nota %2.2f colocada na posição %d\n", nota[aluno], aluno);
     soma += nota[aluno]; // acumula a soma
@@ -401,7 +407,23 @@ int main () {
 #+END_SRC
 * Lembretes (é sempre bom enfatizar)
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula11_slide_20.pdf}{Prof. Edison Pignaton de Freitas}
+- O índice da primeira posição de um vetor é sempre o _zero_
+
+#+latex: \pause\vfill
+
+- Os índices devem ser sempre válidos
+  - de 0 até a capacidade informada na declaração menos um
+    #+begin_src C
+    #define TAMANHO 65
+    float notas[93];       // quais os índices válidos?
+    int naturais[TAMANHO]; //
+    #+end_src
+
+#+latex: \pause\vfill
+
+- Não há verificação alguma se os índices são corretos
+  - ``Grandes poderes acompanham grandes responsabilidades''
+  - Na Linguagem C, o programador é o responsável
 
 * Exemplo #2 (preços das mercadorias)
 
@@ -460,7 +482,7 @@ int main () {
 
 * (#2) Código melhorado =a15-precos-1.c=
 
-Quais é o problema remanscente do código abaixo?
+Quais é o problema remanescente do código abaixo?
 
 #+attr_latex: :options fontsize=\tiny
 #+BEGIN_SRC C :tangle e/a15-precos-1.c
@@ -601,7 +623,29 @@ int main() {
 #+END_SRC
 * Geração de números aleatórios
 
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula11-arrays1_slide_26.pdf}{Prof. Claudio Jung}
+Motivação: para testarmos algoritmos que envolvem arranjos
+- Número aleatório, um número escolhido ao acaso
+  - Segue uma função de probabilidade
+- No computador, somos capazes de gerar números _pseudo-aleatórios_
+
+#+latex: \pause\vfill
+
+Na linguagem C
+#+begin_src C
+#include <stdio.h>
+#include <stdlib.h>
+int main() {
+  int aleatorio;
+  srand(0);
+  aleatorio = rand();
+  printf("%d\n", aleatorio);
+  return 0;
+}
+#+end_src
+
+=int rand()=: retorna um valor entre 0 e =RAND_MAX=
+
+=void srand(unsigned int seed)=: define a semente da sequência
 
 * Código =a15-aleatorio.c= com chamada para =rand()=
 
@@ -622,7 +666,7 @@ int main() {
 
 Vamos executar este código duas vezes:
 
-#+begin_src shell :results output :dir e
+#+begin_src shell :results output :dir e :exports both
 gcc a15-aleatorio.c -o a15-aleatorio
 ./a15-aleatorio; ./a15-aleatorio
 #+end_src
@@ -632,8 +676,26 @@ gcc a15-aleatorio.c -o a15-aleatorio
 : 1804289383 846930886 1681692777 
 
 As sequências aleatórias são as mesmas.
-* Potencial problema
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula11-arrays1_slide_28.pdf}{Prof. Claudio Jung}
+
+* Discussão: sequência é a mesma, problema ou não?
+
+#+begin_center
+A sequência é sempre a mesma pois a semente da sequência é a mesma.
+#+end_center
+
+
+Pontos positivos
+- Reprodutibilidade experimental
+
+Pontos negativos
+- Talvez desejamos que seja realmente sempre diferente
+
+#+latex: \pause\vfill
+
+Solução para tratar o ponto negativo
+- Mudar o valor da semente de maneira dinâmica
+  - Usar o tempo (relógio do computador)
+
 * Código =a15-aleatorio.c= com =rand()= e =srand()=
 
 #+BEGIN_SRC C :tangle e/a15-aleatorio-2.c
@@ -655,7 +717,7 @@ int main() {
 
 Vamos executar este código duas vezes:
 
-#+begin_src shell :results output :dir e
+#+begin_src shell :results output :dir e :exports both
 gcc a15-aleatorio-2.c -o a15-aleatorio
 ./a15-aleatorio; sleep 1; ./a15-aleatorio
 #+end_src
@@ -665,8 +727,23 @@ gcc a15-aleatorio-2.c -o a15-aleatorio
 : 1379384142 1735614581 271097401 
 
 As sequências aleatórias não são mais as mesmas.
-* Observação sobre números aleatórios
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula11-arrays1_slide_30.pdf}{Prof. Claudio Jung}
+* Como gerar números pseudoaleatórios em outros intervalos?
+
+=int rand()=: retorna um valor entre 0 e =RAND_MAX=
+
+#+latex: \pause\vfill
+
+Gerar números pseudoaleatórios entre MIN e MAX
+- Constantes definidas pelo usuário
+
+#+begin_src C
+#define MIN 40
+#define MAX 67
+
+int aleatorio = rand(); // um número entre 0 e RAND_MAX
+int valor = MIN + (aleatorio % (MAX-MIN+1));
+#+end_src
+
 * Exercício #1
 
 Faça um _algoritmo_ e um _programa em C_ para
