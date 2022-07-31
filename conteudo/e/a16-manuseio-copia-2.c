@@ -11,7 +11,7 @@ int main()
   fgets(str_in, TAMSTRING, stdin);
   printf("String lida foi ->[%s]<-\n", str_in);
   // varre a string lida ate achar '\0'
-  while (str_in[cont]!='\0') {
+  while (str_in[cont] != '\0') {
     str_out[cont] = str_in[cont];
     cont++;
   }

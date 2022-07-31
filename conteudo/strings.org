@@ -129,28 +129,97 @@ int main (){
 
 #+latex: %\cortesia{../../../Algoritmos/Marcelo/aulas/aula12/aula12_slide_11.pdf}{Prof. Marcelo Walter}
 
-* Sequência de caracteres
+* Uma =string= é um arranjo de caracteres
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula12/aula12_slide_12.pdf}{Prof. Marcelo Walter}
+=Strings= é um arranjo de caracteres
+- Ou ``cadeia de caracteres''
+- Ou ``sequência de caracteres''
+- Ou ``vetor de caracteres''
 
-* Declaração de /strings/ (similar a arranjos)
+#+latex: \pause\vfill
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula12/aula12_slide_13.pdf}{Prof. Marcelo Walter}
+Na linguagem C
+- Tem um marcador de fim: '\0' (caractere ASCII da posição zero)
+#+begin_src C
+char caractere[9] = "Brasil";
+#+end_src
+#+attr_latex: :center nil
+|   | 0 | 1 | 2 | 3 | 4 | 5 | 6  | 7 |  8 |
+| / | < | < | < | < | < | < | <  | < | <> |
+|---+---+---+---+---+---+---+----+---+----|
+|   | B | r | a | s | i | l | \0 |   |    |
+|---+---+---+---+---+---+---+----+---+----|
 
-* Literal /strings/
+#+latex: \pause\vfill
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula12/aula12_slide_14.pdf}{Prof. Marcelo Walter}
+- Toda =string= é um vetor de caracteres
+- Mas /nem todo vetor de caracteres é uma string/ \\
+  \to Pode não apresentar o marcador de fim
 
-* Inicialização de /strings/ (Exemplos P1)
+#+latex: \pause\vfill
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula12/aula12_slide_15.pdf}{Prof. Marcelo Walter}
+*Literais strings* são representadas sempre por aspas duplas
 
-* Inicialização de /strings/ (Exemplos P2)
+Assim, "A" e 'A' são coisas diferentes!
+- "A" é um vetor de 2 caracteres; 'A' é um caractere
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula12/aula12_slide_16.pdf}{Prof. Marcelo Walter}
+* *Declaração* de /strings/ na Linguagem C
+
+Na linguagem C
+#+begin_src text
+char <nome>[<capacidade>];
+#+end_src
+- nome: um identificador da variável =string=
+- capacidade: um número natural não nulo
+
+#+latex: \pause\vfill
+
+#+begin_src C
+char um_nome[9];
+#+end_src
+|   | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 |  8 |
+| / | < | < | < | < | < | < | < | < | <> |
+|---+---+---+---+---+---+---+---+---+----|
+|   |   |   |   |   |   |   |   |   |    |
+|---+---+---+---+---+---+---+---+---+----|
+
+*A capacidade _deve sempre_ prever a inclusão do marcador de fim*
+
+#+latex: \pause\vfill
+
+Reflexão:
+- Temos =dia_da_semana[?]= e =mes[?]=
+  - Qual deve ser o tamanho da string?
+
+* Inicialização de /strings/
+
+Pode ser feitas de várias maneiras
+#+begin_src C
+char nome1[15] = "Ana";
+char nome2[15] = {'A', 'n', 'a'};
+#+end_src
+Nestes casos, o compilador adiciona o '\0'.
+
+#+latex: \pause
+
+#+begin_src C
+char nome3[] = "Ana";
+#+end_src
+Neste caso, o compilador aloca =nome3= com capacidade 4.
+- Tamanho do literal string mais um
+
+#+latex: \pause
+
+#+begin_src C
+char nome[4] = "Alba";
+#+end_src
+*Problema* \to é necessária uma capacidade de cinco caracteres
+
+O código será compilado sem /warnings/ ou /errors/.
 
 * Utilização de =printf= com /strings/
 
+=a16-exemplo-printf.c=
 #+attr_latex: :options fontsize=\normalsize
 #+BEGIN_SRC C :tangle e/a16-exemplo-printf.c
 #include <stdio.h>
@@ -169,7 +238,7 @@ int main () {
 
 Execução do exemplo
 
-#+begin_src shell :results output :dir e
+#+begin_src shell :results output :dir e :exports both
 gcc a16-exemplo-printf.c -o a16-exemplo-printf
 ./a16-exemplo-printf
 #+end_src
@@ -233,10 +302,19 @@ int main(){
 
 * Impossível atribuição entre /strings/
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula12/aula12_slide_20.pdf}{Prof. Marcelo Walter}
+Como =strings= não são um tipo em C, não se pode atribuir
 
-* Vamos mesmo assim tentar...
+#+begin_src C
+char str1[15] = "Lucas";
+char str2[10];
+str2 = str1;
+#+end_src
 
+O código acima não compila. :(
+
+* Vamos tentar mesmo assim
+
+=a16-atribuir-strings.c=
 #+BEGIN_SRC C :tangle e/a16-atribuir-strings.c
 int main(){
   char str1[] = "Ana";
@@ -251,9 +329,8 @@ int main(){
 Compilar:
 
 #+latex: {\small
-#+begin_src shell :results output :dir e
-gcc a16-atribuir-strings.c -o a16-atribuir-strings 2>&1 > x
-cat x
+#+begin_src shell :results output :dir e :exports both
+gcc a16-atribuir-strings.c -o a16-atribuir-strings 2>&1 > x ; cat x
 #+end_src
 
 #+RESULTS:
@@ -272,7 +349,18 @@ Mas como fazer para copiar uma string para outra, etc?
 
 * Manuseio de /strings/
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula12/aula12_slide_21.pdf}{Prof. Marcelo Walter}
+Como já vimos...
+
+Uma =string= é um arranjo de caracteres com marcador de fim
+- Assim, podemos escrever um programa que a trate como arranjo
+
+#+latex: \vfill\pause
+
+#+begin_center
+Escrever um programa que leia uma string =str_in= do teclado, copie para
+
+outra string =str_out=, e imprima a segunda variável na tela.
+#+end_center
 
 * Cópia: Exemplo em =a16-manuseio-copia-1.c=
 
@@ -290,7 +378,7 @@ int main()
   fgets(str_in, TAMSTRING, stdin);
   printf("String lida foi ->[%s]<-\n", str_in);
   // varre a string lida ate achar '\0'
-  while (str_in[cont]!='\0') {
+  while (str_in[cont] != '\0') {
     str_out[cont] = str_in[cont];
     cont++;
   }
@@ -323,7 +411,7 @@ int main()
   fgets(str_in, TAMSTRING, stdin);
   printf("String lida foi ->[%s]<-\n", str_in);
   // varre a string lida ate achar '\0'
-  while (str_in[cont]!='\0') {
+  while (str_in[cont] != '\0') {
     str_out[cont] = str_in[cont];
     cont++;
   }
@@ -335,7 +423,18 @@ int main()
 
 * Funções para manuseio de /strings/ oriundas de =string.h=
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula12/aula12_slide_24.pdf}{Prof. Marcelo Walter}
+Biblioteca =string.h=
+#+begin_src C
+#include <string.h>
+#+end_src
+
+#+latex: \vfill
+
+Funções disponíveis (entre muitas outras, veja =man string.h=)
+- Cópia de strings: =strcpy=
+- Concatenação de strings: =strcat=
+- Descobrir o tamanho de uma string: =strlen=
+- Comparar duas strings: =strcmp=
 
 * Função =strcpy= (destino, origem) ~a16-exemplo-strcpy.c~
 
@@ -406,7 +505,21 @@ int main() {
 
 * Função =strcmp= (s1, s2) \to =cmp= indica comparação
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula12/aula12_slide_28.pdf}{Prof. Marcelo Walter}
+Começa comparando o primeiro caractere das strings =s1= e =s2=.  Se
+iguais, continua a comparação dos caracteres seguintes até que
+encontre alguma diferença (incluindo o marcador de fim).
+
+#+latex: \pause
+
+O valor de retorno:
+- Se caractere de =s1= é maior que =s2=, retorna um valor maior que zero
+- Se caractere de =s1= é menor que =s2=, retorna um valor menor que zero
+- Se iguais, retorna zero
+
+#+latex: \vfill\pause
+
+Usamos os valores ASCII
+- Lembrando que maiúsculas vem primeiro que minúsculas
 
 * Exemplo de uso de =strcmp= em ~a16-exemplo-strcmp.c~
 
