@@ -53,13 +53,47 @@
 - Exercício #1 (Implementação de código de manuseio)
 - Exercício #2 (Procura por caractere)
 - Exercício #3 (Procura por /string/)
+
 * Motivação
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula12/aula12_slide_09.pdf}{Prof. Marcelo Walter}
+#+begin_center
+Ler o nome de 30 alunos e a nota correspondente.
+
+Calcular e informar a média da turma, seguido dos nomes dos alunos com
+nota inferior à média da turma.
+#+end_center
+
+#+latex: \pause\vfill
+
+*Como armazenar os nomes?*
+
+#+latex: \vfill
+
+- Nome: arranjo de caracteres ou /string/
+- Na linguagem C
+  - Um caractere: =char= (guarda apenas um caractere)
+  - Um (ou uma) /string/: arranjo de caracteres (mais de um)
 
 * Como ler um caractere?
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula12/aula12_slide_10.pdf}{Prof. Marcelo Walter}
+Usar a função =scanf=
+- Um espaço em branco no formatador \to remover espaços em branco
+- Espaço em branco, caractere de tabulação, quebras de linha
+
+#+begin_src C
+char caractere;
+scanf(" %c", &caractere);
+#+end_src
+
+#+latex: \vfill\pause
+
+Usar a função =getchar()=
+- Uma função específica para leitura de caracteres
+
+#+begin_src C
+char caractere;
+caractere = getchar();
+#+end_src
 
 * Funcionamento da função =getchar()=
 
@@ -67,10 +101,10 @@ Ler um caractere com =a16-getchar.c=
 #+BEGIN_SRC C :tangle e/a16-getchar.c
 #include <stdio.h>
 int main (){
-  char ch;
+  char caractere;
   printf("Forneça um caractere: ");
-  ch = getchar();
-  printf("O caractere digitado: ->[%c]<-\n", ch);
+  caractere = getchar();
+  printf("O caractere digitado: ->[%c]<-\n", caractere);
   return 0;
 }
 #+END_SRC
@@ -82,12 +116,12 @@ Ler vários caracteres, um por um, com =a16-getchar-varios.c=
 #+BEGIN_SRC C :tangle e/a16-getchar-varios.c
 #include <stdio.h>
 int main (){
-  char ch;
+  char caractere;
   do {
     printf("Forneça um caractere: ");
-    ch = getchar();
-    printf("O caractere digitado: ->[%c]<-\n", ch);
-  }while(ch != 'p');
+    caractere = getchar();
+    printf("O caractere digitado: ->[%c]<-\n", caractere);
+  }while(caractere != 'p');
   return 0;
 }
 #+END_SRC

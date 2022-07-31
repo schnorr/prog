@@ -1,8 +1,8 @@
 #include <stdio.h>
 int main (){
-  char ch;
+  char caractere;
   printf("Forneça um caractere: ");
-  ch = getchar();
-  printf("O caractere digitado: ->[%c]<-\n", ch);
+  caractere = getchar();
+  printf("O caractere digitado: ->[%c]<-\n", caractere);
   return 0;
 }

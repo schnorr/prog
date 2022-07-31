@@ -1,10 +1,10 @@
 #include <stdio.h>
 int main (){
-  char ch;
+  char caractere;
   do {
     printf("Forneça um caractere: ");
-    ch = getchar();
-    printf("O caractere digitado: ->[%c]<-\n", ch);
-  }while(ch != 'p');
+    caractere = getchar();
+    printf("O caractere digitado: ->[%c]<-\n", caractere);
+  }while(caractere != 'p');
   return 0;
 }
