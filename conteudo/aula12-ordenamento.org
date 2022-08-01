@@ -1,0 +1,131 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Algoritmos
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+
+#+latex: \newcommand{\mytitle}{Ordenamento de Arranjos}
+#+latex: \mytitleslide
+
+* Configuração                                                     :noexport:
+
+#+BEGIN_SRC emacs-lisp
+(setq org-latex-listings 'minted
+      org-latex-packages-alist '(("" "minted"))
+      org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+(setq org-latex-minted-options
+       '(("frame" "lines")
+         ("fontsize" "\\scriptsize")))
+#+END_SRC
+
+#+RESULTS:
+| frame    | lines       |
+| fontsize | \scriptsize |
+* Sumário
+
+- Algoritmos de Ordenamento
+- Algoritmo por bolha (/Bubble Sort/)
+- Exercícios
+
+* Algoritmos de Ordenamento
+
+- Cultura: Computadores /vs/ Ordenadores
+- Algoritmos de Ordenamento
+  - Colocam elementos de uma lista/vetor/arranjo em ordem
+  - Qual ordem? \\
+    Numérica... lexicográfica... crescente... descrescente
+
+#+latex: \vfill\pause
+
+Quantos algoritmos existem? \\
+https://en.wikipedia.org/wiki/Sorting_algorithm \\
+(lista não exaustiva)
+
+#+latex: \vfill\pause
+
+Complexidade, eficiência \\
+https://en.wikipedia.org/wiki/Sorting_algorithm#Classification \\
+(n, nlogn, n^2, ...) \\
+https://www.youtube.com/watch?v=ZZuD6iUe3Pc
+
+* Visão geral de um problema para ordenamento
+
+Codificar em C esta sequência de passos, assumindo um arranjo 1D
+
+1. Preencher com valores aleatórios
+2. Imprimir
+3. Ordenar em ordem crescente
+4. Imprimir
+5. Terminar
+
+* Algoritmo /Selection Sort/
+
+|   |  0 |  1 |  2 | 3 |  4 |  5 |  6 |  7 |  8 |  9 |
+| / |  < |  < |  < | < |  < |  < |  < |  < | <> |    |
+|---+----+----+----+---+----+----+----+----+----+----|
+|   | 23 | 14 | 57 | 7 | 89 | 26 | 10 | 14 | 64 | 59 |
+|---+----+----+----+---+----+----+----+----+----+----|
+
+#+latex: \vfill\pause
+
+Ideia
+1. Procurar o menor elemento
+2. Colocar este menor na primeira posição
+3. Procurar o menor elemento da segunda posição em diante
+4. Colocar este menor na segunda posição
+5. Repetir até a última posição
+
+#+latex: \vfill\pause
+
+Algoritmo
+1. Definir i = 0
+2. Enquanto i < n
+   1. Procurar o menor elemento de i até n-1
+   2. Colocar o menor elemento encontrado na posição i
+   3. Definir i = i + 1
+
+* Algoritmo /Bubble Sort/
+
+|   |  0 |  1 |  2 | 3 |  4 |  5 |  6 |  7 |  8 |  9 |
+| / |  < |  < |  < | < |  < |  < |  < |  < | <> |    |
+|---+----+----+----+---+----+----+----+----+----+----|
+|   | 23 | 14 | 57 | 7 | 89 | 26 | 10 | 14 | 64 | 59 |
+|---+----+----+----+---+----+----+----+----+----+----|
+
+#+latex: \vfill\pause
+
+Ideia
+1. Baseada em sucessivas varreduras do arranjo
+2. A cada varredura, compara elementos adjacentes, trocando-os de
+   ordem caso o primeiro seja maior do que o segundo (ordenação em
+   ordem crescente).
+3. Quando não houver troca alguma em uma varredura, o algorimo é
+   encerrado, e a lista estará ordenada.
+
+* Exercícios
+
+Implemente
+1. /Selection Sort/
+2. /Bubble Sort/
+
+Na implementação
+- Considere um vetor de tamanho TAMANHO
+- Faça testes com tamanhos de arranjo variados
+
+#+latex: \vfill
+
+Qual é mais eficiente (rápido em tempo de execução)?

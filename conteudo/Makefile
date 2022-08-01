@@ -43,6 +43,7 @@ ORIGINA= aula01-apresentacao.pdf \
 	 aula10-arranjos.pdf \
 	 aula11-strings.pdf \
 	 aula12-matriz.pdf \
+	 aula12-ordenamento.pdf \
 	 maismatriz.pdf \
 	 revisao-p1.pdf \
 	 funcoes.pdf \
