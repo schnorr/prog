@@ -25,7 +25,7 @@ int main () {
   }while (cod <= CODMIN+(CODMAX-CODMIN) && achou == 0);
 
   if (achou == 1){
-    printf("Codigo desejado: %d\n", CODMIN+cod-1);
+    printf("Codigo desejado: %d\n", cod-1);
   }else{
     printf("Codigo não encontrado!\n");
   }

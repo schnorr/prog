@@ -4,11 +4,11 @@ Saidas: media da turma, e impressao das notas maiores do que a media*/
 #include <stdio.h>
 #define NUMALUNOS 30
 int main () {
-  float nota [NUMALUNOS] ; //arranjo para as notas
+  float nota[NUMALUNOS] ; //arranjo para as notas
   float media, soma;
   int aluno; // variavel de controle da repeticao
   soma = 0; // inicializa soma
-  for (aluno = 0; aluno < NUMALUNOS ; aluno++) { //para cada aluno
+  for (aluno = 0; aluno < NUMALUNOS; aluno++) { //para cada aluno
     scanf ("%f", &nota[aluno]); // obtem nota
     printf("Nota %2.2f colocada na posição %d\n", nota[aluno], aluno);
     soma += nota[aluno]; // acumula a soma

@@ -42,58 +42,281 @@
 - Matrizes!
   - Declaração
   - Utilização
-  - Inicialização automática
+  - Inicialização
+  - ``Linearização'' na memória
 - Exemplos
   - #1 (ler e armazenar notas em uma matriz)
   - #2 (imprimir matriz na tela)
   - #3 (operações comuns)
 - Arranjos multidimensionais (com mais de duas dimensões)
-  - 3D
-  - 4D e além
 - Matrizes de caracteres
 - Exercícios
   - #1 (Matriz transposta)
   - #2 (Sistema de Equações Lineares)
 
-* Revisão Vetor #1
+* Revisão Vetor #1 -- Arranjo (/aka/ Vetor)
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula13/aula13_slide_14.pdf}{Prof. Marcelo Walter}
+#+begin_center
+Guarda um conjunto de elementos.
 
-* Revisão Vetor #2
+Todos os elementos são do mesmo tipo.
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula13/aula13_slide_15.pdf}{Prof. Marcelo Walter}
+Permite acesso aleatório a qualquer posição.
+#+end_center
 
-* Revisão Vetor #3
+Representação gráfica de um arranjo
+|   | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 |  8 |
+| / | < | < | < | < | < | < | < | < | <> |
+|---+---+---+---+---+---+---+---+---+----|
+|   |   |   |   |   |   |   |   |   |    |
+|---+---+---+---+---+---+---+---+---+----|
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula13/aula13_slide_16.pdf}{Prof. Marcelo Walter}
+Índice
+- Identifica a posição de um elemento no arranjo
+- O primeiro é sempre zero
 
-* Revisão Vetor #4 (Motivação para matrizes!)
+Um arranjo tem um nome e um tamanho máximo na declaração
+- O nome é comum para todos os elementos daquele arranjo
+- O tamanho indica a capacidade máxima de valores
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula13/aula13_slide_17.pdf}{Prof. Marcelo Walter}
+* Revisão Vetor #2 -- *Declaração* de arranjos na Linguagem C
 
-* Matrizes!
+Na linguagem C
+#+begin_src text
+<tipo> <nome>[<capacidade>];
+#+end_src
+- tipo: int, float, double, ...
+- nome: um identificador da variável arranjo
+- capacidade: um número natural não nulo
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula13/aula13_slide_18.pdf}{Prof. Marcelo Walter}
+#+begin_src C
+float nota[9];
+#+end_src
+|   | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 |  8 |
+| / | < | < | < | < | < | < | < | < | <> |
+|---+---+---+---+---+---+---+---+---+----|
+|   |   |   |   |   |   |   |   |   |    |
+|---+---+---+---+---+---+---+---+---+----|
 
-* Matrizes (coordenadas em duas dimensões)
+#+begin_src C
+int numeros[4];
+#+end_src
+|   | 0 | 1 | 2 | 3 |
+| / | < | < | < | < |
+|---+---+---+---+---|
+|   |   |   |   |   |
+|---+---+---+---+---|
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula13/aula13_slide_19.pdf}{Prof. Marcelo Walter}
+* Motivação
 
-* Declaração (sintaxe)
+#+begin_center
+Armazenar as 4 notas de um aluno, com um vetor.
+#+end_center
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula12-Matriz1_slide_04.pdf}{Prof. Mara Abel}
+#+latex: \pause\vfill
 
-* Utilização (sintaxe)
+#+begin_src C
+float nota[4] = {7.5, 8.2, 9.1, 6.5};
+#+end_src
+#+attr_latex: :center nil
+|   |   0 |   1 |   2 |   3 |
+| / |   < |   < |   < |   < |
+|---+-----+-----+-----+-----|
+|   | 7.5 | 8.2 | 9.1 | 6.5 |
+|---+-----+-----+-----+-----|
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula13/aula13_slide_21.pdf}{Prof. Marcelo Walter}
+#+latex: \pause\vfill
 
-* Inicialização automática
+#+begin_center
+Como armazenar as 4 notas de vários alunos?
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula13/aula13_slide_22.pdf}{Prof. Marcelo Walter}
+Talvez com ``vários vetores''!
+#+end_center
+
+* Arranjo 2D (/aka/ Matrizes!)
+
+Vamos armazenar quatro notas de uma turma de cinco alunos
+
+#+begin_src C
+float notas[5][4];
+#+end_src
+#+attr_latex: :center nil
+|   |   | 0 | 1 | 2 | 3 |
+| / |   | < | < | < | < |
+|---+---+---+---+---+---|
+|   | 0 |   |   |   |   |
+|---+---+---+---+---+---|
+|   | 1 |   |   |   |   |
+|---+---+---+---+---+---|
+|   | 2 |   |   |   |   |
+|---+---+---+---+---+---|
+|   | 3 |   |   |   |   |
+|---+---+---+---+---+---|
+|   | 4 |   |   |   |   |
+
+#+latex: \vfill\pause
+
+As coordenadas são com duas dimensões
+#+begin_src C
+notas[2][3] = 8.5;
+#+end_src
+#+attr_latex: :center nil
+|   |   | 0 | 1 | 2 |   3 |
+| / |   | < | < | < |   < |
+|---+---+---+---+---+-----|
+|   | 0 |   |   |   |     |
+|---+---+---+---+---+-----|
+|   | 1 |   |   |   |     |
+|---+---+---+---+---+-----|
+|   | 2 |   |   |   | 8.5 |
+|---+---+---+---+---+-----|
+|   | 3 |   |   |   |     |
+|---+---+---+---+---+-----|
+|   | 4 |   |   |   |     |
+
+* *Declaração* de arranjos 2D na Linguagem C
+
+#+begin_src text
+<tipo> <nome>[<capacidade 1a dimensão>][<capacidade 2a dimensão>];
+#+end_src
+- tipo: int, float, double, ...
+- nome: um identificador da variável arranjo
+- capacidades: números naturais não nulos
+
+#+latex: \pause\vfill
+
+#+begin_src C
+float nota[3][9];
+#+end_src
+#+attr_latex: :center nil
+|   |   | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 |  8 |
+| / |   | < | < | < | < | < | < | < | < | <> |
+|---+---+---+---+---+---+---+---+---+---+----|
+|   | 0 |   |   |   |   |   |   |   |   |    |
+|---+---+---+---+---+---+---+---+---+---+----|
+|   | 1 |   |   |   |   |   |   |   |   |    |
+|---+---+---+---+---+---+---+---+---+---+----|
+|   | 2 |   |   |   |   |   |   |   |   |    |
+|---+---+---+---+---+---+---+---+---+---+----|
+
+#+latex: \pause\vfill
+
+A capacidade da primeira dimensão pode ser omitida
+- O compilador a calcula em função da capacidade da 2a dimensão
+#+begin_src C
+int valores[][4] = {2, 3, 5, 4, 8, 0, 9, 1}; // 2x4
+#+end_src
+#+attr_latex: :center nil
+|   |   | 0 | 1 | 2 | 3 |
+| / |   | < | < | < | < |
+|---+---+---+---+---+---|
+|   | 0 | 2 | 3 | 5 | 4 |
+|---+---+---+---+---+---|
+|   | 1 | 8 | 0 | 9 | 1 |
+|---+---+---+---+---+---|
+
+* *Utilização* de arranjos na Linguagem C
+
+#+begin_src text
+<nome>[<expr. p/ índice 1a dimensão>][<expr. p/ índice 2a dimensão>];
+#+end_src
+- nome: o identificador da variável arranjo já declarada
+- expressões: constante, identificador, ou expressão
+  - Uma vez avaliada, deve resultar em um valor inteiro válido
+    - Entre 0 e a capacidade que foi declarada p/ aquela dimensão
+
+#+latex: \pause\vfill
+
+#+begin_src C
+int i = 4, j = 3;
+float notas[5][4] = {0};
+scanf("%f", &nota[2][3]);
+nota[1][3] = 7.5;
+nota[2][2] = nota[1][3] + 2;
+if(nota[0][2] > 6.0){
+  printf("Aprovado.\n");
+}
+nota[i][j] = 5.6;
+#+end_src
+#+latex: {\scriptsize
+#+attr_latex: :center nil
+|   |   |   0 |   1 |   2 |   3 |
+| / |   |   < |   < |   < |   < |
+|---+---+-----+-----+-----+-----|
+|   | 0 | 0.0 | 0.0 | 0.1 | 0.0 |
+|---+---+-----+-----+-----+-----|
+|   | 1 | 0.0 | 0.0 | 0.0 | 7.5 |
+|---+---+-----+-----+-----+-----|
+|   | 2 | 0.0 | 0.0 | 9.5 |  XX |
+|---+---+-----+-----+-----+-----|
+|   | 3 | 0.0 | 0.0 | 0.0 | 0.0 |
+|---+---+-----+-----+-----+-----|
+|   | 4 | 0.0 | 0.0 | 0.0 | 5.6 |
+#+latex: }
+
+XX: local onde será registrado o valor lido pelo =scanf=
+
+* Inicialização de arranjos 2D
+
+Ao serem criados, arranjos, como as demais variáveis, contêm lixo.
+
+Devemos sempre inicializá-los com valores padrão
+1. Em tempo de compilação, automaticamente
+   #+begin_src C
+   int x[2][3] = { {1,2,-1} , {2,0,3} };
+   char y[2][2] = { {'a','h'} , {'o','9'} };
+   char nomes[2][20] = {"Jose", "Maria" };
+   #+end_src
+   #+latex: \pause
+2. Em tempo de execução, por atribuição (com um =for= por exemplo)
+   #+begin_src C
+   #define N_LINHAS 2
+   #define N_COLUNAS 20
+   int i, j;
+   char nomes[N_LINHAS][N_COLUNAS];
+   for (i = 0; i < N_LINHAS; i++) {
+      for (j = 0; j < N_COLUNAS; j++) {
+	   nomes[i][j] = '\0';
+      }
+   }
+   #+end_src
 
 * Como uma matriz é registrada em memória
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula12-Matriz1_slide_05.pdf}{Prof. Mara Abel}
+A memória é uma fita. Qualquer estrutura é portanto ``linearizada''.
+
+#+begin_src C
+float m[4][3] = {  { 5.0, 10.0, 15.0 },
+                   {20.0, 25.0, 30.0 },
+                   {35.0, 40.0, 45.0 },
+                   {50.0, 55.0, 60.0 }  };
+#+end_src
+
+Representação gráfica em forma de ``matriz''
+
+#+attr_latex: :center nil
+|   |   |    0 |    1 |    2 |
+| / |   |    < |    < |    < |
+|---+---+------+------+------|
+|   | 0 |  5.0 | 10.0 | 15.0 |
+|---+---+------+------+------|
+|   | 1 | 20.0 | 25.0 | 30.0 |
+|---+---+------+------+------|
+|   | 2 | 35.0 | 40.0 | 45.0 |
+|---+---+------+------+------|
+|   | 3 | 50.0 | 55.0 | 60.0 |
+|---+---+------+------+------|
+
+#+latex: \vfill\pause
+
+Na memória, teremos a organização (endereços indicativos acima)
+
+#+latex: {\tiny
+| / | >   |   > |    > |    > |    > |    > |    > |    > |    > |    > |    > |    > |    > |     |
+|   | ... | 142 |  146 |  150 |  154 |  158 |  162 |  166 |  170 |  174 |  178 |  182 |  186 | ... |
+|---+-----+-----+------+------+------+------+------+------+------+------+------+------+------+-----|
+|   |     | 5.0 | 10.0 | 15.0 | 20.0 | 25.0 | 30.0 | 35.0 | 40.0 | 45.0 | 50.0 | 55.0 | 60.0 |     |
+#+latex: }
 
 * Exemplo #1 (ler e armazenar notas em uma matriz)
 
@@ -167,7 +390,37 @@ int main(){
 
 * Exemplo #2 (imprimir matriz na tela)
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula13/aula13_slide_31.pdf}{Prof. Marcelo Walter}
+#+begin_center
+Vamos supor uma matriz =m= de valores inteiros com 10 linhas e 3
+colunas, preenchida com valores aleatórios entre 1 e 99. Devemos
+escrever um programa que a imprima na tela em formato de
+matriz. Abaixo um exemplo (assumindo que nos espaços em branco terão
+os valores inteiros gerados de maneira aleatória).
+#+end_center
+
+|   |   | 0 | 1 | 2 |
+| / | > | > | > | > |
+|---+---+---+---+---|
+|   | 0 |   |   |   |
+|---+---+---+---+---|
+|   | 1 |   |   |   |
+|---+---+---+---+---|
+|   | 2 |   |   |   |
+|---+---+---+---+---|
+|   | 3 |   |   |   |
+|---+---+---+---+---|
+|   | 4 |   |   |   |
+|---+---+---+---+---|
+|   | 5 |   |   |   |
+|---+---+---+---+---|
+|   | 6 |   |   |   |
+|---+---+---+---+---|
+|   | 7 |   |   |   |
+|---+---+---+---+---|
+|   | 8 |   |   |   |
+|---+---+---+---+---|
+|   | 9 |   |   |   |
+|---+---+---+---+---|
 
 * (#2) Code ~a17-imprime-matriz.c~
 
@@ -201,8 +454,15 @@ int main(){
     }
   }
 
-  // imprimir a matriz
+  // imprimir o cabeçalho
+  printf("   ");
+  for (c = 0; c < NC; c++){
+    printf("%2d ", c);
+  }
+  printf("\n");
+  // imprimir o conteúdo da matriz
   for (l = 0; l < NL; l++){
+    printf("%2d ", l);
     for (c = 0; c < NC; c++){
       printf("%2d", m[l][c]);
       if (c+1 < NC){
@@ -338,27 +598,79 @@ int main(){
 #+latex: \end{multicols}\vspace{-0.3cm}
 * Caso geral, multidimensional (> 2 dimensões)
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula12-Matriz1_slide_10.pdf}{Prof. Mara Abel}
+#+begin_center
+Temos que armazenar notas de alunos de turmas e escolas diferentes.
 
-* Declaração 3D
+Temos 6 escolas; cada uma com 2 turmas;
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula12-Matriz1_slide_11.pdf}{Prof. Mara Abel}
+cada uma com 10 alunos; cada um com 5 notas.
+#+end_center
 
-* Utilização 3D
+#+begin_src C
+float n1[5];          // Vetor (arranjo 1D): 5 notas
+float n2[10][5];      // Matriz (arranjo 2D): 10 alunos, 5 notas
+float n3[2][10][5];   // Arranjo 3D: 2 turmas, 10 alunos, 5 notas
+float n4[6][2][10][5];// Arranjo 4D: 6 escolas, 2 turmas, 10 alunos, 5 notas
+#+end_src
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula12-Matriz1_slide_12.pdf}{Prof. Mara Abel}
+#+latex: \pause\vfill
 
-* 4D e além
+Melhor com constantes
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula13_slide_37.pdf}{Prof. Edison Pignaton de Freitas}
+#+begin_src C
+#define N_NOTAS 5
+#define N_ALUNOS 10
+#define N_TURMAS 2
+#define N_ESCOLAS 6
 
-* Exemplo 4D
+float n1[N_NOTAS];                                // Vetor (arranjo 1D)
+float n2[N_ALUNOS][N_NOTAS];                      // Matriz (arranjo 2D)
+float n3[N_TURMAS][N_ALUNOS][N_NOTAS];            // Arranjo 3D
+float n4[N_ESCOLAS][N_TURMAS][N_ALUNOS][N_NOTAS]; // Arranjo 4D
+#+end_src
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula13_slide_38.pdf}{Prof. Edison Pignaton de Freitas}
+Ao acessar, usar índices específicos para cada dimensão.
 
-* Matrizes de Caracteres
+* Outro exemplo de emprego do Arranjo 4D
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula13/aula13_slide_40.pdf}{Prof. Marcelo Walter}
+#+begin_center
+10 lojas; 5 setores por loja; 30 produtos por setor; 12 meses
+
+O arranjo armazena quantidade de itens de cada
+
+produto vendido em cada mês, por setor e por loja.
+#+end_center
+
+#+begin_src C
+#define N_LOJAS 10
+#define N_SETORES 5
+#define N_PRODUTOS 30
+#define N_MESES 12
+int quantidade_vendas[N_LOJAS][N_SETORES][N_PRODUTOS][N_MESES] = {0};
+#+end_src
+
+* Exemplo de emprego do Arranjo 2D (Matrizes)
+
+#+begin_center
+Ler os nomes dos alunos de uma turma, suas notas finais (valor real
+entre 0 e 10), e frequência total (inteiro entre 0 e 45). Depois,
+imprimir os nomes e o conceito final, de acordo com a seguinte
+conversão:
+#+end_center
+
+| Nota        | Conceito |
+|-------------+----------|
+| 8.5 -- 10.0 | A        |
+| 7.5 -- 8.4  | B        |
+| 6.0 -- 7.4  | C        |
+| 0.0 -- 5.9  | D        |
+
+Se o aluno não alcançar a frequência mínima (75%) \to Conceito FF
+
+#+latex: \vfill
+
+Dica
+- Para criar vetores de /strings/, usamos matrizes do tipo =char=.
 
 * Código
 
@@ -429,6 +741,30 @@ averiguação.
 
 * Exercício #2 (Sistema de Equações Lineares)
 
-Suponha um =n= máximo.
+_Enunciado_: Escrever um programa que leia do teclado os coeficientes de
+um sistema linear triangular superior, os termos independentes, e
+calcule (imprimindo na tela) o vetor solução. Assuma que o sistema
+possui solução única. Suponha um =n= máximo.
 
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula13-matrizes_slide_29.pdf}{Prof. Claudio Jung}
+#+latex: \vfill\pause
+
+Um sistema linear triangular superior de ordem =n=:
+
+#+BEGIN_EXPORT latex
+\begin{align*}
+a_{11}x_{1} + a_{12} x_2 + ... + a_{13} x_n &= \,b_1 \\
+a_{21}x_{1} + a_{22} x_2 + ... + a_{23} x_n &= \,b_2 \\
+... \\
+a_{n1}x_{1} + a_{n2} x_2 + ... + a_{n3} x_n &= \,b_n \\
+\end{align*}
+#+END_EXPORT
+
+#+latex: \vfill\pause
+
+Utilizamos um arranjo 1D (vetor) para registrar os termos
+independentes e um arranjo 2D (matriz) para registrar os coeficientes.
+#+begin_src C
+#define N 4
+float b[N] = {0};
+float A[N][N] = {0};
+#+end_src

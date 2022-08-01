@@ -25,8 +25,15 @@ int main(){
     }
   }
 
-  // imprimir a matriz
+  // imprimir o cabeçalho
+  printf("   ");
+  for (c = 0; c < NC; c++){
+    printf("%2d ", c);
+  }
+  printf("\n");
+  // imprimir o conteúdo da matriz
   for (l = 0; l < NL; l++){
+    printf("%2d ", l);
     for (c = 0; c < NC; c++){
       printf("%2d", m[l][c]);
       if (c+1 < NC){
