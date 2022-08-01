@@ -1,0 +1,168 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Algoritmos
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{systeme}
+
+#+latex: \newcommand{\mytitle}{Revisão Aula 12 (Ordenamento)}
+#+latex: \mytitleslide
+
+* Configuração                                                     :noexport:
+
+#+BEGIN_SRC emacs-lisp
+(setq org-latex-listings 'minted
+      org-latex-packages-alist '(("" "minted"))
+      org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+(setq org-latex-minted-options
+       '(("frame" "lines")
+         ("fontsize" "\\scriptsize")))
+#+END_SRC
+
+#+RESULTS:
+| frame    | lines       |
+| fontsize | \scriptsize |
+* Exercícios
+
+Implemente
+1. /Selection Sort/
+2. /Bubble Sort/
+
+Na implementação
+- Considere um vetor de tamanho TAMANHO
+- Faça testes com tamanhos de arranjo variados
+
+#+latex: \vfill
+
+Qual é mais eficiente (rápido em tempo de execução)?
+* Algoritmo /Selection Sort/
+
+|   |  0 |  1 |  2 | 3 |  4 |  5 |  6 |  7 |  8 |  9 |
+| / |  < |  < |  < | < |  < |  < |  < |  < | <> |    |
+|---+----+----+----+---+----+----+----+----+----+----|
+|   | 23 | 14 | 57 | 7 | 89 | 26 | 10 | 14 | 64 | 59 |
+|---+----+----+----+---+----+----+----+----+----+----|
+
+Algoritmo
+1. Para i = 0 até n - 1
+   3. Para j = i até n - 1
+      1. Se valor do elemento j que o valor do elemento i
+         1. Troca elemento j pelo elemento i
+
+* Código
+
+#+latex: \begin{multicols}{2}
+#+attr_latex: :options fontsize=\scriptsize
+#+BEGIN_SRC C :tangle e/rev-aula12b-selection.c
+#include <stdio.h>
+#include <stdlib.h>
+#define LIM_ARRANJO 4
+#define MIN 1
+#define MAX 35
+int main() {
+  int a[LIM_ARRANJO], aux;
+  int i, j; // índices do arranjo
+  srand(0);
+  //Obter valores aleatórios
+  //e imprimir na tela
+  printf("Antes -> ");
+  for (i = 0; i < LIM_ARRANJO; i++){
+    a[i] = MIN+(rand()%(MAX-MIN+1));
+    printf("%d ", a[i]);
+  }
+  printf("\n");
+  // Ordenação por Seleção
+  for (i = 0; i < LIM_ARRANJO; i++){
+    for (j = i; j < LIM_ARRANJO; j++){
+      if (a[j] < a[i]){
+	aux = a[i];
+	a[i] = a[j];
+	a[j] = aux;
+      }
+    }
+  }
+  // Imprimir o resultado do ordenamento
+  printf("Após  -> ");
+  for (i = 0; i < LIM_ARRANJO; i++){
+    printf("%d ", a[i]);
+  }
+  printf("\n");
+}
+#+END_SRC
+#+latex: \end{multicols}\vspace{-0.3cm}
+
+* Algoritmo /Bubble Sort/
+
+|   |  0 |  1 |  2 | 3 |  4 |  5 |  6 |  7 |  8 |  9 |
+| / |  < |  < |  < | < |  < |  < |  < |  < | <> |    |
+|---+----+----+----+---+----+----+----+----+----+----|
+|   | 23 | 14 | 57 | 7 | 89 | 26 | 10 | 14 | 64 | 59 |
+|---+----+----+----+---+----+----+----+----+----+----|
+
+Algoritmo
+1. Faça
+   1. Definir sinal = 0
+   2. Para i = 1 até n -1
+      1. Se elemento i-1 for maior que elemento i
+         1. Troque o elemento i-1 pelo i
+         2. Definir sinal = 1
+2. Enquanto sinal for igual a zero
+
+* Código
+
+#+latex: \begin{multicols}{2}
+#+attr_latex: :options fontsize=\scriptsize
+#+BEGIN_SRC C :tangle e/rev-aula12b-bubble.c
+#include <stdio.h>
+#include <stdlib.h>
+#define LIM_ARRANJO 4
+#define MIN 1
+#define MAX 35
+int main() {
+  int a[LIM_ARRANJO], aux;
+  int sinal; // sinal de troca
+  int i, j; // índices do arranjo
+  srand(0);
+  //Obter valores aleatórios
+  //e imprimir na tela
+  printf("Antes -> ");
+  for (i = 0; i < LIM_ARRANJO; i++){
+    a[i] = MIN+(rand()%(MAX-MIN+1));
+    printf("%d ", a[i]);
+  }
+  printf("\n");
+  // Ordenação por Bolha
+  do {
+    sinal = 0;
+    for (i = 0; i < LIM_ARRANJO-1; i++)
+      if (a[i] > a[i+1]) {
+ 	  aux = a[i];
+	  a[i] = a[i+1];
+	  a[i+1] = aux;
+	  sinal = 1;
+      }
+  } while (sinal == 1);
+  // Imprimir o resultado do ordenamento
+  printf("Após  -> ");
+  for (i = 0; i < LIM_ARRANJO; i++){
+    printf("%d ", a[i]);
+  }
+  printf("\n");
+}
+#+END_SRC
+#+latex: \end{multicols}\vspace{-0.3cm}
