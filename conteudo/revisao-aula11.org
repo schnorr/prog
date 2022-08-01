@@ -43,10 +43,10 @@ Implemente, empregando o comando =for=, a funcionalidade destas funções
 - =strlen=
 - =strcmp=
 
-* (#1) =rev-a16-strcpy.c=
+* (#1) =rev-aula11-strcpy.c=
 
 #+attr_latex: :options fontsize=\scriptsize
-#+BEGIN_SRC C :tangle e/rev-a16-strcpy.c
+#+BEGIN_SRC C :tangle e/rev-aula11-strcpy.c
 /* Programa que copia caracteres da string o para a string d */
 #include <stdio.h>
 #include <string.h>
@@ -71,11 +71,11 @@ int main(){
 }
 #+END_SRC
 
-* (#1) =rev-a16-strcat.c=
+* (#1) =rev-aula11-strcat.c=
 
 #+latex: \begin{multicols}{2}
 #+attr_latex: :options fontsize=\scriptsize
-#+BEGIN_SRC C :tangle e/rev-a16-strcat.c
+#+BEGIN_SRC C :tangle e/rev-aula11-strcat.c
 /* Programa que concatena caracteres
    da string d no final da string o */
 #include <stdio.h>
@@ -124,10 +124,10 @@ int main(){
 #+END_SRC
 #+latex: \end{multicols}
 
-* (#1) =rev-a16-strlen.c=
+* (#1) =rev-aula11-strlen.c=
 
 #+attr_latex: :options fontsize=\scriptsize
-#+BEGIN_SRC C :tangle e/rev-a16-strlen.c
+#+BEGIN_SRC C :tangle e/rev-aula11-strlen.c
 /* Programa que conta quantos caracteres tem em uma string */
 #include <stdio.h>
 #include <string.h>
@@ -152,11 +152,11 @@ int main(){
 }
 #+END_SRC
 
-* (#1) ~rev-a16-strcmp.c~
+* (#1) ~rev-aula11-strcmp.c~
 
 #+latex: \begin{multicols}{2}
 #+attr_latex: :options fontsize=\scriptsize
-#+BEGIN_SRC C :tangle e/rev-a16-strcmp.c
+#+BEGIN_SRC C :tangle e/rev-aula11-strcmp.c
 /* Programa que compara duas strings,
    definindo a diferença entre as duas
    que pode ser: 0 (se iguais),
@@ -207,11 +207,11 @@ Escreva um programa que lê um texto contendo até MAXIMO caracteres,
 depois lê 1 caractere e informa a primeira posição do texto onde este
 caractere ocorre (ou que não existe tal caractere no texto).
 
-* (#2) Code ~rev-a16-procura-caractere.c~
+* (#2) Code ~rev-aula11-procura-caractere.c~
 
 #+latex: \begin{multicols}{2}
 #+attr_latex: :options fontsize=\scriptsize
-#+BEGIN_SRC C :tangle e/rev-a16-procura-caractere.c
+#+BEGIN_SRC C :tangle e/rev-aula11-procura-caractere.c
 /* Procura por caractere */
 #include <stdio.h>
 #include <string.h>
@@ -257,11 +257,11 @@ do texto onde esta /string/ ocorre (ou que não existe tal caractere no
 texto). Caso a /string/ apareça mais de uma vez, todas as ocorrências
 devem ser informadas.
 
-* (#3) Code ~rev-a16-procura-string.c~
+* (#3) Code ~rev-aula11-procura-string.c~
 
 #+latex: \begin{multicols}{2}
 #+attr_latex: :options fontsize=\scriptsize
-#+BEGIN_SRC C :tangle e/rev-a16-procura-string.c
+#+BEGIN_SRC C :tangle e/rev-aula11-procura-string.c
 /* Procura por s2 em s1 */
 #include <stdio.h>
 #include <string.h>
@@ -309,9 +309,9 @@ int main(){
 #+latex: \end{multicols}
 * (#3) Alternative Code
 
-Veja em [[./rev-a16-procura-string-brun.c]].
+Veja em [[./rev-aula11-procura-string-brun.c]].
 
-#+BEGIN_SRC C :tangle e/rev-a16-procura-string-brun.c
+#+BEGIN_SRC C :tangle e/rev-aula11-procura-string-brun.c
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
