@@ -38,7 +38,7 @@ ORIGINA= aula01-apresentacao.pdf \
 	 aula09-while.pdf \
 	 aula10-arranjos.pdf \
 	 aula11-strings.pdf \
-	 matriz.pdf \
+	 aula12-matriz.pdf \
 	 maismatriz.pdf \
 	 revisao-p1.pdf \
 	 funcoes.pdf \
