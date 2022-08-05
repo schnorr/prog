@@ -14,19 +14,19 @@ int main() {
   // leitura dos dados
   for (a = 0; a < NALUNOS; a++){
     printf("Dados do aluno %d:\n" , a + 1);
-    printf("\t Nome: ");
 
     //Vamos ler o nome na variável auxiliar
-    fgets(aux, AUXILIAR_MAX, stdin);
-    aux[strlen(aux)-1] = '\0'; //remove o \n
-    while(strlen(aux) > NOME_MAX){
-      printf("Nome muito longo (%d bytes), "
-	     "deve ser %d bytes no máximo.\n",
-	     strlen(aux), NOME_MAX);
+    do{
       printf("\t Nome: ");
       fgets(aux, AUXILIAR_MAX, stdin);
       aux[strlen(aux)-1] = '\0'; //remove o \n
-    }
+      //informa do problema
+      if(strlen(aux) > NOME_MAX){
+	  printf("Nome muito longo (%d bytes), "
+		 "deve ser %d bytes no máximo.\n",
+		 strlen(aux), NOME_MAX);
+      }
+    }while(strlen(aux) > NOME_MAX);
 
     //Vamos copiar para destino final
     strncpy (nome[a], aux, NOME_MAX);
