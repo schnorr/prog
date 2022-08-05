@@ -54,13 +54,61 @@ Exercícios
 Desafio
 - Campo minado
 
-* (Revisão) Arranjos multidimensionais
+* Revisão Matriz -- Caso geral, multidimensional
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula14_slide_02.pdf}{Prof. Edison Pignaton de Freitas}
+#+begin_center
+Temos que armazenar notas de alunos de turmas e escolas diferentes.
 
-* (Revisão) Ainda sobre strings
+Temos 6 escolas; cada uma com 2 turmas;
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula14_slide_03.pdf}{Prof. Edison Pignaton de Freitas}
+cada uma com 10 alunos; cada um com 5 notas.
+#+end_center
+
+#+begin_src C
+float n1[5];          // Vetor (arranjo 1D): 5 notas
+float n2[10][5];      // Matriz (arranjo 2D): 10 alunos, 5 notas
+float n3[2][10][5];   // Arranjo 3D: 2 turmas, 10 alunos, 5 notas
+float n4[6][2][10][5];// Arranjo 4D: 6 escolas, 2 turmas, 10 alunos, 5 notas
+#+end_src
+
+Melhor empregar constantes
+
+#+begin_src C
+#define N_NOTAS 5
+#define N_ALUNOS 10
+#define N_TURMAS 2
+#define N_ESCOLAS 6
+
+float n1[N_NOTAS];                                // Vetor (arranjo 1D)
+float n2[N_ALUNOS][N_NOTAS];                      // Matriz (arranjo 2D)
+float n3[N_TURMAS][N_ALUNOS][N_NOTAS];            // Arranjo 3D
+float n4[N_ESCOLAS][N_TURMAS][N_ALUNOS][N_NOTAS]; // Arranjo 4D
+#+end_src
+
+Ao acessar, usar índices específicos para cada dimensão.
+
+* Revisão String -- Uma =string= é um arranjo de caracteres
+
+Na linguagem C
+- Tem um marcador de fim: '\0' (caractere ASCII da posição zero)
+#+begin_src C
+char caractere[9] = "Brasil";
+#+end_src
+#+attr_latex: :center nil
+|   | 0 | 1 | 2 | 3 | 4 | 5 | 6  | 7 |  8 |
+| / | < | < | < | < | < | < | <  | < | <> |
+|---+---+---+---+---+---+---+----+---+----|
+|   | B | r | a | s | i | l | \0 |   |    |
+|---+---+---+---+---+---+---+----+---+----|
+
+- Toda =string= é um vetor de caracteres
+- Mas /nem todo vetor de caracteres é uma string/ \\
+  \to Pode não apresentar o marcador de fim
+
+*Literais strings* são representadas sempre por aspas duplas
+
+Assim, "A" e 'A' são coisas diferentes!
+- "A" é um vetor de 2 caracteres; 'A' é um caractere
 
 * #1 (nome de alunos, 3\times notas, média)
 
@@ -95,19 +143,19 @@ int main() {
   // leitura dos dados
   for (a = 0; a < NALUNOS; a++){
     printf("Dados do aluno %d:\n" , a + 1);
-    printf("\t Nome: ");
 
     //Vamos ler o nome na variável auxiliar
-    fgets(aux, AUXILIAR_MAX, stdin);
-    aux[strlen(aux)-1] = '\0'; //remove o \n
-    while(strlen(aux) > NOME_MAX){
-      printf("Nome muito longo (%d bytes), "
-	     "deve ser %d bytes no máximo.\n",
-	     strlen(aux), NOME_MAX);
+    do{
       printf("\t Nome: ");
       fgets(aux, AUXILIAR_MAX, stdin);
       aux[strlen(aux)-1] = '\0'; //remove o \n
-    }
+      //informa do problema
+      if(strlen(aux) > NOME_MAX){
+	  printf("Nome muito longo (%d bytes), "
+		 "deve ser %d bytes no máximo.\n",
+		 strlen(aux), NOME_MAX);
+      }
+    }while(strlen(aux) > NOME_MAX);
 
     //Vamos copiar para destino final
     strncpy (nome[a], aux, NOME_MAX);
@@ -273,7 +321,23 @@ int main() {
 
 * #2 (matriz esparsa para condensada)
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula14_slide_12.pdf}{Prof. Edison Pignaton de Freitas}
+Uma *matriz esparsa* é uma matriz que tem muitos elementos iguais a zero
+(tipicamente mais que 2/3 de zeros já configura uma matriz esparsa).
+
+Fazer um programa que:
+
+1. Preencher uma matriz de ordem N com números naturais aleatoriamente
+   distribuídos entre 0 e 9. Ao preencher, garanta que a matriz será
+   esparsa preenchendo tipicamente 2/3 das posições com zeros (será
+   aproximadamente 2/3 de N*N). Pode-se utilizar o resultado de =rand()=
+   para decidir se devemos gerar um zero ou outro número (1 a 9).
+
+2. Converter a matriz esparsa gerada em um formato condensado apenas
+   com os elementos não nulos. Esta matriz em formato "condensado"
+   terá três colunas, onde cada linha guarda um valor não nulo:
+   1. Contém o valor
+   2. Contém a linha do valor 
+   3. Contém a coluna
 
 * (#2) Exemplo
 
@@ -304,30 +368,41 @@ int main() {
 #+attr_latex: :options fontsize=\tiny
 #+BEGIN_SRC C :tangle e/a17-esparsa.c
 #include <stdio.h>
-#define MAXL 5 // número de linhas
-#define MAXC 5 // número de colunas
+#include <stdlib.h>
+#define N 5 // ordem
+#define MIN 0
+#define MAX 9
 int main() {
   //a matriz esparsa
-  int esparsa[MAXL][MAXC] = {0};
+  int esparsa[N][N] = {0};
   //a matriz condensada com mais ou menos 1/3 dados
-  int condensada[(MAXL*MAXC)/3+1][3] = {0};
+  int condensada[(N*N)/3+1][3] = {0};
   //índices da esparsa
   int l, c;
   //índice linha da condensada
   int lc;
 
-  //leitura dos dados
-  for (l = 0; l < MAXL; l++) {
-    for (c = 0; c < MAXC; c++) {
-      printf("Elemento [%d][%d]: ", l, c);
-      scanf("%d", &esparsa[l][c]);
+  srand(0);
+
+  //geração dos dados esparsos
+  for (l = 0; l < N; l++) {
+    for (c = 0; c < N; c++) {
+      int aleatorio = rand();
+      if (aleatorio < 2*(float)RAND_MAX/3){
+	   esparsa[l][c] = 0;
+      }else{
+	   esparsa[l][c] = MIN +
+	     (aleatorio % (MAX-MIN+1));
+      }
     }
   }
 
+
+
   //percorre esparsa
   lc = 0; //zero o índice da condensada
-  for (l = 0; l < MAXL; l++) {
-    for (c = 0; c < MAXC; c++) {
+  for (l = 0; l < N; l++) {
+    for (c = 0; c < N; c++) {
       if(esparsa[l][c]){
 	  condensada[lc][0] = esparsa[l][c];
 	  condensada[lc][1] = l;
@@ -340,8 +415,8 @@ int main() {
   //imprime
   printf("\n");
   printf("Esparsa\n");
-  for (l = 0; l < MAXL; l++) {
-    for (c = 0; c < MAXC; c++) {
+  for (l = 0; l < N; l++) {
+    for (c = 0; c < N; c++) {
       printf("%2d ", esparsa[l][c]);
     }
     printf("\n");
@@ -349,7 +424,7 @@ int main() {
 
   //imprime
   printf("Condensada\n");
-  for (l = 0; l < (MAXL*MAXC)/3+1; l++) {
+  for (l = 0; l < (N*N)/3+1; l++) {
     for (c = 0; c < 3; c++) {
       printf("%2d ", condensada[l][c]);
     }
@@ -387,6 +462,8 @@ int main() {
 
 Vejamos
 
+#+latex: {\tiny
+
 #+attr_latex: :options fontsize=\tiny
 #+begin_src bash :results output :session :exports both :dir e
 gcc a17-esparsa.c
@@ -395,28 +472,36 @@ echo "0 0 -1 0 2 -3 0 0 4 0 0 -5 0 0 0 0 0 0 6 0 0 -7 0 6 8" | ./a.out
 
 #+RESULTS:
 #+begin_example
-Elemento [0][0]: Elemento [0][1]: Elemento [0][2]: Elemento [0][3]: Elemento [0][4]: Elemento [1][0]: Elemento [1][1]: Elemento [1][2]: Elemento [1][3]: Elemento [1][4]: Elemento [2][0]: Elemento [2][1]: Elemento [2][2]: Elemento [2][3]: Elemento [2][4]: Elemento [3][0]: Elemento [3][1]: Elemento [3][2]: Elemento [3][3]: Elemento [3][4]: Elemento [4][0]: Elemento [4][1]: Elemento [4][2]: Elemento [4][3]: Elemento [4][4]: 
+
 Esparsa
- 0  0 -1  0  2 
--3  0  0  4  0 
- 0 -5  0  0  0 
- 0  0  0  6  0 
- 0 -7  0  6  8 
+ 3  0  7  5  3 
+ 0  0  2  0  0 
+ 0  0  0  0  3 
+ 6  0  6  0  0 
+ 0  0  0  9  0 
 Condensada
--1  0  2 
- 2  0  4 
--3  1  0 
- 4  1  3 
--5  2  1 
- 6  3  3 
--7  4  1 
- 6  4  3 
- 8  4  4 
+ 3  0  0 
+ 7  0  2 
+ 5  0  3 
+ 3  0  4 
+ 2  1  2 
+ 3  2  4 
+ 6  3  0 
+ 6  3  2 
+ 9  4  3 
 #+end_example
+
+#+latex: }
 
 * #3 (permutação de palavra)
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula14_slide_16.pdf}{Prof. Edison Pignaton de Freitas}
+Uma palavra é a permutação circular de outra se for obtida com a
+transferência do caractere do início para o fim da mesma.
+
+AROMA \rightarrow ROMAA \rightarrow OMAAR \rightarrow MAARO \rightarrow AAROM \rightarrow AROMA
+
+Faça um programa que leia uma string de até 16 caracteres e informe a
+permutação circular da palavra lida, preservando a entrada.
 
 * (#3) Code
 
@@ -472,7 +557,22 @@ O que acontece se ~#define SIZEPAL 3~?
 
 * #4.1 (diagonal)
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula14_slide_19.pdf}{Prof. Edison Pignaton de Freitas}
+1. Preencher uma matriz de ordem N com números naturais aleatoriamente
+   distribuídos entre 0 e 9.
+2. Calcular e imprimir a média dos elementos da diagonal principal.
+
+| / | < | < | < | < | <> |
+|---+---+---+---+---+----|
+|   | X |   |   |   |    |
+|---+---+---+---+---+----|
+|   |   | X |   |   |    |
+|---+---+---+---+---+----|
+|   |   |   | X |   |    |
+|---+---+---+---+---+----|
+|   |   |   |   | X |    |
+|---+---+---+---+---+----|
+|   |   |   |   |   | X  |
+|---+---+---+---+---+----|
 
 * (#4.1) Code
 
@@ -523,6 +623,26 @@ int main(){
 #+latex: \end{multicols}
 
 * Exercício #1 (diferentes formas geométricas)
+
+1. Preencher uma matriz de ordem N com números naturais aleatoriamente
+   distribuídos entre 0 e 9.
+2. Calcular e imprimir a média dos elementos das áreas assinaladas
+
+#+caption: M1
+#+attr_latex: :center nil
+| / | < | < | < | < | <> |
+|---+---+---+---+---+----|
+|   |    |   |   |   |    |
+|---+---+---+---+---+----|
+|   |   | X | X | X |    |
+|---+---+---+---+---+----|
+|   |   | X | X | X |    |
+|---+---+---+---+---+----|
+|   |   | X | X | X |    |
+|---+---+---+---+---+----|
+|   |   |   |   |   |    |
+|---+---+---+---+---+----|
+
 
 #+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula14_slide_22.pdf}{Prof. Edison Pignaton de Freitas}
 
