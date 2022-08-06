@@ -108,9 +108,34 @@ end
 
 * Exercício #2 (Sistema de Equações Lineares)
 
-Suponha um =n= máximo.
 
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula13-matrizes_slide_29.pdf}{Prof. Claudio Jung}
+_Enunciado_: Escrever um programa que leia do teclado os coeficientes de
+um sistema linear triangular superior, os termos independentes, e
+calcule (imprimindo na tela) o vetor solução. Assuma que o sistema
+possui solução única. Suponha um =n= máximo.
+
+#+latex: \vfill\pause
+
+Um sistema linear triangular superior de ordem =n=:
+
+#+BEGIN_EXPORT latex
+\begin{align*}
+a_{11}x_{1} + a_{12} x_2 + ... + a_{13} x_n &= \,b_1 \\
+a_{21}x_{1} + a_{22} x_2 + ... + a_{23} x_n &= \,b_2 \\
+... \\
+a_{n1}x_{1} + a_{n2} x_2 + ... + a_{n3} x_n &= \,b_n \\
+\end{align*}
+#+END_EXPORT
+
+#+latex: \vfill\pause
+
+Utilizamos um arranjo 1D (vetor) para registrar os termos
+independentes e um arranjo 2D (matriz) para registrar os coeficientes.
+#+begin_src C
+#define N 4
+float b[N] = {0};
+float A[N][N] = {0};
+#+end_src
 
 * (#2) Sistema linear
 
