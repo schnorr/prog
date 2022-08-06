@@ -10,6 +10,7 @@ REVISAO= revisao-aula-01.pdf \
 	 revisao-aula10.pdf \
 	 revisao-aula11.pdf \
 	 revisao-aula12.pdf \
+	 revisao-aula12b.pdf \
 	 revisao-aula-13.pdf \
 	 revisao-aula-15.pdf \
 	 revisao-aula-16.pdf \
