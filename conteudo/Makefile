@@ -46,6 +46,7 @@ ORIGINA= aula01-apresentacao.pdf \
 	 aula12-matriz.pdf \
 	 aula12-ordenamento.pdf \
 	 aula13-maismatriz.pdf \
+	 aula13-ordenamento.pdf \
 	 aula14-revisao-p1.pdf \
 	 funcoes.pdf \
 	 parametros.pdf \

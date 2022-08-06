@@ -1,0 +1,94 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Algoritmos
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+
+#+latex: \newcommand{\mytitle}{Ordenamento de Matrizes de Caracteres}
+#+latex: \mytitleslide
+
+* Configuração                                                     :noexport:
+
+#+BEGIN_SRC emacs-lisp
+(setq org-latex-listings 'minted
+      org-latex-packages-alist '(("" "minted"))
+      org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+(setq org-latex-minted-options
+       '(("frame" "lines")
+         ("fontsize" "\\scriptsize")))
+#+END_SRC
+
+#+RESULTS:
+| frame    | lines       |
+| fontsize | \scriptsize |
+* Sumário
+
+- Ordenamento de Matrizes de Caracteres
+  - Usando algoritmo /bubble sort/
+- Exercício
+
+* Revisão -- Algoritmo /Bubble Sort/
+
+|   |  0 |  1 |  2 | 3 |  4 |  5 |  6 |  7 |  8 |  9 |
+| / |  < |  < |  < | < |  < |  < |  < |  < | <> |    |
+|---+----+----+----+---+----+----+----+----+----+----|
+|   | 23 | 14 | 57 | 7 | 89 | 26 | 10 | 14 | 64 | 59 |
+|---+----+----+----+---+----+----+----+----+----+----|
+
+#+latex: \vfill\pause
+
+Ideia
+1. Baseada em sucessivas varreduras do arranjo
+2. A cada varredura, compara elementos adjacentes, trocando-os de
+   ordem caso o primeiro seja maior do que o segundo (ordenação em
+   ordem crescente).
+3. Quando não houver troca alguma em uma varredura, o algorimo é
+   encerrado, e a lista estará ordenada.
+
+* Uma matriz de caracteres
+
+Supondo uma declaração da matriz de caracteres =nomes=
+#+begin_src C
+char nomes[4][10] = { "Lucas", "Theo", "Alba", "Elisa" };
+#+end_src
+
+Representação gráfica da matriz
+| / |          | <>       | >        | >        | >        | >        | >        | >        | >        | >        | >        |
+|   |          | \mblue 0 | \mblue 1 | \mblue 2 | \mblue 3 | \mblue 4 | \mblue 5 | \mblue 6 | \mblue 7 | \mblue 8 | \mblue 9 |
+|---+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------|
+|   | \mblue 0 | L        | u        | c        | a        | s        | \0       |          |          |          |          |
+|---+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------|
+|   | \mblue 1 | T        | h        | e        | o        | \0       |          |          |          |          |          |
+|---+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------|
+|   | \mblue 2 | A        | l        | b        | a        | \0       |          |          |          |          |          |
+|---+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------|
+|   | \mblue 3 | E        | l        | i        | s        | a        | \0       |          |          |          |          |
+|---+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------|
+
+#+latex: \pause
+
+_Objetivo_: Gostaríamos de colocá-la em ordem.
+- Podemos novamente aplicar o algoritmo de /bubble sort/
+
+#+latex: \pause\fill
+
+Temos as funções de =string.h=, já vistas
+- =strcmp= (compara duas strings)
+- =strcpy= (copia uma string para outra)
+
+
+* 
