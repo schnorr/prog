@@ -11,11 +11,11 @@ REVISAO= revisao-aula-01.pdf \
 	 revisao-aula11.pdf \
 	 revisao-aula12.pdf \
 	 revisao-aula12b.pdf \
+	 revisao-aula13.pdf \
 	 revisao-aula-13.pdf \
 	 revisao-aula-15.pdf \
 	 revisao-aula-16.pdf \
 	 revisao-aula-17.pdf \
-	 revisao-aula-18.pdf \
 	 revisao-aula-23.pdf \
 	 revisao-aula-25.pdf \
 	 revisao-aula-26.pdf \
