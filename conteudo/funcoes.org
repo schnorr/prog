@@ -57,7 +57,15 @@ Exercício
 
 * Motivação
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula16-Subprogramacao_slide_03.pdf}{Prof. Mara Abel}
+Algoritmos em passos gerais
+1. Início
+2. Preencher vetor =a[MAX]= com valores do índice
+3. Imprimir vetor =a=
+4. Somar 2 em cada elemento de =a=
+5. Imprimir vetor =a=
+6. Zerar conteúdos pares
+7. Imprimir vetor =a=
+8. Fim
 
 * Código ~a23-motivacao.c~
 
@@ -151,13 +159,21 @@ Language                     files          blank        comment           code
 C                                1              0              6             22
 -------------------------------------------------------------------------------
 #+end_example
-* Modularização
+* Modularização e suas vantagens
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula017_-funcoesvoid_semparametros_slide_08.pdf}{Prof. Edison Pignaton de Freitas}
+Neste tipo de ambiente
+- Fica fácil perder a noção do que o código faz
 
-* Vantagens
+#+latex: \vfill\pause
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula017_-funcoesvoid_semparametros_slide_09.pdf}{Prof. Edison Pignaton de Freitas}
+Conceito de ``modularização''
+- Organizar o código em módulos reutilizáveis
+
+Vantagens sobre o código (/aka/ fica mais fácil de)
+- Entender
+- Reusar
+- Ler
+- Confiar
 
 * Programação Estruturada (com *Módulos* e *Funcões*)
 
