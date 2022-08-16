@@ -49,7 +49,7 @@ ORIGINA= aula01-apresentacao.pdf \
 	 aula13-ordenamento.pdf \
 	 aula14-revisao-p1.pdf \
 	 aula14-revisao-p1-base.pdf \
-	 funcoes.pdf \
+	 aula15-funcoes.pdf \
 	 parametros.pdf \
 	 referencias.pdf \
 	 ponteiros.pdf \
