@@ -170,15 +170,11 @@ Language                     files          blank        comment           code
 C                                1              0              6             22
 -------------------------------------------------------------------------------
 #+end_example
-* Modularização e suas vantagens
-
-Neste tipo de ambiente
-- Fica fácil perder a noção do que o código faz
-
-#+latex: \vfill\pause
+* Modularização: vantagens e métodos
 
 Conceito de ``modularização''
-- Organizar o código em módulos reutilizáveis
+- Organizar o código em partes reutilizáveis
+
 
 Vantagens sobre o código (/aka/ fica mais fácil de)
 - Entender
@@ -186,9 +182,15 @@ Vantagens sobre o código (/aka/ fica mais fácil de)
 - Ler
 - Confiar
 
-* Programação Estruturada (com *Módulos* e *Funcões*)
+#+latex: \vfill\pause
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula017_-funcoesvoid_semparametros_slide_10.pdf}{Prof. Edison Pignaton de Freitas}
+Do ponto de vista do pensamento computacional
+- Algoritmos por fases ou refinamentos sucessivos
+Do ponto de vista do código fonte
+- Descomposição do código em partes
+- ``dividir para conquistar''
+
+Existem dois métodos principais: _Módulos_ e _Funções_
 
 * Vejamos rapidamente *Módulos* (na linguagem C)
 
@@ -230,9 +232,63 @@ gcc a23-modulo-1.c a23-modulo-2.c -o programa
 
 * Ideia Principal com *funções*
 
-_Esta é a parte principal desta aula_!
+#+begin_src C
+int <nome_da_funcao>() { /* implementação */ }
+#+end_src
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula017_-funcoesvoid_semparametros_slide_11.pdf}{Prof. Edison Pignaton de Freitas}
+#+latex: \pause
+
+** Left                                                     :B_column:BMCOL:
+:PROPERTIES:
+:BEAMER_env: column
+:BEAMER_col: 0.5
+:END:
+
+#+begin_src C
+int main () {
+  /* toda a funcionalidade aqui */
+
+  // passo 1
+  // - muitas linhas de código
+  // passo 2
+  // - muitas linhas de código
+  // passo 3
+  // - muitas linhas de código
+  return 0;
+}
+#+end_src
+
+#+latex: \pause
+
+** Right                                                    :B_column:BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:BEAMER_env: column
+:END:
+
+#+begin_src C
+int funcao1() {
+  // implementa passo 1
+  return 0;
+}
+int funcao2() {
+  // implementa passo 2
+  return 0;
+}
+int funcao3() {
+  // implementa passo 3
+  return 0;
+}
+int main () {
+  /* passo 1 */
+  funcao1();
+  /* passo 2 */
+  funcao2();
+  /* passo 3 */
+  funcao3();
+  return 0;
+}
+#+end_src
 
 * Voltando ao exemplo inicial ~a23-motivacao-funcao.c~
 
@@ -272,19 +328,60 @@ int main() {
 #+END_SRC
 #+latex: \end{multicols}
 
-* Objetivos com funções
+* Funções
 
-Funções podem ser conhecidas também por _subprogramas_.
+Dijkstra, 1972
+#+begin_quote
+A arte de programar consiste em
+organizar e dominar a complexidade
+dos sistemas.
+#+end_quote
+https://en.wikipedia.org/wiki/Edsger_W._Dijkstra
 
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula16-intro_subprogramacao_slide_02.pdf}{Prof. Claudio Jung}
+#+latex: \pause\vfill
 
-* Conceitos fundamentais e funcionamento geral
+Funções, conhecidas também por _subprogramas_
+- Evitar repetição de sequência de comandos
+- Dividir e estruturar o programa em partes logicamente coerentes
 
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula16-intro_subprogramacao_slide_04.pdf}{Prof. Claudio Jung}
+#+latex: \pause\vfill
+
+Algumas observações
+- Um programa em C contém uma função principal (=main=)
+- Existem funções preimplementadas (das bibliotecas)
+- _O usuário pode implementar funções_
+  - Idealmente uma função tem _uma_ tarefa específica
 
 * Funcionamento
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula16-Subprogramacao_slide_06.pdf}{Prof. Mara Abel}
+Com vários níveis de chamada
+#+latex: %\vspace{-0.3cm}\begin{multicols}{2}
+#+attr_latex: :options fontsize=\scriptsize
+#+begin_src C
+int fy() {
+  printf("Y");
+  return 0;
+}
+int fz() {
+  printf("Z");
+  return 0;
+}
+int fx() {
+  printf("Xa");
+  fz();
+  printf("Xe");
+  return 0;
+}
+int main() {
+  printf("Ma");
+  fx();
+  printf("Me");
+  fy();
+  printf("Mi");
+  return 0;
+}
+#+end_src
+#+latex: %\end{multicols}
 
 * Código ~a23-area-circulo.c~
 
