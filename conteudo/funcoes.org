@@ -243,7 +243,7 @@ https://en.wikipedia.org/wiki/Edsger_W._Dijkstra
 #+latex: \pause\vfill
 
 Funções, conhecidas também por _subprogramas_
-- Evitar repetição de sequência de comandos
+- *Evitar repetição de sequência de comandos*
 - Dividir e estruturar o programa em partes logicamente coerentes
 
 #+latex: \pause\vfill
@@ -431,21 +431,105 @@ int main() {
 }
 #+END_SRC
 
-* Por que evitar repetição de código?
+* Discussão: por que evitar repetição de código?
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula017_-funcoesvoid_semparametros_slide_19.pdf}{Prof. Edison Pignaton de Freitas}
+Repetir código (copiar/colar -- /copy/paste/)
+- Fácil e rápido, _mas_ induz a erros facilmente
 
-* Funções podem ter parâmetros
+#+attr_latex: :options fontsize=\small
+#+BEGIN_SRC C :tangle e/a23-apresenta-numeros-inteiros.c
+#include <stdio.h>
+int main() {
+  int i;
+  for (i=1;i<20;i++)
+    printf("*");
+  printf("\n");
+  printf("Numeros entre 1 e 5\n");
+  for (i=1;i<20;i++)
+    printf("*");
+  printf("\n");
+  for (i=1;i<=5;i++)
+    printf("%d\n",i);
+  for (i=1;i<20;i++)
+    printf("*");
+  printf("\n");
+  return 0;
+}
+#+END_SRC
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula017_-funcoesvoid_semparametros_slide_20.pdf}{Prof. Edison Pignaton de Freitas}
+* Funções podem ter parâmetros e retornar valores
+
+Uma função pode receber dados e retornar dados
+- Parâmetros da função
+- Retorno da função
+
+#+latex: \vfill
+
+#+begin_src C
+int funcao_identidade (int valor) {
+  printf("O valor recebido é [%d].\n", valor);
+  return valor; //retornando o mesmo valor
+}
+
+int main() {
+  int a = 10, b;
+  b = funcao_identidade(a);
+  printf("O valor de a é %d e o de b é %d.\n", a, b);
+  return 0;
+}
+#+end_src
 
 * Tipos de funções
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula017_-funcoesvoid_semparametros_slide_21.pdf}{Prof. Edison Pignaton de Freitas}
+=void=: é um tipo que indica o vazio (a ausência de tipo)
 
-* Funções do tipo ~void~
+#+latex: \vfill\pause
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula16-Subprogramacao_slide_29.pdf}{Prof. Mara Abel}
+Funções sem retorno (o tipo da função é =void=)
+- sem parâmetros @@latex:\hfill@@ | =void funcao (void) {}=
+- com parâmetros
+  - por valor  @@latex:\hfill@@ | =void funcao (int valor) {}=
+  - por referência  @@latex:\hfill@@ | =void funcao (int *vetor) {}=
+
+#+latex: \vfill\pause
+
+Funções com retorno de valor
+- sem parâmetros  @@latex:\hfill@@ | =int funcao (void) {}=
+- com parâmetros
+  - por valor @@latex:\hfill@@ | =int funcao (int valor) {}=
+  - por referência @@latex:\hfill@@ | =int funcao (int *vetor) {}=
+
+* Um exemplo com funções do tipo ~void~
+
+Diferença entre declaração e definição.
+#+begin_src C
+void escreve_linha(void);  //uma declaração (apenas protótipo)
+void escreve_linha(void) { //a implementação única
+  int i;
+  for (i = 1; i < 20; i++)
+    printf("*");
+  printf("\n");
+}
+#+end_src
+
+#+latex: \pause\vfill
+
+Em um programa no arquivo =meu_programa.c=.
+#+begin_src C
+void escreve_linha(void); //protótipo
+int main() {
+  //...
+  escreve_linha(); // chamada da função
+  //...
+  return 0;
+}
+void escreve_linha(void) {
+  int i;
+  for (i = 1; i < 20; i++)
+    printf("*");
+  printf("\n");
+}
+#+end_src
 
 * Parâmetros reais (argumentos) e formais
 
@@ -513,21 +597,72 @@ _Cuidado_: o mesmo nome pode /mascarar/ as definições anteriores
 
 * Variáveis Locais (Conceitos)
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula16/Aula16-funcoesvoid_semparametros_slide_30.pdf}{Prof. Marcelo Walter}
+São declaradas e definidas dentro de funções
+- Só podem ser utilizadas em comandos dentro da função
+- Existem a partir da invocação da função
+- Deixam de existir quando a função termina
 
-* Exemplo com variáveis locais
+#+latex: \vfill\pause
 
-  #+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula16-Subprogramacao_slide_17.pdf}{Prof. Mara Abel}
+Exemplos
+#+begin_src C
+void funcao1() {
+  int i;
+  i = 99;
+  printf("%d\n", i);
+}
+
+void funcao2() {
+  int i;
+  for (i = 1; i < 20; i++)
+    printf("*");
+  printf("\n");
+}
+#+end_src
 
 * Variáveis Globais (Conceitos)
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula16-Subprogramacao_slide_18.pdf}{Prof. Mara Abel}
+São declaradas e definidas fora de qualquer função
+- Visíveis e acessíveis por todas as funções
+- Existem enquanto o programa estiver em execução
 
-* Importante: variáveis globais restrigem a estruturação
+#+latex: \vfill
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula16/Aula16-funcoesvoid_semparametros_slide_36.pdf}{Prof. Marcelo Walter}
+Exemplo
+#+begin_src C 
+int a; //uma variável global
+int main() {
+  a = 2;
+  printf("%d\n", a);
+  return 0;
+}
+#+end_src
 
-* Exercício #1 (Menu de Opções)
+#+latex: \pause\vfill
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula16-Subprogramacao_slide_30.pdf}{Prof. Mara Abel}
+#+begin_center
+*Variáveis globais restrigem a modularização*
 
+Melhor usar funções com parâmetros e valores de retorno!
+#+end_center
+
+* Exercício #1 (Revisitar) e #2 (Menu de Opções)
+
+1. Revisite os programas já implementados e verifique se existem
+   oportunidades para ``fatorar o código'', ou seja, identificar
+   partes repetidas que poderiam ser colocadas em funções.
+
+2. Implemente uma função =void=, com o nome =menu_de_opcoes=, que gera a
+   tela abaixo, sem incluir a leitura da opção informada.
+
+   #+begin_src text
+   Opções disponíveis:
+   -------------------
+
+   1 -- soma de dois valores reais
+   2 -- se é divisor do número
+   3 -- sequência de números pares
+   4 -- se número é perfeito
+
+   -> Informe a opção desejada:
+   #+end_src
