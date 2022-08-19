@@ -129,7 +129,10 @@ int main() {
 
 * (Exemplo #2) Imprime n vezes c
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula17-FuncoesVoid1_slide_14.pdf}{Prof. Mara Abel}
+Faça uma função void que receba dois parâmetros
+1. um caractere =c= e
+2. um inteiro =n=.
+O procedimento deverá imprimir na tela =n= vezes o caractere =c=.
 
 * (#2) Código ~a25-imprime-parametros.c~
 
@@ -187,7 +190,11 @@ x
 
 * (Exemplo #3) Imprime intervalo ASCII
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula17-FuncoesVoid1_slide_17.pdf}{Prof. Mara Abel}
+Escreva uma função para imprimir os caracteres da tabela ASCII entre
+dois inteiros (recebidos como parâmetros).
+#+begin_src 
+imprime_char (97,140);
+#+end_src
 
 * (#3) Código ~a25-ascii-parametros.c~
 
@@ -266,7 +273,15 @@ int fibonacci (int posicao) {
 
 * (Exemplo #5) Combinação de n elementos, p a p
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/Aula018_-funcoes_comparametros_slide_23.pdf}{Prof. Edison Pignaton de Freitas}
+Fazer um programa completo que leia dois valores, n e p, e calcule a
+combinação de n elementos, p a p. Assume-se que n >= p.
+
+#+begin_export latex
+$\frac{n!}{p! * (n - p)!}$
+#+end_export
+
+Faça duas funções tipadas, uma para o cálculo do
+=fatorial=, e outra para o cálculo da =combinação=.
 
 * (#5) Planejamento
 
@@ -314,7 +329,14 @@ int combinacoes(int n, int p) {
 #+END_SRC
 * Forma de passagem de parâmetros
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula17-FuncoesVoid1_slide_22.pdf}{Prof. Mara Abel}
+Na Linguagem C existem dois tipos
+- por valor
+- por referência
+
+#+latex: \pause\vfill
+
+*Por Valor*
+- Faz uma cópia do valor do argumento
 
 * Vejamos um exemplo com o código ~a25-troca.c~
 
@@ -376,4 +398,21 @@ E também *ponteiros*!
 
 * Exercício #1: Cálculo de e^x com funções
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/Aula018_-funcoes_comparametros_slide_27.pdf}{Prof. Edison Pignaton de Freitas}
+Calcule o valor de e^x usando a série abaixo:
+
+#+begin_export latex
+$e^x = \frac{x^0}{0!} + \frac{x^1}{1!} + \frac{x^2}{2!} + ... $
+#+end_export
+
+onde x é um valor real, lido do teclado. Os termos devem ser inseridos
+enquanto forem maiores do que 0.0001 (em valor absoluto).
+
+#+latex: \vfill
+
+Protótipo das funções que devem estar envolvidas
+#+begin_src C
+float potencia (float x, int n); // use pow na sua implementação
+float fatorial (int n); // já feita)
+float EnaX (float x);
+#+end_src
+
