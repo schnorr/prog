@@ -12,6 +12,7 @@ REVISAO= revisao-aula-01.pdf \
 	 revisao-aula12.pdf \
 	 revisao-aula12b.pdf \
 	 revisao-aula13.pdf \
+	 revisao-aula16.pdf \
 	 revisao-aula-13.pdf \
 	 revisao-aula-15.pdf \
 	 revisao-aula-16.pdf \
@@ -50,7 +51,7 @@ ORIGINA= aula01-apresentacao.pdf \
 	 aula14-revisao-p1.pdf \
 	 aula14-revisao-p1-base.pdf \
 	 aula15-funcoes.pdf \
-	 parametros.pdf \
+	 aula16-parametros.pdf \
 	 referencias.pdf \
 	 ponteiros.pdf \
 	 passagem-matrizes.pdf \
