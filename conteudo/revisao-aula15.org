@@ -18,7 +18,7 @@
 #+LATEX_HEADER: \usepackage{amsmath}
 #+LATEX_HEADER: \usepackage{systeme}
 
-#+latex: \newcommand{\mytitle}{Revisão Aula 23}
+#+latex: \newcommand{\mytitle}{Revisão Aula 15}
 #+latex: \mytitleslide
 
 * Configuração                                                     :noexport:
@@ -50,13 +50,30 @@ Funções
 - Regras de escopo estático
 - Variáveis locais e globais
 
-* Exercício #1 (Menu de Opções)
+* Exercício #1 (Revisitar) e #2 (Menu de Opções)
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula16-Subprogramacao_slide_30.pdf}{Prof. Mara Abel}
+1. Revisite os programas já implementados e verifique se existem
+   oportunidades para ``fatorar o código'', ou seja, identificar
+   partes repetidas que poderiam ser colocadas em funções.
 
-* (#1) Código ~rev-a23-menu.c~
+2. Implemente uma função =void=, com o nome =menu_de_opcoes=, que gera a
+   tela abaixo, sem incluir a leitura da opção informada.
 
-#+BEGIN_SRC C :tangle e/rev-a23-menu.c
+   #+begin_src text
+   Opções disponíveis:
+   -------------------
+
+   1 -- soma de dois valores reais
+   2 -- se é divisor do número
+   3 -- sequência de números pares
+   4 -- se número é perfeito
+
+   -> Informe a opção desejada:
+   #+end_src
+
+* (#1) Código ~rev-a15-menu.c~
+
+#+BEGIN_SRC C :tangle e/rev-a15-menu.c
 #include <stdio.h>
 
 void menu_de_opcoes(void);  //protótipo
