@@ -107,49 +107,14 @@ int main() {
 
 Qual o problema deste código?
 
-* Linux 3.6 \to \approx15.9M de SLOC
+* SLOC: Ferramenta ~cloc~ (/Count Lines Of Code/)
 
-Ver conceito de SLOC:
+Ver conceito de SLOC (/Source Lines of Code/):
 #+latex: {\scriptsize
 https://en.wikipedia.org/wiki/Source_lines_of_code
 #+latex: }
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula017_-funcoesvoid_semparametros_slide_07.pdf}{Prof. Edison Pignaton de Freitas}
-
-* Linux 4.2 \to \approx20.2M
-
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula16/Aula16-funcoesvoid_semparametros_slide_10.pdf}{Prof. Marcelo Walter}
-
-* Linux 5.19.1 (/Released on August 11th 2022/)
-
-Código fonte disponível em https://git.kernel.org/
-#+begin_src shell :results output :exports both
-git clone https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
-cloc linux
-#+end_src
-(Atenção: o primeiro comando pode demorar bastante :-)
-
-#+latex: \vfill\pause
-
-https://www.phoronix.com/news/Linux-5.19-rc1
-#+begin_quote
-The Linux kernel source tree at the moment amounts to around 65.9k
-lines consisting of around 23.969 million lines of detected code, 4
-million lines of comments, and 4.13 million blank lines. Or all in
-roughly 32.1 million source lines detected in the Linux Git as of
-tonight's v5.19-rc1 tagging.
-#+end_quote
-
-#+latex: \vfill\pause
-
-Em relação ao Linux 5.1 de 2019!
-#+BEGIN_QUOTE
-For those wondering about the size of Linux 5.1, here is the *cloc*
-output as of 5.1 Git this morning... 17.8 million lines of code, 3.3
-million lines of comments, and 3.2 million blank lines.
-#+END_QUOTE
-
-* Ferramenta ~cloc~
+#+latex: \pause
 
 Façamos o uso de ~cloc~ com o exemplo anterior:
 
@@ -170,6 +135,27 @@ Language                     files          blank        comment           code
 C                                1              0              6             22
 -------------------------------------------------------------------------------
 #+end_example
+* Código fonte do Linux
+
+- Linux 3.6 \to \approx15.9M de SLOC
+- Linux 4.2 \to \approx20.2M de SLOC
+- Linux 5.19.1 (/Released on August 11th 2022/) \\
+  Código fonte disponível em https://git.kernel.org/
+  #+begin_src shell :results output :exports both
+  git clone https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+  cloc linux
+  #+end_src
+  (Atenção: o primeiro comando pode demorar bastante :-)
+  #+latex: \vfill\pause
+  https://www.phoronix.com/news/Linux-5.19-rc1
+  #+begin_quote
+  The Linux kernel source tree at the moment amounts to around 65.9k
+  lines consisting of around 23.969 million lines of detected code, 4
+  million lines of comments, and 4.13 million blank lines. Or all in
+  roughly 32.1 million source lines detected in the Linux Git as of
+  tonight's v5.19-rc1 tagging.
+  #+end_quote
+
 * Modularização: vantagens e métodos
 
 Conceito de ``modularização''
