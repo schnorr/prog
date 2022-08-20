@@ -1,4 +1,3 @@
-int main() {
 #include <stdio.h>
 #include <string.h>
 #define TAMANHO 15
@@ -13,5 +12,3 @@ aluno_t le (void);
 void mostra (aluno_t aluno);
 aluno_t def_media (aluno_t aluno);
 aluno_t def_conceito (aluno_t aluno);
-return 0;
-}

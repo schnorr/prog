@@ -1,4 +1,3 @@
-int main() {
 struct funcionario {
   int codigo;
   char nome[30];
@@ -6,5 +5,3 @@ struct funcionario {
   int depto;
   float salario;
 };
-return 0;
-}

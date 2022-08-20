@@ -5,13 +5,13 @@ struct funcionario {
   float salario;
 };
 struct funcionario le_funcionario (void) {
-  struct funcionario ret;
+  struct funcionario ret = {0};
   printf("Forneça código e salário: ");
   scanf("%d%f", &ret.codigo, &ret.salario);
   return ret;
 }
 int main() {
-  struct funcionario fs[NFUNCS];
+  struct funcionario fs[NFUNCS] = {0};
   int i;
   for (i = 0; i < NFUNCS; i++){
     fs[i] = le_funcionario();
