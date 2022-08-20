@@ -61,7 +61,7 @@ ORIGINA= aula01-apresentacao.pdf \
 	 aula23-arq-texto.pdf \
 	 aula24-arq-texto-p2.pdf \
 	 aula25-recursividade.pdf \
-	 estruturacao.pdf \
+	 aula26-depuracao.pdf \
 	 revisao-p2.pdf \
 	 revisao-p2-corrigido.pdf
 
