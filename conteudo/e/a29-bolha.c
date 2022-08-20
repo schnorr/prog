@@ -1,4 +1,3 @@
-int main() {
 #define TAM 6
 void ordena_pela_bolha (int *v, int tamanho) {
   int i, sinal, aux;
@@ -13,13 +12,8 @@ void ordena_pela_bolha (int *v, int tamanho) {
       }
   } while (sinal == 1);
 }
-return 0;
-}
 
-int main() {
 int vetor[TAM] = {5, 3, 4, 1, 9, 8};
 ordena_pela_bolha(vetor, TAM);
 for(int i = 0; i < TAM; i++)
   printf("%d ", *(vetor+i));
-return 0;
-}

@@ -18,21 +18,17 @@
 #+LATEX_HEADER: \usepackage{amsmath}
 #+LATEX_HEADER: \usepackage{systeme}
 
-#+latex: \newcommand{\mytitle}{Ponteiros e Vetores}
+#+latex: \newcommand{\mytitle}{Ponteiros e Passagem de Arranjos}
 #+latex: \mytitleslide
 
 * Sumário
 
 Ponteiros
 - Aritmética de ponteiros (/lembrete/)
-- Exemplo #1: aritmética
 
 Ponteiros e vetores
-- Semelhanças
-  - Exemplo #2
-- Diferenças
-  - Exemplo #3
-  - Exemplo #4
+- Semelhanças (Exemplo #2)
+- Diferenças (Exemplo #3 e Exemplo #4)
 
 Passagem de vetores como referência
 - Exemplo #5 (leitura de valores)
@@ -40,10 +36,10 @@ Passagem de vetores como referência
 - Exemplo #7 (copia invertido)
 - Exemplo #8 (função retorna ponteiro)
 
-#+latex: %\vfill
-
-# Algoritmo da bolha (/bubble sort/)
-# - Ordenação de vetores com valores numéricos
+Passagem de arranjos multidimensionais como referências
+- Como matrizes são armazenadas na memória
+- Endereçamento de células na matrizes
+- Como calcular os endereços com ponteiros
 
 * Aritmética de ponteiros (/lembrete/)
 
@@ -57,6 +53,8 @@ p = &aux;
 p = p + 1; // arimética de ponteiros
 #+end_src
 
+#+RESULTS:
+
 Representação gráfica da memória virtual
 | / | <> | >   | >   | >   | >   | >   |   > |   > | >   | >   |
 |   |  0 | ... | 450 | 451 | 452 | 453 | 454 | 455 | ... | 2^{64} |
@@ -65,7 +63,7 @@ Representação gráfica da memória virtual
 |---+----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
 (assumindo que =aux= foi alocado para o endereço 450--453, 4 bytes)
 
-* Exemplo #1 ~a28-aritmetica.c~
+* Exemplo #1 ~a28-aritmetica.c~                                      :noexport:
 
 #+BEGIN_SRC C :tangle a28-aritmetica.c
 #include <stdio.h>
@@ -399,3 +397,138 @@ int main() {
   return 0;
 }
 #+END_SRC
+
+* Passagem de arranjos multidimensionais como referências
+
+#+begin_center
+_Objetivo_
+
+Passagem de arranjos com mais de uma dimensão em C
+#+end_center
+
+Arranjos 1D (Vetores)
+- Não havia necessidade de especificar a capacidade
+  #+begin_src C
+  void funcao(int v[]);
+  #+end_src
+
+#+latex: \pause
+
+Arranjos kD (para k >= 2)
+- Capacidade das dimensões deve estar presente na declaração
+  - Salvo a primeira dimensão
+- Existem outras alternativas (fora do plano da disciplina)
+
+Exemplos
+#+begin_src C
+#define TAM1 10
+#define TAM2 20
+void funcao1 (float matriz[][TAM1]);
+void funcao2 (int cubo[][TAM1][TAM2]);
+#+end_src
+
+* Armazenamento sequencial de arranjos 2D
+
+Exemplo considerando A[2][4]
+|-----+-----+-----+-----|
+| 1,1 | 1,2 | 1,3 | 1,4 |
+|-----+-----+-----+-----|
+| 2,1 | 2,2 | 2,3 | 2,4 |
+|-----+-----+-----+-----|
+#+latex: \pause
+Mapeamento por linha
+|-----+-----+-----+-----+-----+-----+-----+-----|
+| 1,1 | 1,2 | 1,3 | 1,4 | 2,1 | 2,2 | 2,3 | 2,4 |
+|-----+-----+-----+-----+-----+-----+-----+-----|
+Outro mapeamento na memória por coluna
+|-----+-----+-----+-----+-----+-----+-----+-----|
+| 1,1 | 2,1 | 1,2 | 2,2 | 1,3 | 2,3 | 1,4 | 2,4 |
+|-----+-----+-----+-----+-----+-----+-----+-----|
+
+#+latex: \pause\vfill
+
+*Na Linguagem C, o armazenamento é por linha*
+#+begin_src C
+int valores[][3] = {2, 3, 5, 4, 8, 0}; // 2x3
+#+end_src
+Visão na memória desta matriz
+| / | <> | >   |  > |  > |  > |  > |  > |  > | >   | >   |
+|   |  0 | ... | 20 | 24 | 28 | 32 | 36 | 40 | ... | 2^{64} |
+|---+----+-----+----+----+----+----+----+----+-----+-----|
+|   |    |     |  2 |  3 |  5 |  4 |  8 |  0 |     |     |
+|---+----+-----+----+----+----+----+----+----+-----+-----|
+(assumindo que =valores= foi alocado para o endereço 20, 4 bytes)
+
+* Endereçamento com aritmética de ponteiros
+
+Como funciona o endereçamento com vetores?
+#+attr_latex: :options fontsize=\large
+#+begin_src C :results output :exports both
+int vetor[4] = { 45, 34, 12, 78 };
+int i = 2, *p;
+p = vetor;
+printf("[%d]\n", *(p + i));
+#+end_src
+
+#+RESULTS:
+: [12]
+
+#+latex: \pause
+
+E para matrizes (armazenamento por linha), como funciona?
+#+attr_latex: :options fontsize=\large
+#+begin_src C :results output :exports both
+#define COLUNAS 3
+int matriz[][COLUNAS] = {2, 3, 5, 4, 8, 0}; // 2x3
+int i = 1, j = 1, *p;
+p = matriz;
+printf("[%d]\n", *(p + i * COLUNAS + j));
+#+end_src
+
+#+RESULTS:
+: [8]
+
+Seleciona Linha: =i*COLUNAS= -- Seleciona Coluna: =j=
+
+* Cálculo de endereços ~a29-endereco-matriz.c~
+
+#+BEGIN_SRC C :tangle e/a29-endereco-matriz.c
+#include <stdio.h>
+#define LINHAS 2
+#define COLUNAS 10
+void imprime (int m[][COLUNAS]);
+int main() {
+  int M[LINHAS][COLUNAS] = { { 1,   2,  3,  4,  5,  6,  7,  8,  9, 10 },
+                             { 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 } };
+  imprime(M);
+  return 0;
+}
+#+END_SRC
+#+latex: \pause
+#+BEGIN_SRC C :tangle e/a29-endereco-matriz.c :main no
+void imprime (int m[][COLUNAS]) {
+  int i, j;
+  for (i = 0; i < LINHAS; i++)
+    for (j = 0; j < COLUNAS; j++)
+      printf("matriz[%d][%d] = %d\n",
+	     i, j,
+	     ,*(m[0] + i * COLUNAS + j));
+}
+#+END_SRC
+#+latex: \pause
+Outra forma seria assim:
+#+begin_src C
+void imprime (int *m) { //... for ... for
+   printf("...%d\n", *(m + i * COLUNAS + j));
+}
+#+end_src
+
+* Exercício #1
+
+Escreva um programa em C que: 1/ Para um matriz de ordem cinco,
+preencher aleatoriamente com valores entre 10 e 20; 2/ Chame uma
+função que receba uma matriz, a quantidade de linhas e colunas e troca
+todos os elementos da diagonal principal por zero. Na implementação
+desta função, usar ponteiro e o cálculo do endereço com aritmética de
+ponteiros.
+

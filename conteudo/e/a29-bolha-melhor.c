@@ -1,10 +1,3 @@
-#include <stdio.h>
-
-
-
-
-
-
 #define TAM 6
 void ordena_pela_bolha (int *v, int tamanho) {
   int i, sinal, aux, fim;
