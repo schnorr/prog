@@ -18,7 +18,7 @@
 #+LATEX_HEADER: \usepackage{amsmath}
 #+LATEX_HEADER: \usepackage{systeme}
 
-#+latex: \newcommand{\mytitle}{~typedef~ e o operador seta ``->'' @@latex}
+#+latex: \newcommand{\mytitle}{~typedef~ e o operador seta ``->''}
 #+latex: \mytitleslide
 
 * Sumário
@@ -253,7 +253,10 @@ typedef struct {
 
 * Vejamos...
 
-Este programa compila? Okay... mas porquê?
+Este programa compila?
+- [ ] Sim
+- [ ] Não
+Justifique.
 
 #+BEGIN_SRC C :tangle e/a32-vejamos.c
 struct {
@@ -272,6 +275,9 @@ int main(){
   return 0;
 }
 #+END_SRC
+
+#+RESULTS:
+
 * Passagem de estruturas por referência (motivação)
 
 Qual o ``problema'' dos protótipos abaixo?
@@ -381,9 +387,33 @@ int main() {
 }
 #+END_SRC
 #+latex: \end{multicols}
-* Operador seta ``->''
+* O operador seta =->=
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula23/aula23_slide_12.pdf}{Prof. Marcelo Walter}
+
+Simplificamos o exemplo anterior
+#+begin_src C
+typedef struct {
+  char nome[15];
+  float nota[NRNOTAS];
+} aluno_t;
+void imprime_nome (aluno_t *a) {
+  printf("%s\n", (*a).nome);
+}
+#+end_src
+
+#+latex: \vfill\pause
+
+O operador seta =->= é usado quando temos ponteiros para estruturas
+
+Reescrevendo a função acima:
+#+begin_src C
+void imprime_nome (aluno_t *a) {
+  printf("%s\n", a->nome);
+}
+#+end_src
+
+Indica o acesso a um campo de uma estrutura
+- Emprego do operador seta é mais comum
 
 * Exemplo completo (com o operador seta)
 
@@ -439,6 +469,30 @@ Refazer o exercício da aula anterior
 
 * Exercício #2
 
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula23-estruturas2_slide_27.pdf}{Prof. Claudio Jung}
+Escreva um programa para processar as informações sobre um torneio de
+futebol com três times: Argentina, Brasil e Chile. Cada time joga com
+o outro duas vezes, uma em casa e outra fora. Leia do usuário o
+resultado das seis partidas e ao final apresente os times e seus
+pontos, sabendo que a vitória conta três pontos, empate um ponto e
+derrota nenhum ponto. Utilize este rascunho para começar:
+
+#+begin_src C
+#include <stdio.h>
+#define TAM 100
+#define NTIMES 3
+typedef struct {
+  char nome[TAM];
+  int pontos;
+}time_t;
+typedef struct {
+  int local, visitante;
+}resultado_t;
+int main() {
+  time_t times[NTIMES] = {"Argentina", 0, "Brasil", 0, "Chile", 0};
+  resultado_t jogos[NTIMES][NTIMES] = {0};
+  //...
+  return 0;
+}
+#+end_src
 
 
