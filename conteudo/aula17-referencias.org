@@ -90,21 +90,26 @@ Como fazer então? \to Utilizar método de *passagem por referência*
 * Endereçamento de variáveis
 
 Todas as variáveis residem em um endereço de memória
-- O acesso é feito simbolicamente através do nome
+- Em geral, o acesso é feito simbolicamente através do nome
   #+begin_src C
-  int a;
-  a = 2;
+  int aux;
+  aux = 2;
   #+end_src
-- Mas podemos acessar a variável =a= através do seu endereço
+  Mas podemos acessar a variável =aux= através do seu endereço
 
-#+latex: \pause
+#+latex: \pause\vfill
 
 O que são ponteiros?
 - Variáveis que guardam endereços de memória
-- Fornecem um mecanismo para referenciar algo indiretamente
+- Fazem parte do mecanismo para referenciar algo indiretamente
 
-_Terminologia_: Se uma variável =a= armazena o endereçó de uma variável b,
-dizemos que a aponta para b
+#+latex: \vfill
+
+#+begin_center
+Se uma variável =a= armazena o endereço
+
+de uma variável b, dizemos que *a aponta para b*.
+#+end_center
 
 * Ponteiros na linguagem C
 
@@ -140,7 +145,7 @@ Operadores para lidar com ponteiros
 
 * Exemplo #1: Ponteiros e conteúdo
 
-#+BEGIN_SRC C :tangle e/a26-ponteiro-conteudo.c
+#+BEGIN_SRC C :tangle e/a26-ponteiro-conteudo.c :results output :exports both
 #include <stdio.h>
 int main() {
   int alpha; // uma variável normal (tipo int)
@@ -152,19 +157,25 @@ int main() {
   alpha = *var; // alpha recebe o conteúdo apontado por var
 
   printf("Todos os valores em hexadecimal:\n");
-  printf("alpha (endereço %x) = %x \n", &alpha, alpha);
-  printf("conta (endereço %x) = %x \n", &conta, conta);
-  printf("var   (endereço %x) = %x, conteúdo apontado %x\n", &var, var, *var);
+  printf("alpha (endereço %x) = %d \n", &alpha, alpha);
+  printf("conta (endereço %x) = %d \n", &conta, conta);
+  printf("var   (endereço %x) = %x, conteúdo apontado %d\n", &var, var, *var);
   return 0;
 }
 #+END_SRC
+
+#+RESULTS:
+: Todos os valores em hexadecimal:
+: alpha (endereço 1a67dc3c) = 26 
+: conta (endereço 1a67dc38) = 26 
+: var   (endereço 1a67dc30) = 1a67dc38, conteúdo apontado 26
 
 * Exemplo #2: Atribuição com ponteiros
 
 Como qualquer variável, um ponteiro pode ser usado no lado direito de
 um comando de atribuição para passar seu valor para um outro ponteiro.
 
-#+BEGIN_SRC C :tangle e/a26-atribuicao.c
+#+BEGIN_SRC C :tangle e/a26-atribuicao.c :results output :exports both
 #include <stdio.h>
 int main() {
   int alpha = 200; // variável normal do tipo int
@@ -175,11 +186,16 @@ int main() {
   terra = nova;    // o ponteiro terra também aponta para onde nova aponta
 
   printf("Desvendar o endereço de onde encontra-se o ponteiro e seu valor\n");
-  printf("nova  (endereço %p): %p\n", &nova, nova);
-  printf("terra (endereço %p): %p\n", &terra, terra);
+  printf("nova : %p - (conteúdo apontado é %d)\n", nova, *nova);
+  printf("terra: %p - (conteúdo apontado é %d)\n", terra, *terra);
   return 0;
 }
 #+END_SRC
+
+#+RESULTS:
+: Desvendar o endereço de onde encontra-se o ponteiro e seu valor
+: nova : 0x7fffc8a48a7c - (conteúdo apontado é 200)
+: terra: 0x7fffc8a48a7c - (conteúdo apontado é 200)
 
 * Exemplo #3: Aritmética de ponteiros
 
@@ -189,26 +205,26 @@ no ponteiro, será somado o tamanho do tipo do ponteiro (4 se ~int~).
 #+BEGIN_SRC C :tangle e/a26-aritmetica.c :results output :exports both
 #include <stdio.h>
 int main() {
+  int alpha = 200; // variável normal do tipo int
   int *nova;       // variável normal do tipo int que é um ponteiro
   int *terra;      // variável normal do tipo int que é um ponteiro
   int *centauri;   // variável normal do tipo int que é um ponteiro
-  int alpha = 200; // variável normal do tipo int
 
   nova = &alpha;   // o ponteiro nova aponta para o endereço de alpha
   terra = nova;    // o ponteiro terra também aponta para onde nova aponta
 
-  printf("nova     (endereço %p): %p\n", &nova, nova);
-  printf("terra    (endereço %p): %p\n", &terra, terra);
+  printf("nova : %p - (conteúdo apontado é %d)\n", nova, *nova);
+  printf("terra: %p - (conteúdo apontado é %d)\n", terra, *terra);
   centauri = terra + 1; // incrementar em 1 o valor do ponteiro terra
-  printf("centauri (endereço %p): %p\n", &centauri, centauri);
+  printf("centauri: %p - (conteúdo apontado é %d)\n", centauri, *centauri);
   return 0;
 }
 #+END_SRC
 
 #+RESULTS:
-: nova     (endereço 0x7ffd4d4199b8): 0x7ffd4d4199a4
-: terra    (endereço 0x7ffd4d4199b0): 0x7ffd4d4199a4
-: centauri (endereço 0x7ffd4d4199a8): 0x7ffd4d4199a8
+: nova : 0x7ffd3d10f654 - (conteúdo apontado é 200)
+: terra: 0x7ffd3d10f654 - (conteúdo apontado é 200)
+: centauri: 0x7ffd3d10f658 - (conteúdo apontado é 1024521816)
 
 
 #  //Vamos trabalhar com variáveis normais do tipo int (que não são ponteiros)
@@ -236,6 +252,13 @@ int main() {
   return 0;
 }
 #+END_SRC
+
+#+latex: \pause
+
+#+RESULTS:
+: 1# *px (0x7ffcd589ae70) = 2
+: 2# *px (0x7ffcd589ae74) = 4
+: 3# *px (0x7ffcd589ae78) = -712397192
 
 * Cuidados essenciais: problemas comuns @@latex:{\scriptsize@@ (~a26-tipo_errado.c~) @@latex:}@@
 
@@ -384,7 +407,7 @@ passados por referência (pois são, na verdade, parâmetros de saída da
 função).
 
 #+begin_src C
-void baskara(float a, float b, float c, float* x1, float* x2) {
+void baskara(float a, float b, float c, float *x1, float *x2) {
   // sua implementação aqui
 }
 #+end_src
