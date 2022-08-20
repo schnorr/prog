@@ -52,7 +52,7 @@ ORIGINA= aula01-apresentacao.pdf \
 	 aula14-revisao-p1-base.pdf \
 	 aula15-funcoes.pdf \
 	 aula16-parametros.pdf \
-	 referencias.pdf \
+	 aula17-referencias.pdf \
 	 ponteiros.pdf \
 	 passagem-matrizes.pdf \
 	 ordenamento-bolha.pdf \
