@@ -18,14 +18,18 @@
 #+LATEX_HEADER: \usepackage{amsmath}
 #+LATEX_HEADER: \usepackage{systeme}
 
-#+latex: \newcommand{\mytitle}{Referências e Ponteiros}
+#+latex: \newcommand{\mytitle}{Passagem por Referência e Ponteiros}
 #+latex: \mytitleslide
 
 * Sumário
 
 _Forma de passagem de parâmetros_
 - Por valor
-- _Por referência_
+- Por referência
+
+#+latex: \vfill
+
+_Ponteiros_
 
 Endereçamento de variáveis
 
@@ -38,12 +42,11 @@ Exemplos
 - (#3) Aritmética de ponteiros, (#4) O que será impresso na tela?
 
 Cuidados essenciais
-- Problemas comuns
 - Depurando problemas com ~gdb~
 
 #+latex: \vfill
 
-Passagem por referência
+_Passagem por referência_
 - Caso com variáveis simples
 
 Exercício #1
