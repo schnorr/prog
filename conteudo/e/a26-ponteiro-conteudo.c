@@ -9,8 +9,8 @@ int main() {
   alpha = *var; // alpha recebe o conteúdo apontado por var
 
   printf("Todos os valores em hexadecimal:\n");
-  printf("alpha (endereço %x) = %x \n", &alpha, alpha);
-  printf("conta (endereço %x) = %x \n", &conta, conta);
-  printf("var   (endereço %x) = %x, conteúdo apontado %x\n", &var, var, *var);
+  printf("alpha (endereço %x) = %d \n", &alpha, alpha);
+  printf("conta (endereço %x) = %d \n", &conta, conta);
+  printf("var   (endereço %x) = %x, conteúdo apontado %d\n", &var, var, *var);
   return 0;
 }

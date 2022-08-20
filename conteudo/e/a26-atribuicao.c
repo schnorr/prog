@@ -8,7 +8,7 @@ int main() {
   terra = nova;    // o ponteiro terra também aponta para onde nova aponta
 
   printf("Desvendar o endereço de onde encontra-se o ponteiro e seu valor\n");
-  printf("nova  (endereço %p): %p\n", &nova, nova);
-  printf("terra (endereço %p): %p\n", &terra, terra);
+  printf("nova : %p - (conteúdo apontado é %d)\n", nova, *nova);
+  printf("terra: %p - (conteúdo apontado é %d)\n", terra, *terra);
   return 0;
 }
