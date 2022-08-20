@@ -6,7 +6,7 @@ void limpa_buffer() {
 void le (aluno_t *aluno) {
   int i;
   printf("Nome: ");
-  fgets(aluno->nome, 15, stdin);
+  fgets(aluno->nome, TAMANHO, stdin);
   aluno->nome[strlen(aluno->nome)-1] = '\0';
   for (i = 0; i < NRNOTAS; i++){
     printf("Nota %d: ", i);

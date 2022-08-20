@@ -1,9 +1,10 @@
 #ifndef JOGO_H
 #define JOGO_H
 #include <stdio.h>
+#define TAM 100
 #define NTIMES 3
 typedef struct {
-  char nome[15]; // nome da equipe
+  char nome[TAM]; // nome da equipe
   int pontos;    // qtdade de pontos
 } time_t;
 typedef struct {

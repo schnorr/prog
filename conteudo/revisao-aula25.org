@@ -1,0 +1,96 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Algoritmos
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: @@latex:\copyleft@@
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{systeme}
+
+#+latex: \newcommand{\mytitle}{Revisão Aula 25}
+#+latex: \mytitleslide
+
+* Exercícios #1
+
+Implemente com funções recursivas
+1. Contagem: número de dígitos de um número inteiro
+2. Contagem: quantidade de caracteres de uma /string/
+3. Busca binária recursiva em arranjo ordenado
+
+* (#1) Código: 1 número de dígitos de um número inteiro
+
+Estratégia: usar a divisão inteira por 10 para ir ``diminuindo'' o valor
+inteiro para o qual queremos obter a quantidade de dígitos. A cada
+divisão inteira por 10, contamos um dígito. Nosso critério de parada é
+quanto obtemos recebemos o valor 0 para o qual assume-se que a
+quantidade de dígitos é 0.
+
+#+BEGIN_SRC C :tangle e/rev-a40_1.c
+#include <stdio.h>
+int digitos (int valor) {
+  if (valor == 0) return 0;
+  return 1+digitos(valor/10);
+}
+int main(){
+  printf("%d\n", digitos(123456));
+  return 0;
+}
+#+END_SRC
+
+* (#2) Código: 2 quantidade de caracteres de uma /string/
+
+/Strings/ terminam por ~\0~, portanto é nosso critério de parada. Usamos
+aritmética de ponteiros para ir avançando.
+
+#+BEGIN_SRC C :tangle e/rev-a40_2.c
+#include <stdio.h>
+int caracteres(char *str) {
+  if (str == NULL) return 0;
+  if (*str == '\0') return 0;
+  return 1 + caracteres(str+1);
+}
+int main(){
+  printf("%d\n", caracteres("o universo se expande"));
+  return 0;
+}
+#+END_SRC
+
+* (#3) Código: 3 busca binária recursiva em arranjo ordenado
+
+A função ~busca~ retorna 1 caso encontrou, 0 caso contrário.
+
+#+BEGIN_SRC C :tangle e/rev-a40_3.c
+#include <stdio.h>
+#define TAM 13
+int busca(int vetor[], int inicio, int fim, int valor_buscado) {
+  int largura = fim - inicio;
+  int posicao = inicio + (largura)/2;
+  if (vetor[posicao] == valor_buscado)
+    return 1;
+  else if (vetor[posicao] != valor_buscado && largura == 1)
+    return 0;
+  else if (vetor[posicao] < valor_buscado)
+    return busca(vetor, posicao, fim, valor_buscado);
+  else if (vetor[posicao] > valor_buscado)
+    return busca(vetor, inicio, posicao, valor_buscado);
+  else
+    return 0;
+}
+int main(){
+  int vet[TAM] = {1, 3, 6, 8, 10, 11, 14, 17, 19, 31, 34, 65, 93};
+  printf("%d\n", busca(vet, 0, TAM-1, 34));
+  printf("%d\n", busca(vet, 0, TAM-1, 35));
+  return 0;
+}
+#+END_SRC

@@ -4,6 +4,6 @@ int digitos (int valor) {
   return 1+digitos(valor/10);
 }
 int main(){
-  printf("%d\n", digitos(12345));
+  printf("%d\n", digitos(123456));
   return 0;
 }

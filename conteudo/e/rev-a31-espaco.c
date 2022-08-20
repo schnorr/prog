@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-struct elemento_1 {
+struct elemento {
   char name[2];
   int atomic_number;
   double atomic_weight;
@@ -8,6 +8,6 @@ struct elemento_1 {
 };
 
 int main() {
-  printf ("%d\n", sizeof(struct elemento_1));
+  printf ("%d\n", sizeof(struct elemento));
   return 0;
 }
