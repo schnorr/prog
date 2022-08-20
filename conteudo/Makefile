@@ -54,8 +54,8 @@ ORIGINA= aula01-apresentacao.pdf \
 	 aula16-parametros.pdf \
 	 aula17-referencias.pdf \
 	 aula18-ponteiros.pdf \
-	 estruturas.pdf \
-	 typedef.pdf \
+	 aula19-estruturas.pdf \
+	 aula20-typedef.pdf \
 	 arquivo.pdf \
 	 aleatorio.pdf \
 	 arq-texto.pdf \
