@@ -40,20 +40,92 @@ Funções habituais em C para lidar com o conteúdo de arquivos texto
 
 Exemplos e Exercício
 
-* Arquivos
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula26/aula26_slide_02.pdf}{Prof. Marcelo Walter}
-* Diferenças
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula26/aula26_slide_03.pdf}{Prof. Marcelo Walter}
-* Diferenças na representação de números ~float~
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula26/aula26_slide_04.pdf}{Prof. Marcelo Walter}
+* Tipos de Arquivo e mais diferenças
+
+*Binário*
+- Uma sequência de bytes que não pode ser interpretada em ASCII
+- Em geral, um padrão de bits tal qual aparece na memória principal
+- *Todos os valores* são representados em forma binária
+
+#+latex: \vfill
+
+*Texto*
+- Uma sequência de bytes interpretável em ASCII
+- Podemos abrir com um editor de texto puro
+- *Todos os valores* são representados na forma de caracteres
+
+* Exemplo das diferenças com /float/
+
+1 byte = 8 bits
+- Texto: um caractere \to 10 dígitos diferentes
+- Binário: Um byte \to 2^8 valores possíveis
+
+#+latex: \vfill\pause
+
+Vejamos um exemplo com um =float=:
+#+begin_src C
+#include <stdio.h>
+float f;
+f = -1298721.72672;
+FILE *fp_binario = fopen("arquivo.bin", "w");
+fwrite(&f, sizeof(float), 1, fp_binario);
+fclose(fp_binario);
+
+FILE *fp_texto = fopen("arquivo.txt", "w");
+fprintf(fp_texto, "%f", f);
+fclose(fp_texto);
+#+end_src
+
+#+RESULTS:
+
+Tamanhos em bytes
+#+begin_src shell :results output :exports results
+wc -c arquivo.bin
+wc -c arquivo.txt
+#+end_src
+
+#+RESULTS:
+: 4 arquivo.bin
+: 15 arquivo.txt
+
 * Organização interna
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula26/aula26_slide_05.pdf}{Prof. Marcelo Walter}
-* Marcadores especiais
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula26/aula26_slide_06.pdf}{Prof. Marcelo Walter}
-* Arquivos binários: características
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula26/aula26_slide_07.pdf}{Prof. Marcelo Walter}
-* Arquivos texto: características
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula26/aula26_slide_08.pdf}{Prof. Marcelo Walter}
+
+Um arquivo texto compõe-se de uma sequência de
+
+caracteres, formando linhas de tamanho variável.
+
+#+latex: \pause\vfill
+
+O cabeçote de leitura/escrita de um arquivo texto
+
+está sempre posicionado no caractere após a última operação.
+
+#+latex: \vfill\pause
+
+Exemplo de arquivo texto:
+#+begin_src text
+Este é um texto exemplo.
+Cada linha tem um tamanho diferente.
+É um texto normal.
+#+end_src
+Marcadores especiais
+- Quebras de linha '=\n=' no final de cada linha
+- Marcador de fim de arquivo =EOF= no final do arquivo
+
+* Arquivos binários e texto: características
+
+_Binários_
+- Os dados não precisam de qualquer conversão
+- Consomem menos espaço, adequados para grandes volumes de dados
+- Conteúdo não pode ser facilmente entendido sem saber o formato
+
+#+latex: \vfill\pause
+
+_Texto_
+- Exigem conversão a partir de ASCII
+- Consomem mais espaço
+- Facilidade para criação e visualização de arquivos texto
+
 * Operações comuns
 Idênticas àquelas já vistas:
 - Abrir ~fopen~ e fechar ~fclose~
@@ -369,8 +441,25 @@ int main(){
 }
 #+END_SRC
 
-* Marca de fim de linha
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula26/aula26_slide_32.pdf}{Prof. Marcelo Walter}
+* Marcador de fim de linha
+
+Em sistemas UNIX-like (Linux e amigos)
+- LF (Line Feed)
+Em sistemas Windows
+- CR+LF (Carriage Return e Line Feed)
+
+#+latex: \vfill
+
+O LF é representado pelo um caracter =\n=
+
+O CR+LF é representado por dois caracteres =\r= e =\n=
+
+#+latex: \pause\vfill
+
+Razões históricas da presença do =CR=
+- Terminais antigos necessitavam do =\r= para funcionar bem
+  https://en.wikipedia.org/wiki/Teleprinter
+
 * Exercícios
 
 1. Considere um arquivo texto já existente ~entrada.txt~. Faça um
