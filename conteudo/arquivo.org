@@ -38,38 +38,84 @@ Em C (lidar com o conteúdo de arquivos)
 - Testar fim de arquivo ~feof~
 - Avaliar condição de erro ~ferror~
 
-* Arquivos                                                         :noexport:
-Arquivos são *repositórios permanentes* de dados
+* Arquivos e Streams
+
+*Arquivo*: uma sequência de bytes registradas de maneira permanente
 - Permitem /perenizar/ informações de um programa
-
-#+latex: \pause
-
 Arquivos são armazenados em memória auxiliar
-- Discos (rígidos, sólidos), /Pendrive/, Cartões SD
+- Discos (rígidos, sólidos), /Pendrive/, Cartões SD, Fita
+A alteração de um arquivo é permanente
 
-#+latex: \pause
+Arquivos podem ser bem grandes!
 
-A alteração de um arquivo é permanente.
+#+latex: \vfill\pause
 
-#+latex: \pause
+*Stream*: uma interface de E/S no sistema operacional
+- Um canal de manipulação que pode representar vários dispositivos
+  - Um arquivo (no disco HDD, por exemplo)
+  - O teclado (/stdin/)
+  - A tela (/stdout/)
+- Simplifica a programação
+  - Muda o suporte (SSD, HDD, Fita), mesma forma de acessar
+- Dados e operações são em geral ``bufferizadas''
 
-Arquivos podem ser grandes
-* Arquivos
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula24/aula24_slide_06.pdf}{Prof. Marcelo Walter}
-* Arquivos                                                         :noexport:
-#+latex: %\cortesia{../../../Algoritmos/Claudio/Teorica/Aula24-stream_e_arquivos_slide_01.pdf}{Prof. Claudio Jung}
-* Arquivos em C
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula24/aula24_slide_07.pdf}{Prof. Marcelo Walter}
-* /Stream/
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/Aula24-ArquivoEArquivoBin_emC_1_slide_04.pdf}{Prof. Edison Pignaton de Freitas}
-* Como funciona?
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula24/aula24_slide_08.pdf}{Prof. Marcelo Walter}
-* Tipos de arquivo
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula24/aula24_slide_09.pdf}{Prof. Marcelo Walter}
+* Tipos de Arquivo
+
+*Binário*
+- Uma sequência de bytes que não pode ser interpretada em ASCII
+- Em geral, um padrão de bits tal qual aparece na memória principal
+  #+attr_latex: :options fontsize=\tiny
+  #+begin_src C
+  #include <stdio.h>
+  float f;
+  f = -1298721.72672;
+  FILE *fp = fopen("arquivo.bin", "w");
+  fwrite(&f, sizeof(float), 1, fp);
+  #+end_src
+
+  #+RESULTS:
+
+  #+attr_latex: :options fontsize=\tiny
+  #+begin_src shell :results output :exports results
+  wc -c arquivo.bin
+  xxd -l 4 -b arquivo.bin
+  #+end_src
+
+  #+RESULTS:
+  : 4 arquivo.bin
+  : 00000000: 00001110 10001001 10011110 11001001                    ....
+  Mais informações sobre codificação =float=: \\
+  https://en.wikipedia.org/wiki/IEEE_754
+
+#+latex: \pause\vfill
+
+*Texto*
+- Uma sequência de bytes interpretável em ASCII
+- Podemos abrir com um editor de texto puro
+
 * Arquivo Binário
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula24/aula24_slide_10.pdf}{Prof. Marcelo Walter}
-* Exemplo de arquivo binário com inteiros
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula24/aula24_slide_12.pdf}{Prof. Marcelo Walter}
+
+Uma sequência de bytes que não pode ser interpretada em ASCII
+- Dados simples
+- Dados estruturados
+Tamanho do arquivo é a quantidade de bytes registradas no arquivo
+- Os elementos não tem nome
+- ``Formato binário''
+O acesso pode ser sequencial ou fora de ordem
+- Analogia da ``agulha de leitura''
+
+#+latex: \vfill\pause
+
+Representação gráfica de um arquivo de 16 bytes 
+
+(o conteúdo do arquivo são as quatro caixas brancas)
+| / |            | <> | > | > |  > |
+|   | Endereço \to |  0 | 4 | 8 | 12 |
+|---+------------+----+---+---+----|
+|   | Conteúdo \to |    |   |   |    |
+|---+------------+----+---+---+----|
+(as separações entre bytes são apenas ilustrativas)
+
 * Operações em C para arquivos binários
 #+BEGIN_CENTER
 Retiradas da biblioteca ~stdio.h~
@@ -109,10 +155,57 @@ int feof(FILE *stream);
 int ferror(FILE *stream);
 #+END_SRC
 
-* O ``ponteiro'' para uma estrutura ~FILE~ (/aka/ ~FILE*~)
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula24-stream_e_arquivos_slide_09.pdf}{Prof. Claudio Jung}
+* O ponteiro para uma estrutura ~FILE~ (/aka/ ~FILE*~)
+
+O tipo =FILE= representa uma /stream/
+- Deve ser sempre declarada como ponteiro
+- É uma estrutura que tem dados para controle do fluxo
+  #+begin_src C
+  #include <stdio.h>
+  FILE *fp;
+  #+end_src
+- Cada arquivo aberto deve ter sua variável =FILE*=
+
+#+latex: \vfill\pause
+
+Um exemplo com a possibilidade para trabalhar com três arquivos
+#+attr_latex: :options fontsize=\large
+#+begin_src C
+#include <stdio.h>
+int main() {
+  FILE *arq0 = NULL, *arq1 = NULL, *arq2 = NULL;
+  // operações com arquivos
+  return 0;
+}
+#+end_src
+
 * Sempre verificar o retorno destas funções
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula24-stream_e_arquivos_slide_10.pdf}{Prof. Claudio Jung}
+
+#+begin_center
+fopen, fclose, fread, fwrite, fflush, feof, ferror
+
+O sucesso ou fracasso da execução destas funções
+
+pode ser verificado a partir do valor retornado.
+#+end_center
+
+Especialmente importante para =fopen=, =fread=, =fwrite=.
+
+#+attr_latex: :options fontsize=\large
+#+begin_src C
+#include <stdio.h>
+int main() {
+  FILE *arq = fopen("arquivo.bin", "r");
+  if (arq == NULL) {
+    // A abertura do arquivo falhou
+  }else{
+    // O arquivo foi aberto com sucesso
+  }
+  // operações com arq
+  return 0;
+}
+#+end_src
+
 * Abrir arquivo ~fopen~
 
 #+attr_latex: :options fontsize=\normalsize
@@ -136,7 +229,8 @@ FILE *fopen(const char *pathname, const char *mode);
 
 Pode-se misturar modos.
 
-Outros modos relevantes: ~b~ para arquivos binários.
+Outros modos relevantes: ~b~ para arquivos binários \\
+(especialmente para ambientes não-UNIX)
 
 #+latex: \pause
 
@@ -315,4 +409,27 @@ if (ferror(arquivo)) {
 
 * Exercício #1
 
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula24-stream_e_arquivos_slide_26.pdf}{Prof. Claudio Jung}
+Faça quatro programas (cada programa no seu arquivo):
+
+1. Um programa que grava um arquivo composto por =atleta_t=
+   #+begin_src C
+   #define TAM 100
+   typedef struct {
+     char nome[TAM];
+     int idade;
+     float altura;
+   } atleta_t;
+   #+end_src
+
+2. Um programa que lista os atletas de um arquivo
+
+3. Um programa com uma função auxiliar que recebe um nome de um atleta
+   e que em seguida procura este nome no arquivo informado para
+   informar sua idade e altura. Sugestão de protótipo
+   #+begin_src C
+   void procura_atleta(FILE *arq, char *nome);
+   #+end_src
+
+4. Um programa para inserir um novo atleta no final do arquivo
+
+
