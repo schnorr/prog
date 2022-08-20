@@ -43,9 +43,17 @@ Exercício #1: palíndroma recursiva
 
 * Recursividade: o que é?
 
-https://pt.wikipedia.org/wiki/Recursividade
+Fonte: https://pt.wikipedia.org/wiki/Recursividade
+#+begin_quote
+A recursão é o processo pelo qual passa um certo
+procedimento quando um dos passos do procedimento
+em questão envolve a repetição completa deste
+mesmo procedimento.
+#+end_quote
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula28/aula28_slide_01.pdf}{Prof. Marcelo Walter}
+#+latex: \vfill
+
+Em C, nossos procedimentos são as funções.
 
 * Ideia geral
 
@@ -94,7 +102,23 @@ int main() {
 #+END_SRC
 
 * Estratégia comum do emprego da recursividade
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula28/aula28_slide_03.pdf}{Prof. Marcelo Walter}
+
+Ter certeza que fazemos estes passos
+1. *Nós já terminamos?* 
+   1. Se sim
+      - *Retornar o resultado* (termina a recursão)
+   2. Se não,
+      - *Simplifique o problema*
+      - Resolver os subproblemas (faz a recursão)
+      - Combinar as respostas
+      - Retorna o resultado
+
+#+latex: \pause\vfill
+
+Sem uma condição de parada
+- Uma recursão iria se repetir eternamente \\
+  como um laço infinito
+
 * Funcionamento da recursão: pilha implícita
 
 Como a recursão funciona?
@@ -119,14 +143,37 @@ int main() {
 }
 #+END_SRC
 
-
 * Exemplos de definições recursivas: _fatorial_
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula28/aula28_slide_07.pdf}{Prof. Marcelo Walter}
+5! = 5 * 4 * 3 * 2 * 1
 
-* Estratégia: _fatorial_ recursivo
+Definição
+- 0! = 1
+- n! = n * (n-1)! se n > 0
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula28/aula28_slide_09.pdf}{Prof. Marcelo Walter}
+#+latex: \pause\vfill
+
+A definição matemática é recursiva!
+- Qual a condição de parada?
+
+#+latex: \pause\vfill
+
+Estratégia: _fatorial_ recursivo
+#+begin_src text
+5! = 5 * 4!
+4! = 4 * 3!
+3! = 3 * 2!
+2! = 2 * 1!
+1! = 1 * 0!
+0! = 1 //sem recursão
+#+end_src
+Então
+#+begin_src text
+Se n == 0 (ou 1)
+   fatorial de n é [1]
+Senão
+   fatorial de n é [n * (fatorial de n-1)]
+#+end_src
 
 * Código: _fatorial_
 
@@ -150,11 +197,7 @@ int main() {
 #+RESULTS:
 : 24
 
-* Exemplo de definições recursivas: _potência positiva_
-
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula28/aula28_slide_13.pdf}{Prof. Marcelo Walter}
-
-* Estratégia: _potência positiva_
+* Outro exemplo com _potência positiva_
 Lembrete
 #+BEGIN_EXPORT latex
   \[
@@ -232,11 +275,7 @@ int main() {
 }
 #+END_SRC
 
-* Exemplos de definições recursivas: _fibonacci_
-
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula28/aula28_slide_18.pdf}{Prof. Marcelo Walter}
-
-* Estratégia: _fibonacci_
+* Outro exemplo com _fibonacci_
 
 | Posição | 0 | 1 | 2 | 3 | 4 | 5 |  6 |
 |---------+---+---+---+---+---+---+----|
