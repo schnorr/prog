@@ -112,9 +112,44 @@ localização referenciada por ~endptr~. \to Útil para fazer o parsing de
 números separados por espaços (por exemplo).
 
 * Processamento de texto
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula27/aula27_slide_04.pdf}{Prof. Marcelo Walter}
+
+A informação pode estar em arquivo texto seguindo um formato
+- Usando algum delimitador (espaço, tab, vírgula)
+
+#+latex: \vfill
+
+Exemplo: /Comma-separated values/ (CSV) \\
+https://en.wikipedia.org/wiki/Comma-separated_values
+#+begin_src text
+modelo,chassi,peso,altura,comprimento,largura
+Uno,12322425,830,1.44,3.69,1.55
+Gol,435675521,940,1.43,3.83,1.63
+#+end_src
+
 * Extração de elementos (separação em /tokens/)
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula27/aula27_slide_05.pdf}{Prof. Marcelo Walter}
+
+Podemos extrair e converter as informações
+- Se for um número inteiro, converter para var. do tipo =int=
+- Se for um ponto-flutuante, converter para var. do tipo =float=
+
+#+latex: \pause\vfill
+
+Exemplo de arquivo texto (delimitador é a =,=)
+#+begin_src text
+2,Maria da Silva,8.4,5.7,8.8
+5,José Ferreira,9.0,5.8,7.5
+14,Agnes Lindemann,8.5,7.0,6
+#+end_src
+
+#+latex: \vfill\pause
+
+Exemplo de arquivo texto (delimitador é o =#=)
+#+begin_src text
+20#Ricardo Garcia#8.4#5.7#8.8#
+55#Pedro Pedreira#9.0#5.8#7.5#
+67#Dagmar Scherer#8.5#7.0#6.0#
+#+end_src
+
 * Caractere por caractere (estratégia puramente manual)
 
 Enquanto o arquivo não terminar
@@ -234,7 +269,7 @@ void ConvertePontuacao (FILE *fp, double vet[]) {
 #+END_SRC
 
 #+RESULTS:
-* Exemplo #2: convergência 
+* Exercício #1: convergência 
 
 Desenvolver um programa em C que leia um arquivo texto contendo
 código, nomes e duas notas, em formato CSV, listando os conteúdos
@@ -245,7 +280,7 @@ executar lê o arquivo dados.txt, como este exemplo:
 13,Joao Super da Silva,2.3,9.8
 33,Sonja Sperb,4.5,7.8
 #+END_EXAMPLE
-* Exercício #1
+* Exercício #2
 
 O arquivo texto ~matriz.txt~ contém, na primeira linha, as dimensões de
 uma matriz separadas por um espaço (linha e coluna). Nas linhas
