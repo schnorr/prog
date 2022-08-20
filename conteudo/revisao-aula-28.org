@@ -18,7 +18,7 @@
 #+LATEX_HEADER: \usepackage{amsmath}
 #+LATEX_HEADER: \usepackage{systeme}
 
-#+latex: \newcommand{\mytitle}{Revisão Aula 28}
+#+latex: \newcommand{\mytitle}{Revisão Aula 17}
 #+latex: \mytitleslide
 
 * Revisão #1
@@ -46,10 +46,10 @@ printf ("%d %d\n", *p, v[0]);
 
 Aritmética de ponteiros para /navegar/ em um vetor.
 #+BEGIN_SRC C :results output :session :exports both
-int v[3] = {1,2,3}; // um vetor de 3 inteiros
+int i, v[3] = {1,2,3}; // um vetor de 3 inteiros
 int *p = NULL;      // um ponteiro para inteiro, sempre inicializado para nulo
 p = v;
-for (int i = 0; i < 3; i++)
+for (i = 0; i < 3; i++)
   printf("%d %d\n", *(p+i), v[i]);
 #+END_SRC
 
@@ -114,10 +114,24 @@ printf("%d", *p);
 #+END_SRC
 
 #+RESULTS:
-* Exercício #1 (/Bhaskara/)
+* Exercício #1
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula18/aula18_slide_28.pdf}{Prof. Marcelo Walter}
+Escreva uma função em C que receba três valores reais a,b,c, e que
+retorne as duas raízes x1 e x2 da equação ax2 + bx + c = 0. Assuma que
+a equação de segundo grau possui raízes reais.
 
+#+latex: \vfill
+
+Estrutura da função: os parâmetros a, b, c podem ser passados por
+valor (pois não serão alterados), mas os parâmetros x1 e x2 devem ser
+passados por referência (pois são, na verdade, parâmetros de saída da
+função).
+
+#+begin_src C
+void bhaskara(float a, float b, float c, float *x1, float *x2) {
+  // sua implementação aqui
+}
+#+end_src
 * Solução #1 ~rev-a28-bhaskara.c~
 
 #+BEGIN_SRC C :tangle e/rev-a28-bhaskara.c :main no
@@ -138,7 +152,7 @@ int main () {
 #+BEGIN_SRC C :tangle e/rev-a28-bhaskara.c :main no
 void bhaskara (float a, float b, float c, float *x1, float *x2) {
   float raizdisc;
-  raizdisc = sqrt(b*b-4*a*c); // raiz do discriminante, evita calculo repetido
+  raizdisc = sqrt(b*b-4*a*c); // raiz do discriminante
   ,*x1 = (-b + raizdisc)/(2*a);
   ,*x2 = (-b - raizdisc)/(2*a);
   return;
@@ -155,11 +169,11 @@ Teste com
 #+BEGIN_SRC C
 #include <math.h>
 #include <stdio.h>
-void baskara(float a,float b, float c, float* x1, float* x2);
+void bhaskara(float a, float b, float c, float *x1, float *x2);
 int main(){
   float a,b,c;
-  float* x1 = NULL;
-  float* x2 = NULL;
+  float *x1 = NULL;
+  float *x2 = NULL;
   printf("Insira os parametros a,b,c da funcao, respectivamente\n");
   scanf("%f",&a);
   scanf("%f",&b);
@@ -168,7 +182,7 @@ int main(){
   return 0;
 }
 
-void baskara(float a,float b, float c, float* x1, float* x2){
+void bhaskara(float a,float b, float c, float *x1, float *x2) {
   float calc1,calc2;
   calc1 = -b+(pow((pow(b,2)-(4*a*c/2/a)),1/2));
   calc2 = -b-(pow((pow(b,2)-((4*a*c)/2/a)),1/2));
@@ -184,8 +198,7 @@ void baskara(float a,float b, float c, float* x1, float* x2){
 #+BEGIN_SRC C
 #include<stdio.h>
 #include<math.h>
-void bhaskara (float a, float b, float c, float *x1, float *x2);
-
+void bhaskara(float a, float b, float c, float *x1, float *x2);
 int main() {
   float variavel_A;
   float variavel_B;
@@ -199,7 +212,7 @@ int main() {
   return 0;
 }
 
-void bhaskara (float a, float b, float c, float *x1, float *x2){
+void bhaskara(float a, float b, float c, float *x1, float *x2){
   float delta;
   delta = (pow(b,2) - 4 * a * c);
   x1 = ((-b + sqrt(delta)) / 2 * a);
@@ -209,7 +222,7 @@ void bhaskara (float a, float b, float c, float *x1, float *x2){
 #+END_SRC
 * Simulado #1 (Ponteiros e Funções)
 
-Marque V ou F conforme adequado.
+Marque V ou F para cada opção, averiguando se o código é adequado.
 
 Se for F, corrija para ficar V.
 
@@ -255,48 +268,48 @@ int main() {
 
 * Simulado #2
 
-Seja o trecho:
+O que este programa imprime na tela?
+
 #+attr_latex: :options fontsize=\large
-#+BEGIN_SRC C
+#+BEGIN_SRC C :results output :exports both
 int i = 3, j = 5;
 int *p, *q;
 p = &i;
 q = &j;
+
+int a, b, c, d;
+
+a = p == &i;
+b = *p - *q;
+c = **&*&*&*&p;
+d = 3* - *p / (*q) + 7;
+
+printf("%d %d %d %d", a, b, c, d);
 #+END_SRC
 
-Qual é o valor das seguintes expressões ?
-#+attr_latex: :options fontsize=\Large
-#+BEGIN_SRC C
-p == &i
-*p - *q
-**&p
-3* - *p / (*q) + 7
-#+END_SRC
+#+latex: \pause
 
-#+latex: %\cortesia{../../../Algoritmos/Mara/Teoricas/Aula19-Ponteiros2_v3_slide_22.pdf}{Prof. Mara Abel}
+#+RESULTS:
+: 1 -2 3 6
 
 * Simulado #3
 
+Considerando as declarações, 
+
+quais das seguintes expressões de atribuição são válidas? \\
+(com uma ``semântica aceitável'')
 #+attr_latex: :options fontsize=\large
-#+BEGIN_SRC C
+#+BEGIN_SRC C :results output :exports both
 int i, j;
 int *p, *q;
+
+p = &i;          // A
+*q = &j;         // B
+p = &*&i;        // C
+i = (*&)j;       // D
+i = *&j;         // E
+i = *&*&j;       // F
+q = *p;          // G
+i = (*p)+++*q;   // H
 #+END_SRC
 
-Quais das seguintes expressões de atribuição são válidas,
-
-ou seja, tem uma semântica aceitável?
-#+attr_latex: :options fontsize=\Large
-#+BEGIN_SRC C
-p = &i;
-*q = &j;
-p = &*&i;
-i = (*&)j;
-i = *&j;
-i = *&*&j;
-q = *p;
-i = (*p)+++*q
-#+END_SRC
-
-
-#+latex: %\cortesia{../../../Algoritmos/Mara/Teoricas/Aula19-Ponteiros2_v3_slide_24.pdf}{Prof. Mara Abel}
