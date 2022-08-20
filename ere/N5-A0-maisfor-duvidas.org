@@ -1,0 +1,12 @@
+#+STARTUP: overview indent
+#+TITLE: Dúvidas Alg Prog ERE
+
+* N5 A0 (Mais For)
+** Dúvida #1
+Eu não entendi como que roda o printf todas as vezes se ele está fora
+do bloco mais interno de comandos.  Não entendi bem a ordem. Entra no
+primeiro For ai entra no segundo e fica rodando la dentro até terminar
+o laço ou entra no primeiro for, depois no segundo e volta pro
+primeiro. Porque se ele volta pro primeiro, como o Fat não
+reinicializa pra =1? (marquei na imagem as duas ordens de execução que
+pensei e fiquei sem entender.
