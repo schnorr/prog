@@ -1,0 +1,79 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Algoritmos
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{systeme}
+
+#+latex: \newcommand{\mytitle}{Revisão Aula 18}
+#+latex: \mytitleslide
+
+* Exercício #1
+
+Escreva um programa em C que: 1/ Para um matriz de ordem cinco,
+preencher aleatoriamente com valores entre 10 e 20; 2/ Chame uma
+função que receba uma matriz, a quantidade de linhas e colunas e troca
+todos os elementos da diagonal principal por zero. Na implementação
+desta função, usar ponteiro e o cálculo do endereço com aritmética de
+ponteiros.
+
+* (#1) Código (passagem de matrizes)
+
+#+latex: \vspace{-0.3cm}\begin{multicols}{2}
+#+BEGIN_SRC C :tangle e/rev-a18-passagem-matriz.c
+#include <stdio.h>
+#include <stdlib.h>
+#define ORDEM 5
+#define MIN 10
+#define MAX 20
+void le (int mat[][ORDEM]) {
+  int i, j;
+  srand(0);
+  for (i = 0; i < ORDEM; i++)
+    for (j = 0; j < ORDEM; j++)
+      ,*(mat[0] + i * ORDEM + j) =
+	MIN+(rand()%(MAX-MIN+1));
+}
+void imprime (int mat[][ORDEM],
+	      char *str) {
+  int i, j;
+  printf("%s: %s\n",
+	 __FUNCTION__, str);
+  for (i = 0; i < ORDEM; i++){
+    for (j = 0; j < ORDEM; j++)
+      printf("%4d", mat[i][j]);
+    printf("\n");
+  }
+}
+void zera_diagonal (int mat[][ORDEM]) {
+  int i, j;
+  for (i = 0; i < ORDEM; i++)
+    for (j = 0; j < ORDEM; j++)
+      if (i == j)
+	,*(mat[0] + i * ORDEM + j) = 0;
+}
+int main() {
+  int M[ORDEM][ORDEM];
+  le (M);
+  imprime (M, "Original");
+  zera_diagonal (M);
+  imprime (M, "Modificada");
+  return 0;
+}
+#+END_SRC
+#+latex: \end{multicols}
+
+
