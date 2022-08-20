@@ -59,7 +59,7 @@ ORIGINA= aula01-apresentacao.pdf \
 	 aula21-arquivo.pdf \
 	 aula22-aleatorio.pdf \
 	 aula23-arq-texto.pdf \
-	 arq-texto-p2.pdf \
+	 aula24-arq-texto-p2.pdf \
 	 recursividade.pdf \
 	 estruturacao.pdf \
 	 revisao-p2.pdf \
