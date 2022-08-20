@@ -56,8 +56,8 @@ ORIGINA= aula01-apresentacao.pdf \
 	 aula18-ponteiros.pdf \
 	 aula19-estruturas.pdf \
 	 aula20-typedef.pdf \
-	 arquivo.pdf \
-	 aleatorio.pdf \
+	 aula21-arquivo.pdf \
+	 aula22-aleatorio.pdf \
 	 arq-texto.pdf \
 	 arq-texto-p2.pdf \
 	 recursividade.pdf \
