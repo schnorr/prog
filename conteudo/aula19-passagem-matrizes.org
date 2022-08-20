@@ -28,9 +28,34 @@ Passagem de matrizes como parâmetro para funções
 - Endereçamento de células na matrizes
 - Como calcular os endereços com ponteiros
 
-* Motivação
+* Matrizes e Parâmetros
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula19/aula19_slide_16.pdf}{Prof. Marcelo Walter}
+#+begin_center
+_Objetivo_
+
+Passagem de arranjos com mais de uma dimensão em C
+#+end_center
+
+Arranjos 1D (Vetores)
+- Não havia necessidade de especificar a capacidade
+  #+begin_src C
+  void funcao(int v[]);
+  #+end_src
+
+#+latex: \pause
+
+Arranjos kD (para k >= 2)
+- Capacidade das dimensões deve estar presente na declaração
+  - Salvo a primeira dimensão
+- Existem outras alternativas (fora do plano da disciplina)
+
+Exemplos
+#+begin_src C
+#define TAM1 10
+#define TAM2 20
+void funcao1 (float matriz[][TAM1]);
+void funcao2 (int cubo[][TAM1][TAM2]);
+#+end_src
 
 * Armazenamento de matrizes na memória
 
