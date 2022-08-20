@@ -18,32 +18,100 @@
 #+LATEX_HEADER: \usepackage{amsmath}
 #+LATEX_HEADER: \usepackage{systeme}
 
-#+latex: \newcommand{\mytitle}{Tipos de Dados de Usuário @@latex}
+#+latex: \newcommand{\mytitle}{Tipos de Dados de Usuário}
 #+latex: \mytitleslide
 
 * Motivação
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula22/aula22_slide_02.pdf}{Prof. Marcelo Walter}
+Supor um programa para manter dados sobre livros
 
-* Representando livros em memória
+O que podemos armazenar sobre cada livro
+- autor (string)
+- título (string)
+- preço (float)
+- páginas (int)
+- ano (int)
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula22/aula22_slide_03.pdf}{Prof. Marcelo Walter}
+#+latex: \pause\vfill
+
+Como declaramos estas variáveis para um livro?
+#+begin_src C
+char autor[30], titulo[45];
+int ano, paginas;
+float preco;
+#+end_src
+
+#+latex: \pause\vfill
+
+E para vários livros?
+- Semelhante ao problema que nos levou ao conceito de vetores
 
 * Tipos de Dados na Linguagem C
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula22/aula22_slide_05.pdf}{Prof. Marcelo Walter}
+_Simples_ (ou primitivos)
+- =char=
+- =int=
+- =float=
+- =void=
+- ponteiros
+
+#+latex: \pause\vfill
+
+_Estruturados_
+- Arranjos multidimensionais (1D)
+- *Estruturas*
+- Arquivos
+- Enumerações
 
 * Estruturas
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula22/aula22_slide_06.pdf}{Prof. Marcelo Walter}
+Um tipo de dado definido pelo usuário
+- Permite agrupar dados diferentes em um _registro_
+- Cada dado é um _campo_ do registro
+Exemplo para um registro de =Funcionario=, com 5 campos
+| / | <>     | >        | >        | >        | >       |
+|---+--------+----------+----------+----------+---------|
+|   | Código | Nome     | Cargo    | Depto    | Salário |
+|---+--------+----------+----------+----------+---------|
+|   | (int)  | (string) | (string) | (string) | (float) |
 
-* Diferenças
+* Diferenças entre arranjos e estruturas
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula22/aula22_slide_07.pdf}{Prof. Marcelo Walter}
+_Arranjo_
+- É homogêneo (todos os elementos são do mesmo tipo)
+  - Portanto do mesmo tamanho
+- Cada elemento é identificado através do índice
 
-* Diferenças para indexação
+#+latex: \vfill
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula22/aula22_slide_08.pdf}{Prof. Marcelo Walter}
+=nota=
+#+attr_latex: :center nil
+| / | <> | > | > | > | > |
+|---+----+---+---+---+---|
+|   |    |   |   |   |   |
+|---+----+---+---+---+---|
+
+(o nome =nota= é comum para todos os elementos)
+
+#+latex: \pause\vfill
+
+_Estrutura_
+- É heterogênea (os elementos podem ser de tipos diferentes)
+  - Portanto de tamanhos diferentes
+- Cada elemento é identificado através de um nome único
+
+#+latex: \vfill
+
+=funcionario=
+#+attr_latex: :center nil
+| / | <>     | >        | >        | >        | >       |
+|---+--------+----------+----------+----------+---------|
+|   | codigo | nome     | cargo    | depto    | salario |
+|---+--------+----------+----------+----------+---------|
+
+(o nome =funcionario= é comum para todos os elementos)
+
+(cada elemento tem um nome único)
 
 * Declaração do tipo de usuário na forma de estrutura
 
@@ -234,15 +302,31 @@ int main() {
 
 * Voltando aos livros para falar de arranjos de tipos de usuário
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula22/aula22_slide_21.pdf}{Prof. Marcelo Walter}
+Temos vários livros! E sobre cada livro
+- autor (string)
+- título (string)
+- preço (float)
+- páginas (int)
+- ano (int)
 
-* (por um lado) Arranjo de estruturas de usuário
+#+latex: \pause\vfill
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula22/aula22_slide_22.pdf}{Prof. Marcelo Walter}
+#+begin_src C
+#define TAMBIBLIO 100
+struct livro {
+  char autor[30], titulo[45];
+  int ano, paginas;
+  float preco;
+};
+int main() {
+  struct livro meus_livros[TAMBIBLIO] = {0};
+  return 0;
+}
+#+end_src
 
-* (por outro lado) Estruturas com arranjos
-
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula22/aula22_slide_23.pdf}{Prof. Marcelo Walter}
+Possível então
+- Arranjo de estruturas (variáveis =meus_livros= acima)
+- Estruturas com arranjos como campos (=struct livro= acima)
 
 * Funções podem retornar variáveis do tipo de usuário
 
@@ -258,13 +342,13 @@ struct funcionario {
   float salario;
 };
 struct funcionario le_funcionario (void) {
-  struct funcionario ret;
+  struct funcionario ret = {0};
   printf("Forneça código e salário: ");
   scanf("%d%f", &ret.codigo, &ret.salario);
   return ret;
 }
 int main() {
-  struct funcionario fs[NFUNCS];
+  struct funcionario fs[NFUNCS] = {0};
   int i;
   for (i = 0; i < NFUNCS; i++){
     fs[i] = le_funcionario();
@@ -276,7 +360,7 @@ int main() {
 
 * Funções podem receber variáveis do tipo de usuário
 
-Recebe estrutura como parâmetro por valor.
+Recebe estrutura como parâmetro, a passagem é por valor (cópia).
 
 #+BEGIN_SRC C :tangle e/a31-estruturas-recebidas.c
 #include <stdio.h>
@@ -337,28 +421,27 @@ struct {
 
 * Exercício #1
 
-*Parte #1*: Faça uma função que leia o nome (até 15 caracteres) e as 3
-notas de 1 aluno, calcule a média aritmética e o conceito obtido,
-armazenando todas estas informações em uma estrutura ~aluno~.
-
-*Parte #2:* Altere o programa anterior, de modo que armazene informações
-referentes a NRALUNOS alunos.
+1/ Faça uma função que leia o nome e as 3 notas de 1 aluno, calcule a
+média aritmética e o conceito obtido, armazenando todas estas
+informações em uma estrutura ~aluno~. 2/ Enriqueça o programa anterior,
+de modo que armazene informações referentes a NRALUNOS alunos.
 
 Utilize o código abaixo para começar.
 #+BEGIN_SRC C
 #include <stdio.h>
 #include <string.h>
-#define NRALUNOS 3 // número de alunos da turma
-#define NRNOTAS 3  // número de notas
+#define TAMANHO 100 // maior nome possível
+#define NRALUNOS 3  // número de alunos da turma
+#define NRNOTAS 3   // número de notas
 struct aluno {
-  char nome[15 + 1];
+  char nome[TAMANHO];
   float nota[NRNOTAS]; // vetor é um tipo de variável (indexada)
   float media;
   char conceito;
 };
 int main()
 {
-  struct aluno alunos[NRALUNOS];
+  struct aluno alunos[NRALUNOS] = {0};
   //...
   return 0;
 }
