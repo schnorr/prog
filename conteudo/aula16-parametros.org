@@ -23,22 +23,20 @@
 
 * Sumário
 
-Funções que somente retornam valores
-- #1 Menu que retorna opção selecionada
+_Funções_
+- Funções void/void (não retorna, não recebem valores)
+- Funções que somente retornam valores
+  - #1 Menu que retorna opção selecionada
+- *Funções com Parâmetros*
+  - Funções que somente recebem valores como parâmetros \\
+    #2 Imprime n vezes c (#2++ "Desafio") \\
+    #3 Imprime intervalo ASCII
+  - Funções que recebem e retornam valores (caso entrada/saída) \\
+    #4 Sequência de Fibonacci
+    #5 Combinação de n elements, p a p
 
-*Funções com Parâmetros*
-
-Funções que somente recebem valores como parâmetros
-- #2 Imprime n vezes c
-  - #2++ "Desafio"
-- #3 Imprime intervalo ASCII
-Funções que recebem e retornam valores (caso entrada/saída)
-- #4 Sequência de Fibonacci
-- #5 Combinação de n elements, p a p
-Forma de passagem de parâmetros
+_Forma de passagem de parâmetros_
 - Por valor
-
-#+latex: \vfill
 
 Exercício
 - Calcular o valor de e^x
