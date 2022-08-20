@@ -13,6 +13,7 @@ REVISAO= revisao-aula-01.pdf \
 	 revisao-aula12b.pdf \
 	 revisao-aula13.pdf \
 	 revisao-aula16.pdf \
+	 revisao-aula17.pdf \
 	 revisao-aula-13.pdf \
 	 revisao-aula-15.pdf \
 	 revisao-aula-16.pdf \
@@ -20,7 +21,7 @@ REVISAO= revisao-aula-01.pdf \
 	 revisao-aula-23.pdf \
 	 revisao-aula-25.pdf \
 	 revisao-aula-26.pdf \
-	 revisao-aula-28.pdf \
+
 	 revisao-aula-29.pdf \
 	 revisao-aula-31.pdf \
 	 revisao-aula-32.pdf \
