@@ -29,7 +29,7 @@ _Funções_
   - #1 Menu que retorna opção selecionada
 - *Funções com Parâmetros*
   - Funções que somente recebem valores como parâmetros \\
-    #2 Imprime n vezes c (#2++ "Desafio") \\
+    #2 Imprime n vezes c
     #3 Imprime intervalo ASCII
   - Funções que recebem e retornam valores (caso entrada/saída) \\
     #4 Sequência de Fibonacci
@@ -37,6 +37,7 @@ _Funções_
 
 _Forma de passagem de parâmetros_
 - Por valor
+- Por referência
 
 Exercício
 - Calcular o valor de e^x
@@ -155,36 +156,6 @@ void imprime(char c, int n) {
   return;
 }
 #+END_SRC
-
-* (#2) "Desafio"
-
-Alterar a =main= de ~a25-imprime-parametros.c~ para que a saída seja
-
-#+BEGIN_EXAMPLE
-a
-bb
-ccc
-dddd
-eeeee
-ffffff
-ggggggg
-hhhhhhhh
-iiiiiiiii
-jjjjjjjjjj
-kkkkkkkkkkk
--> llllllllllll
-mmmmmmmmmmm
-nnnnnnnnnn
-ooooooooo
-pppppppp
-qqqqqqq
-rrrrrr
-sssss
-tttt
-uuu
-vv
-x
-#+END_EXAMPLE
 
 * (Exemplo #3) Imprime intervalo ASCII
 
@@ -389,7 +360,7 @@ passagem de parâmetros foi realizada por valor.
 #+latex: \pause\vfill
 
 #+BEGIN_CENTER
-/Veremos solução na próxima aula com passagem por referência/
+/Veremos uma solução na próxima aula com passagem por referência/
 
 E também *ponteiros*!
 #+END_CENTER
