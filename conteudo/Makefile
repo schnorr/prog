@@ -53,9 +53,8 @@ ORIGINA= aula01-apresentacao.pdf \
 	 aula15-funcoes.pdf \
 	 aula16-parametros.pdf \
 	 aula17-referencias.pdf \
-	 ponteiros.pdf \
-	 passagem-matrizes.pdf \
-	 ordenamento-bolha.pdf \
+	 aula18-ponteiros.pdf \
+	 aula19-passagem-matrizes.pdf \
 	 estruturas.pdf \
 	 typedef.pdf \
 	 arquivo.pdf \
