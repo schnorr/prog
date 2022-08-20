@@ -19,22 +19,9 @@ REVISAO= revisao-aula-01.pdf \
 	 revisao-aula20.pdf \
 	 revisao-aula21.pdf \
 	 revisao-aula22.pdf \
-	 revisao-aula-13.pdf \
-	 revisao-aula-15.pdf \
-	 revisao-aula-16.pdf \
-	 revisao-aula-17.pdf \
-	 revisao-aula-23.pdf \
-	 revisao-aula-25.pdf \
-	 revisao-aula-26.pdf \
-	 revisao-aula-29.pdf \
-	 revisao-aula-31.pdf \
-	 revisao-aula-32.pdf \
-	 revisao-aula-34.pdf \
-	 revisao-aula-35.pdf \
-	 revisao-aula-37.pdf \
-	 revisao-aula-38.pdf \
-	 revisao-aula-40.pdf \
-	 revisao-aula-41.pdf \
+	 revisao-aula23.pdf \
+	 revisao-aula24.pdf \
+	 revisao-aula25.pdf \
 	 comentarios-p1.pdf
 
 ORIGINA= aula01-apresentacao.pdf \
