@@ -78,33 +78,66 @@ gcc a25-troca.c; ./a.out
 
 Como fazer então? \to Utilizar método de *passagem por referência*
 
-* Passagem de argumentos como *referências*
+* Passagem de argumentos por *referência*
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula18/aula18_slide_09.pdf}{Prof. Marcelo Walter}
+*Por valor*
+- Passa uma cópia do valor
 
-* A ideia de *ponteiros*
-
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula18/aula18_slide_11.pdf}{Prof. Marcelo Walter}
+*Por Referência*
+- Passa um endereço de memória
+- Acesso é através de um _ponteiro_
 
 * Endereçamento de variáveis
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula18/aula18_slide_12.pdf}{Prof. Marcelo Walter}
+Todas as variáveis residem em um endereço de memória
+- O acesso é feito simbolicamente através do nome
+  #+begin_src C
+  int a;
+  a = 2;
+  #+end_src
+- Mas podemos acessar a variável =a= através do seu endereço
 
-* O que são ponteiros?
+#+latex: \pause
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula18/aula18_slide_13.pdf}{Prof. Marcelo Walter}
+O que são ponteiros?
+- Variáveis que guardam endereços de memória
+- Fornecem um mecanismo para referenciar algo indiretamente
 
-* Declaração de ponteiros
+_Terminologia_: Se uma variável =a= armazena o endereçó de uma variável b,
+dizemos que a aponta para b
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula18/aula18_slide_14.pdf}{Prof. Marcelo Walter}
+* Ponteiros na linguagem C
 
-* Um ponteiro tem que ter um tipo!
+Declaração
+#+begin_src 
+<tipo> *<nome>;
+#+end_src
+O asterisco indica que a variável <nome> armazena um endereço cujo
+conteúdo é do tipo especificado por <tipo>.
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula18/aula18_slide_15.pdf}{Prof. Marcelo Walter}
+#+latex: \pause
 
-* Operadores para lidar com ponteiros
+Exemplos
+#+begin_src C
+float *f;
+int *p;
+char a, b, *p, c, *q;
+#+end_src
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula18/aula18_slide_16.pdf}{Prof. Marcelo Walter}
+#+latex: \pause
+
+O operador asterico é o mesmo da multiplicação
+- Portanto um operador dito ``sobrecarregado''
+
+Sabemos que as variáveis possuem tamanhos diferentes
+- O ponteiro sempre aponta para o endereço inicial
+
+#+latex: \pause
+
+Operadores para lidar com ponteiros
+- =&= \to operador unário, devolve o endereço de memória do operando
+- =*= \to operador unário, devolve o conteúdo da endereço apontado
+
 * Exemplo #1: Ponteiros e conteúdo
 
 #+BEGIN_SRC C :tangle e/a26-ponteiro-conteudo.c
@@ -303,7 +336,6 @@ Como usar?
    6	  *p = x;
    #+end_src
 
-
 * Passagem por referência ~a26-troca-ponteiro.c~
 
 #+attr_latex: :options fontsize=\scriptsize
@@ -336,8 +368,24 @@ gcc a26-troca-ponteiro.c; ./a.out
 : #2: a = 10, b = 5
 
 * Passagem por referência
-Vetores e matrizes
+Vetores e matrizes só podem ser passados /por referência/
 - /veremos na próxima aula/
 * Exercício #1
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula18/aula18_slide_28.pdf}{Prof. Marcelo Walter}
+Escreva uma função em C que receba três valores reais a,b,c, e que
+retorne as duas raízes x1 e x2 da equação ax2 + bx + c = 0. Assuma que
+a equação de segundo grau possui raízes reais.
+
+#+latex: \vfill
+
+Estrutura da função: os parâmetros a, b, c podem ser passados por
+valor (pois não serão alterados), mas os parâmetros x1 e x2 devem ser
+passados por referência (pois são, na verdade, parâmetros de saída da
+função).
+
+#+begin_src C
+void baskara(float a, float b, float c, float* x1, float* x2) {
+  // sua implementação aqui
+}
+#+end_src
+
