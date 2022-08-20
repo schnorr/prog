@@ -33,8 +33,27 @@ Em C (lidar com arquivos)
 - Renomear ~rename~ e remover ~remove~
 - Outras funções de ~stdio.h~
 
-* Cabeçote de leitura/gravação
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula25-arquivos_binarios_slide_07.pdf}{Prof. Claudio Jung}
+* Cabeçote de leitura/gravação de um /stream/
+
+Na aula passada:
+- =fread=, ler uma quantidade de bytes do stream
+- =fwrite=, escrever uma quantidade de bytes no stream
+A leitura ou gravação causam um deslocamento do cabeçote
+
+#+latex: \pause\vfill
+
+Temos funções auxiliares em =stdio.h= para mover o cabeçote
+- Sem operações de leitura/escrita (e custo associado)
+- São úteis quando os arquivos são gigantes
+  - E sabemos a posição (endereço) que precisamos ler/escrever
+  - Permite acessos não sequenciais
+
+| *Função* | *Sumário do que faz*      |
+|--------+-------------------------|
+| =rewind= | Rebobinar para o início |
+| =fseek=  | Mudar de posição        |
+| =ftell=  | Revelar a posição       |
+
 * Rebobinar ~rewind~ (rebobina a posição do cabeçote)
 
 Protótipo
@@ -121,9 +140,6 @@ int remove(const char *pathname);
 
 Outras funções de ~stdio.h~
 - Procure no DuckDuckGo: man stdio
-
-* Acesso *não sequencial* no arquivo
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula25-arquivos_binarios_slide_11.pdf}{Prof. Claudio Jung}
 
 * Exemplo #1: InsereNoFim-AindaMelhor
 
