@@ -58,7 +58,7 @@ ORIGINA= aula01-apresentacao.pdf \
 	 aula20-typedef.pdf \
 	 aula21-arquivo.pdf \
 	 aula22-aleatorio.pdf \
-	 arq-texto.pdf \
+	 aula23-arq-texto.pdf \
 	 arq-texto-p2.pdf \
 	 recursividade.pdf \
 	 estruturacao.pdf \
