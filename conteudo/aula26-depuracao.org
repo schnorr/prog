@@ -1,0 +1,111 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+
+#+Title: Algoritmos
+#+Subtitle: *INF01202*
+#+Author: Prof. Lucas Mello Schnorr
+#+Date: \copyleft
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel.tex}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{systeme}
+
+#+latex: \newcommand{\mytitle}{Depuração}
+#+latex: \mytitleslide
+
+* O que é depuração?
+
+Depurador: ``Que, aquilo ou quem depura, expurga ou limpa.''
+- O ~gdb~ é um programa que depura um outro programa
+
+#+latex: \vfill\pause
+
+Diferenças entre
+- Tempo de compilação, aka
+  #+begin_src shell :results output :dir e
+  gcc -g -Wall a26-inicializa.c -o binario_do_programa
+  #+end_src
+- Tempo de execução, aka
+  #+begin_src shell :results output
+  ./binario_do_programa
+  #+end_src
+
+#+latex: \vfill\pause
+
+Depuração é realizada em tempo de execução
+- Enquanto o programa se executa
+
+* Depurando programas com ~gdb~
+
+Como usar?
+
+1. Compilar com o parâmetro ~-g~
+   #+begin_src shell :results output :dir e
+   gcc -g -Wall a26-inicializa.c -o binario_do_programa
+   #+end_src
+   #+latex: \pause
+2. Lançar o depurador passando o binário
+   #+begin_src shell :results output
+   gdb ./binario_do_programa
+   #+end_src
+   #+latex: \pause
+3. Fornecer o comando ~run~ ao programa ~gdb~
+   #+begin_src shell :results output
+   (gdb) run
+   #+end_src
+   #+latex: \pause
+4. Interpretar a saída
+   #+begin_src shell :results output
+   Program received signal SIGSEGV, Segmentation fault.
+   0x0000555555555153 in main () at a26-inicializa.c:6
+   6	  *p = x;
+   #+end_src
+
+* Conceitos e comandos básicos
+
+Quebra (/break/)
+- Informa-se com o comando /break/
+- Informamos ao depurador onde parar, onde "onde" pode ser
+  - número da linha de um arquivo
+  - nome da função
+  - uma determinada condição for atingida
+- Podemos listar os pontos de quebra (/info breakpoints/)
+
+Imprimir valores das variáveis (/print/)
+- Estruturas (struct)
+- Ponteiros
+
+Listar o código onde estamos (/list/)
+
+Executar comandos ao atingir pontos de parada
+- /commands/, lista de comandos, terminar por /end/
+
+* Demonstração com um exemplo
+
+Código: contar a quantidade de caracteres de uma /string/: /Strings/
+terminam por ~\0~, portanto é nosso critério de parada. Usamos
+aritmética de ponteiros para ir avançando.
+
+#+latex: \vfill
+
+Vamos ``esquecer'' propositalmente o principal critério de parada.
+
+#+BEGIN_SRC C :tangle e/n14-a2-depuracao.c
+#include <stdio.h>
+int caracteres(char *str) {
+  if (str == NULL) return 0;
+  return 1 + caracteres(str+1);
+}
+int main(){
+  printf("%d\n", caracteres("o universo se expande"));
+  return 0;
+}
+#+END_SRC
