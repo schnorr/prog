@@ -15,6 +15,8 @@ REVISAO= revisao-aula-01.pdf \
 	 revisao-aula16.pdf \
 	 revisao-aula17.pdf \
 	 revisao-aula18.pdf \
+	 revisao-aula19.pdf \
+	 revisao-aula20.pdf \
 	 revisao-aula-13.pdf \
 	 revisao-aula-15.pdf \
 	 revisao-aula-16.pdf \
