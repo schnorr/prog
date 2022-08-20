@@ -47,7 +47,23 @@ Passagem de vetores como referência
 
 * Aritmética de ponteiros (/lembrete/)
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula19/aula19_slide_09.pdf}{Prof. Marcelo Walter}
+O valor considerado é o tamanho do tipo do ponteiro. Exemplo, ao somar 1
+no ponteiro, será somado o tamanho do tipo do ponteiro (4 se ~int~).
+
+#+begin_src C
+int aux;
+int *p;
+p = &aux;
+p = p + 1; // arimética de ponteiros
+#+end_src
+
+Representação gráfica da memória virtual
+| / | <> | >   | >   | >   | >   | >   |   > |   > | >   | >   |
+|   |  0 | ... | 450 | 451 | 452 | 453 | 454 | 455 | ... | 2^{64} |
+|---+----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
+|   |    |     | XXX | XXX | XXX | XXX |     |     |     |     |
+|---+----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
+(assumindo que =aux= foi alocado para o endereço 450--453, 4 bytes)
 
 * Exemplo #1 ~a28-aritmetica.c~
 
@@ -79,7 +95,35 @@ int main() {
 #+END_SRC
 * Ponteiros e vetores: *semelhanças*
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula19/aula19_slide_11.pdf}{Prof. Marcelo Walter}
+- O nome de um vetor corresponde a um ponteiro constante
+  - É um ponteiro fixo no primeiro elemento
+
+#+latex: \pause
+
+Lembrando de _como é com vetores_
+#+begin_src C
+int vetor[6], i = 3;
+vetor[i] = 20;
+#+end_src
+| / |        | <> | >   |  > |  > |  > |  > |  > |  > | >   | >   |
+|   | End.   |  0 | ... | 40 | 44 | 48 | 52 | 56 | 60 | ... | 2^{64} |
+|---+--------+----+-----+----+----+----+----+----+----+-----+-----|
+|   | Índice |    |     |  0 |  1 |  2 |  3 |  4 |  5 |     |     |
+|---+--------+----+-----+----+----+----+----+----+----+-----+-----|
+|   | Valor  |    |     |    |    |    | 20 |    |    |     |     |
+|---+--------+----+-----+----+----+----+----+----+----+-----+-----|
+(assumindo que =vetor= foi alocado para o endereço 40--64, 24 bytes)
+
+#+latex: \vfill\pause
+
+_Como é com ponteiros_
+#+begin_src C
+int vetor[6];
+int *p = vetor, i = 3;
+*(vetor+i) = 20;
+#+end_src
+(na declaração de =p=, o fazemos apontar para o início de vetor) \\
+(assumir a aritmética de ponteiros e o operador =*= de acesso)
 
 * Exemplo #2 ~a28-semelhancas.c~
 
@@ -109,7 +153,29 @@ int main()
 #+END_SRC
 * Ponteiros e vetores: *diferenças* (na _declaração_ unicamente)
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula19/aula19_slide_13.pdf}{Prof. Marcelo Walter}
+Declaração de vetor
+- O compilador gera código para reservar um bloco de memória
+- Capacidade máxima deve ser conhecida em tempo de compilação
+  #+begin_src C
+  int vetor[6] = {0}; // com inicialização opcional
+  #+end_src
+- O início do vetor não pode mudar de valor, somente o conteúdo
+
+#+latex: \pause
+
+Declaração de ponteiro
+- O compilador aloca o espaço ocupado pelo ponteiro
+- O ponteiro pode mudar de valor com atribuição
+
+Exemplo
+#+begin_src C
+int vetor[6] = {1, 2, 3, 6, 7, 9};
+int *p;
+
+p = vetor; //válido, o p apontará para o início de vetor
+vetor = p; //inválido, o "vetor" não pode mudar de valor
+           //ainda que o conteúdo de vetor[índice] possa
+#+end_src
 
 * Exemplo #3 ~a28-diferencas.c~
 
@@ -118,10 +184,10 @@ int main()
 #define TAM 3
 int main() {
 
-  int v[TAM] = {1,2,3};
+  int vetor[TAM] = {1,2,3};
   int *p;
-  p = v; //operação válida. Atribui a p o endereço do primeiro elemento de v
-  v = p; //operação inválida (pois v aponta para um endereço fixo de memória)
+  p = vetor; //operação válida. Atribui a p o endereço do primeiro elemento de v
+  vetor = p; //operação inválida (pois vetor aponta para um endereço fixo)
 
   return 0;
 }
@@ -137,15 +203,15 @@ gcc a28-diferencas.c 2> x; cat x
 
 #+RESULTS:
 : a28-diferencas.c: In function ‘main’:
-: a28-diferencas.c:9:5: error: assignment to expression with array type
-:    v = p; //operação inválida (pois v aponta para um endereço fixo de memória)
-:      ^
+: a28-diferencas.c:8:9: error: assignment to expression with array type
+:     8 |   vetor = p; //operação inválida (pois vetor aponta para um endereço fixo)
+:       |         ^
 
 * Exemplo #4 ~a28-strings.c~
 
 Strings são vetores de caracteres.
 
-#+BEGIN_SRC C :tangle a28-strings.c
+#+BEGIN_SRC C :tangle a28-strings.c :results output :exports both
 #include <stdio.h>
 int main() {
   char str[80] = "Alpha Centauri";
@@ -164,10 +230,44 @@ int main() {
 }
 #+END_SRC
 
-* Resumo: Vetores são como se fossem ponteiros!
+#+RESULTS:
+: [A] = [A]
+: [a] = [a]
 
-#+latex: %\cortesia{../../../Algoritmos/Marcelo/aulas/aula19/aula19_slide_15.pdf}{Prof. Marcelo Walter}
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula19-ponteiros_arrays_slide_07.pdf}{Prof. Claudio Jung}
+* Resumo: Arranjos são como se fossem ponteiros!
+
+#+begin_center
+Uma variável arranjo é um ponteiro fixo.
+#+end_center
+
+#+latex: \pause
+
+- São sempre passados por referência (um caminho de acesso)
+- Alterações dentro da função alteram o vetor passado como parâmetro
+  #+begin_src C
+  void funcao1 (int vetor[]) {
+    vetor[3] = 10;
+  }
+  void funcao2 (int *vetor) {
+    *(vetor + 3) = 10;
+  }
+  #+end_src
+#+latex: \pause
+- Apenas o endereço do primeiro elemento é passado
+  #+begin_src C
+  int main() {
+    int meu_vetor[3];
+    funcao1(meu_vetor);
+    funcao2(&meu_vetor[0]);
+    return 0;
+  }
+  #+end_src
+#+latex: \pause
+- Devemos sempre passar a capacidade do vetor em outro argumento
+  #+begin_src C
+  void funcao3(int vetor[], int capacidade) { /* implementação */ }
+  void funcao4(int *vetor, int capacidade) { /* implementação */ }
+  #+end_src
 
 * Exemplo #5 ~a28-levetor.c~ (leitura de valores)
 
@@ -201,14 +301,14 @@ int main() {
   return 0;
 }
 #+END_SRC
-* Observação sobre o Exemplo #5
-
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula19-ponteiros_arrays_slide_09.pdf}{Prof. Claudio Jung}
-
 * Exemplo #6 ~a28-upper.c~ (manipulação de /string/)
 
-Faça uma função ~void~ que receba como parâmetro uma string e converta
-todos seus caracteres para maiúsculas.
+Faça uma função ~void~ que receba como parâmetro
+
+uma string e converta todos seus caracteres para maiúsculas.
+
+(veja que aqui não há necessida de informar a capacidade) \\
+(sabemos que uma string termina pelo caractere =\0=)
 
 #+BEGIN_SRC C :tangle a28-upper.c :main no
 #include <stdio.h>
@@ -279,8 +379,8 @@ para a posição do maior elemento do vetor
 #include <stdio.h>
 // função tipo ponteiro inteiro
 int *maior(int vet[], int tamanho) {
-  int i, *p; // índice e ponteiro de elemento do vetor
-  p = vet;   // aponta para 1o elemento do vetor
+  int i, *p = NULL; // índice e ponteiro de elemento do vetor
+  p = vet;          // aponta para 1o elemento do vetor
   for (i = 0; i < tamanho; i++)
     if (vet[i] > *p)
       p = vet + i; // passa a apontar para o maior valor
@@ -294,10 +394,8 @@ int *maior(int vet[], int tamanho) {
 int main() {
   int vet[] = {3, 1, 8, 4}, *m = NULL;
   m = maior (vet, 4);
+  if (m)
+    printf("O maior elemento é %d.\n", *m);
   return 0;
 }
 #+END_SRC
-
-* Observação sobre o Exemplo #8
-
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula19-ponteiros_arrays_slide_17.pdf}{Prof. Claudio Jung}
