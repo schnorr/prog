@@ -23,16 +23,19 @@
 
 * Sumário
 
+_Forma de passagem de parâmetros_
+- Por valor
+- _Por referência_
+
+Endereçamento de variáveis
+
 Referências e Ponteiros
-- Motivação com o exemplo da troca
 - O que são ponteiros?
 - Declaração e operadores
 
 Exemplos
-- (#1) Ponteiros e conteúdo
-- (#2) Atribuição com ponteiros
-- (#3) Aritmética de ponteiros
-- (#4) O que será impresso na tela?
+- (#1) Ponteiros e conteúdo, (#2) Atribuição com ponteiros
+- (#3) Aritmética de ponteiros, (#4) O que será impresso na tela?
 
 Cuidados essenciais
 - Problemas comuns
@@ -99,49 +102,72 @@ Todas as variáveis residem em um endereço de memória
 
 #+latex: \pause\vfill
 
-O que são ponteiros?
-- Variáveis que guardam endereços de memória
-- Fazem parte do mecanismo para referenciar algo indiretamente
+Como funciona o endereçamento de variáveis?
 
-#+latex: \vfill
+Representação gráfica da memória virtual
+| / |            | <> | >   |   > |   > |   > |   > | >   | >   |
+|   | Endereço \to |  0 | ... | 450 | 454 | 458 | 460 | ... | 2^{64} |
+|---+------------+----+-----+-----+-----+-----+-----+-----+-----|
+|   | Conteúdo \to |    |     |     |     |     |     |     |     |
+|---+------------+----+-----+-----+-----+-----+-----+-----+-----|
+Variáveis podem guardar /endereços de memória/.
+
+#+latex: \vfill\pause
 
 #+begin_center
-Se uma variável =a= armazena o endereço
+Se uma variável =a1= armazena o endereço
 
-de uma variável b, dizemos que *a aponta para b*.
+de uma variável b1, dizemos que *a1 aponta para b1*.
+
+Se isso se verifica, dizemos que =a1= é um _ponteiro_.
 #+end_center
 
-* Ponteiros na linguagem C
+* Declaração de ponteiros na Linguagem C
 
-Declaração
 #+begin_src 
 <tipo> *<nome>;
 #+end_src
-O asterisco indica que a variável <nome> armazena um endereço cujo
-conteúdo é do tipo especificado por <tipo>.
-
-#+latex: \pause
-
-Exemplos
+O asterisco indica que a variável <nome> pode armazenar endereços de
+memória cujo conteúdo é do tipo especificado por <tipo>. Exemplos:
 #+begin_src C
 float *f;
 int *p;
 char a, b, *p, c, *q;
 #+end_src
 
-#+latex: \pause
+#+latex: \pause\vfill
 
-O operador asterico é o mesmo da multiplicação
-- Portanto um operador dito ``sobrecarregado''
+O operador asterisco na declaração é o mesmo da multiplicação
+- Um operador dito ``sobrecarregado''
 
 Sabemos que as variáveis possuem tamanhos diferentes
 - O ponteiro sempre aponta para o endereço inicial
 
-#+latex: \pause
+* Uso de ponteiros na Linguagem C
 
-Operadores para lidar com ponteiros
-- =&= \to operador unário, devolve o endereço de memória do operando
-- =*= \to operador unário, devolve o conteúdo da endereço apontado
+Existem dois operadores para lidar com ponteiros
+
+| Operador | Funcionalidade                            |
+|----------+-------------------------------------------|
+| =&=        | Devolve o endereço de memória do operando |
+| =*=        | Devolve o conteúdo da endereço apontado   |
+
+O operador asterisco no uso é o mesmo da multiplicação
+- Um operador dito triplamente ``sobrecarregado''
+
+#+latex: \pause\vfill
+
+Exemplo
+#+begin_src C :results output :exports both
+float f = 1.2, a = 2.3;
+float *p;
+p = &f;
+a = a * *p;
+printf("%f\n", a);
+#+end_src
+
+#+RESULTS:
+: 2.76
 
 * Exemplo #1: Ponteiros e conteúdo
 
@@ -407,7 +433,7 @@ passados por referência (pois são, na verdade, parâmetros de saída da
 função).
 
 #+begin_src C
-void baskara(float a, float b, float c, float *x1, float *x2) {
+void bhaskara(float a, float b, float c, float *x1, float *x2) {
   // sua implementação aqui
 }
 #+end_src
