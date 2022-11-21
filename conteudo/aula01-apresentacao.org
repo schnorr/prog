@@ -26,8 +26,8 @@ Prof. Lucas M. Schnorr \hfill \to aulas téoricas
 
 #+latex: \vfill
 
-Prof. Gabriel Luca Nazar \hfill \to práticas
-+ glnazar@inf.ufrgs.br
+Prof. Marcelo Walter \hfill \to práticas
++ marcelo.walter@inf.ufrgs.br
      
 * Motivação
 
@@ -38,12 +38,29 @@ Algoritmos e Programação
 #+END_CENTER
 
 * Motivação \to Adquirir *Pensamento Computacional*
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula01_completa_slide_18.pdf}{Prof. Edison Pignaton de Freitas}
+
+Pensamento Computacional -- /Computational Thinking/
+- Habilidades e limites da computação
+- Mapear problemas em ``algo computacional''
+- Pensar como cientistas da computação
+
 * Objetivo Geral
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula01_completa_slide_17.pdf}{Prof. Edison Pignaton de Freitas}
-* Mais objetivos 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula01_completa_slide_19.pdf}{Prof. Edison Pignaton de Freitas}
-#+latex: %\cortesia{../../../Algoritmos/Mara/Teoricas/Aula01-Introducao_slide_17.pdf}{Profa. Mara Abel}
+
+#+begin_center
+Introduzir o uso do computador na solução de problemas,
+
+através da construção de programas
+#+end_center
+
+* O que vamos fazer na disciplina?
+
+1. Análise do problema
+2. Escolha de uma solução para resolver o problema (às vezes temos
+   mais de uma possibilidade)
+3. Construção do algoritmo que implementa a solução do problema
+4. Escrever o algoritmo numa linguagem de programação
+5. Teste/Execução do programa
+
 * Funcionamento das aulas
 
 A presença será aferida (75% de frequência evita FF)
@@ -58,6 +75,38 @@ Realizar exercícios propostos em aula prática
 Perguntar sempre em caso de dúvida
 - seja ator do teu aprendizado
 
+* Abono de frequência por razões de saúde
+
+#+latex: \scalebox{0.8}{\vbox{
+Recuperação de frequência ou atividades avaliativas por licença médica.
+
+Os casos de licença médica do aluno ou para atendimento de familiar
+que afetem atividades avaliativas devem ser encaminhados ao
+Departamento de Atenção a Saúde da UFRGS seguindo orientações deste
+link: https://www.ufrgs.br/das/pericia-oficial-em-saude-alunos/
+
+Para solicitar a Licença para Tratamento de Saúde, o aluno deve
+encaminhar a documentação médica (atestado original ou cópia
+autenticada com o CID -- Codigo Internacional de Doenças) para o
+e-mail: atestadosalunos@ufrgs.br e solicitar avaliação. O documento
+será analisado e os atestados médicos/odontológicos que solicitarem
+até cinco dias corridos de afastamento (computados fins de semana e
+feriados) poderão ser registrados com dispensa de perícia.
+
+No corpo do e-mail em que foi enviado o atestado, devem constar
+informados os seguintes dados: nome completo, número do cartão UFRGS,
+curso, telefone para contato.
+
+Caso haja necessidade de agendamento de perícia, você será informado,
+através do seu e-mail, da data e do horário de comparecimento ao
+Departamento de Atenção à Saúde para a realização do exame pericial. O
+DAS envia ao professor o período do afastamento, sem compartilhar
+nenhuma informação pessoal do estudante.
+
+IMPORTANTE: Aulas abonadas não constam como presença; O estudante deve
+combinar com o professor a recuperação das atividades avaliativas.
+#+latex: }}
+
 * Plano, cronograma, bibliografia, projeto
 
 + Súmula, conteúdo programático, bibliografia e cronograma
@@ -67,7 +116,7 @@ Perguntar sempre em caso de dúvida
 #+BEGIN_CENTER
 Consulte no Portal do Aluno da UFRGS, ou uma cópia em
 
-https://moodle.ufrgs.br/course/view.php?id=102337
+https://moodle.ufrgs.br/course/view.php?id=109222
 #+END_CENTER
 
 #+latex: \vfill
@@ -131,15 +180,41 @@ A apresentação do Trabalho Final, mesmo que não execute perfeitamente,
 é pré-requisito para a realização da recuperação.
 
 * Algoritmo para avaliação
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula01-Introducao_slide_20.pdf}{Profa. Mara Abel}
-* Algoritmo para avaliação (no caso de recuperação)
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula01-Introducao_slide_21.pdf}{Profa. Mara Abel}
+
+Normal
+#+begin_src C
+Se Frequência < 75%
+   Conceito FF
+Senão Se Média >= 8,5
+   Conceito A
+Senão Se Média >= 7,5
+   Conceito B
+Senão Se Média >= 6,0
+   Conceito C
+Senão
+   Recuperação
+#+end_src
+
+#+latex: \pause
+
+Recuperação
+#+begin_src C
+Se Média < 6,0 e Trabalho diferente de 0,0 e Frequência >= 75%
+   Prova Recuperação (Toda a Matéria)
+   Final = (Média Final * 0.4 + Recuperação * 0.6)
+
+Se Final >= 6,0
+   Conceito C
+Senão
+   Conceito D
+#+end_src
+
 * Ferramenta EAD
 
 #+BEGIN_CENTER
 Aulas Teóricas e Práticas:
 
-https://moodle.ufrgs.br/course/view.php?id=102337
+https://moodle.ufrgs.br/course/view.php?id=109222
 #+END_CENTER
 
 #+latex: \vfill
@@ -151,34 +226,9 @@ Em dúvidas
 - Converse com os professores
 
 * Cronograma
-** Texto
-:PROPERTIES:
-:BEAMER_col: 0.2
-:END:
-
-_Cronograma_
-
-#+latex: \bigskip
 
 Verifique Moodle
 
 #+latex: \bigskip
 
 Vamos revisá-lo juntos.
-
-#+latex: \bigskip
-
-Não haverá aula entre os dias 16/07 e 31/07.
-
-** Esquerda
-:PROPERTIES:
-:BEAMER_col: 0.8
-:END:
-
-#+latex: \vspace{-1.5cm}
-#+attr_latex: :width .85\textwidth
-[[/home/schnorr/svn/navajo/2022/cronograma/algprog/Cronograma_2022-1.pdf]]
-
-
-
-
