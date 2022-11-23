@@ -21,11 +21,20 @@
 
 * Listagem de tópicos abordados
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula02-Sequencial_slide_05.pdf}{Profa. Mara Abel}
+Vamos abordar hoje
 
-* Partes principais do computador
+- Conceito de programa
+- Estrutura de um algoritmo
+- Algoritmo sequencial
+- Estrutura de programa sequencial
+- Programa C sequencial
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula02-Sequencial_slide_09.pdf}{Profa. Mara Abel}
+* Organização interna de um computador
+
+- Memória (principal e secundária)
+- Unidade Central de Processamento (/Central Processing Unit/)
+  - Unidade de Aritmética e Lógica
+- Unidade de Entrada e Saída
 
 * Análise e Definição do Problema para o Algoritmo
 
@@ -112,12 +121,6 @@ int main( )
 * Declaração de variáveis
 
 #+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula02/aula02_slide_25.pdf}{Prof. Marcelo Walter}
-
-#+latex: \vfill
-
-#+BEGIN_CENTER
-Teste
-#+END_CENTER
 
 * =scanf=
 
