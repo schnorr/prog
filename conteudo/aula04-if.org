@@ -16,7 +16,7 @@
 #+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
 #+LATEX_HEADER: \input{org-babel.tex}
 
-#+latex: \newcommand{\mytitle}{Comando Condicional de Seleção linebreak =if= e Expressões Lógicas}
+#+latex: \newcommand{\mytitle}{Comando Condicional de Seleção =if= \\ e Expressões Lógicas}
 #+latex: \mytitleslide
 
 * Sumário
@@ -30,28 +30,121 @@
   - Com múltiplos comandos
 - Exemplo
 
-* Motivação
+* Motivação para operadores lógicos (ou /booleanos/)
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula04/aula04_slide_11.pdf}{Prof. Marcelo Walter}
+Em várias situações precisamos expressar decisões lógicas
+
+
+#+latex: \vfill
+
+Podemos fazer uma analogia com situações do dia-a-dia
+- Vou à praia se tiver sol *e* tiver dinheiro
+- Vou visitar amigo, se for dia do amigo *ou* é final desemana
+
+#+latex: \vfill\pause
+
+Baseado nos regramentos acima
+- Hoje tem sol. Vou à praia?
+- Hoje é sábado. Visito o amigo?
 
 * Expressões lógicas com operadores lógicos
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula04-If_else_slide_08.pdf}{Prof. Mara Abel}
+Fundamentos básicos
+| Operador C | Tipo    | Significado        | Exemplo |
+|------------+---------+--------------------+---------|
+| =&&=         | binário | um "e" lógico      | x && y  |
+| \vert\vert         | binário | um "ou" lógico     | x \vert\vert y  |
+| =!=          | unário  | uma negação lógica | !x      |
+
+#+latex: \vfill\pause
+
+#+begin_center
+Tabelas de relacionamento
+#+end_center
+
+** Left                                                              :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.3
+:END:
+"e" lógico
+| =&&= | V | F |
+|----+---+---|
+| V  | V | F |
+| F  | F | F |
+
+** Center                                                            :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.3
+:END:
+"ou" lógico
+| \vert\vert | V | F |
+|----+---+---|
+| V  | V | V |
+| F  | V | F |
+
+** Right                                                             :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.3
+:END:
+negação lógica
+| entrada | V | F |
+|---------+---+---|
+|         | F | V |
+
+** Ignore                                                  :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+
+#+latex: \vfill\pause
+
+Na linguagem C, as expressões lógicas retornam um *valor*
+- Se falso, o valor é 0
+- Se verdadeiro, o valor é diferente de 0
 
 * Operadores relacionais
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula04-If_else_slide_09.pdf}{Prof. Mara Abel}
+| Operador | Exemplo | Significado                        |
+|----------+---------+------------------------------------|
+| ==       | x == y  | Conteúdo de x é igual ao de y?     |
+| !=       | x != y  | Conteúdo de x é diferente do de y? |
+| <=       | x <= y  | Conteúdo de x é menor igual que y? |
+| >=       | x >= y  | Conteúdo de x é maior igual que y? |
+| <        | x < y   | Conteúdo de x é menor que y?       |
+| >        | x > y   | Conteúdo de x é maior que y?       |
 
-* Exemplos do emprego de operadores relacionais
+#+latex: \vfill\pause
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula04/aula04_slide_14.pdf}{Prof. Marcelo Walter}
+Na linguagem C, as expressões relacionais também retornam um *valor*
+- Se falso, o valor é 0
+- Se verdadeiro, o valor é diferente de 0
 
-* Mistura de operadores lógicos e relacionais
+* Podemos combinar operadores lógicos e relacionais
 
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula04-expressoes_e_if_slide_10.pdf}{Prof. Claudio Jung}
+Sintaxe na Linguagem C, um =<operando>= pode ser uma expressão
+- aritmética, lógica ou relacional
+#+begin_src C
+<operando> <operador aritmético> <operando>
+// ou
+<operando> <operador lógico> <operando>
+// ou
+<operando> <operador relacional> <operando>
+#+end_src
 
-* Vejamos um exemplo prático
+#+latex: \vfill\pause
 
+Alguns exemplos
+#+begin_src C
+(a > b) || (c < d)
+valor > 10
+!(a + c < b)
+(a == b)
+(a == b) && (a>=c)
+(a != b)
+!((a >= b) || (a+c))
+#+end_src
+
+* Vejamos na prática (=exemplo-logicos.c=)
 #+BEGIN_SRC C :tangle e/exemplo-logicos.c
 /* Programa que calcula algumas expressões lógicas */
 #include <stdio.h>
@@ -80,21 +173,93 @@ int main() {
 }
 #+END_SRC
 
-* Cuidados com inspirações da matemática
+* Cuidados com a bagagem de conhecimento da matemática
 
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula04-expressoes_e_if_slide_11.pdf}{Prof. Claudio Jung}
+#+begin_center
+Quero saber se uma variável inteira está no intervalo entre 1 e 100.
+#+end_center
 
-* Outros exemplos de misturas lógicas
+#+latex: \vfill
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula04-If_else_slide_12.pdf}{Prof. Mara Abel}
+Na matemática, escrevemos
+#+begin_example
+(0 < codigo < 101)
+#+end_example
 
-* Precedência de operadores lógicos com exemplo
+O problema é que esse código é válido sintaticamente
+- Mas semânticamente não corresponde ao enunciado
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula04-If_else_slide_13.pdf}{Prof. Mara Abel}
+#+latex: \vfill\pause
+
+Na Linguagem C (e na maioria das linguagens de programação)
+#+begin_src C
+(codigo > 0 && codigo < 101)
+// ou
+(codigo >= 1 && codigo <= 100)
+#+end_src
+
+* Precedência de operadores
+** Left                                                              :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.4
+:END:
+| Ordem | Operador        |
+|-------+-----------------|
+|     1 | ! funções       |
+|     2 | * / %           |
+|     3 | + -             |
+|     4 | < > <= >=       |
+|     5 | != @@latex:==@@ |
+|     6 | &&              |
+|     7 | \vert\vert              |
+
+Versão completa desta tabela
+#+latex: {\tiny
+[[https://en.wikipedia.org/wiki/Operators_in_C_and_C++][URL Wikipedia]]
+#+latex: }
+
+#+latex: %\cortesia{../../../Algoritmos/Mara/Teoricas/Aula04-If_else_slide_13.pdf}{Prof. Mara Abel}
+
+** Right                                                             :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.6
+:END:
+
+#+latex: \vfill\pause
+
+#+begin_center
+Exemplo
+#+end_center
+
+#+begin_src C
+(x != 10 || y > 1 && y < 10)
+#+end_src
+
+Pela precedência:
+1. Operadores > e < são resolvidos
+2. Operador diferente !=
+3. Operadores lógicos, && primeiro
+4. Por fim, o || lógico
+
+#+latex: \vfill\pause
+
+Podemos empregar parenteses
+- Para deixar mais claro quando em dúvida
+- Para alterar a precedência da avaliação
 
 * Testes com os exemplos
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula04_slide_19.pdf}{Prof. Edison Pignaton de Freitas}
+Vamos assumir o mesmo exemplo anterior com valores
+#+begin_src C
+int x = 10;
+int y = 1;
+int z = x != 10 || y > 1 && y < 10;
+printf("%d\n", z);
+#+end_src
+
+Qual o valor de z impresso no =printf=?
+
+#+latex: \vfill\pause
 
 #+BEGIN_CENTER
 Vejamos como fica em _formato de árvore_, com regras de precedência.
@@ -102,19 +267,101 @@ Vejamos como fica em _formato de árvore_, com regras de precedência.
 
 * Motivação para comandos de seleção condicional
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula04_slide_21.pdf}{Prof. Edison Pignaton de Freitas}
+Programação estrutura, três princípios
+1. Sequencialidade
+2. Desvio
+3. Repetição
+
+#+latex: \vfill
+
+Já vimos a sequencialidade de comandos
+
+Agora vamos ver o princípio de "Desvio"
+- Podemos bifurcar a execução de um programa
+  - Sempre baseado em uma expressão lógica/aritmética/relacional
 
 * Comandos de seleção condicional
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula04_slide_22.pdf}{Prof. Edison Pignaton de Freitas}
+Existem três estruturas na Linguagem C que implementam "Desvio"
+
+#+begin_center
+Condicional simples
+#+end_center
+#+begin_src C
+if (<condição>) {
+  <comando>;
+}
+#+end_src
+
+#+latex: \pause
+
+#+begin_center
+Condicional duplo
+#+end_center
+#+begin_src C
+if (<condição>) {
+  <comando>
+}else{
+  <comando>
+}
+#+end_src
+
+#+latex: \pause
+
+#+begin_center
+Seleção múltipla
+#+end_center
+#+begin_src C
+switch(<condição>) {
+case <valor1>: <comando1>;
+case <valor2>: <comando2>;
+//...
+default: <comando3>;
+}
+#+end_src
 
 * Comando =if= (condicional simples, com único comando)
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula04-If_else_slide_22.pdf}{Prof. Mara Abel}
+O comando =if= na Linguagem C, com um único comando condicionado
+#+begin_src C
+if (<expressão>)
+  <comando>;
+#+end_src
+
+Em linguagem algorítmica
+#+begin_example
+se <expressão>
+  <comando>
+#+end_example
 
 * Exemplo #1
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula04-If_else_slide_23.pdf}{Prof. Mara Abel}
+Ler um valor e, no caso de ser menor do que 10, emitir uma mensagem
+
+#+latex:\pause
+Em algoritmo
+#+begin_example
+1. Início
+2. Ler valor na variável var
+3. Se var < 10
+3.1  Escrever mensagem de alerta
+4. Terminar
+#+end_example
+
+#+latex: \pause
+Na Linguagem C
+#+begin_src C
+#include <stdio.h>
+
+int main() {
+  int var;
+  printf("Forneça um valor inteiro:\n");
+  scanf("%d", &var);
+  if(var < 10)
+    printf("O valor fornecido %d é menor que 10.\n", var);
+  return 0;
+}
+#+end_src
 
 * Exemplo #2 (Enunciado e Algoritmo)
 
@@ -185,20 +432,19 @@ int main() {
   printf("e y = ");
   scanf("%f", &y);
   if ( x == 0 && y == 0 )
-    printf("\n Ponto na origem");
+    printf("Ponto na origem.\n");
   if ( x > 0 && y > 0 )
-    printf("\n Ponto no quadrante 1");
+    printf("Ponto no quadrante 1.\n");
   if ( x < 0 && y > 0 )
-    printf("\n Ponto no quadrante 2");
+    printf("Ponto no quadrante 2.\n");
   if ( x < 0 && y < 0 )
-    printf("\n Ponto no quadrante 3");
+    printf("Ponto no quadrante 3.\n");
   if ( x > 0 && y < 0 )
-    printf("\n Ponto no quadrante 4");
+    printf("Ponto no quadrante 4.\n");
   if ( x == 0 && y != 0 )
-    printf("\n Ponto no eixo dos y");
+    printf("Ponto no eixo dos y.\n");
   if ( x != 0 && y == 0 )
-    printf("\n Ponto no eixo dos x");
-  printf("\n");
+    printf("Ponto no eixo dos x.\n");
   return 0;
 }
 #+END_SRC
@@ -214,7 +460,22 @@ gcc exemplo-coordenadas.c -o exemplo-coordenadas
 :  Ponto na origem
 * Comando =if= (cond. composto, com múltiplos comandos)
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula04_slide_33.pdf}{Prof. Edison Pignaton de Freitas}
+O comando =if= na Linguagem C, com um único comando condicionado
+#+begin_src C
+if (<expressão>) {
+  <comando1>;
+  <comando2>;
+  <cmoando3>;
+}
+#+end_src
+
+Em linguagem algorítmica
+#+begin_example
+se <expressão>
+  <comando1>
+  <comando2>
+  <comando3>
+#+end_example
 
 * Exemplo #4 (Livros, com desconto)
 
@@ -256,5 +517,6 @@ gcc exemplo-livros-desconto.c -o exemplo-livros-desconto
 
 * Cuidados nos erros comuns
 
-- Confundir atribuição com comparação igual
-- Esquecer as chaves em comando condicional com múltiplos comandos
+Confundir atribuição com comparação igual
+
+Esquecer as chaves em comando condicional com múltiplos comandos
