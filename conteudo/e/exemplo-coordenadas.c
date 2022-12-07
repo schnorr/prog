@@ -7,19 +7,18 @@ int main() {
   printf("e y = ");
   scanf("%f", &y);
   if ( x == 0 && y == 0 )
-    printf("\n Ponto na origem");
+    printf("Ponto na origem.\n");
   if ( x > 0 && y > 0 )
-    printf("\n Ponto no quadrante 1");
+    printf("Ponto no quadrante 1.\n");
   if ( x < 0 && y > 0 )
-    printf("\n Ponto no quadrante 2");
+    printf("Ponto no quadrante 2.\n");
   if ( x < 0 && y < 0 )
-    printf("\n Ponto no quadrante 3");
+    printf("Ponto no quadrante 3.\n");
   if ( x > 0 && y < 0 )
-    printf("\n Ponto no quadrante 4");
+    printf("Ponto no quadrante 4.\n");
   if ( x == 0 && y != 0 )
-    printf("\n Ponto no eixo dos y");
+    printf("Ponto no eixo dos y.\n");
   if ( x != 0 && y == 0 )
-    printf("\n Ponto no eixo dos x");
-  printf("\n");
+    printf("Ponto no eixo dos x.\n");
   return 0;
 }
