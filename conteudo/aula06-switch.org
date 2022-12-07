@@ -16,7 +16,7 @@
 #+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
 #+LATEX_HEADER: \input{org-babel.tex}
 
-#+latex: \newcommand{\mytitle}{Comando de seleção =switch-case=}
+#+latex: \newcommand{\mytitle}{Comando de seleção \texttt{switch-case}}
 #+latex: \mytitleslide
 
 * Configuração                                                     :noexport:
@@ -35,9 +35,13 @@
 #+RESULTS:
 | frame    | lines       |
 | fontsize | \scriptsize |
-* Aula de hoje
+* Visão geral de comandos para desvio
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula06_slide_12.pdf}{Prof. Edison Pignaton de Freitas}
+- Aula 04: Comando condicional =if=
+  - Com um ou múltiplos comandos
+- Aula 05: Comando condicional =if-else=
+  - Com um ou múltiplos comandos
+- Aula 06 (hoje!): Comando =switch-case=
 
 * Sumário
 
