@@ -90,11 +90,11 @@ Temos as funções de =string.h=, já vistas
 - =strcmp= (compara duas strings)
 - =strcpy= (copia uma string para outra)
 
-* Código =aula13-bubble-strings.c=
+* Código =a13-bubble-strings.c=
 
 #+latex: \begin{multicols}{2}
 #+attr_latex: :options fontsize=\scriptsize
-#+BEGIN_SRC C :tangle e/aula13-bubble-strings.c
+#+BEGIN_SRC C :tangle e/a13-bubble-strings.c
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

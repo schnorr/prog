@@ -122,11 +122,11 @@ Vamos _simplificar_
 - Ler apenas os nomes dos NALUNOS (até 12 caracteres)
   - Vamos usar uma /string/ auxiliar de validação e controle
 
-* (#1) Code ~a17-nomes.c~
+* (#1) Code ~a13-nomes.c~
 
 #+latex: \vspace{-0.3cm}\begin{multicols}{2}
 #+attr_latex: :options fontsize=\tiny
-#+BEGIN_SRC C :tangle e/a17-nomes.c
+#+BEGIN_SRC C :tangle e/a13-nomes.c
 #include <stdio.h>
 #include <string.h>
 #define NALUNOS 2
@@ -176,11 +176,11 @@ Para uma turma de NALUNOS alunos, para cada aluno: ler o nome do aluno
 (até 12 caracteres); ler as 3 notas obtidas por este aluno; calcular a
 média obtida.
 
-* (#1) Code ~a17-turma.c~
+* (#1) Code ~a13-turma.c~
 
 #+latex: \vspace{-0.3cm}\begin{multicols}{2}
 #+attr_latex: :options fontsize=\tiny
-#+BEGIN_SRC C :tangle e/a17-turma.c
+#+BEGIN_SRC C :tangle e/a13-turma.c
 #include <stdio.h>
 #include <string.h>
 #define NALUNOS 2
@@ -246,11 +246,11 @@ int main() {
 #+END_SRC
 #+latex: \end{multicols}
 
-* (#1++) Code ~a17-conceito.c~ (com *conceito*)
+* (#1++) Code ~a13-conceito.c~ (com *conceito*)
 
 #+latex: \vspace{-0.3cm}\begin{multicols}{2}
 #+attr_latex: :options fontsize=\tiny
-#+BEGIN_SRC C :tangle e/a17-conceito.c
+#+BEGIN_SRC C :tangle e/a13-conceito.c
 #include <stdio.h>
 #include <string.h>
 #define NALUNOS 2
@@ -362,11 +362,11 @@ Fazer um programa que:
 \end{bmatrix}
 #+END_EXPORT
 
-* (#2) Code
+* (#2) Code ~a13-esparsa.c~
 
 #+latex: \vspace{-0.3cm}\begin{multicols}{2}
 #+attr_latex: :options fontsize=\tiny
-#+BEGIN_SRC C :tangle e/a17-esparsa.c
+#+BEGIN_SRC C :tangle e/a13-esparsa.c
 #include <stdio.h>
 #include <stdlib.h>
 #define N 5 // ordem
@@ -503,11 +503,11 @@ AROMA \rightarrow ROMAA \rightarrow OMAAR \rightarrow MAARO \rightarrow AAROM \r
 Faça um programa que leia uma string de até 16 caracteres e informe a
 permutação circular da palavra lida, preservando a entrada.
 
-* (#3) Code
+* (#3) Code ~a13-permuta.c~
 
 #+latex: \vspace{-0.3cm}\begin{multicols}{2}
 #+attr_latex: :options fontsize=\scriptsize
-#+BEGIN_SRC C :tangle e/a17-permuta.c
+#+BEGIN_SRC C :tangle e/a13-permuta.c
 // Gera permutação circular
 #include <stdio.h>
 #include <string.h>
@@ -574,11 +574,11 @@ O que acontece se ~#define SIZEPAL 3~?
 |   |        |        |        |        | \mblue |
 |---+--------+--------+--------+--------+--------|
 
-* (#4.1) Code
+* (#4.1) Code ~a13-diagonal.c~
 
 #+latex: \vspace{-0.3cm}\begin{multicols}{2}
 #+attr_latex: :options fontsize=\scriptsize
-#+BEGIN_SRC C :tangle e/a17-diagonal.c
+#+BEGIN_SRC C :tangle e/a13-diagonal.c
 #include <stdio.h>
 #include <stdlib.h>
 //Limites da nossa matriz
