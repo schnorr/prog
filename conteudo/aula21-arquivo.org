@@ -366,7 +366,7 @@ size_t fread(void *ptr,
 #+BEGIN_CENTER
 As duas funções retornam a quantidade de
 
-bytes efetivamente escritos ou lidos.
+elementos efetivamente escritos ou lidos.
 #+END_CENTER
 
 * Testar ~EOF~ com ~feof~ e condição de erro com ~fwrite~
