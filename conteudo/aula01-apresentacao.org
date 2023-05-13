@@ -26,8 +26,11 @@ Prof. Lucas M. Schnorr \hfill \to aulas téoricas
 
 #+latex: \vfill
 
-Prof. Marcelo Walter \hfill \to práticas
-+ marcelo.walter@inf.ufrgs.br
+Profa. Brenda Salenave Santana \hfill \to práticas I
++ brendasalenave@live.com
+
+Prof. Gabriel Ammes Pinho \hfill \to práticas J
++ gapinho@inf.ufrgs.br
      
 * Motivação
 
@@ -114,9 +117,7 @@ combinar com o professor a recuperação das atividades avaliativas.
 + Trabalhos, provas e avaliação
   
 #+BEGIN_CENTER
-Consulte no Portal do Aluno da UFRGS, ou uma cópia em
-
-https://moodle.ufrgs.br/course/view.php?id=109222
+Consulte no Portal do Aluno da UFRGS, ou uma cópia no moodle
 #+END_CENTER
 
 #+latex: \vfill
@@ -214,7 +215,7 @@ Senão
 #+BEGIN_CENTER
 Aulas Teóricas e Práticas:
 
-https://moodle.ufrgs.br/course/view.php?id=109222
+Moodle da UFRGS
 #+END_CENTER
 
 #+latex: \vfill
