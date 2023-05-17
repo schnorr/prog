@@ -118,7 +118,6 @@ combinar com o professor a recuperação das atividades avaliativas.
   
 #+BEGIN_CENTER
 Consulte no Portal do Aluno da UFRGS, ou uma cópia no moodle
-#+END_CENTER
 
 #+latex: \vfill
 
@@ -213,7 +212,7 @@ Senão
 * Ferramenta EAD
 
 #+BEGIN_CENTER
-Aulas Teóricas e Práticas:
+Aulas Teóricas e Práticas.
 
 Moodle da UFRGS
 #+END_CENTER
@@ -227,6 +226,10 @@ Em dúvidas
 - Converse com os professores
 
 * Cronograma
+
+_Cronograma_
+
+#+latex: \bigskip
 
 Verifique Moodle
 
