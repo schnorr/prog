@@ -87,7 +87,8 @@ int main ()
 #+END_SRC
 
 A implementação destes tipos:
-- inteiros, do menor ao maior valor inteiro que cabe no tamanho
+- inteiros, do menor ao maior valor inteiro que cabe no tamanho \\
+  https://en.wikipedia.org/wiki/Integer_(computer_science)
 - ponto-flutuante (=float=, =double=), veja a norma IEEE 754, em inglês \\
   https://en.wikipedia.org/wiki/IEEE_754
 - Vejamos a tabela ASCII para o tipo =char=
