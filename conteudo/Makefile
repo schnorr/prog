@@ -1,10 +1,10 @@
 REVISAO= revisao-aula01.pdf \
 	 revisao-aula02.pdf \
 	 revisao-aula05.pdf \
+	 revisao-aula06.pdf \
+	 revisao-aula07.pdf \
 	 revisao-aula-04.pdf \
 	 revisao-aula-05.pdf \
-	 revisao-aula-08.pdf \
-	 revisao-aula-10.pdf \
 	 revisao-aula08.pdf \
 	 revisao-aula09.pdf \
 	 revisao-aula10.pdf \
