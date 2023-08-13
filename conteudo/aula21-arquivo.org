@@ -133,27 +133,32 @@ Retiradas da biblioteca ~stdio.h~
 
 * Protótipos das funções
 
+#+begin_center
 O que há de comum entre estas funções?
+#+end_center
+
+#+latex: \vfill
 
 #+attr_latex: :options fontsize=\normalsize
 #+BEGIN_SRC C
 FILE *fopen(const char *pathname, const char *mode);
+
 int fclose(FILE *stream);
 
-size_t fread(void *ptr,
-	     size_t size,
-	     size_t nmemb,
-	     FILE *stream);
+size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream);
 
-size_t fwrite(const void *ptr,
-	      size_t size,
-	      size_t nmemb,
-	      FILE *stream);
+size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream);
 
 int fflush(FILE *stream);
+
 int feof(FILE *stream);
+
 int ferror(FILE *stream);
 #+END_SRC
+
+#+latex: \pause
+
+Um envolvimento com um ponteiro para uma estrutura =FILE=.
 
 * O ponteiro para uma estrutura ~FILE~ (/aka/ ~FILE*~)
 
