@@ -77,7 +77,7 @@ E lembre-se:
 * (#1) Estratégia
 
 Gerar um arquivo ~atletas.bin~:
-#+begin_src shell :results output :dir e/rev-a34/ :exports both
+#+begin_src shell :results output :dir e/rev-aula21/ :exports both
 ./GeraSalva; ls -l atletas.bin
 #+end_src
 
@@ -130,7 +130,7 @@ https://stackoverflow.com/questions/5431941/why-is-while-feoffile-always-wrong#2
 * (#1) Código melhorado (considera erro na leitura)
 
 ~Estatistica-Esqueleto.c~
-#+BEGIN_SRC C :tangle e/rev-a34/Estatistica-Esqueleto.c
+#+BEGIN_SRC C :tangle e/rev-aula21/Estatistica-Esqueleto.c
 #include "GeraSalva.h"
 int main() {
   int bytes_lidos;
