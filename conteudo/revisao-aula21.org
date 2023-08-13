@@ -104,7 +104,7 @@ Como será o formato do arquivo binário:
 * (#1) GeraSalva, Módulo Nomes (Cabeçalho)
 
 ~GeraSalva-Nomes.h~
-#+BEGIN_SRC C :tangle e/rev-a34/GeraSalva-Nomes.h :main no
+#+BEGIN_SRC C :tangle e/rev-aula21/GeraSalva-Nomes.h :main no
 #ifndef GERA_SALVA_NOMES_H
 #define GERA_SALVA_NOMES_H
 #include <stdlib.h>
@@ -121,7 +121,7 @@ int gera_altura_aleatoria (int minima, int maxima);
 * (#1) GeraSalva, Módulo Nomes (Implementação P1)
 
 ~GeraSalva-Nomes.c~
-#+BEGIN_SRC C :tangle e/rev-a34/GeraSalva-Nomes.c :main no
+#+BEGIN_SRC C :tangle e/rev-aula21/GeraSalva-Nomes.c :main no
 #include "GeraSalva-Nomes.h"
 static char consoante (void) {
   char consoantes[] = { "bcdfghjklmlnpqrstvwx" };
@@ -148,7 +148,7 @@ void gera_nome_aleatorio (char *str, int tamanho_maximo) {
 
 * (#1) GeraSalva, Módulo Nomes (Implementação P2)
 
-#+BEGIN_SRC C :tangle e/rev-a34/GeraSalva-Nomes.c :main no
+#+BEGIN_SRC C :tangle e/rev-aula21/GeraSalva-Nomes.c :main no
 int gera_idade_aleatoria (int minima, int maxima) {
   return minima+(rand()%(maxima-minima));
 }
@@ -161,7 +161,7 @@ int gera_altura_aleatoria (int minima, int maxima) {
 * (#1) GeraSalva (Cabeçalho)
 
 ~GeraSalva.h~
-#+BEGIN_SRC C :tangle e/rev-a34/GeraSalva.h :main no
+#+BEGIN_SRC C :tangle e/rev-aula21/GeraSalva.h :main no
 #ifndef GERASALVA_H
 #define GERASALVA_H
 #include <stdio.h>
@@ -179,7 +179,7 @@ typedef struct {
 * (#1) GeraSalva (Implementação)
 
 ~GeraSalva.c~
-#+BEGIN_SRC C :tangle e/rev-a34/GeraSalva.c
+#+BEGIN_SRC C :tangle e/rev-aula21/GeraSalva.c
 #include "GeraSalva.h"
 atleta_t atletas[NATLETAS] = {0};
 int main() {
@@ -207,9 +207,9 @@ int main() {
 #+begin_src shell :results output :exports both
 rm -f GeraSalva
 gcc -Wall -g \
-    e/rev-a34/GeraSalva-Nomes.c \
-    e/rev-a34/GeraSalva.c \
-    -o e/rev-a34/GeraSalva
+    e/rev-aula21/GeraSalva-Nomes.c \
+    e/rev-aula21/GeraSalva.c \
+    -o e/rev-aula21/GeraSalva
 #+end_src
 
 #+RESULTS:
@@ -236,7 +236,7 @@ Como é o formato do arquivo binário:
 * (#1) LeMostra (Implementação)
 
 ~LeMostra.c~
-#+BEGIN_SRC C :tangle e/rev-a34/LeMostra.c
+#+BEGIN_SRC C :tangle e/rev-aula21/LeMostra.c
 #include "GeraSalva.h"
 atleta_t atletas[NATLETAS] = {0};
 int main() {
@@ -263,9 +263,9 @@ int main() {
 #+begin_src shell :results output :exports both
 rm -f LeMostra
 gcc -Wall -g \
-    e/rev-a34/GeraSalva-Nomes.c \
-    e/rev-a34/LeMostra.c \
-    -o e/rev-a34/LeMostra
+    e/rev-aula21/GeraSalva-Nomes.c \
+    e/rev-aula21/LeMostra.c \
+    -o e/rev-aula21/LeMostra
 #+end_src
 
 #+RESULTS:
@@ -313,7 +313,7 @@ Programa _InsereNoFinal_, com os seguintes módulos
 * (#1) InsereNoFinal (Implementação)
 
 ~InsereNoFinal.c~
-#+BEGIN_SRC C :tangle e/rev-a34/InsereNoFinal.c
+#+BEGIN_SRC C :tangle e/rev-aula21/InsereNoFinal.c
 #include <stdio.h>
 #include "GeraSalva-Nomes.h"
 #include "GeraSalva.h"
@@ -343,9 +343,9 @@ Qual o problema dessa abordagem?
 #+begin_src shell :results output :exports both
 rm -f InsereNoFinal
 gcc -Wall -g \
-    e/rev-a34/GeraSalva-Nomes.c \
-    e/rev-a34/InsereNoFinal.c \
-    -o e/rev-a34/InsereNoFinal
+    e/rev-aula21/GeraSalva-Nomes.c \
+    e/rev-aula21/InsereNoFinal.c \
+    -o e/rev-aula21/InsereNoFinal
 #+end_src
 
 #+RESULTS:
@@ -363,7 +363,7 @@ Resolvendo o problema da abordagem anterior?
 #+latex: \begin{multicols}{2}
 ~InsereNoFinal-Melhor.c~
 #+attr_latex: :options fontsize=\tiny
-#+BEGIN_SRC C :tangle e/rev-a34/InsereNoFinal-Melhor.c
+#+BEGIN_SRC C :tangle e/rev-aula21/InsereNoFinal-Melhor.c
 #include <stdio.h>
 #include "GeraSalva-Nomes.h"
 #include "GeraSalva.h"
@@ -414,9 +414,9 @@ int main() {
 #+begin_src shell :results output :exports both
 rm -f InsereNoFinal-Melhor
 gcc -Wall -g \
-    e/rev-a34/GeraSalva-Nomes.c \
-    e/rev-a34/InsereNoFinal-Melhor.c \
-    -o e/rev-a34/InsereNoFinal-Melhor
+    e/rev-aula21/GeraSalva-Nomes.c \
+    e/rev-aula21/InsereNoFinal-Melhor.c \
+    -o e/rev-aula21/InsereNoFinal-Melhor
 #+end_src
 
 #+RESULTS:
