@@ -26,11 +26,8 @@ Prof. Lucas M. Schnorr \hfill \to aulas téoricas
 
 #+latex: \vfill
 
-Profa. Brenda Salenave Santana \hfill \to práticas I
-+ brendasalenave@live.com
-
-Prof. Gabriel Ammes Pinho \hfill \to práticas J
-+ gapinho@inf.ufrgs.br
+Profa. Thiago Lopes Trugillo da Silveira \hfill \to aulas práticas
++ tltsilveira@inf.ufrgs.br
      
 * Motivação
 
@@ -115,21 +112,30 @@ combinar com o professor a recuperação das atividades avaliativas.
 + Súmula, conteúdo programático, bibliografia e cronograma
 + Procedimentos didáticos, laboratórios
 + Trabalhos, provas e avaliação
-  
-#+BEGIN_CENTER
+
+#+begin_center
 Consulte no Portal do Aluno da UFRGS, ou uma cópia no moodle
+#+end_center
 
 #+latex: \vfill
 
 Vamos revisar os pontos juntos!
 
-* Bibliografia (Geral)
+* Bibliografia
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula01_completa_slide_13.pdf}{Prof. Edison Pignaton de Freitas}
+Básica Essencial
 
-* Bibliografia (Específica da Linguagem C)
+1. Damas, Luis. Linguagem C. Rio de Janeiro: LTC, c2007. ISBN 9788521615194.
+2. Salvetti, Dirceu Douglas; Barbosa, Lisbete Madsen. Algoritmos. Sao Paulo: Makron Books, c1998. ISBN 853460715X.
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula01_completa_slide_20.pdf}{Prof. Edison Pignaton de Freitas}
+Básica
+
+1. Deitel, Harvey M.. C How to Program. Estados Unidos: Prentice-Hall, 2007. ISBN 9780132404167.
+2. Goodrich, Michael T.; Tamassia, Roberto. Projeto de algoritmos :fundamentos, análise e exemplos da internet. Porto Alegre: Bookman, 2004. ISBN 8536303034.
+3. Harbison, Samuel P., III. Steele, Guy L., Jr.. C: manual de referência. Rio de Janeiro: Ciência Moderna, 2002. ISBN 8573932295.
+4. Kernighan, Brian W.; Ritchie, Dennis M.. The C programming language. Englewood Cliffs: Prentice Hall, c1988. ISBN 0131103628.
+5. Senne, Edson Luiz França. Curso de programação em C. São Paulo: Visual Books, 2009. ISBN 9788575022450.
+6. Ziviani, N.. Projeto de Algoritmos Com Implementações em Pascal e C. THOMSON PIONEIRA, 2004. ISBN 8522103909.
 
 * Avaliação
 
@@ -149,7 +155,7 @@ Vamos revisar os pontos juntos!
 #+BEGIN_CENTER
 Nota final
 
-P1 \times 0.30 + P2 \times 0.45 + AP \times 0.15 + TF \times 0.10
+P1 \times 0.30 + P2 \times 0.40 + AP \times 0.15 + TF \times 0.15
 #+END_CENTER
 
 #+latex: \pause
@@ -175,9 +181,6 @@ aluno será aprovado com C.
 #+BEGIN_CENTER
 (Media Final \times 0.4 + Prova Recuperação \times 0.6) >= 6,0 \to Conceito C
 #+END_CENTER
-
-A apresentação do Trabalho Final, mesmo que não execute perfeitamente,
-é pré-requisito para a realização da recuperação.
 
 * Algoritmo para avaliação
 
