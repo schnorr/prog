@@ -19,56 +19,225 @@
 #+latex: \newcommand{\mytitle}{Introdução \linebreak Algoritmos e Programação}
 #+latex: \mytitleslide
 
-* Programação
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula01-Introducao_slide_02.pdf}{Profa. Mara Abel}
-* Atuação do Computador
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula01_completa_slide_14.pdf}{Prof. Edison Pignaton de Freitas}
-* Uma receita (de cookies) com passos
-#+attr_latex: :width .5\linewidth
-[[./img/cookies.jpeg]]
-* Computador como máquina UNIVERSAL
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula01_completa_slide_15.pdf}{Prof. Edison Pignaton de Freitas}
+* O ato de programar o computador
+
+Ele é diferente de usar o computador
+
+Exemplos de uso
+- Editor de texto
+- Planilha eletrônica
+- Pesquisas na internet
+- Correio eletrônico
+- Acesso às redes sociais
+
+#+latex: \pause\vfill
+
+*Nós vamos usar o computador para criar novos programas*.
+
+* O que faz um computador?
+
+Um computador pode ser visto como uma máquina universal
+- Turing (uma fita ``infinita'' capaz de guardar dados + autômato)
+
+Um computador não tem inteligência
+- Ele executa vários *programas*
+
+#+latex: \pause
+
+O que é um programa
+- É sequência de passos, uma ``receita''
+  - Cada passo diz explicitamente o que deve ser feito
+
+#+latex: \pause
+
+Precisamos de uma forma de descrever os passos
+- Uma *linguagem de programação*
+
 * Linguagens de Programação
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula01-_apresentacao_slide_05.pdf}{Prof. Claudio Jung}
-* Modelos e Paradigmas de Linguagens
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula01-Introducao_slide_04.pdf}{Profa. Mara Abel}
-* Modelo Imperativo
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula01-Introducao_slide_05.pdf}{Profa. Mara Abel}
-* Programação Estruturada
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula01-Introducao_slide_06.pdf}{Profa. Mara Abel}
-* O que a programação estruturada permite
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula01-Introducao_slide_07.pdf}{Profa. Mara Abel}
-* Elaboração de um Programa
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula01_completa_slide_22.pdf}{Prof. Edison Pignaton de Freitas}
-* Como _não_ elaborar um programa
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula01-Introducao_slide_09.pdf}{Profa. Mara Abel}
-* O papel do compilador (um tradutor de código)
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula01-Introducao_slide_10.pdf}{Profa. Mara Abel}
-* Ciclo de desenvolvimento de um programa
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula01-Introducao_slide_11.pdf}{Profa. Mara Abel}
-* Resumo da elaboração de programas
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula01_completa_slide_23.pdf}{Prof. Edison Pignaton de Freitas}
-* Passos na análise para criação de uma solução
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula01-_apresentacao_slide_12.pdf}{Prof. Claudio Jung}
-* Exemplo de um problema
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula01-_apresentacao_slide_25.pdf}{Prof. Claudio Jung}
-* Identificar objetivo, entradas e saídas
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula01-_apresentacao_slide_26.pdf}{Prof. Claudio Jung}
-* Linguagem Algorítmica e Fluxograma
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula01-Introducao_slide_14.pdf}{Profa. Mara Abel}
-* Programa em C
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula01-Introducao_slide_15.pdf}{Profa. Mara Abel}
-* Definição de algoritmo
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula01-_apresentacao_slide_13.pdf}{Prof. Claudio Jung}
-* Projeto do Algoritmo
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula01-_apresentacao_slide_14.pdf}{Prof. Claudio Jung}
-* Algoritmo para preparar o mate
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula01_completa_slide_25.pdf}{Prof. Edison Pignaton de Freitas}
-* A importância de aprender a criar _algoritmos_
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula01_completa_slide_26.pdf}{Prof. Edison Pignaton de Freitas}
-* Vamos trabalhar o *Pensamento Computacional*
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula01_completa_slide_18.pdf}{Prof. Edison Pignaton de Freitas}
-* Propriedades de algoritmos
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula01-_apresentacao_slide_15.pdf}{Prof. Claudio Jung}
-* Normas importantes para algoritmos
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula01_completa_slide_28.pdf}{Prof. Edison Pignaton de Freitas}
+
+Em extremos diferentes
+- Linguagem humana ou natural
+  - Português, Inglês, Francês
+- Linguagem de máquina ou binária
+  - É o que o computador processa
+
+#+latex: \pause
+
+Permite fazer a ponte entre esses dois extremos
+- *Linguagens de programação*
+
+* Modelos e Paradigmas de Linguagens de Programação
+
+Existem inúmeras linguagens de programação
+
+Atendem a diferentes domínios de problemas
+
+#+latex: \pause
+
+_Modelo imperativo_
+- Sequências de comandos que transformam dados
+- Paradigmas
+  - Procedural
+  - Orientado a objeto
+
+#+latex: \pause
+
+_Modelo declarativo_
+- Foco não é na sequência explícita de comandos
+- Paradigmas
+  - Funcional
+  - Lógico
+
+* Modelo Imperativo Procedural \to Programação Estruturada
+
+Solução implementada através de ações, executadas sequencialmente.
+- Variáveis, atribuição, sequência de comandos
+- Linguagens procedurais: C, C++, Fortran, Ada, Java
+
+#+latex: \pause\vfill
+
+*Programação Estruturada* \to Técnicas para estruturar programas
+- Quais estruturas de controle podem ser empregadas
+- Formas de modularização de programas (funções, arquivos)
+- Uso de identificadores e comandos
+- Alinhamentos, separação de comandos
+- Documentação
+
+#+latex: \pause
+
+O que a programação estruturada permite
+- Metodologia disciplinada de programação
+- Permite construir grandes sistemas
+- Aumentar a produtividade
+- Minimizar a complexidade
+- Aumentar a confiabilidade e a legibilidade
+- Facilitar a manutenção
+
+* Como elaborar um programa? (Parte 1)
+
+1. Exposição a um problema (para ser resolvido)
+2. Análise do problema para propor uma solução
+   - Decomposição e estruturação
+3. Criação de um *Algoritmo* para executar a solução
+4. Escrita do programa em uma linguagem de programação
+   - Este é o *Código Fonte* (/source code/)
+
+#+latex: \pause\vfill
+
+Cuidado
+- Muitos atalham do passo 1 diretamente para o passo 4
+
+* O que fazemos com o Código Fonte? (Parte 2)
+
+Temos a figura de um compilador
+- Trata-se de um programa como qualquer outro
+- Objetivo: traduzir o código fonte para um programa executável
+
+#+latex: \vfill\pause
+
+Código Fonte (.c) \to Compilador \to Programa Executável (.exe)
+
+#+Latex: \vfill\pause
+
+Ciclo de desenvolvimento de um Código Fonte
+
+* Resumo completo da elaboração de programas (Partes 1 e 2)
+
+Parte 1
+1. Exposição a um problema (para ser resolvido)
+2. Análise do problema para propor uma solução
+   - Decomposição e estruturação
+3. Criação de um *Algoritmo* para executar a solução
+4. Escrita do programa em uma linguagem de programação
+   - Este é o *Código Fonte* (/source code/)
+
+Parte 2
+1. Emprego do compilador
+   - Repetido enquanto o código fonte ter problemas de sintaxe
+2. Testes e depuração
+   - Verificação se o programa faz o que pensamos que deveria fazer
+3. Colocação em produção (execução)
+
+#+latex: \pause
+
+Reflexão
+- O que podemos fazer sem e com o computador?
+- E o ChatGPT, como ele pode nos ajudar?
+
+* Mas o que é um algoritmo?
+
+Algoritmo é uma sequência finita e lógica de instruções ou passos
+
+básicos que serve para resolver um determinado problema.
+
+#+latex: \pause\vfill
+
+Para criar algoritmos, precisamos do *Pensamento Computacional*
+- /Computational Thinking/
+- /Computational problem solving/
+- Simplesmente: criar ``receitas'' para resolver problemas
+  - Explicar para outros seres humanos, para o computador
+
+#+latex: \pause\vfill
+
+*Projeto de Algoritmo* (transformando entradas em saídas)
+- Determinar quais ações e em qual ordem levam ao resultado
+- Três componentes fundamentais
+  - Sequência de ações
+  - Ações condicionais
+  - Repetição de ações
+
+* Exemplo
+
+#+begin_center
+Ler dois valores informados pelo teclado,
+
+calcular e informar a soma destes valores.
+#+end_center
+
+#+latex: \pause\vfill
+
+
+Identificar objetivo, entradas e saídas
+- Objetivo: informar a *soma* de dois valores lidos
+- Entradas: dois valores numéricos
+- Saída: um valor numérico (que representa a soma)
+
+#+latex: \pause
+
+Algoritmo SomaDois
+1. Ler A
+2. Ler B
+3. Soma <- A + B
+4. Escrever Soma
+5. Terminar
+
+Podemos representar os passos como um fluxograma.
+
+* Implementação do algoritmo na Linguagem C
+
+Algoritmo SomaDois
+1. Ler A
+2. Ler B
+3. Soma <- A + B
+4. Escrever Soma
+5. Terminar
+
+#+begin_src C :exports code
+/*
+  Este programa na Linguagem C le dois valores
+  inteiros, soma-os e exibe o resultado da soma na tela.
+,*/
+#include <stdio.h>
+
+int main() {
+  int a, b; // As entradas
+  int soma; // A saída
+  scanf("%d", &a);
+  scanf("%d", &b);
+  soma = a + b;
+  printf("%d", soma);
+  return 0;
+}
+#+end_src
+
