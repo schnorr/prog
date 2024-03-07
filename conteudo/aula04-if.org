@@ -267,7 +267,7 @@ Vejamos como fica em _formato de árvore_, com regras de precedência.
 
 * Motivação para comandos de seleção condicional
 
-Programação estrutura, três princípios
+Programação estruturada, três princípios
 1. Sequencialidade
 2. Desvio
 3. Repetição
