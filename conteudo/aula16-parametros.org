@@ -18,7 +18,7 @@
 #+LATEX_HEADER: \usepackage{amsmath}
 #+LATEX_HEADER: \usepackage{systeme}
 
-#+latex: \newcommand{\mytitle}{Funções e seus Parâmetros}
+#+latex: \newcommand{\mytitle}{Funções com Parâmetros}
 #+latex: \mytitleslide
 
 * Sumário
