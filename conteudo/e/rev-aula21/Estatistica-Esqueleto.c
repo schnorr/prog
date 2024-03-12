@@ -1,6 +1,6 @@
 #include "GeraSalva.h"
 int main() {
-  int bytes_lidos;
+  int lidos;
   int idade, altura;
   FILE *arquivo = fopen(FATLETAS, "r");
   if (arquivo == NULL) {
@@ -9,10 +9,10 @@ int main() {
   }
   fseek(arquivo, sizeof(int)+sizeof(char)*32, SEEK_SET);
   do {
-    bytes_lidos = fread(&idade, sizeof(int), 1, arquivo);
-    bytes_lidos += fread(&altura, sizeof(int), 1, arquivo);
+    lidos = fread(&idade, sizeof(int), 1, arquivo);
+    lidos += fread(&altura, sizeof(int), 1, arquivo);
     fseek(arquivo, sizeof(char)*32, SEEK_CUR);
-  }while(bytes_lidos != 0);
+  }while(lidos != 0);
   fclose(arquivo);
   return 0;
 }
