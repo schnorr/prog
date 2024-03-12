@@ -37,15 +37,15 @@ aula09-while.pdf \
 aula10-arranjos.pdf \
 aula11-string.pdf \
 aula12-matriz.pdf \
-aula12-ordenamento.pdf \
 aula13-maismatriz.pdf \
-aula13-ordenamento.pdf \
 aula14-revisao-p1-base.pdf \
 aula14-revisao-p1.pdf \
 aula15-funcoes.pdf \
 aula16-parametros.pdf \
 aula17-referencias.pdf \
 aula18-ponteiros.pdf \
+aula19-ordenamento-matriz.pdf \
+aula19-ordenamento-caracteres.pdf \
 aula20-estruturas.pdf \
 aula21-typedef.pdf \
 aula22-arq-binario-p1.pdf \
