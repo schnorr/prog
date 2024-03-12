@@ -126,6 +126,33 @@ int main() {
 }
 #+END_SRC
 
+* Terminologia: parâmetros reais (argumentos) e formais
+
+Vejamos um exemplo com algoritmo
+
+#+begin_src shell
+Subprograma Soma2 (A, B)
+{ parâmetros formais A e B inteiros }
+0. Início
+1. Soma = A + B
+2. Retorna Soma
+fim Subprograma Soma2
+
+Algoritmo Somar
+Variáveis: X, Y, Z { entradas lidas, inteiras }
+           Soma { para conter a soma}
+0. Início
+1. Ler X, Y, Z
+2. Executar Soma2 (X, Y)
+3. Registrar resultado em Soma
+4. Imprimir Soma
+5. Executar Soma2 (Y, Z)
+6. Registrar resultado em Soma
+7. Imprimir Soma
+8. Fim
+fim Algoritmo Somar
+#+end_src
+
 * (Exemplo #2) Imprime n vezes c
 
 Faça uma função void que receba dois parâmetros
