@@ -26,8 +26,7 @@ Prof. Lucas M. Schnorr \hfill \to aulas téoricas
 
 #+latex: \vfill
 
-Profa. Thiago Lopes Trugillo da Silveira \hfill \to aulas práticas
-+ tltsilveira@inf.ufrgs.br
+Prof. (por ser anunciado) \hfill \to aulas práticas
      
 * Motivação
 
@@ -39,24 +38,7 @@ Algoritmos e Programação
 
 * Motivação \to Adquirir *Pensamento Computacional*
 
-Pensamento Computacional -- /Computational Thinking/
-- Habilidades e limites da computação
-- Mapear problemas em ``algo computacional''
-- Pensar como cientistas da computação
-
-* Objetivo Geral
-
-#+begin_center
-Introduzir o uso do computador na solução de problemas,
-
-através da construção de programas
-#+end_center
-
-* O que vamos fazer na disciplina?
-
-1. Análise do problema
-2. Escolha de uma solução para resolver o problema (às vezes temos
-   mais de uma possibilidade)
+2. Escolha de uma solução para resolver o problema
 3. Construção do algoritmo que implementa a solução do problema
 4. Escrever o algoritmo numa linguagem de programação
 5. Teste/Execução do programa
@@ -212,7 +194,7 @@ Senão
    Conceito D
 #+end_src
 
-* Ferramenta EAD
+* Acompanhamento
 
 #+BEGIN_CENTER
 Aulas Teóricas e Práticas.
