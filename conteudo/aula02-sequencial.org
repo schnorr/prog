@@ -181,7 +181,7 @@ int var_int = 10;
 float var_float = 2.3;
 double var_double = 3.29876;
 char var_char = 'A';
-scanf("Um número inteiro: %d\n"
+printf("Um número inteiro: %d\n"
       "Um número ponto-flutuante: %f\n"
       "Um número ponto-flutuante duplo: %lf\n"
       "Um caractere: %c\n", var_int, var_float, var_double, var_char);
