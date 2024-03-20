@@ -194,7 +194,49 @@ scanf("Um número inteiro: %d\n"
 - Texto entre aspas duplas, com _especificadores de tipo_
   - O conteúdo é mostrado tal qual, mas os valores das variáveis tomam
     lugar dos especificadores
+
+- Os especificadores de tipo podem ser mais complexos
+  - =printf("%9.2f", var_float)=
+
+- Para ir mais longe, ler o manual do =printf= e do =scanf=
+   - /aka/ =man printf=, or https://linux.die.net/man/3/printf
     
+* Ilustração do tamanho do campo e precisão
+
+#+latex_attr: :options :fontsize \tiny
+#+BEGIN_SRC C :tangle e/teste-printf.c
+//teste saida printf
+#include <stdio.h>
+int main( )
+{
+  float valor=99.7567892;
+  printf("Valor com 9f   = [%9f]\n", valor);
+  printf("Valor com 9.0f = [%9.0f]\n", valor);
+  printf("Valor com 9.1f = [%9.1f]\n", valor);
+  printf("Valor com 9.2f = [%9.2f]\n", valor);
+  printf("Valor com 9.3f = [%9.3f]\n", valor);
+  printf("Valor com 1.2f = [%1.2f]\n", valor);
+  return 0;
+}
+#+END_SRC
+
+#+latex: \vfill\pause
+
+Compilando e executando (veja a saída também no terminal)
+
+#+begin_src shell :results output :dir e :exports both
+gcc teste-printf.c -o teste-printf
+./teste-printf
+#+end_src
+
+#+RESULTS:
+: Valor com 9f   = [99.756790]
+: Valor com 9.0f = [      100]
+: Valor com 9.1f = [     99.8]
+: Valor com 9.2f = [    99.76]
+: Valor com 9.3f = [   99.757]
+: Valor com 1.2f = [99.76]
+
 * O comando de atribuição
 
 Comando de atribuição consiste em:
@@ -250,8 +292,9 @@ Palavras-reservadas devem ser em minúsculo
 * Elementos léxicos: comentários C99
 
 Permite documentar o código-fonte do programa
+- Vejamos aquele exemplo anterior
 
-#+BEGIN_SRC C :tangle e/programa-soma2.c
+#+BEGIN_SRC C
 /*calcula a soma de 2 valores inteiros lidos do teclado */
 #include<stdio.h> // biblioteca com operações de entrada e saída
 int main( )
