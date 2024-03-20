@@ -24,43 +24,26 @@
 Vamos abordar hoje
 
 - Conceito de programa
-- Estrutura de um algoritmo
 - Algoritmo sequencial
 - Estrutura de programa sequencial
 - Programa C sequencial
 
-* Organização interna de um computador
+* Organização simplificada de um computador
 
 - Memória (principal e secundária)
 - Unidade Central de Processamento (/Central Processing Unit/)
   - Unidade de Aritmética e Lógica
 - Unidade de Entrada e Saída
 
-* Análise e Definição do Problema para o Algoritmo
+#+latex: \pause\vfill
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula02/aula02_slide_12.pdf}{Prof. Marcelo Walter}
-
-* Projeto do Algoritmo (primeira versão)
-
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula02/aula02_slide_13.pdf}{Prof. Marcelo Walter}
-
-* Projeto do Algoritmo (versão melhorada)
-
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula02/aula02_slide_14.pdf}{Prof. Marcelo Walter}
-
-* Projeto do Algoritmo (versão final)
-
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula02/aula02_slide_15.pdf}{Prof. Marcelo Walter}
-
-#+latex: \pause
-
-O próximo passo é a codificação em uma linguagem de programação.
-
-* Linguagem de Programação
+Programas transformam uma (ou mais) entrada(s) em saída(s)
+  
+* Linguagem de Programação                                         :noexport:
 
 #+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula02/aula02_slide_17.pdf}{Prof. Marcelo Walter}
 
-* Ambiente de Programação
+* Ambiente de Programação                                          :noexport:
 
 #+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula02/aula02_slide_18.pdf}{Prof. Marcelo Walter}
 
@@ -90,14 +73,24 @@ int main() // função principal e obrigatória
 
 * Entrada (=scanf=) e saída (=printf=) de dados
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula02/aula02_slide_21.pdf}{Prof. Marcelo Walter}
+Retomando o exemplo anterior
 
-#+latex: \pause\raggedright
+Algoritmo SomaDois
+1. Ler A
+2. Ler B
+3. Soma <- A + B
+4. Escrever Soma
+5. Terminar
 
-=scanf= \to escaneamento de dados formatados
+#+latex: \pause
 
-=printf= \to impressão na tela de dados formatados
-
+Linguagem C   
+- Para ``Ler'' (entrada de dados) empregamos a função =scanf()=
+  - =scanf= \to escaneamento de dados formatados
+- Para atribuição empregamos o operador '='
+- Para ``Escrever'' (saída de dados) empregamos a função =printf()=
+  - =printf= \to impressão na tela de dados formatados
+  
 * Codificação do projeto da soma
 
 #+BEGIN_SRC C :tangle e/programa-soma2.c
@@ -118,73 +111,231 @@ int main( )
 }
 #+END_SRC
 
-* Declaração de variáveis
+* Variáveis
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula02/aula02_slide_25.pdf}{Prof. Marcelo Walter}
+1. Representam locais na memória
+   - Dados podem ser armazenados durante a execução de um programa
+2. Precisam ser declaradas previamente
+   - Devem ter uma especificação do tipo
+3. Possuem um nome
+   - É referenciada no código através deste nome
 
-* =scanf=
+#+latex: \pause\vfill
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula02-v1_slide_35.pdf}{Prof. Edison Pignaton de Freitas}
+Como registrar valores em uma variável?
+#+begin_src C
+int var;
+var = 10;          // por atribuição
+scanf("%d", &var); // por leitura da entrada-padrão (teclado)
+#+end_src
+     
+* Escaneamento de dados formatados: a função =scanf()=
 
-* =scanf= (exemplo)
+#+begin_src C
+scanf("%d%f%lf%c", &var_int, &var_float, &var_double, &var_char);
+#+end_src
+- Entre aspas duplas, _especificadores de tipo_
+  - Normalmente sem nada entre eles (como no exemplo acima)
+- Depois, para cada especificador, o _endereço de uma variável_
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula02-v1_slide_36.pdf}{Prof. Edison Pignaton de Freitas}
+#+latex: \vfill\pause
 
-* =printf=
+Lê da entrada padrão até que a tecla <enter> seja pressionada
+1. Escanea as teclas lidas
+2. Traduzindo-as para o tipo de dado
+3. Conclui por registrar o valor traduzido na variável
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula02-v1_slide_38.pdf}{Prof. Edison Pignaton de Freitas}
+* Especificadores de tipo com =scanf()= (exemplo)
 
-* =printf= (exemplo)
+| Especificador de tipo | Significado                               |
+|-----------------------+-------------------------------------------|
+| %d                    | Escaneamento para inteiro                 |
+| %f                    | Escaneamento para ponto-flutuante simples |
+| %lf                   | Escaneamento para ponto-flutuante duplo   |
+| %c                    | Escaneamento para caractere               |
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula02-v1_slide_39.pdf}{Prof. Edison Pignaton de Freitas}
+Existem muitos outros, olhar o manual do =printf()=.
 
-* Atribuição
+#+latex: \vfill\pause
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula02-v1_slide_37.pdf}{Prof. Edison Pignaton de Freitas}
+Exemplo
+#+BEGIN_SRC C
+#include<stdio.h> // biblioteca com operações de entrada e saída
+int main( )
+{
+  int val1, val2;
+  float real;
+  char caractere;
 
-* Elementos léxicos
+  scanf("%d", &val1);
+  scanf("%d%f", &val2, &real);
+  scanf("%c", &caractere);
+  return 0;
+}
+#+END_SRC
 
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula02-algor-estrutprogr_slide_06.pdf}{Prof. Claudio Jung}
+* Saída formatada: a função =printf()=
 
-* Sintaxe sensível a maiúsculas e minúsculas
+#+begin_src C :results output :exports both
+int var_int = 10;
+float var_float = 2.3;
+double var_double = 3.29876;
+char var_char = 'A';
+scanf("Um número inteiro: %d\n"
+      "Um número ponto-flutuante: %f\n"
+      "Um número ponto-flutuante duplo: %lf\n"
+      "Um caractere: %c\n", var_int, var_float, var_double, var_char);
+#+end_src
 
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula02-algor-estrutprogr_slide_07.pdf}{Prof. Claudio Jung}
+#+RESULTS:
 
-* Declarações de nomes                                             :noexport:
+#+latex: \vfill
 
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula02-algor-estrutprogr_slide_09.pdf}{Prof. Claudio Jung}
+- Texto entre aspas duplas, com _especificadores de tipo_
+  - O conteúdo é mostrado tal qual, mas os valores das variáveis tomam
+    lugar dos especificadores
+    
+* O comando de atribuição
 
-* Definição de identificadores
+Comando de atribuição consiste em:
+1. Um identificador de variável
+2. O caractere '='.
+3. Uma expressão
 
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula02-algor-estrutprogr_slide_10.pdf}{Prof. Claudio Jung}
+#+latex: \vfill
+   
+Exemplo
+#+begin_src C
+int var_int;
+int var_dois = 2;
 
-* Palavras reservadas
+var_int = var_dois + 80 * 2; // <- este é o exemplo
+#+end_src
 
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula02-algor-estrutprogr_slide_11.pdf}{Prof. Claudio Jung}
+#+latex: \vfill\pause
 
-* Comentários C99
+Outros dois exemplos
+#+begin_src C
+char sexo;
+float valor;
 
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula02-algor-estrutprogr_slide_12.pdf}{Prof. Claudio Jung}
+sexo = 'F';          // <- exemplo 1
+valor = 2.3 * 5 + 2; // <- exemplo 2
+#+end_src
 
-* Diretivas de pré-processamento
+* Elementos léxicos: identificadores
 
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula02-algor-estrutprogr_slide_13.pdf}{Prof. Claudio Jung}
+Elementos empregados nos nomes de variáveis
+- Letras, sendo sensível a maiúsculas e minúsculas
+  - Identificadores 'var' e 'Var' são diferentes, por exemplo
+- Dígitos: de 0 até 9
+- O caractere sublinhado '_'
 
-* A biblioteca =stdio.h=
+Regra para formação de identificadores
+- Não pode começar com dígito
+- Depois podemos ter qualquer outro elemento
 
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula02-algor-estrutprogr_slide_14.pdf}{Prof. Claudio Jung}
+* Elementos léxicos: símbolos e palavras-reservadas
 
-* Exercício resolvido em aula
+Símbolos especiais
+- Outros símbolos especiais: # /* “ . , ; .. ( ) { } : =
 
-Veja o algoritmo fornecido.
+Palavras-reservadas devem ser em minúsculo
+- São nomes reservados de comandos da linguagem
+- Lista de palavras reservadas: auto break case char const continue
+  default do double else enum extern float for if int long register
+  return short signed sizeof static struct switch typedef union
+  unsigned void volatile while.
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula02-Sequencial_slide_22.pdf}{Profa. Mara Abel}
+* Elementos léxicos: comentários C99
 
-* Melhorar o algoritmo
+Permite documentar o código-fonte do programa
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula02-Sequencial_slide_23.pdf}{Profa. Mara Abel}
+#+BEGIN_SRC C :tangle e/programa-soma2.c
+/*calcula a soma de 2 valores inteiros lidos do teclado */
+#include<stdio.h> // biblioteca com operações de entrada e saída
+int main( )
+{
+  int val1, val2;       // declaração das variáveis de entrada
+  int soma;             // declaração da variável resultante
 
-* Solução do exercício
+  printf("Valor 1:\n"); // mensagem impressa na tela
+  scanf("%d", &val1);   // leitura da informação digitada
+  printf("Valor 2:\n");
+  scanf("%d", &val2);
+  soma = val1 + val2;   // armazena resultado em soma
+  printf("Resultado da soma: %d\n", soma); // e mostra na tela
+  return 0;             // encerra o programa de forma correta
+}
+#+END_SRC
+
+Existem duas formas
+- Multilinha, do @@latex:'/*' até o '*/'@@
+- Uma linha, do '//' até o final da linha
+
+* O pré-processador da linguagem C
+
+Trata-se de um pré-processamento de diretivas simples
+- São todos os comandos que começam com '#'
+- O único que usaremos por enquanto
+  - =#include= para incluir outros arquivos
+
+#+latex: \pause\vfill
+
+Usaremos o comando =#include= para incluir cabeçalhos de bibliotecas
+
+| Cabeçalho | Descrição                       |
+|-----------+---------------------------------|
+| =stdio.h=   | Funções de entrada e saída      |
+| =stdlib.h=  | Funções da biblioteca padrão    |
+| =math.h=    | Funções matemáticas             |
+| =system.h=  | Funções para acessar o sistema  |
+| =string.h=  | Funções de manipulação de texto |
+
+Por enquanto, usaremos apenas a =stdio.h=
+- Dentro temos a implementação das funções =scanf()= e =printf()=
+  - ``io'' de input/output (entrada/saída em pt-br)
+
+* Exercício (resolvido)
+
+Dado o preço de um produto em reais, converter este valor para o
+equivalente em dólares. O programa deverá ler do teclado o preço do
+produto e a taxa de conversão para o dólar. Hoje 1,00 USD equivale a
+R$ 5,03 reais.
+
+#+latex: \pause\vfill
+
+Algoritmo ConversãoParaDolar
+
+{ Calcula e conversão de um valor de Real para Dolar }
+
+entradas: Preço, Taxa de conversão
+
+saídas: Preço em Dolar
+ 
+1. Obtém valor do preço
+2. Obtém valor da taxa de conversão
+3. Calcula o preço em dolar
+4. Informa o preço em dolar
+5. Terminar.
+
+* Vamos melhorar o algoritmo
+
+Algoritmo ConversãoParaDolar
+
+{ Calcula e conversão de um valor de Real para Dolar }
+
+entradas: Preço, Taxa
+
+saídas: PreçoEmDolar
+
+1. Ler Preço
+2. Ler Taxa
+3. PreçoEmDolar <- Preço * Taxa
+4. Escrever PreçoEmDolar
+5. Terminar.
+
+* Implementação na Linguagem C
 
 #+BEGIN_SRC C :tangle e/programa-conversao-real-dolar.c
 /* Calcula e conversão de Real para Dolar */
@@ -203,13 +354,28 @@ int main()
 }
 #+END_SRC
 
-* Exercício
+* Exercícios
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula02-Sequencial_slide_25.pdf}{Profa. Mara Abel}
+#1
 
-* Dois exercícios para a próxima aula
+Calcular a comissão obtida por um vendedor em uma venda
+efetuada. Escrever um algoritmo que lê o código de um vendedor, o
+valor da venda efetuada em reais e o percentual da comissão sobre a
+venda.  Fornecer na saída o número do vendedor e sua comissão em
+reais.
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula02-Sequencial_slide_26.pdf}{Profa. Mara Abel}
+#+latex: \vfill
+
+#2
+
+Fornecer a soma e o produto de três valores lidos do teclado.
+
+#+latex: \vfill
+
+#3
+
+Calcular o preço a ser pago em uma loja, sendo informado o preço do
+produto comprado e a quantidade de unidades adquiridas.
 
 * Emacs setup                                                      :noexport:
 
