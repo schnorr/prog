@@ -12,7 +12,7 @@
 #+Date: \copyleft
 
 #+LaTeX_CLASS: beamer
-#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames]
+#+LaTeX_CLASS_OPTIONS: [xcolor=dvipsnames,10pt]
 #+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
 #+LATEX_HEADER: \input{org-babel.tex}
 
@@ -26,7 +26,8 @@ Prof. Lucas M. Schnorr \hfill \to aulas téoricas
 
 #+latex: \vfill
 
-Prof. (por ser anunciado) \hfill \to aulas práticas
+Prof. Thiago Lopes Trugillo da Silveira \hfill \to aulas práticas
++ tltsilveira@inf.ufrgs.br
      
 * Motivação
 
@@ -46,7 +47,7 @@ Algoritmos e Programação
 * Funcionamento das aulas
 
 A presença será aferida (75% de frequência evita FF)
-- São 45 encontros no total, portanto 12 faltas implica em FF
+- São +45+ 43 encontros no total, portanto +12+ 11 faltas implica em FF
 
 #+latex: \vfill
 
@@ -59,7 +60,7 @@ Perguntar sempre em caso de dúvida
 
 * Abono de frequência por razões de saúde
 
-#+latex: \scalebox{0.8}{\vbox{
+#+latex: \scalebox{0.9}{\vbox{
 Recuperação de frequência ou atividades avaliativas por licença médica.
 
 Os casos de licença médica do aluno ou para atendimento de familiar
@@ -145,20 +146,20 @@ P1 \times 0.30 + P2 \times 0.40 + AP \times 0.15 + TF \times 0.15
 #+BEGIN_CENTER
 Mapeamento para conceito
 
-8.5 -- 10 \to A
+9.0 -- 10.0 \to A
 
-7.5 -- 8.4 \to B
+7.5 -- 8.9 \to B
 
 6.0 -- 7.4 \to C
 
 0.0 -- 5.9 \to D
 #+END_CENTER
+
 * Recuperação
 
 Se o aluno não atingir nota 6,0 na Média Final, poderá realizar uma
-prova de recuperação sobre toda a matéria. Se a média entre a prova de
-recuperação e a nota final da disciplina for maior ou igual a 6,0, o
-aluno será aprovado com C.
+prova de recuperação sobre toda a matéria. O cálculo da nota final que
+envolve o resultado da prova de recuperação é explicitado abaixo.
 
 #+BEGIN_CENTER
 (Media Final \times 0.4 + Prova Recuperação \times 0.6) >= 6,0 \to Conceito C
@@ -170,7 +171,7 @@ Normal
 #+begin_src C
 Se Frequência < 75%
    Conceito FF
-Senão Se Média >= 8,5
+Senão Se Média >= 9,0
    Conceito A
 Senão Se Média >= 7,5
    Conceito B
@@ -184,7 +185,7 @@ Senão
 
 Recuperação
 #+begin_src C
-Se Média < 6,0 e Trabalho diferente de 0,0 e Frequência >= 75%
+Se Média < 6,0 e Frequência >= 75%
    Prova Recuperação (Toda a Matéria)
    Final = (Média Final * 0.4 + Recuperação * 0.6)
 
