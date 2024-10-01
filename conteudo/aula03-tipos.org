@@ -153,7 +153,7 @@ scanf("<formatadores>", <lista de endereços de variáveis>);
 #+end_src
 
 Exemplos
-#+begin_src shell :results output :exports both
+#+begin_src C :results output :exports both
 int i, j;
 float x;
 char c;
@@ -171,15 +171,56 @@ scanf(" %c", &c);
 
 * Tipos no =printf=
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula03-SequencialExpressoes_slide_16.pdf}{Prof. Mara Abel}
+Sintaxe
+#+begin_src C
+printf("<formatadores>", <lista de variáveis>);
+#+end_src
+
+Exemplos
+#+begin_src C :results output :exports both
+int i = 2, j = 3;
+float x = 4.5;
+char c = 'a';
+printf("Resultados i = %d, j = %d\n", i, j);
+printf("%d", i);
+printf("%d %f", j, x);
+printf("%c", c);
+#+end_src
+
+| Caractere escapado | Descrição                       |
+|--------------------+---------------------------------|
+| =\n=                 | uma quebra de linha             |
+| =\t=                 | uma tabulação                   |
+| =\\=                 | o caractere \ (barra invertida) |
+| =\'=                 | o caractere ' (aspas simples)   |
+| =\"=                 | o caractere " (aspas duplas)    |
+| =\?=                 | o caractere ? (interrogação)    |
 
 * Contantes do pré-processador
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula03-SequencialExpressoes_slide_18.pdf}{Prof. Mara Abel}
+Sintaxe
+#+begin_src C
+#define <identificador em maiúsculas> <valor>
+#+end_src
 
-* Vejamos exemplos de constantes
+- Uma constate é algo que nunca se altera durante a execução
+- O identificador é substituído pelo preprocessador da Linguagem C
+  - Em tempo de compilação
+- Aparece após as diretivas de =#include= (também do preprocessador)
+- O identificador sempre em letras maiúsculas
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula03-SequencialExpressoes_slide_19.pdf}{Prof. Mara Abel}
+#+latex: \pause
+
+Vejamos exemplos de constantes
+#+begin_src C
+#include <stdio.h>
+#define QUANTIDADE 30
+int main() {
+  int x;
+  x = QUANTIDADE;
+  return 0;
+}
+#+end_src
 
 * O comando de atribuição ===
 
