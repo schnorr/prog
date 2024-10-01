@@ -147,7 +147,27 @@ Caso não seja inicializada, a variável tem qual valor?
 
 * Tipos no =scanf=
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula03-SequencialExpressoes_slide_15.pdf}{Prof. Mara Abel}
+Sintaxe
+#+begin_src C
+scanf("<formatadores>", <lista de endereços de variáveis>);
+#+end_src
+
+Exemplos
+#+begin_src shell :results output :exports both
+int i, j;
+float x;
+char c;
+scanf(" %d", &i);
+scanf("%d%f", &j, &x);
+scanf(" %c", &c);
+#+end_src
+
+| Formatador | Descrição                    |
+|------------+------------------------------|
+| =%d=  ou =%i=  | número inteiro com base 10   |
+| =%f=         | número ponto-flutuante       |
+| =%lf=        | número ponto-flutuante duplo |
+| =%c=         | caractere                    |
 
 * Tipos no =printf=
 
