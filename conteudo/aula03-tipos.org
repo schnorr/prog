@@ -584,7 +584,15 @@ int main( )
 }
 #+END_SRC
 
-* Exercício para casa
+* Exercício
 
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula03-algoritmo_e_estrutura_C_slide_22.pdf}{Prof. Claudio Jung}
+Fazer um algoritmo que (1) leia um valor real, com casas decimais; (2)
+tranforme este valor real em dois valores inteiros correspondentes,
+respectivamente, à parte inteira e à parte decimal (centavos) do valor
+lido (se o valor lido for 123,98, =parte_inteira= deve receber 123 e
+=parte_decimal= deve receber 98); (3) calcule o menor número de notas e
+moedas necessárias para completar este valor. Lembre que as notas
+correntes no real são 100, 50, 20, 10, 5, 2 e 1 (incluindo aqui também
+a moeda) e as moedas 50, 25, 10, 5 e 1 centavos; (4) implemente um
+programa em C que o implementa.
 
