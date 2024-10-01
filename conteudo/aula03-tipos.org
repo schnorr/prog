@@ -224,19 +224,45 @@ int main() {
 
 * O comando de atribuição ===
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula03-SequencialExpressoes_slide_17.pdf}{Prof. Mara Abel}
+Sintaxe
+#+begin_src C
+<identificador> = <expressão>;
+#+end_src
+
+Atribui o valor da direita (após avaliação da expressão) para a
+variável cujo identificador está à esquerda do símbolo igual
 
 #+BEGIN_CENTER
 Do lado direito da atribuição, temos uma *expressão*.
 #+END_CENTER
 
+O que é uma expressão?
+
 * Expressões aritméticas
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula03/aula03_slide_18.pdf}{Prof. Marcelo Walter}
+Sintaxe
+#+begin_src C
+<operando> <operador> <operando>
+#+end_src
 
-* Operadores aritméticos sem utilizar bibliotecas externas
+=Operando= corresponde a uma constante, variável, ou outra expressão
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula03_slide_21.pdf}{Prof. Edison Pignaton de Freitas}
+=Operador= é um operador aritmético
+
+Operadores aritméticos sem utilizar bibliotecas externas
+
+| Operador | Exemplo | Descrição                           |
+|----------+---------+-------------------------------------|
+| +        | x + y   | Soma x e y                          |
+| -        | x - y   | Subtrai y de x                      |
+| *        | x * y   | Multiplica x e y                    |
+| =/=        | x / y   | Divide x por y                      |
+| %        | x % y   | Resto da divisão inteira de x por y |
+
+Para o operador =/=
+- Se numerador for inteiro, a divisão é inteira
+- Se numerador for ponto-flutuante, a divisão é ponto-flutuante
+- Se y for zero, resultado indeterminado (Not a Number - =NaN=, ou =Inf=)
 
 #+BEGIN_CENTER
 Todos estes operadores fazem parte da linguagem C.
@@ -269,11 +295,9 @@ gcc exemplo-operadores-aritmeticos.c -o exemplo-operadores-aritmeticos
 #+RESULTS:
 : Divisão inteira = 2 Resto = 3
 
-* O resto da divisão inteira é útil sim
+* Vejamos o emprego do operador resto (=%=)
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula03_slide_23.pdf}{Prof. Edison Pignaton de Freitas}
-
-* Vejamos
+Cálculo do número de botes salva-vidas necessários em um barco
 
 ** Com botes de 23 lugares
 
@@ -303,7 +327,22 @@ printf("%d %d\n",
 
 * Funções matemáticas mais complexas com =math.h=
 
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula03-algoritmo_e_estrutura_C_slide_06.pdf}{Prof. Claudio Jung}
+| Função | Exemplo   | Descrição                           |
+|--------+-----------+-------------------------------------|
+| ceil   | ceil(x)   | Arredonda o número real para cima   |
+| floor  | floor(x)  | Arredonda o número real para baixo  |
+| sin    | sin(x)    | Seno de x (sendo x em radianos)     |
+| cos    | cos(x)    | Cosseno de x (sendo x em radianos)  |
+| tan    | tan(x)    | Tangente de x (sendo x em radianos) |
+| exp    | exp(x)    | e elevado à potência x              |
+| fabs   | fabs(x)   | Valor absoluto de x (módulo)        |
+| log    | log(x)    | Logaritmo natural de x              |
+| log10  | log10(x)  | Logaritmo decimal de x              |
+| pow    | pow(x, y) | Calcula x elevado à potência y      |
+| sqrt   | sqrt(x)   | Raiz quadrada de x                  |
+
+Existem muitas outras
+- https://en.wikipedia.org/wiki/C_mathematical_functions
 
 * Exemplo de operações matemáticas
 
@@ -359,7 +398,24 @@ Exemplo ilustrativo: =a + b + c=
 
 * Equivalência entre álgebra e C
 
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula03-algoritmo_e_estrutura_C_slide_11.pdf}{Prof. Claudio Jung}
+| Álgebra             | C                                   |
+|---------------------+-------------------------------------|
+| $\frac{a+b+c+d}{4}$ | (a + b + c + d)/4                   |
+|                     |                                     |
+| $\frac{b}{4ad}$     | b / (4 * a *d)                      |
+|                     |                                     |
+| $(a+b)^2$            | pow(a + b, 2);                      |
+|                     |                                     |
+| $\frac{1+c}{a-b}$   | (1 + c) / ( a - b)                  |
+|                     |                                     |
+| $4\pi r^3$             | 4 * =M_PI= * pow(r, 3)                |
+|                     | assumindo =M_PI= definido como abaixo |
+
+#+begin_src C :results output :exports both
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
+#+end_src
 
 * Relação entre tipos e expressões aritméticas
 
@@ -451,41 +507,56 @@ gcc exemplo-tipos-expressoes-aritmeticas-cast.c -o exemplo-tipos-expressoes-arit
 
 * Exercício
 
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula03-algoritmo_e_estrutura_C_slide_16.pdf}{Prof. Claudio Jung}
+Fazer um algoritmo que, desconsiderando a parte fracionária, centavos,
+(1) leia um valor inteiro; (2) calcule o menor número de notas
+necessárias para completar este valor. Assuma que as notas correntes
+no real são 200, 100, 50, 20, 10, 5, 2 e 1 (incluindo aqui também a
+moeda). O algoritmo deve gerar o menor número possível de notas no
+total.
 
-* Análise e Definição do Problema
+Entradas: valor inteiro representando um valor em reais.
 
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula03-algoritmo_e_estrutura_C_slide_17.pdf}{Prof. Claudio Jung}
+Saída: listagem da menor quantidade de notas que representa o valor.
 
 * Algoritmo
 
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula03-algoritmo_e_estrutura_C_slide_18.pdf}{Prof. Claudio Jung}
+#+begin_example
+algoritmo calculanotas;
+/* calcula o nro mínimo de notas cujo valor total seja igual a um
+valor dado
+entradas: valor (inteiro)
+saídas: n200, n100, n50, n20, n10, n5, n2 e n1 ( notas ) */
+1. início
+2. ler valor
+3. v = valor        // copia para outra variável, para preservar valor lido
+4. n200 = v div 200 // quociente da divisao inteira entre v e 200
+5. v = v mod 200    // resto da divisao inteira entre v e 200
+6. n100 = v div 100
+7. v = v mod 100
+8. n50 = v div 50
+9. v = v mod 50
+// ...
+#+end_example
 
-* Programa (página 1)
-
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula03-algoritmo_e_estrutura_C_slide_19.pdf}{Prof. Claudio Jung}
-
-* Programa (página 2)
-
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula03-algoritmo_e_estrutura_C_slide_20.pdf}{Prof. Claudio Jung}
-
-* Testes
+* Programa =exemplo-notas.c=
 
 #+attr_latex: :options fontsize=\tiny
 #+BEGIN_SRC C :tangle e/exemplo-notas.c
 /* Calcula quantidade de cada cédula (ou moeda) tal que a soma dos
    valores totalize um valor inteiro dado.
    Entrada: valor inteiro
-   Saida: quandidade de cedulas/moedas de 100, 50, 20, 10, 5, 2 e 1
+   Saida: quandidade de cedulas/moedas de 200, 100, 50, 20, 10, 5, 2 e 1
    reais */
 #include <stdio.h>
 int main( )
 {
   int valor, v; //valores inteiros lido e usado nos cálculos
-  int n100, n50,n20,n10,n5,n2,n1;
+  int n200, n100, n50,n20,n10,n5,n2,n1;
   printf("Informe valor inteiro:");
   scanf("%d", &valor);
   v = valor; // copia, para preservar valor lido
+  n200 = v/200; // RESULTADO DA DIVISÃO INTEIRA POR 100
+  v = v%200;    // RESTO DA DIVISÃO INTEIRA POR 100
   n100 = v/100; // RESULTADO DA DIVISÃO INTEIRA POR 100
   v = v%100;    // RESTO DA DIVISÃO INTEIRA POR 100
   n50 = v/50;
@@ -501,6 +572,7 @@ int main( )
 
   //quebra 2 linhas e insere caracteres ,00 depois do valor:
   printf("\n\nValor lido: R$%d,00\n",valor); // insere vírgula zero
+  printf("notas de 200: %d\n",n100);
   printf("notas de 100: %d\n",n100);
   printf("notas de 50: %d\n",n50);
   printf("notas de 20: %d\n",n20);
