@@ -2,25 +2,173 @@
 #+startup: overview indent
 
 Lista de exercícios de programas com estrutura sequencial
-1. Escrever um programa que lê o número de horas trabalhadas de um funcionário e o valor que recebe por hora e calcula o salário deste funcionário. 
-2. Faça um programa que lê três notas de um aluno e calcule e escreva a média final deste aluno. Considerar que a média é ponderada e que o peso das notas é: 2, 3 e 5, respectivamente.
-3. Faça um programa que lê três notas de um aluno e calcule e escreva a média final deste aluno. Considerar que a média é ponderada e que os pesos das 3 notas devem ser informados pelo usuário também.
-4. Faça um algoritmo que lê o peso e a altura de uma pessoa e determina (e escreve) o imc (índice de massa corporal), que é dado pela fórmula: 
-5. Faça um algoritmo que lê uma temperatura em graus Celcius e a converte em graus Fahrenheit. A conversão é dada pela fórmula:  
-6. Faça um algoritmo que lê a base e a altura de um triângulo e calcula (e escreve) a área deste triângulo, onde: 𝑎𝑟𝑒𝑎 =  
-7. Faça um algoritmo que lê o raio de um círculo e calcula a sua área (escrevendo-a). 𝑎𝑟𝑒𝑎 = 𝜋 × 𝑟𝑎𝑖𝑜2
-8. Escreva um programa que recebe as dimensões (em metros) de um terreno retangular e em seguida as dimensões de uma casa (também em metros e retangular) sobre este terreno. Em seguida calcule e apresente a área livre do terreno, em metros quadrados e apresente também o percentual do terreno que está livre.
-9. Faça um programa que lê dois valores, armazene um na variável A e o outro na variável B, e troque os valores, de modo que o valor da variável A seja armazenado na variável B e vice-versa. Escreva os valores finais das variáveis.
-10. Escreva um programa que recebe dois pontos no plano, representados por dois pares de coordenadas, P1 = (x1,y1) e P2 = (x2,y2) e calcula a distância entre eles, dada por d(P1,P2) =. 
-11. Escreva um programa para calcular o consumo médio de um automóvel (medido em Km/l), dado que são conhecidos a distância total percorrida e o volume do combustível consumido para percorrê-la (medidos em litros).
-12. Escreva um programa para calcular o preço médio do quilômetro rodado (em R$/km) para uma dada distância percorrida (em Km) e um certo volume de combustível consumido (em litros). Nota: uma vez que o preço do combustível também pode variar; ele também deve ser fornecido como dado para o algoritmo.
-13. Faça um programa que leia o número total de prestações de um consórcio, o total de prestações pagas e o valor atual da prestação. O algoritmo deve calcular e apresentar o saldo devedor atual (ou seja, o que ainda falta pagar).
-14. Uma revendedora de carros usados paga a seus funcionários vendedores, um salário fixo por mês, mais uma comissão também fixa para cada carro vendido e mais 5% do valor das vendas por ele efetuadas. Escrever um programa que lê o número do vendedor, o número de carros por ele vendidos, o valor total de suas vendas, o salário fixo e o valor que recebe por carro vendido e calcula o salário mensal do vendedor, escrevendo-o juntamente com o seu número de identificação.
-15. O governo acaba de liberar 10.000.000,00 dólares para construção de casas populares, a qual contratou a Construtora Pica Pau S.A. Cada casa custa o equivalente a 150 salários mínimos. Faça um programa que leia o valor do salário mínimo e calcule a quantidade de casas possíveis de se construir. 
-16. Faça um programa que calcula a quantidade de latas de tinta necessária e o custo para pintar uma quantidade de chapas de madeira retangulares. O algoritmo deve ler a quantidade de chapas que devem ser pintadas, as dimensões de cada chapa (largura e comprimento), o custo da lata de tinta, e a quantidade de metros quadrados que podem ser pintados com cada lata de tinta.  
-17. Faça um programa que lê a quantidade de horas, minutos e segundos transcorridos até o momento desde o início do dia e calcula quantos segundos faltam para o dia terminar.
-18. Faça um programa em c que lê a idade de uma pessoa em anos, meses e dias e escreva a idade da pessoa em dias (quantos dias a pessoa viveu). Vamos assumir que todo ano tem 365 dias e todo mês tem 30 dias.
-19. Escreva um programa para dar o total, em reais, de um cofrinho que contenha: n1 moedas de 1 real; n2 moedas de 50 centavos; n3 moedas de 25 centavos; n4 moedas de 10 centavos; e n5 moedas de 5 centavos. 
-20. Escreva um programa para ler dois inteiros (variáveis A e B) e efetuar as operações de adição, subtração, multiplicação e divisão de A por B apresentando ao final os quatro resultados obtidos.
-21. Faça um algoritmo que leia um valor inteiro positivo de 3 dígitos, armazene-o em uma variável inteira e determine a soma dos dígitos que formam o valor. Exemplo: o valor 453 tem soma dos dígitos igual a 12 (4 + 5 + 3).
-22. Faça um algoritmo que leia dois números inteiros positivos com 3 dígitos cada e gere um terceiro número inteiro com 6 dígitos, sendo que estes sejam os dígitos dos dois primeiros intercalados. Exemplo: Numero_1 = 135,Numero_2 = 246,Numero_3 = 123456.
+
+* Horas trabalhadas
+
+Escrever um programa que lê o número de horas trabalhadas de um
+funcionário e o valor que recebe por hora e calcula o salário deste
+funcionário.
+
+#+begin_src C
+#+end_src
+
+* Média ponderada
+
+Faça um programa que lê três notas de um aluno e calcule e escreva a
+média final deste aluno. Considerar que a média é ponderada e que o
+peso das notas é: 2, 3 e 5, respectivamente.
+
+* Média ponderada informada
+
+Faça um programa que lê três notas de um aluno e calcule e escreva
+a média final deste aluno. Considerar que a média é ponderada e que
+os pesos das 3 notas devem ser informados pelo usuário também.
+
+* Índice de massa corporal
+
+Faça um algoritmo que lê o peso e a altura de uma pessoa e determina
+(e escreve) o imc (índice de massa corporal), que é dado pela fórmula:
+
+#+begin_example
+imc = peso / altura^2
+#+end_example
+
+* Graus celcius para fahrenheit
+
+Faça um algoritmo que lê uma temperatura em graus Celcius e a converte
+em graus Fahrenheit. A conversão é dada pela fórmula:
+
+#+begin_example
+fahrenheit = celcius * 9/5 + 32
+#+end_example
+
+* Área do triângulo
+
+Faça um algoritmo que lê a base e a altura de um triângulo e calcula
+(e escreve) a área deste triângulo, onde:
+
+#+begin_example
+area = (base * altura) / 2
+#+end_example
+
+* Área do círculo
+
+Faça um algoritmo que lê o raio de um círculo e calcula a sua área
+(escrevendo-a).
+
+#+begin_example
+area = pi * raio^2
+#+end_example
+
+* Área e percentual livre do terreno
+
+Escreva um programa que recebe as dimensões (em metros) de um terreno
+retangular e em seguida as dimensões de uma casa (também em metros e
+retangular) sobre este terreno. Em seguida calcule e apresente a área
+livre do terreno, em metros quadrados e apresente também o percentual
+do terreno que está livre.
+
+* Trocar valores
+
+Faça um programa que lê dois valores, armazene um na variável A e o
+outro na variável B, e troque os valores, de modo que o valor da
+variável A seja armazenado na variável B e vice-versa. Escreva os
+valores finais das variáveis.
+
+* Distância entre pontos
+
+Escreva um programa que recebe dois pontos no plano, representados por
+dois pares de coordenadas, P1 = (x1,y1) e P2 = (x2,y2) e calcula a
+distância entre eles, dada por:
+
+#+begin_example
+d(P1,P2) = sqrt((x1-x2)^2 + (y1-y2)^2)
+#+end_example
+
+* Consumo médio de automóvel
+
+Escreva um programa para calcular o consumo médio de um automóvel
+(medido em Km/l), dado que são conhecidos a distância total percorrida
+e o volume do combustível consumido para percorrê-la (medidos em
+litros).
+
+* Preço médio do quilômetro rodado
+
+Escreva um programa para calcular o preço médio do quilômetro rodado
+(em R$/km) para uma dada distância percorrida (em Km) e um certo
+volume de combustível consumido (em litros). Nota: uma vez que o preço
+do combustível também pode variar; ele também deve ser fornecido como
+dado para o algoritmo.
+
+* Apresentar saldo devedor
+
+Faça um programa que leia o número total de prestações de um
+consórcio, o total de prestações pagas e o valor atual da prestação. O
+algoritmo deve calcular e apresentar o saldo devedor atual (ou seja, o
+que ainda falta pagar).
+
+* Salário mensal do vendedor
+
+Uma revendedora de carros usados paga a seus funcionários vendedores,
+um salário fixo por mês, mais uma comissão também fixa para cada carro
+vendido e mais 5% do valor das vendas por ele efetuadas. Escrever um
+programa que lê o número do vendedor, o número de carros por ele
+vendidos, o valor total de suas vendas, o salário fixo e o valor que
+recebe por carro vendido e calcula o salário mensal do vendedor,
+escrevendo-o juntamente com o seu número de identificação.
+
+* Quantidade de casas
+
+O governo acaba de liberar 10.000.000,00 dólares para construção de
+casas populares, a qual contratou a Construtora Legal S.A. Cada
+casa custa o equivalente a 150 salários mínimos. Faça um programa que
+leia o valor do salário mínimo e calcule a quantidade de casas
+possíveis de se construir.
+
+* Quantidade de latas
+
+Faça um programa que calcula a quantidade de latas de tinta necessária
+e o custo para pintar uma quantidade de chapas de madeira
+retangulares. O algoritmo deve ler a quantidade de chapas que devem
+ser pintadas, as dimensões de cada chapa (largura e comprimento), o
+custo da lata de tinta, e a quantidade de metros quadrados que podem
+ser pintados com cada lata de tinta.
+
+* Segundos para terminar o dia
+
+Faça um programa que lê a quantidade de horas, minutos e segundos
+transcorridos até o momento desde o início do dia e calcula quantos
+segundos faltam para o dia terminar.
+
+* Dias de vida de uma pessoa
+
+Faça um programa em C que lê a idade de uma pessoa em anos, meses e
+dias e escreva a idade da pessoa em dias (quantos dias a pessoa
+viveu). Vamos assumir que todo ano tem 365 dias e todo mês tem 30
+dias.
+
+* Valor no cofrinho
+
+Escreva um programa para dar o total, em reais, de um cofrinho que
+contenha: n1 moedas de 1 real; n2 moedas de 50 centavos; n3 moedas de
+25 centavos; n4 moedas de 10 centavos; e n5 moedas de 5 centavos.
+
+* Calculadora rudimentar inflexível
+
+Escreva um programa para ler dois inteiros (variáveis A e B) e efetuar
+as operações de adição, subtração, multiplicação e divisão de A por B
+apresentando ao final os quatro resultados obtidos.
+
+* Somatório de dígitos de um número inteiro
+
+Faça um algoritmo que leia um valor inteiro positivo de 3 dígitos,
+armazene-o em uma variável inteira e determine a soma dos dígitos que
+formam o valor. Exemplo: o valor 453 tem soma dos dígitos igual a 12
+(4 + 5 + 3).
+
+* Dígitos intercalados
+
+Faça um algoritmo que leia dois números inteiros positivos com 3
+dígitos cada e gere um terceiro número inteiro com 6 dígitos, sendo
+que estes sejam os dígitos dos dois primeiros intercalados. Exemplo:
+Numero_1 = 135, Numero_2 = 246, Numero_3 = 123456.
