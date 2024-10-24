@@ -20,14 +20,7 @@ Lista de exercícios de programas com estrutura sequencial
 16. Faça um programa que calcula a quantidade de latas de tinta necessária e o custo para pintar uma quantidade de chapas de madeira retangulares. O algoritmo deve ler a quantidade de chapas que devem ser pintadas, as dimensões de cada chapa (largura e comprimento), o custo da lata de tinta, e a quantidade de metros quadrados que podem ser pintados com cada lata de tinta.  
 17. Faça um programa que lê a quantidade de horas, minutos e segundos transcorridos até o momento desde o início do dia e calcula quantos segundos faltam para o dia terminar.
 18. Faça um programa em c que lê a idade de uma pessoa em anos, meses e dias e escreva a idade da pessoa em dias (quantos dias a pessoa viveu). Vamos assumir que todo ano tem 365 dias e todo mês tem 30 dias.
-
-19. Escreva um programa para dar o total, em reais, de um cofrinho que contenha:
-• n1 moedas de 1 real;
-• n2 moedas de 50 centavos;
-• n3 moedas de 25 centavos;
-• n4 moedas de 10 centavos; e
-• n5 moedas de 5 centavos. 
-
+19. Escreva um programa para dar o total, em reais, de um cofrinho que contenha: n1 moedas de 1 real; n2 moedas de 50 centavos; n3 moedas de 25 centavos; n4 moedas de 10 centavos; e n5 moedas de 5 centavos. 
 20. Escreva um programa para ler dois inteiros (variáveis A e B) e efetuar as operações de adição, subtração, multiplicação e divisão de A por B apresentando ao final os quatro resultados obtidos.
 21. Faça um algoritmo que leia um valor inteiro positivo de 3 dígitos, armazene-o em uma variável inteira e determine a soma dos dígitos que formam o valor. Exemplo: o valor 453 tem soma dos dígitos igual a 12 (4 + 5 + 3).
 22. Faça um algoritmo que leia dois números inteiros positivos com 3 dígitos cada e gere um terceiro número inteiro com 6 dígitos, sendo que estes sejam os dígitos dos dois primeiros intercalados. Exemplo: Numero_1 = 135,Numero_2 = 246,Numero_3 = 123456.
