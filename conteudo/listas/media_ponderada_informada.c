@@ -51,8 +51,6 @@ int main() {
         return 1;
     }
 
-    
-
     //cálculo da média
     media  = (peso1 * nota1 + peso2 * nota2 + peso3 * nota3) / (peso1 + peso2 + peso3);
 
