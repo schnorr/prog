@@ -1,0 +1,7 @@
+#+TITLE: Lista 02
+#+startup: overview indent
+
+Lista de exercícios de programas com estrutura sequencial que são
+enriquecidos com estruturas condicionais (=if=, =if-else=, =if-else
+if-else=, etc).
+
