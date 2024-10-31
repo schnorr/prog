@@ -28,7 +28,7 @@ int main( )
 
   //quebra 2 linhas e insere caracteres ,00 depois do valor:
   printf("\n\nValor lido: R$%d,00\n",valor); // insere vírgula zero
-  printf("notas de 200: %d\n",n100);
+  printf("notas de 200: %d\n",n200);
   printf("notas de 100: %d\n",n100);
   printf("notas de 50: %d\n",n50);
   printf("notas de 20: %d\n",n20);
