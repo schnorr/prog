@@ -51,7 +51,7 @@ Faça um programa que lê três notas de um aluno e calcule e escreva a
 média final deste aluno. Considerar que a média é ponderada e que o
 peso das notas é: 2, 3 e 5, respectivamente.
 
-#+begin_src C :tangle media_ponderada.c
+#+begin_src C :tangle lista01_media_ponderada.c
 #include <stdio.h>
 
 int main() {
@@ -86,7 +86,7 @@ Faça um programa que lê três notas de um aluno e calcule e escreva
 a média final deste aluno. Considerar que a média é ponderada e que
 os pesos das 3 notas devem ser informados pelo usuário também.
 
-#+begin_src C :tangle media_ponderada_informada.c
+#+begin_src C :tangle lista01_media_ponderada_informada.c
 #include <stdio.h>
 
 int main() {
@@ -159,7 +159,7 @@ Faça um algoritmo que lê o peso e a altura de uma pessoa e determina
 imc = peso / altura^2
 #+end_example
 
-#+begin_src C :tangle indice_de_massa_corporal.c
+#+begin_src C :tangle lista01_indice_de_massa_corporal.c
 #include <stdio.h>
 #include <math.h>
 
@@ -207,7 +207,7 @@ em graus Fahrenheit. A conversão é dada pela fórmula:
 fahrenheit = celcius * 9/5 + 32
 #+end_example
 
-#+begin_src C :tangle graus_fahrenheint.c
+#+begin_src C :tangle lista01_graus_fahrenheint.c
 #include <stdio.h>
 
 int main() {
@@ -247,7 +247,7 @@ Faça um algoritmo que lê a base e a altura de um triângulo e calcula
 area = (base * altura) / 2
 #+end_example
 
-#+begin_src C :tangle area_triangulo.c
+#+begin_src C :tangle lista01_area_triangulo.c
 #include <stdio.h>
 
 int main() {
@@ -294,7 +294,7 @@ Faça um algoritmo que lê o raio de um círculo e calcula a sua área
 area = pi * raio^2
 #+end_example
 
-#+begin_src C :tangle area_circulo.c
+#+begin_src C :tangle lista01_area_circulo.c
 #include <stdio.h>
 
 #define PI 3.14 //Se quiser aumentar aq a precisão de pi
@@ -334,7 +334,7 @@ retangular) sobre este terreno. Em seguida calcule e apresente a área
 livre do terreno, em metros quadrados e apresente também o percentual
 do terreno que está livre.
 
-#+begin_src C :tangle terreno_livre.c
+#+begin_src C :tangle lista01_terreno_livre.c
 #include <stdio.h>
 
 int main() {
@@ -392,7 +392,7 @@ outro na variável B, e troque os valores, de modo que o valor da
 variável A seja armazenado na variável B e vice-versa. Escreva os
 valores finais das variáveis.
 
-#+begin_src C :tangle troca_valores.c
+#+begin_src C :tangle lista01_troca_valores.c
 #include <stdio.h>
 
 int main() {
@@ -443,7 +443,7 @@ distância entre eles, dada por:
 d(P1,P2) = sqrt((x1-x2)^2 + (y1-y2)^2)
 #+end_example
 
-#+begin_src C :tangle distancia_entre_pontos.c
+#+begin_src C :tangle lista01_distancia_entre_pontos.c
 #include <stdio.h>
 #include <math.h>
 
@@ -489,7 +489,7 @@ Escreva um programa para calcular o consumo médio de um automóvel
 e o volume do combustível consumido para percorrê-la (medidos em
 litros).
 
-#+begin_src C :tangle consumo_medio.c
+#+begin_src C :tangle lista01_consumo_medio.c
 #include <stdio.h>
 
 int main() {
@@ -535,7 +535,7 @@ volume de combustível consumido (em litros). Nota: uma vez que o preço
 do combustível também pode variar; ele também deve ser fornecido como
 dado para o algoritmo.
 
-#+begin_src C :tangle preco_medio_km.c
+#+begin_src C :tangle lista01_preco_medio_km.c
 #include <stdio.h>
 
 int main() {
@@ -587,7 +587,7 @@ consórcio, o total de prestações pagas e o valor atual da prestação. O
 algoritmo deve calcular e apresentar o saldo devedor atual (ou seja, o
 que ainda falta pagar).
 
-#+begin_src C :tangle saldo_devedor.c
+#+begin_src C :tangle lista01_saldo_devedor.c
 #include <stdio.h>
 
 int main() {
@@ -645,7 +645,7 @@ vendidos, o valor total de suas vendas, o salário fixo e o valor que
 recebe por carro vendido e calcula o salário mensal do vendedor,
 escrevendo-o juntamente com o seu número de identificação.
 
-#+begin_src C :tangle salario_mensal.c
+#+begin_src C :tangle lista01_salario_mensal.c
 #include <stdio.h>
 
 int main() {
@@ -713,7 +713,7 @@ casa custa o equivalente a 150 salários mínimos. Faça um programa que
 leia o valor do salário mínimo e calcule a quantidade de casas
 possíveis de se construir.
 
-#+begin_src C :tangle qtd_casas.c
+#+begin_src C :tangle lista01_qtd_casas.c
 #include <stdio.h>
 #include <math.h>
 
@@ -756,7 +756,7 @@ ser pintadas, as dimensões de cada chapa (largura e comprimento), o
 custo da lata de tinta, e a quantidade de metros quadrados que podem
 ser pintados com cada lata de tinta.
 
-#+begin_src C :tangle qtd_latas.c
+#+begin_src C :tangle lista01_qtd_latas.c
 #include <stdio.h>
 #include <math.h>
 
@@ -823,7 +823,7 @@ Faça um programa que lê a quantidade de horas, minutos e segundos
 transcorridos até o momento desde o início do dia e calcula quantos
 segundos faltam para o dia terminar.
 
-#+begin_src C :tangle terminar_dia.c
+#+begin_src C :tangle lista01_terminar_dia.c
 #include <stdio.h>
 
 int main() {
@@ -877,7 +877,7 @@ dias e escreva a idade da pessoa em dias (quantos dias a pessoa
 viveu). Vamos assumir que todo ano tem 365 dias e todo mês tem 30
 dias.
 
-#+begin_src C :tangle dias_de_vida.c
+#+begin_src C :tangle lista01_dias_de_vida.c
 #include <stdio.h>
 
 int main() {
@@ -928,7 +928,7 @@ Escreva um programa para dar o total, em reais, de um cofrinho que
 contenha: n1 moedas de 1 real; n2 moedas de 50 centavos; n3 moedas de
 25 centavos; n4 moedas de 10 centavos; e n5 moedas de 5 centavos.
 
-#+begin_src C :tangle valor_cofrinho.c
+#+begin_src C :tangle lista01_valor_cofrinho.c
 #include <stdio.h>
 
 int main() {
@@ -993,7 +993,7 @@ Escreva um programa para ler dois inteiros (variáveis A e B) e efetuar
 as operações de adição, subtração, multiplicação e divisão de A por B
 apresentando ao final os quatro resultados obtidos.
 
-#+begin_src C :tangle calculadora_inflexivel.c
+#+begin_src C :tangle lista01_calculadora_inflexivel.c
 #include <stdio.h>
 
 int main() {
@@ -1050,7 +1050,7 @@ armazene-o em uma variável inteira e determine a soma dos dígitos que
 formam o valor. Exemplo: o valor 453 tem soma dos dígitos igual a 12
 (4 + 5 + 3).
 
-#+begin_src C :tangle somatorio_inteiro.c
+#+begin_src C :tangle lista01_somatorio_inteiro.c
 #include <stdio.h>
 
 int main() {
@@ -1095,7 +1095,7 @@ dígitos cada e gere um terceiro número inteiro com 6 dígitos, sendo
 que estes sejam os dígitos dos dois primeiros intercalados. Exemplo:
 Numero_1 = 135, Numero_2 = 246, Numero_3 = 123456.
 
-#+begin_src C :tangle digitos_intercalados.c
+#+begin_src C :tangle lista01_digitos_intercalados.c
 #include <stdio.h>
 
 int main() {
