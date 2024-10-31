@@ -5,3 +5,194 @@ Lista de exercícios de programas com estrutura sequencial que são
 enriquecidos com estruturas condicionais (=if=, =if-else=, =if-else
 if-else=, etc).
 
+* Detecta múltiplos
+
+Faça um programa que lê dois valores inteiros n1 e n2 e
+verifica se n1 é múltiplo de n2. Caso seja múltiplo, o programa
+deve exibir uma mensagem informando isso.
+
+* Calcula diferença
+
+Escrever um programa para ler dois valores numéricos e apresentar a
+diferença do maior pelo menor.
+
+* Peso ideal
+
+Tendo como dados de entrada a altura e o sexo (M ou F) de uma pessoa,
+construa um programa para calcular seu peso ideal, utilizando as
+seguintes fórmulas:
+
+• Para Homens: ( 72.7 * altura ) - 58;
+• Para Mulheres: ( 62.1 * altura) - 44.7.
+
+* Classifica triângulo
+
+Faça um programa em C que lê 3 lados de um triângulo e escreve na tela
+se ele é um triângulo isósceles (2 lados com medidas iguais e 1
+diferente), escaleno (3 lados com medidas diferentes) ou equilátero (3
+lados com medidas iguais).
+
+* Altura abaixo da média
+
+Faça um programa em C que lê a altura de 3 pessoas, calcula a média da
+altura dessas 3 pessoas e escreva quantas pessoas tem estatura abaixo
+da média.
+
+* Saldo bancário
+
+Faça um programa em C que lê o código de cliente (um número) e o saldo
+bancário de 3 clientes de um banco. O programa deve calcular a média
+do saldo bancário desses clientes, e deve informar o código dos
+clientes cujo saldo seja superior à média.
+
+* Cotação do dólar
+
+Faça um programa em C que lê o a cotação do dólar de 3 dias. Se não
+houve variação na cotação, o programa deve informar que não houve
+variação.
+
+* Preço de produtos
+
+Faça um programa em C que lê o preço unitário de 3 produtos comprados
+por um cliente hipotético e um determinado valor de referência. O
+programa deve:
+- Calcular o preço médio dos produtos.
+- Se o valor de referência for menor que a média, o programa deve
+  determinar quais dos valores são inferiores ao valor de referência.
+- Se a média for inferior ao valor de referência, o programa deve
+  determinar quais dos valores são inferiores à média.
+
+* Resistência
+
+Faça um programa que auxilie no cálculo da resistência (em ohm),
+diferença de potencial (em volt) e corrente elétrica (em ampére). O
+programa deve exibir uma mensagem perguntando ao usuário qual das
+grandezas ele quer calcular, relacionando a cada opção um valor
+numérico: 1-Resistência, 2-Diferença de potencial e 3-Corrente
+elétrica.
+
+Dependendo da opção selecionada, o programa deve ler o valor das duas
+grandezas necessárias para calcular o que se deseja e deve exibir o
+resultado. Por exemplo, se a opção for 1, indicando que o programa
+deve calcular a resistência, o programa deve ler a diferença de
+potencial e a corrente elétrica e exibir o resultado.
+
+* Detecção de triângulo
+
+Escrever um programa que lê 3 valores a, b, c e verifica se eles
+formam ou não um triângulo. Caso os valores formam um triângulo,
+calcular e escrever a área deste triângulo. Para que 3 lados formem um
+triângulo, eles devem satisfazer às seguintes condições:
+
+- | b - c | < a < b + c 
+- | a - c | < b < a + c 
+- | a - b | < c < a + b
+
+Ou seja, cada lado deve ser maior que o valor absoluto da diferença
+entre os outros dois e deve ser menor que a soma dos outros dois. Se
+algum dos lados não satisfaz este requisito, então os 3 lados não
+podem formar um triângulo.
+
+* Calcula módulo
+
+Escrever um programa para efetuar a leitura de um valor inteiro
+positivo ou negativo e apresentar o número lido como sendo um valor
+positivo, ou seja, o programa deverá apresentar o módulo de um número
+fornecido. Não utilize funções da biblioteca math.h.
+
+* Descobre pares
+
+Escrever um programa para efetuar a leitura de 3 números e apresentar
+os números que são pares.
+
+* Loja de descontos
+
+Uma loja fornece 5% de desconto para funcionários e 10% de desconto
+para clientes especiais. Faça um programa que calcule o valor total a
+ser pago por uma pessoa. O programa deverá ler o valor total da compra
+efetuada e um código numérico que identifique se o comprador é um
+cliente comum (1) ou um funcionário (código 2) ou cliente especial
+(código 3).
+
+* Distância cartesiana
+
+Escrever um programa que lê um conjunto de 6 valores: X1, X2, Y1, Y2,
+Z1, Z2, que representam as coordenadas cartesianas de 3 pontos: P1(X1,
+X2), P2(Y1, Y2), P3(Z1, Z2). Calcule a distância entre P1 e P2, P1 e
+P3, P2 e P3.
+
+#+begin_example
+d(P1,P2) = sqrt((x1-x2)^2 + (y1-y2)^2)
+#+end_example
+
+Se os segmentos de reta formam um triângulo, calcular e escrever a
+área deste triângulo.
+
+* Categorização de nadador
+
+Elabore um programa que, dada a idade de um nadador, classifique-o em
+uma das seguintes categorias:
+
+- Infantil A: 5 a 7 anos;
+- Infantil B: 8 a 10 anos;
+- Juvenil A: 11 a 13 anos;
+- Juvenil B: 14 a 17 anos;
+- Sênior: maiores de 18 anos.
+
+* Tipo de média
+
+Um usuário deseja um algoritmo onde possa escolher que tipo de média
+deseja calcular a partir de três notas. Faça um programa que leia as
+notas, a opção escolhida pelo usuário e calcule a média.
+
+1. Aritmética;
+2. Ponderada (Pesos: 3, 3, 4);
+3. Harmônica (fórmula a seguir)
+   #+begin_example
+   3 / (1/a) + (1/a) + (1/a)
+   #+end_example
+
+* Calculo de prêmio
+
+Faça um programa que lê o número de um vendedor, seu salário fixo e o
+total de vendas por ele efetuadas no mês. Acrescentar ao salário um
+prêmio, conforme a seguinte tabela:
+
+| Total de vendas no mês (V) | Prêmio |
+|----------------------------+--------|
+| 100 < V <= 500             |     50 |
+| 500 < V <= 750             |     70 |
+| 750 < V                    | 100    |
+
+* Pares e ímpares
+
+Faça um programa que lê 3 números e que informa quantos desses números
+são ou pares e positivos ou ímpares e negativos. Por exemplo, entre os
+números 1, 2, -3, 4, 5, -6, -7, e 8, temos 5 números que satisfazem os
+critérios.
+
+* Conceder aumento
+
+Uma empresa possui 3 funcionários. Esta empresa resolveu conceder
+aumento para os funcionários que possuem mais de 2 dependentes e que
+ganham menos que um determinado valor de referência. Faça um programa
+para auxiliar esta empresa a processar essas informações. O programa
+deve inicialmente ler o valor de referência. A seguir, o programa deve
+ler as seguintes informações de cada um dos 3 funcionários: código
+(numérico), número de dependentes e salário atual. O programa deve
+informar os códigos dos funcionários que ganharão aumento. Além disso,
+ao fim do programa, ele deve informar a quantidade de funcionários que
+ganharão aumento.
+
+* Processa entrevista
+
+Faça um programa para auxiliar o IBGE a processar dados de uma
+entrevista. O programa deve inicialmente ler a idade de uma pessoa. Se
+esta pessoa tiver idade inferior a 18 anos, o programa deve finalizar,
+informando que a pessoa é menor de idade. Caso a idade seja superior a
+16 anos, o programa deve perguntar se esta pessoa trabalha. A resposta
+deve ser lida como um caractere (S para sim e N para Não). Caso a
+pessoa trabalhe, o programa deve ler o salário mensal da pessoa e o
+número de horas que ela trabalha por mês e deve informar quanto esta
+pessoa ganha por hora trabalhada. Caso a pessoa não trabalha o
+programa deve finalizar, informando que a pessoa não trabalha.
