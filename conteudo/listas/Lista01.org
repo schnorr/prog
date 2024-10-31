@@ -51,11 +51,104 @@ Faça um programa que lê três notas de um aluno e calcule e escreva a
 média final deste aluno. Considerar que a média é ponderada e que o
 peso das notas é: 2, 3 e 5, respectivamente.
 
+#+begin_src C :tangle media_ponderada.c
+#include <stdio.h>
+
+int main() {
+
+    //declaração de variáveis 
+    //entrada
+    float nota1, nota2, nota3;
+    //saida
+    float media = 0;
+
+    //entrada de dados
+    printf("Insira a primeira nota desse aluno: ");
+    scanf("%f", &nota1);
+    printf("Insira a segunda nota desse aluno: ");
+    scanf("%f", &nota2);
+    printf("Insira a terceira nota desse aluno: ");
+    scanf("%f", &nota3);
+
+    //cálculo da média
+    media  = (2 * nota1 + 3 * nota2 + 5 * nota3) / 10;
+
+    //saída de dados
+    printf("A media ponderada desse aluno eh: %.1f\n", media);
+
+    return 0;
+}
+#+end_src
+
 * Média ponderada informada
 
 Faça um programa que lê três notas de um aluno e calcule e escreva
 a média final deste aluno. Considerar que a média é ponderada e que
 os pesos das 3 notas devem ser informados pelo usuário também.
+
+#+begin_src C :tangle media_ponderada_informada.c
+#include <stdio.h>
+
+int main() {
+
+    //declaração de variáveis 
+    //Variáveis de entrada
+    float nota1, nota2, nota3;
+    int peso1, peso2, peso3;
+    //Variável de saida
+    float media = 0;
+    //Variável auxiliar
+    int lidos;
+
+    //entrada de dados
+    printf("Insira a primeira nota desse aluno: ");
+    lidos = scanf("%f", &nota1);
+    if (lidos != 1) {
+        printf("Houve erro ao ler a primeira nota do aluno\n");
+        return 1;
+    }
+    printf("insira agora o peso dessa primeira nota: ");
+    lidos = scanf("%d", &peso1);
+    if (lidos != 1) {
+        printf("Houve erro ao ler o peso da primeira nota\n");
+        return 1;
+    }
+    
+    printf("Insira a segunda nota desse aluno: ");
+    lidos = scanf("%f", &nota2); 
+    if (lidos != 1) {
+        printf("Houve erro ao ler a segunda nota do aluno\n");
+        return 1;
+    }
+    printf("insira agora o peso dessa segunda nota: ");
+    lidos = scanf("%d", &peso2);
+    if (lidos != 1) {
+        printf("Houve erro ao ler o peso da segunda nota\n");
+        return 1;
+    }
+
+    printf("Insira a terceira nota desse aluno: ");
+    lidos = scanf("%f", &nota3);
+    if (lidos != 1) {
+        printf("Houve erro ao ler a terceira nota do aluno\n");
+        return 1;
+    }
+    printf("insira agora o peso dessa terceira nota: ");
+    lidos = scanf("%d", &peso3);
+    if (lidos != 1) {
+        printf("Houve erro ao ler o peso da terceira nota\n");
+        return 1;
+    }
+
+    //cálculo da média
+    media  = (peso1 * nota1 + peso2 * nota2 + peso3 * nota3) / (peso1 + peso2 + peso3);
+
+    //saída de dados
+    printf("A media ponderada desse aluno eh: %.1f\n", media);
+
+    return 0;
+}
+#+end_src
 
 * Índice de massa corporal
 
@@ -66,6 +159,45 @@ Faça um algoritmo que lê o peso e a altura de uma pessoa e determina
 imc = peso / altura^2
 #+end_example
 
+#+begin_src C :tangle indice_de_massa_corporal.c
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+
+    //delcaração de variaveis
+    //Variáveis de entrada
+    float peso, altura;
+    //Variável de saída
+    float imc;
+    //Variável auxiliar
+    int lidos;
+
+    //entrada de dados
+    printf("Insira o peso do individuo (em kg): ");
+    lidos = scanf("%f", &peso);
+    if (lidos != 1) {
+        printf("Houve erro ao ler o peso\n");
+        return 1;
+    }
+
+    printf("Insira a altura do individuo (em m): ");
+    lidos = scanf("%f", &altura);
+    if (lidos != 1) {
+        printf("Houve erro ao ler a altura\n");
+        return 1;
+    }
+
+    //calculo do imc
+    imc = peso / pow(altura, 2);
+
+    //daida de dados
+    printf("O indice de massa corporal (IMC) desse individuo eh %.2fkg/m²\n", imc);
+
+    return 0;
+}
+#+end_src
+
 * Graus celcius para fahrenheit
 
 Faça um algoritmo que lê uma temperatura em graus Celcius e a converte
@@ -74,6 +206,37 @@ em graus Fahrenheit. A conversão é dada pela fórmula:
 #+begin_example
 fahrenheit = celcius * 9/5 + 32
 #+end_example
+
+#+begin_src C :tangle graus_fahrenheint.c
+#include <stdio.h>
+
+int main() {
+
+    //declaração de variaveis
+    //Variável de entrada
+    float t_graus;
+    //Variável de saída
+    float t_fahrenheit;
+    //VAriável auxiliar
+    int lidos;
+
+    //entrada de dados
+    printf("Insira a temperatura em graus celsius: ");
+    lidos = scanf("%f", &t_graus);
+    if (lidos != 1) {
+        printf("Houve erro ao ler a temperatura em graus Celsius\n");
+        return 1;
+    }
+
+    //calculo da temperatura
+    t_fahrenheit = t_graus * 1.8 + 32;
+
+    //saida de dados
+    printf("%.2f em graus Celsius corresponde a %.2f em graus fahrenheit\n", t_graus, t_fahrenheit);
+
+    return 0;
+}
+#+end_src
 
 * Área do triângulo
 
@@ -84,6 +247,44 @@ Faça um algoritmo que lê a base e a altura de um triângulo e calcula
 area = (base * altura) / 2
 #+end_example
 
+#+begin_src C :tangle area_triangulo.c
+#include <stdio.h>
+
+int main() {
+
+    //declaração de variaveis
+    //Variáveis de entrada
+    float altura, base;
+    //Variável de saída
+    float area;
+    //Variável auxiliar 
+    int lidos;
+
+    //entrada de dados
+    printf("Insira a altura do triangulo: ");
+    lidos = scanf("%f", &altura);
+    if (lidos != 1) {
+        printf("Houve um erro ao ler a altura!\n");
+        return 1;
+    }
+
+    printf("Insira a base do triangulo: ");
+    lidos = scanf("%f", &base);
+    if (lidos != 1) {
+        printf("Houve um erro ao ler a base!\n");
+        return 1;
+    }
+
+    //cálculo da area
+    area = base * altura / 2;
+
+    //saída de dados
+    printf("A area do triangulo de base %.1f e altura %.1f eh %.2f\n", base, altura, area);
+
+    return 0;
+}
+#+end_src
+
 * Área do círculo
 
 Faça um algoritmo que lê o raio de um círculo e calcula a sua área
@@ -93,6 +294,38 @@ Faça um algoritmo que lê o raio de um círculo e calcula a sua área
 area = pi * raio^2
 #+end_example
 
+#+begin_src C :tangle area_circulo.c
+#include <stdio.h>
+
+#define PI 3.14 //Se quiser aumentar aq a precisão de pi
+
+int main() {
+    
+    //Variáveis de entrada
+    float raio;
+    //Variávelde saída
+    float area;
+    //Variável auxiliar
+    int lidos;
+
+    //entrada de dados
+    printf("Insira o valor do raiod o circulo: ");
+    lidos = scanf("%f", &raio);
+    if (lidos != 1) {
+        printf("Houve um erro ao ler o raio!\n");
+        return 1;
+    }
+
+    //cálculo da area
+    area = raio * raio * PI;
+
+    //Saída de dados
+    printf("A area do circulo de raio %.2f eh %.2f\n", raio, area);
+  
+    return 0;
+}
+#+end_src
+
 * Área e percentual livre do terreno
 
 Escreva um programa que recebe as dimensões (em metros) de um terreno
@@ -101,12 +334,104 @@ retangular) sobre este terreno. Em seguida calcule e apresente a área
 livre do terreno, em metros quadrados e apresente também o percentual
 do terreno que está livre.
 
+#+begin_src C :tangle terreno_livre.c
+#include <stdio.h>
+
+int main() {
+    
+    //declaração de variaveis  
+    //Variáveis de entrada
+    float c_casa, c_terreno, l_casa, l_terreno;
+    //Variáveis de saída
+    float livre, livre_percent;
+    //Variável auxiliar
+    int lidos;
+    
+    //entrada de dados
+    printf("Insira o comprimento total do terreno (em metros): ");
+    lidos = scanf("%f", &c_terreno);
+    if (lidos != 1) {
+        printf("Houve erro ao ler o comprimento do terreno\n");
+        return 1;
+    }
+    printf("Insira a largura total do terreno (em metros): ");
+    lidos = scanf("%f", &l_terreno);
+    if (lidos != 1) {
+        printf("Houve erro ao ler a largura do terreno\n");
+        return 1;
+    }
+
+    printf("Insira o comprimento total da casa (em metros): ");
+    lidos = scanf("%f", &c_casa);
+    if (lidos != 1) {
+        printf("Houve erro ao ler o comprimento da casa\n");
+        return 1;
+    }
+    printf("Insira a largura total da casa (em metros): ");
+    lidos = scanf("%f", &l_casa);
+    if (lidos != 1) {
+        printf("Houve erro ao ler a largura da casa\n");
+        return 1;
+    }
+
+    //Calculos do terreno livre
+    livre = (c_terreno * l_terreno) - (c_casa * l_casa);
+    livre_percent = (livre / (c_terreno * l_terreno)) * 100;
+    
+    //Saida de dados
+    printf("O terreno tem %.1fm livres, o que nos da %.2f%%\n", livre, livre_percent);
+  
+    return 0;
+}
+#+end_src
+
 * Trocar valores
 
 Faça um programa que lê dois valores, armazene um na variável A e o
 outro na variável B, e troque os valores, de modo que o valor da
 variável A seja armazenado na variável B e vice-versa. Escreva os
 valores finais das variáveis.
+
+#+begin_src C :tangle troca_valores.c
+#include <stdio.h>
+
+int main() {
+    
+    //declaração de variaveis
+    //Variáveis de entrada e saída
+    int a, b;
+    //Variáveis auxiliares 
+    int aux, lidos;
+
+    //entrada de dados
+    printf("Insira o valor de A: ");
+    lidos = scanf("%d", &a);
+    if (lidos != 1) {
+        printf("Houve erro ao ler o valor de A\n");
+        return 1;
+    }
+
+    printf("Insira o valor de b: ");
+    lidos = scanf("%d", &b);
+    if (lidos != 1) {
+        printf("Houve erro ao ler o valor de B\n");
+        return 1;
+    }
+
+
+    //Troca de valores
+    printf("O valor inicial era:\nA = %d\nB = %d\n", a, b);
+    aux = a;
+    a = b;
+    b = aux;
+
+    //Saida de dados
+    printf("O valor finel eh:\nA = %d\nB = %d\n", a, b);
+
+  
+    return 0;
+}
+#+end_src
 
 * Distância entre pontos
 
@@ -118,12 +443,89 @@ distância entre eles, dada por:
 d(P1,P2) = sqrt((x1-x2)^2 + (y1-y2)^2)
 #+end_example
 
+#+begin_src C :tangle distancia_entre_pontos.c
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    
+    //declaração de variaveis
+    //Variáveis de entrada
+    float x1, x2, y1, y2; 
+    //Variável de saída
+    float distancia;
+    //Variável auxiliar
+    int lidos;
+
+    //entrada de dados
+    printf("Insira as coordenadas x e y do P1: ");
+    lidos = scanf("%f %f", &x1, &y1);
+    if (lidos != 2) {
+        printf("Houve erro ao ler P1\n");
+        return 1;
+    }
+    
+    printf("Insira as coordenadas x e y do P2: ");
+    lidos = scanf("%f %f", &x2, &y2);
+    if (lidos != 2) {
+        printf("Houve erro ao ler P2\n");
+        return 1;
+    }
+
+    //calcula a distancia
+    distancia = sqrt(pow(x1 - x2, 2) + pow(x1 - x2, 2));
+
+    //Saida de dados
+    printf("A distancia de P1 de P2 eh %.1f\n", distancia);
+  
+    return 0;
+}
+#+end_src
+
 * Consumo médio de automóvel
 
 Escreva um programa para calcular o consumo médio de um automóvel
 (medido em Km/l), dado que são conhecidos a distância total percorrida
 e o volume do combustível consumido para percorrê-la (medidos em
 litros).
+
+#+begin_src C :tangle consumo_medio.c
+#include <stdio.h>
+
+int main() {
+    
+    //declaração de variaveis  
+    //Variáveis de entrada
+    float distancia, gasosa;
+    //Variável de saída
+    float cons_medio;
+    //Variável auxiliar
+    int lidos;
+    
+    //entrada de dados
+    printf("Insira a distancia percorrida pelo veiculo: ");
+    lidos = scanf("%f", &distancia);
+    if (lidos != 1) {
+        printf("Houve erro ao ler a distância\n");
+        return 1;
+    }
+
+    printf("Insira a quantia de gasosa consumida nesse trajeto: ");
+    lidos = scanf("%f", &gasosa);
+    if (lidos != 1) {
+        printf("Houve erro ao ler a gasosa consumida\n");
+        return 1;
+    }
+    
+    //calcula o consumo medio
+    cons_medio = distancia / gasosa;
+
+    //Saida de dados
+    printf("O consumo medio desse veiculo foi %.1fkm/L\n", cons_medio);
+  
+    return 0;
+}
+#+end_src
 
 * Preço médio do quilômetro rodado
 
@@ -133,12 +535,105 @@ volume de combustível consumido (em litros). Nota: uma vez que o preço
 do combustível também pode variar; ele também deve ser fornecido como
 dado para o algoritmo.
 
+#+begin_src C :tangle preco_medio_km.c
+#include <stdio.h>
+
+int main() {
+    
+    //declaração de variaveis
+    //Variáveis de entrada  
+    float distancia, gasosa, preco;
+    //Variável de saída
+    float preco_medio;
+    //Variável auxiliar
+    int lidos;
+    
+    //entrada de dados
+    printf("Insira a distancia percorrida pelo veiculo: ");
+    lidos = scanf("%f", &distancia);
+    if (lidos != 1) {
+        printf("Houve erro ao ler a distancia\n");
+        return 1;
+    }
+
+    printf("Insira a quantia de gasosa consumida nesse trajeto: ");
+    lidos = scanf("%f", &gasosa);
+    if (lidos != 1) {
+        printf("Houve erro ao ler a gaspsa\n");
+        return 1;
+    }
+
+    printf("Insira o valor do litro desse combustivel: ");
+    lidos = scanf("%f", &preco);
+    if (lidos != 1) {
+        printf("Houve erro ao ler o preco\n");
+        return 1;
+    }
+    
+    //calcula o consumo medio
+    preco_medio = gasosa * preco / distancia;
+
+    //Saida de dados
+    printf("O preco medio desse veiculo foi %.1fR$/km\n", preco_medio);
+  
+    return 0;
+}
+#+end_src
+
 * Apresentar saldo devedor
 
 Faça um programa que leia o número total de prestações de um
 consórcio, o total de prestações pagas e o valor atual da prestação. O
 algoritmo deve calcular e apresentar o saldo devedor atual (ou seja, o
 que ainda falta pagar).
+
+#+begin_src C :tangle saldo_devedor.c
+#include <stdio.h>
+
+int main() {
+    
+    //declaração de variaveis
+    //Variáveis de entrada
+    int prestacoes, p_pagas;
+    float valor_prest;
+    //Variável de saída 
+    float devedor;
+    //Variáveis auxiliares
+    float total;
+    int lidos;
+    
+    //entrada de dados
+    printf("Insira a quantidade de prestações que ha no consorcio: ");
+    lidos = scanf("%d", &prestacoes);
+    if (lidos != 1) {
+        printf("Houve erro ao ler a qtd de prestacoes\n");
+        return 1;
+    }
+
+    printf("Quantas dessas prestações ja foram pagas? ");
+    lidos = scanf("%d", &p_pagas);
+    if (lidos != 1) {
+        printf("Houve erro ao ler a qtd de prestacoes pagas\n");
+        return 1;
+    }
+
+    printf("Insira o valor de cada prestacao: ");
+    lidos = scanf("%f", &valor_prest);
+    if (lidos != 1) {
+        printf("Houve erro ao ler o valor da prestacao\n");
+        return 1;
+    }
+
+    //calcular o total devedor e o que ja foi pago
+    total = prestacoes * valor_prest;
+    devedor = total - (p_pagas * valor_prest);
+
+    //Saida de dados
+    printf("O valor que ainda deve ser pago eh de R$%.2f\n", devedor);
+  
+    return 0;
+}
+#+end_src
 
 * Salário mensal do vendedor
 
@@ -150,6 +645,66 @@ vendidos, o valor total de suas vendas, o salário fixo e o valor que
 recebe por carro vendido e calcula o salário mensal do vendedor,
 escrevendo-o juntamente com o seu número de identificação.
 
+#+begin_src C :tangle salario_mensal.c
+#include <stdio.h>
+
+int main() {
+    
+    //declaração de variaveis
+    //Variáveis de entrada
+    int id, carros_vendidos;
+    float total_vendas, salario_fixo, valor_carro;
+    //Variável de saída
+    float salario_final;
+    //Variável auxiliar
+    int lidos;
+
+    //entrada de dados
+    printf("Insira o numero do vendedor: ");
+    lidos = scanf("%d", &id);
+    if (lidos != 1) {
+        printf("Houve erro ao ler o numero do vendedor\n");
+        return 1;
+    }
+
+    printf("Insira o numero de carros vendidos por esse vendedor: ");
+    lidos = scanf("%d", &carros_vendidos);
+    if (lidos != 1) {
+        printf("Houve erro ao ler o numero de carros vendidos\n");
+        return 1;
+    }
+
+    printf("Insira o valor total das vendas desse vendedor: ");
+    lidos = scanf("%f", &total_vendas);
+    if (lidos != 1) {
+        printf("Houve erro ao ler o total de vendas\n");
+        return 1;
+    }
+
+    printf("Insira o salario fixo do vendedor: ");
+    lidos = scanf("%f", &salario_fixo);
+    if (lidos != 1) {
+        printf("Houve erro ao ler o salario fixo\n");
+        return 1;
+    }
+
+    printf("Insira o valor que ele recebe por carro vendido: ");
+    lidos = scanf("%f", &valor_carro);
+    if (lidos != 1) {
+        printf("Houve erro ao ler o valor recebido por carro\n");
+        return 1;
+    }
+
+    //calcula o salario final dele
+    salario_final = salario_fixo + (carros_vendidos * valor_carro) + 0.05 * total_vendas;
+
+    //Saida de dados
+    printf("O salario do vendedor de numero %d recebeu R$%.2f esse mes\n", id, salario_final);
+  
+    return 0;
+}
+#+end_src
+
 * Quantidade de casas
 
 O governo acaba de liberar 10.000.000,00 dólares para construção de
@@ -157,6 +712,40 @@ casas populares, a qual contratou a Construtora Legal S.A. Cada
 casa custa o equivalente a 150 salários mínimos. Faça um programa que
 leia o valor do salário mínimo e calcule a quantidade de casas
 possíveis de se construir.
+
+#+begin_src C :tangle qtd_casas.c
+#include <stdio.h>
+#include <math.h>
+
+#define TOTAL 10000000
+
+int main() {
+    
+    //declaração de variaveis
+    //Variável de entrada
+    float salario_min;
+    //Variável de saída
+    int casas;
+    //Variável auxiliar
+    int lidos;
+
+    //entrada de dados
+    printf("Insira o valor do salario minimo a ser considerado: ");
+    lidos = scanf("%f", &salario_min);
+    if (lidos != 1) {
+        printf("Houve erro ao ler o salario minimo\n");
+        return 1;
+    }
+
+    //Calcula o numero de casas
+    casas = floor(TOTAL / (150 * salario_min));
+
+    //Saida de dados
+    printf("Serao construidas %d casas\n", casas);
+  
+    return 0;
+}
+#+end_src
 
 * Quantidade de latas
 
@@ -167,11 +756,119 @@ ser pintadas, as dimensões de cada chapa (largura e comprimento), o
 custo da lata de tinta, e a quantidade de metros quadrados que podem
 ser pintados com cada lata de tinta.
 
+#+begin_src C :tangle qtd_latas.c
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    
+    //declaração de variaveis
+    //Variáveis de entrada
+    float largura, comprimento, pinta_tinta, custo_lata;
+    int chapas;
+    //Variável de saída
+    int latas;
+    //VAriável auxiliar
+    int lidos;
+    
+    //entrada de dados
+    printf("Insira a quantidade de chapas de madeira que deseja pintar: ");
+    lidos = scanf("%d", &chapas);
+    if (lidos != 1) {
+        printf("Houve erro ao ler a qtd de chapas\n");
+        return 1;
+    }
+
+    printf("Insira a largura dessas chapas: ");
+    lidos = scanf("%f", &largura);
+    if (lidos != 1) {
+        printf("Houve erro ao ler a largura\n");
+        return 1;
+    }
+
+    printf("Insira o comprimento dessas chapas: ");
+    lidos = scanf("%f", &comprimento);
+    if (lidos != 1) {
+        printf("Houve erro ao ler o comprimento\n");
+        return 1;
+    }
+
+    printf("Insira o preço de cada lata de tinta: ");
+    lidos = scanf("%f", &custo_lata);
+    if (lidos != 1) {
+        printf("Houve erro ao ler o cursto de cada lata\n");
+        return 1;
+    }
+
+    printf("Insira a quantidade de m² que podem ser pintados com cada lata: ");
+    lidos = scanf("%f", &pinta_tinta);
+    if (lidos != 1) {
+        printf("Houve erro ao ler o quanto pode ser pintado com uma lata\n");
+        return 1;
+    }
+    
+    //Calcular a qtd de latas
+    latas = ceil(chapas * (largura * comprimento) / pinta_tinta);
+
+    //Saida de dados
+    printf("Serao necessarias %d latas de tinta e o custo seria de %.2f\n", latas, latas * custo_lata);
+  
+    return 0;
+}
+#+end_src
+
 * Segundos para terminar o dia
 
 Faça um programa que lê a quantidade de horas, minutos e segundos
 transcorridos até o momento desde o início do dia e calcula quantos
 segundos faltam para o dia terminar.
+
+#+begin_src C :tangle terminar_dia.c
+#include <stdio.h>
+
+int main() {
+    
+    //declaração de variaveis
+    //Variáveis de entrada
+    int segundos, minutos, horas;
+    //Variável de saída
+    int segundos_restantes;
+    //Variável auxiliar
+    int lidos;
+
+    //entrada de dados
+    printf("Insira a quantidade de segundos que se passaram desde o inicio do dia: ");
+    lidos = scanf("%d", &segundos);
+    if (lidos != 1) {
+        printf("Houve erro ao ler os segundos\n");
+        return 1;
+    }
+    
+    printf("Insira a quantidade de minutos que se passaram desde o inicio do dia: ");
+    lidos = scanf("%d", &minutos);
+    if (lidos != 1) {
+        printf("Houve erro ao ler os minutos\n");
+        return 1;
+    }
+    
+    printf("Insira a quantidade de horas que se passaram desde o inicio do dia: ");
+    lidos = scanf("%d", &horas);
+    if (lidos != 1) {
+        printf("Houve erro ao ler as horas\n");
+        return 1;
+    }
+
+    //Calcular os segundos que faltam pra terminar o dia
+    // 1 dia tem 86400 segundos 
+    segundos_restantes = 86400 - (horas * 3600 + minutos * 60 + segundos);
+
+    //Saida de dados
+    printf("Faltam %d segundos para terminar o dia\n", segundos_restantes);
+
+  
+    return 0;
+}
+#+end_src
 
 * Dias de vida de uma pessoa
 
@@ -180,17 +877,171 @@ dias e escreva a idade da pessoa em dias (quantos dias a pessoa
 viveu). Vamos assumir que todo ano tem 365 dias e todo mês tem 30
 dias.
 
+#+begin_src C :tangle dias_de_vida.c
+#include <stdio.h>
+
+int main() {
+    
+    //declaração de variaveis
+    //Variáveis de entrada
+    int anos, meses, dias;
+    //Variável de saída
+    int total_dias;
+    //Variável auxiliar
+    int lidos;
+
+    //entrada de dados
+    printf("Insira quantos anos essa pessao viveu: ");
+    lidos = scanf("%d", &anos);
+    if (lidos != 1) {
+        printf("Houve erro ao ler os anos\n");
+        return 1;
+    }
+    
+    printf("Insira quantos meses essa pessao viveu: ");
+    lidos = scanf("%d", &meses);
+    if (lidos != 1) {
+        printf("Houve erro ao ler os meses\n");
+        return 1;
+    }
+
+    printf("Insira quantos dias essa pessao viveu: ");
+    lidos = scanf("%d", &dias);
+    if (lidos != 1) {
+        printf("Houve erro ao ler os dias\n");
+        return 1;
+    }
+
+    //Calcular quantos dias de vida essa pessoa teve
+    total_dias = 365 * anos + 30 * meses + dias;
+
+    //Saida de dados
+    printf("Essa pessoa viveu por %d dias\n", total_dias);
+  
+    return 0;
+}
+#+end_src
+
 * Valor no cofrinho
 
 Escreva um programa para dar o total, em reais, de um cofrinho que
 contenha: n1 moedas de 1 real; n2 moedas de 50 centavos; n3 moedas de
 25 centavos; n4 moedas de 10 centavos; e n5 moedas de 5 centavos.
 
+#+begin_src C :tangle valor_cofrinho.c
+#include <stdio.h>
+
+int main() {
+    
+    //declaração de variaveis
+    //Variáveis de entrada
+    int n1, n2, n3, n4, n5;
+    //Variável de saída
+    float total;
+    //Variável auxiliar
+    int lidos;
+    
+    //entrada de dados
+    printf("Insira a quantidade de moedas de 1 real: ");
+    lidos = scanf("%d", &n1);
+    if (lidos != 1) {
+        printf("Houve erro ao ler a qtd de moedas de 1 real\n");
+        return 1;
+    }
+    
+    printf("Insira a quantidade de moedas de 50 centavos ");
+    lidos = scanf("%d", &n2);
+    if (lidos != 1) {
+        printf("Houve erro ao ler a qtd de moedas de 50 centavos\n");
+        return 1;
+    }
+
+    printf("Insira a quantidade de moedas de 25 centavos: ");
+    lidos = scanf("%d", &n3);
+    if (lidos != 1) {
+        printf("Houve erro ao ler a qtd de moedas de 25 centavos\n");
+        return 1;
+    }
+
+    printf("Insira a quantidade de moedas de 10 centavos: ");
+    lidos = scanf("%d", &n4);
+    if (lidos != 1) {
+        printf("Houve erro ao ler a qtd de moedas de 10 centavos\n");
+        return 1;
+    }
+
+    printf("Insira a quantidade de moedas de 5 centavos: ");
+    lidos = scanf("%d", &n5);
+    if (lidos != 1) {
+        printf("Houve erro ao ler a qtd de moedas de 5 centavos\n");
+        return 1;
+    }
+
+    //calcula o valor total de moneys
+    total = n1 + n2 * 0.5 + n3 * 0.25 + n4 * 0.10 + n5 * 0.05; 
+
+    //Saida de dados
+    printf("O total de monetarios que voce tem eh %.2f\n", total);
+  
+    return 0;
+}
+#+end_src
+
 * Calculadora rudimentar inflexível
 
 Escreva um programa para ler dois inteiros (variáveis A e B) e efetuar
 as operações de adição, subtração, multiplicação e divisão de A por B
 apresentando ao final os quatro resultados obtidos.
+
+#+begin_src C :tangle calculadora_inflexivel.c
+#include <stdio.h>
+
+int main() {
+
+    //declaracao de variaveis
+    //Variáveis de entrada
+    float a, b;
+    //Variáveis de saída
+    float soma, sub, mult, div;
+    //Variável auxiliar 
+    int lidos;
+
+    //entrada de dados
+    printf("Insira o valor de A: ");
+    lidos = scanf("%f", &a);
+    if (lidos != 1) {
+        printf("Houve um erro ao ler A\n");
+        return 1;
+    }
+
+    printf("Insira o valor de B: ");
+    lidos = scanf("%f", &b);
+    if (lidos != 1) {
+        printf("Houve um erro ao ler B\n");
+        return 1;
+    }
+
+    //calcular os valores
+    soma = a + b;
+    sub = a - b;
+    mult = a * b;
+    
+    //Garantir que não há divisão por 0
+    if (b == 0) {
+        printf("Divisao por zero, n houve a divisão\n");
+    } else {
+        div = a / b;
+        printf("Divisao: %.1f\n", div);
+    }
+
+    //saida de dados
+    printf("Soma: %.1f\n", soma);
+    printf("Mult: %.1f\n", mult);
+    printf("Sub: %.1f\n", sub);
+
+    return 0;
+}
+#+end_src
 
 * Somatório de dígitos de um número inteiro
 
@@ -199,9 +1050,98 @@ armazene-o em uma variável inteira e determine a soma dos dígitos que
 formam o valor. Exemplo: o valor 453 tem soma dos dígitos igual a 12
 (4 + 5 + 3).
 
+#+begin_src C :tangle somatorio_inteiro.c
+#include <stdio.h>
+
+int main() {
+
+    //declaracao de variaveis
+    //Variável de entrada
+    int dig;
+    //VAriável de saída
+    int total_digitos = 0;
+    //Variável auxiliar
+    int lidos;
+
+    //entrada de dados
+    printf("Insira um inteiro de 3 digitos: ");
+    lidos = scanf("%d", &dig);
+    if (lidos != 1) {
+        printf("Houve erro ao ler o numeor inteiro de 3 digitos\n");
+        return 1;
+    }
+    
+    //calcular os valores
+    /*
+        Logica utilizada
+        pra pegar a centena, pegamos a parte inteira da divisão por 100
+        pra pegar a dezena, pegamos o resto da divisao por 100 que dará um valor entre 0 e 99, e dividimos ele por 10
+        pra pegar a unidade eh so fazer o modulo por 10 msm
+    */
+
+    total_digitos += dig / 100 + ((dig % 100) / 10) + dig % 10;
+
+    //saida de dados
+    printf("A soma dos digitos de %d eh %d\n", dig, total_digitos);
+
+    return 0;
+}
+#+end_src
+
 * Dígitos intercalados
 
 Faça um algoritmo que leia dois números inteiros positivos com 3
 dígitos cada e gere um terceiro número inteiro com 6 dígitos, sendo
 que estes sejam os dígitos dos dois primeiros intercalados. Exemplo:
 Numero_1 = 135, Numero_2 = 246, Numero_3 = 123456.
+
+#+begin_src C :tangle digitos_intercalados.c
+#include <stdio.h>
+
+int main() {
+
+    //declaracao de variaveis
+    //Variáveis de entrada
+    int digA, digB; 
+    //Variável de saída
+    int saida;
+    //Variáveis auxiliares
+    int d1, d2, d3, d4, d5, d6, lidos;
+    
+
+    //entrada de dados
+    printf("Insira o valor de A: ");
+    lidos = scanf("%d", &digA);
+    if (lidos != 1) {
+        printf("Houve erro ao ler o dígito A\n");
+        return 1;
+    }
+    printf("Insira o valor de B: ");
+    lidos = scanf("%d", &digB);
+    if (lidos != 1) {
+        printf("Houve erro ao ler o dígito B\n");
+        return 1;
+    }
+    
+    //calcular os valores
+    /*
+        Logica utilizada
+        pra pegar a centena, pegamos a parte inteira da divisão por 100
+        pra pegar a dezena, pegamos o resto da divisao por 100 que dará um valor entre 0 e 99, e dividimos ele por 10
+        pra pegar a unidade eh so fazer o modulo por 10 msm
+    */
+
+    d1 = digA / 100;
+    d2 = digB / 100;
+    d3 = (digA % 100) / 10;
+    d4 = (digB % 100) / 10;
+    d5 = digA % 10;
+    d6 = digB % 10;
+
+    saida = d6 + 10 * d5 + 100 * d4 + 1000 * d3 + 10000 * d2 + 100000 * d1;
+    //saida de dados
+    printf("Os digitos A e B intercalados ficam iguais a %d\n", saida);
+
+    return 0;
+}
+#+end_src
