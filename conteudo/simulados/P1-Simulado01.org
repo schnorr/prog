@@ -1,5 +1,6 @@
 #+TITLE: P1 Simulado 01
 #+startup: overview indent
+#+OPTIONS: tex:t
 
 Simulado da P1 de um passado remoto.
 
