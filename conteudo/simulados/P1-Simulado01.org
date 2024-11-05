@@ -106,6 +106,10 @@ Fazer um programa que leia o valor de X no intervalo (-0.5,0.75) e de
 Y no intervalo [-1,1] e calcule e imprima na tela o resultado do
 somatório abaixo. Faça consistência dos valores de entrada.
 
+\begin{equation}                        % arbitrary environments,
+x=\sqrt{b}                              % even tables, figures, etc
+\end{equation}
+
 #+BEGIN_EXPORT latex
 $$
 S = \frac{X^{25} * Y^{1}}{1} + \frac{X^{24} * Y^{2}}{2} + ... + \frac{X^{2} * Y^{24}}{24} + \frac{X^{1} * Y^{25}}{25}
