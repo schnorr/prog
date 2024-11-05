@@ -112,11 +112,11 @@ S = \frac{X^{25} * Y^{1}}{1} + \frac{X^{24} * Y^{2}}{2} + ... + \frac{X^{2} * Y^
 $$
 #+END_EXPORT
 
-#+begin_export html
+#+begin_html
 \[
 S = \frac{X^{25} * Y^{1}}{1} + \frac{X^{24} * Y^{2}}{2} + ... + \frac{X^{2} * Y^{24}}{24} + \frac{X^{1} * Y^{25}}{25}
 \]
-#+end_export
+#+end_html
 
 #+BEGIN_EXPORT latex
 $$
