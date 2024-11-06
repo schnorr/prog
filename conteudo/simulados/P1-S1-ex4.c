@@ -20,7 +20,10 @@ int main() {
         return 1;
     }
 
-    tamanho = strlen(p1);
+    // Remover \n
+    tamanho = strlen(p1) - 1;
+    p1[tamanho] = '\0';
+    p2[tamanho] = '\0';
 
     for (int i = 0; i < tamanho; i++) {
         p1[i] = tolower(p1[i]);

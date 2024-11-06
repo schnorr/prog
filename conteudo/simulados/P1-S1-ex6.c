@@ -10,15 +10,15 @@
 #define LIMITE 25
 
 int main() {
-    float x, y, s = 0;
+    float x, y, s = 0, lidos = 0;
 
     printf("Digite um valor para x (%.2f, %.2f): ", MIN_X, MAX_X);
-    scanf("%f", &x);
+    lidos += scanf("%f", &x);
 
     printf("Digite um valor para y [%d, %d]: ", MIN_Y, MAX_Y);
-    scanf("%f", &y);
+    lidos += scanf("%f", &y);
 
-    if (x <= MIN_X || x >= MAX_X || y < MIN_Y || y > MAX_Y) {
+    if (x <= MIN_X || x >= MAX_X || y < MIN_Y || y > MAX_Y || lidos != 2) {
         printf("Entradas invalidas. \n");
 
         return 1;

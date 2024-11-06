@@ -3,10 +3,15 @@
 int main() {
     int entrada;
     int maiorDivisor;
-    int acumulador = 0;
+    int acumulador = 0, lidos;
 
     printf("Digite um numero inteiro: ");
-    scanf("%d", &entrada);
+    lidos = scanf("%d", &entrada);
+
+    if (lidos != 1) {
+        printf("Erro ao ler entradas\n");
+        return 1;
+    }
 
     maiorDivisor = entrada / 2;
 

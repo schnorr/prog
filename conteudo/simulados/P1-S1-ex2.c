@@ -4,16 +4,17 @@
 
 int main() {
     int sequencia[TAM_SEQUENCIA];
-    int anterior = -1, tamanho, maior = 0, inicio, inicioMaior;
+    int anterior = -1, tamanho= 0, maior = 0, inicio = 0, inicioMaior = 0, lidos = 0;
 
     printf("Digite uma seguencia de %d valores 0 ou 1: ", TAM_SEQUENCIA);
 
-    for (int i = 0; i < TAM_SEQUENCIA; i++) {
-        scanf("%d", &sequencia[i]);
+    while (lidos < TAM_SEQUENCIA) {
+        lidos += scanf("%d", &sequencia[lidos]);
     }
+    
 
     for (int i = 0; i < TAM_SEQUENCIA; i++) {
-        if (sequencia[i] != anterior) {
+        if (sequencia[i] == anterior) {
             tamanho++;
         } else {
             if (tamanho > maior) {
