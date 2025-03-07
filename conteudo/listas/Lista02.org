@@ -312,6 +312,34 @@ Faça um programa em C que lê o a cotação do dólar de 3 dias. Se não
 houve variação na cotação, o programa deve informar que não houve
 variação.
 
+#+begin_src C :tangle lista02_cotacao_do_dolar.c
+#include <stdio.h>
+
+int main() {
+    
+    //Variáveis de entrada
+    float c1, c2, c3;
+    //Variáveis auxiliares
+    int lidos;
+
+    //Entrada de dados
+    //Cliente 1
+    printf("Insira as cotacoes do dolar: ");
+    lidos = scanf("%f %f %f", &c1, &c2, &c3);
+    if (lidos != 3) {
+        printf("Houve erro na leitura!\n");
+        return 1;
+    }
+
+    //Saída de dados
+    if (c1 == c2 && c2 == c3) printf("Nao houve variacao na cotacao!\n");
+    else printf("Houve variacao na cotacao!\n");
+
+    return 0;
+}
+
+#+end_src
+
 * Preço de produtos
 
 Faça um programa em C que lê o preço unitário de 3 produtos comprados
