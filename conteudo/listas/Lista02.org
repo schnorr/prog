@@ -142,6 +142,35 @@ se ele é um triângulo isósceles (2 lados com medidas iguais e 1
 diferente), escaleno (3 lados com medidas diferentes) ou equilátero (3
 lados com medidas iguais).
 
+#+begin_src C :tangle lista02_classifica_triangulo.c
+#include <stdio.h>
+
+int main() {
+    
+    //Variáveis de entrada
+    float a, b, c;
+    //Variáveis auxiliares
+    int lidos;
+
+
+    //Entrada de dados
+    printf("Insira os valores dos lados: ");
+    lidos = scanf("%f %f %f", &a, &b, &c);
+    if (lidos != 3) {
+        printf("Houve erro na leitura!\n");
+        return 1;
+    }
+
+    //Saída de dados
+    if (a == b && b == c) printf("O triangulo eh equilatero!\n");
+    else if (a == b || b == c || a == c) printf("O triangulo eh isosceles!\n");
+    else printf("O triangulo eh escaleno!\n");
+
+    return 0;
+}
+
+#+end_src
+
 * Altura abaixo da média
 
 Faça um programa em C que lê a altura de 3 pessoas, calcula a média da
