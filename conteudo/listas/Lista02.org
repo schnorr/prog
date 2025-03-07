@@ -516,6 +516,39 @@ entre os outros dois e deve ser menor que a soma dos outros dois. Se
 algum dos lados não satisfaz este requisito, então os 3 lados não
 podem formar um triângulo.
 
+#+begin_src C :tangle lista02_deteccao_de_triangulo.c
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    
+    //Variáveis de entrada
+    float a, b, c;
+    //Variáveis auxiliares
+    int lidos;
+
+    //Entrada de dados 
+    printf("Entre com os valores dos lados: ");
+    lidos = scanf("%f %f %f", &a, &b, &c);
+    if (lidos != 3) {
+        printf("Houve um erro na leitura!\n");
+        return 1;
+    }
+
+    //Processamento e saída de dados
+    if (fabs(b - c) < a && a < b + c &&
+        fabs(a - c) < b && b < a + c &&
+        fabs(a - b) < c && c < a + b) {
+            printf("Os lados inseridos podem formar um triângulo!\n");
+    } else {
+        printf("Os lados nao correspondem a um triangulo!\n");
+    }
+    
+    return 0;
+}
+
+#+end_src
+
 * Calcula módulo
 
 Escrever um programa para efetuar a leitura de um valor inteiro
