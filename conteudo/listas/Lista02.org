@@ -89,6 +89,52 @@ seguintes fórmulas:
 • Para Homens: ( 72.7 * altura ) - 58;
 • Para Mulheres: ( 62.1 * altura) - 44.7.
 
+#+begin_src C :tangle lista02_peso_ideal.c
+#include <stdio.h>
+
+int main() {
+    
+    //Variáveis de entrada
+    float altura;
+    char sexo;
+    //Variáveis auxiliares
+    int lidos;
+    //Variáveis de saída
+    float peso_ideal;
+
+    //Entrada de dados
+    printf("Insira a altura: ");
+    lidos = scanf("%f", &altura);
+    if (lidos != 1) {
+        printf("Houve erro na leitura!\n");
+        return 1;
+    }
+
+    printf("Insira on sexo (M ou F): ");
+    lidos = scanf(" %c", &sexo);            //Espaço na frente pelo buffer do teclado
+    if (lidos != 1) {
+        printf("Houve erro na leitura!\n");
+        return 1;
+    }
+
+    //Processamento 
+    if (sexo == 'M') 
+        peso_ideal = 72.7 * altura - 58;
+    else if (sexo == 'F')
+        peso_ideal = 62.1 * altura - 44.7;
+    else {
+        printf("Sexo inserido eh inválido!\n");
+        return 1;
+    }    
+
+    //Saída de dados
+    printf("O peso ideal eh %.2f\n", peso_ideal);
+
+    return 0;
+}
+
+#+end_src
+
 * Classifica triângulo
 
 Faça um programa em C que lê 3 lados de um triângulo e escreve na tela
