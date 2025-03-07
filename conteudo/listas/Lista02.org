@@ -323,7 +323,6 @@ int main() {
     int lidos;
 
     //Entrada de dados
-    //Cliente 1
     printf("Insira as cotacoes do dolar: ");
     lidos = scanf("%f %f %f", &c1, &c2, &c3);
     if (lidos != 3) {
