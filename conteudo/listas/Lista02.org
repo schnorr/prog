@@ -725,6 +725,7 @@ int main() {
 
     //Saída de dados
     printf("dist(p1, p2) = %.2f\ndist(p1, p3) = %.2f\ndist(p2, p3) = %.2f\n", distxy, distxz, distyz);
+
     if (fabs(distxy - distxz) < distyz && distyz < distxy + distxz &&
         fabs(distxz - distyz) < distxy && distxy < distxz + distyz &&
         fabs(distxy - distyz) < distxz && distxz < distxy + distyz) {
@@ -737,7 +738,7 @@ int main() {
             */
             area = .5 * fabs(x1 * y2 + y1 * z2 + x2 * z1 - z1 * y2 - y1 * x2 - z2 * x1); 
             printf("Os segmentos formam um triângulo de área %.2f\n", area);
-            
+
     } else {
         printf("Os segmentos de reta nao formam um triangulo!\n");
     }
@@ -756,6 +757,37 @@ uma das seguintes categorias:
 - Juvenil A: 11 a 13 anos;
 - Juvenil B: 14 a 17 anos;
 - Sênior: maiores de 18 anos.
+
+#+begin_src C :tangle lista02_categorizacao_de_nadador.c
+#include <stdio.h>
+
+int main() {
+    
+    //Variáveis de entrada
+    int idade;
+    //Variáveis auxiliares 
+    int lidos;
+
+    //Entrada de dados
+    printf("Entre com a idade do individuo: ");
+    lidos = scanf("%d", &idade);
+    if (lidos != 1) {
+        printf("Houve um erro na leitura!\n");
+        return 1;
+    }
+
+    //Processamento e saída de dados
+    if (idade < 5) printf("Maninho eh novo demais pra se classificar!\n");
+    else if (idade <= 7) printf("Esta na categoria Infantil A\n");
+    else if (idade <= 10) printf("Esta na categoria Infantil B\n");
+    else if (idade <= 13) printf("Esta na categoria Juvenil A\n");
+    else if (idade <= 17) printf("Esta na categoria Juvenil B\n");
+    else printf("Esta na categoria Senior\n");
+
+    return 0;
+}
+
+#+end_src
 
 * Tipo de média
 
