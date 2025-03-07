@@ -556,6 +556,33 @@ positivo ou negativo e apresentar o número lido como sendo um valor
 positivo, ou seja, o programa deverá apresentar o módulo de um número
 fornecido. Não utilize funções da biblioteca math.h.
 
+#+begin_src C :tangle lista02_calcula_modulo.c
+#include <stdio.h>
+
+int main() {
+    
+    //Variáveis de entrada
+    int n;
+    //Variáveis auxiliares
+    int lidos;
+
+    //Entrada de dados 
+    printf("Entre com o valor: ");
+    lidos = scanf("%d", &n);
+    if (lidos != 1) {
+        printf("Houve um erro na leitura!\n");
+        return 1;
+    }
+
+    //Processamento e saída de dados
+    if (n < 0) printf("O valor absoluto de %d eh %d\n", n, -n);
+    else printf("O valor absoluto de %d eh %d\n", n, n);
+    
+    return 0;
+}
+
+#+end_src
+
 * Descobre pares
 
 Escrever um programa para efetuar a leitura de 3 números e apresentar
