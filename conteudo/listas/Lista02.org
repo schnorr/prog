@@ -636,6 +636,42 @@ efetuada e um código numérico que identifique se o comprador é um
 cliente comum (1) ou um funcionário (código 2) ou cliente especial
 (código 3).
 
+#+begin_src C :tangle lista02_loja_de_descontos.c
+#include <stdio.h>
+
+int main() {
+    
+    //Variáveis de entrada
+    int id;
+    float compra;
+    //Variáveis auxiliares
+    int lidos;
+
+    //Entrada de dados 
+    printf("Entre com o valor da compra: ");
+    lidos = scanf("%f", &compra);
+    if (lidos != 1) {
+        printf("Houve um erro na leitura!\n");
+        return 1;
+    }
+    printf("Entre com o id do cliente: ");
+    lidos = scanf("%d", &id);
+    if (lidos != 1) {
+        printf("Houve um erro na leitura!\n");
+        return 1;
+    }
+
+    //Processamento e saída de dados
+    if (id == 1) printf("O valor da compra eh de R$%.2f\n", compra);    
+    else if (id == 2) printf("O valor da compra eh de R$%.2f\n", compra * .95);    
+    else if (id == 3) printf("O valor da compra eh de R$%.2f\n", compra * .9);    
+    else printf("ID invalido!\n");
+
+    return 0;
+}
+
+#+end_src
+
 * Distância cartesiana
 
 Escrever um programa que lê um conjunto de 6 valores: X1, X2, Y1, Y2,
