@@ -19,16 +19,11 @@
 #+latex: \newcommand{\mytitle}{Apresentação \linebreak Algoritmos e Programação}
 #+latex: \mytitleslide
 
-* Os professores
+* O professor
 
 Prof. Lucas M. Schnorr \hfill \to aulas téoricas
 + schnorr@inf.ufrgs.br
 
-#+latex: \vfill
-
-Prof. Thiago Lopes Trugillo da Silveira \hfill \to aulas práticas
-+ tltsilveira@inf.ufrgs.br
-     
 * Motivação
 
 #+BEGIN_CENTER
