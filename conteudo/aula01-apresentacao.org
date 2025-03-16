@@ -42,7 +42,7 @@ Algoritmos e Programação
 * Funcionamento das aulas
 
 A presença será aferida (75% de frequência evita FF)
-- São +45+ 43 encontros no total, portanto +12+ 11 faltas implica em FF
+- São 45 encontros no total, portanto 12 faltas implica em FF
 
 #+latex: \vfill
 

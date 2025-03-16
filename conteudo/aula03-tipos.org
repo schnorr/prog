@@ -417,9 +417,9 @@ Exemplo ilustrativo: =a + b + c=
 #endif
 #+end_src
 
-* Relação entre tipos e expressões aritméticas
+* Relação entre tipos e expressões aritméticas
 
-Vejams um exemplo representativo
+Vejamos um exemplo representativo
 
 #+BEGIN_SRC C :tangle e/exemplo-tipos-expressoes-aritmeticas.c
 /* Exemplo para ilustrar um problema com expressoes aritmeticas */
