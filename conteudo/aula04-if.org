@@ -365,11 +365,40 @@ int main() {
 
 * Exemplo #2 (Enunciado e Algoritmo)
 
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula04-expressoes_e_if_slide_17.pdf}{Prof. Claudio Jung}
+Processar uma venda de livros em uma livraria. Obter código do tipo de
+livro vendido (A, B, C) e número de unidades, calcular e informar
+valor a pagar. Preços: Tipo A, R$ 10,00; Tipo B, R$ 20,00; Tipo C, R$
+30,00. Caso tenham sido vendidos mais de 10 livros, emitir uma
+mensagem.
+
+#+latex: \pause\vfill
+
+Algoritmo básico
+
+1. Início
+2. Ler =codigo=, =nro_livros=
+3. "calcular o preco a pagar" (=valor_total=)
+4. _informar na saída o conteúdo de =valor_total=_
+5. se =nro_livros= > 10
+   1. Informar "mais de 10 livros vendidos"
+6. Fim.
 
 * Exemplo #2 (Enunciado e Algoritmo Completo)
 
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula04-expressoes_e_if_slide_18.pdf}{Prof. Claudio Jung}
+Algoritmo completo
+
+1. Início
+2. Ler =codigo=, =nro_livros=
+3. "calcular o preco a pagar" (=valor_total=)
+4. se =codigo= == 'A'
+   1. =valor_total= <- =nro_livros= * 10;
+4. se =codigo= == 'B'
+   1. =valor_total= <- =nro_livros= * 20;
+4. se =codigo= == 'C'
+   1. =valor_total= <- =nro_livros= * 30;
+5. se =nro_livros= > 10
+   1. Informar "mais de 10 livros vendidos"
+6. Fim.
 
 * Exemplo #2 (Código em C)
 
@@ -381,16 +410,16 @@ int main(void)
 {
   char codigo;
   int nro_livros;
-  float apagar;
+  float valor_total;
   printf("digite o codigo do produto e número de unidades:\n");
-  scanf(" %c %d",&codigo, &nro_livros);
-  if (codigo == 'a'|| codigo == 'A')
-    apagar = nro_livros*10;
-  if (codigo == 'b'|| codigo == 'B')
-    apagar = nro_livros*20;
+  scanf(" %c %d", &codigo, &nro_livros);
+  if (codigo == 'a' || codigo == 'A')
+    valor_total = nro_livros*10;
+  if (codigo == 'b' || codigo == 'B')
+    valor_total = nro_livros*20;
   if (codigo == 'c' || codigo == 'C')
-    apagar = nro_livros*30;
-  printf("o valor a pagar é de R$ %6.2f.\n",apagar);
+    valor_total = nro_livros*30;
+  printf("o valor a pagar é de R$ %6.2f.\n", valor_total);
   if (nro_livros > 10)
     printf("Foram vendidas mais de 10 unidades do tipo %c.\n", codigo);
   return 0;
@@ -406,7 +435,17 @@ gcc exemplo-livros.c -o exemplo-livros
 
 * Exemplo #3 (Enunciado)
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula04-If_else_slide_27.pdf}{Prof. Mara Abel}
+Dados um par de valores x e y, que representam as coordenadas de um
+ponto no plano, determinar a localização do ponto: se em um quadrante,
+em um dos eixos ou na origem.
+
+#+latex: \vfill
+
+Saída: uma mensagem adequada
+
+Entradas: coordenadas x e y de um ponto
+
+Processamento: testes condicionais, verificando a coordenada
 
 * Exemplo #3 (Ententendo o Enunciado)
 
@@ -414,11 +453,25 @@ gcc exemplo-livros.c -o exemplo-livros
 
 * Exemplo #3 (Pensamento Computacional \to Passos)
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula04-If_else_slide_29.pdf}{Prof. Mara Abel}
+Algoritmo
 
-* Exemplo #3 (Algoritmo)
-
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula04-If_else_slide_30.pdf}{Prof. Mara Abel}
+1. Início
+1. Leitura dos valores x e y
+2. Se x é 0 e y é 0
+   1. Escrever "ponto na origem"
+4. Se x > 0 e y > 0
+   1. Escrever "Quadrante 1"
+5. Se x < 0 e y > 0
+   1. Escrever "Quadrante 2"
+6. Se x < 0 e y < 0
+   1. Escrever "Quadrante 3"
+7. Se x > 0 e y < 0
+   1. Escrever "Quadrante 4"
+3. Se x é 0 e y diferente de 0
+   1. Escrever "Eixo dos Ys"    
+3. Se x diferente de 0 e y é 0
+   1. Escrever "Eixo dos Xs"  
+8. Fim
 
 * Exemplo #3 (Código em C)
 
@@ -479,7 +532,29 @@ se <expressão>
 
 * Exemplo #4 (Livros, com desconto)
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula04-If_else_slide_34.pdf}{Prof. Mara Abel}
+Processar uma venda de livros em uma livraria. Obter código do tipo de
+livro vendido (A, B, C) e número de unidades, calcular e informar
+valor a pagar. Preços: Tipo A, R$ 10,00; Tipo B, R$ 20,00; Tipo C, R$
+30,00. Caso tenham sido vendidos mais de 10 livros, emitir uma
+mensagem. *Se o livro for do Tipo A, dar 10% de desconto.*
+
+#+latex: \pause\vfill
+
+Algoritmo completo
+
+1. Início
+2. Ler =codigo=, =nro_livros=
+3. "calcular o preco a pagar" (=valor_total=)
+4. se =codigo= == 'A'
+   1. =valor_total= <- =nro_livros= * 10;
+   2. =valor_total= <- =valor_total= * 0.9;
+5. se =codigo= == 'B'
+   1. =valor_total= <- =nro_livros= * 20;
+6. se =codigo= == 'C'
+   1. =valor_total= <- =nro_livros= * 30;
+7. se =nro_livros= > 10
+   1. Informar "mais de 10 livros vendidos"
+8. Fim.
 
 * Exemplo #4 (Código em C)
 
@@ -491,18 +566,18 @@ int main(void)
 {
   char codigo;
   int nro_livros;
-  float apagar;
+  float valor_total;
   printf("digite o codigo do produto e número de unidades:\n");
   scanf(" %c %d",&codigo, &nro_livros);
   if (codigo == 'a'|| codigo == 'A') {
-    apagar = nro_livros*10;
-    apagar = apagar * 0.90;
+    valor_total = nro_livros*10;
+    valor_total = valor_total * 0.90;
   }
   if (codigo == 'b'|| codigo == 'B')
-    apagar = nro_livros*20;
+    valor_total = nro_livros*20;
   if (codigo == 'c' || codigo == 'C')
-    apagar = nro_livros*30;
-  printf("o valor a pagar é de R$ %6.2f.\n",apagar);
+    valor_total = nro_livros*30;
+  printf("o valor a pagar é de R$ %6.2f.\n", valor_total);
   if (nro_livros > 10)
     printf("Foram vendidas mais de 10 unidades do tipo %c.\n", codigo);
   return 0;
