@@ -1,0 +1,16 @@
+#+TITLE: Testes de compilação das soluções das listas
+#+startup: overview indent
+
+Este script é capaz de realizar a compilação de todas as soluções propostas.
+
+#+begin_src shell :tangle testes.sh :tangle-mode (identity #o755)
+for lista in Lista*.org; do
+    emacs -batch -l ~/.emacs.d/init.el $lista --funcall org-babel-tangle
+    NUMERO=$(basename $lista .org | sed "s/Lista//")
+    for arq in $(ls -1 lista${NUMERO}*.c); do
+	echo "Tratando o arquivo $arq"
+	gcc -Wall -Werror $arq -lm
+    done
+done
+#+end_src
+
