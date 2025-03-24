@@ -16,7 +16,7 @@
 #+OPTIONS: title:nil H:1 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
 #+LATEX_HEADER: \input{org-babel.tex}
 
-#+latex: \newcommand{\mytitle}{Aninhamento de comandos =if-else=}
+#+latex: \newcommand{\mytitle}{Comandos condicionais (Parte 2)}
 #+latex: \mytitleslide
 
 * Configuração                                                     :noexport:
@@ -40,19 +40,51 @@
 
 Comando =if-else=
 - Normais
-- Aninhados (simples e compostos)
+  - Condicional Simples (=if=)
+  - Condicional com caminho duplo (=if - else=)
+  - Condicional com caminhos múltiplos (=if - else if - else=)
+  - Seleção múltipla (=switch=)
+- Biblioteca =ctype.h= (funções =toupper= e =tolower=)
+- Comandos condicionais aninhados
 
-* Comandos de seleção condicional
+* Condicional de caminho duplo: funcionamento
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula05_slide_16.pdf}{Prof. Edison Pignaton de Freitas}
+Na Linguagem C
+#+begin_src C
+if (expressão) {
+  //comandos se verdade
+} else {
+  //comandos se falso
+}
+#+end_src
 
-* Funcionamento
-
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula05_slide_17.pdf}{Prof. Edison Pignaton de Freitas}
+Em linguagem algorítmica
+#+begin_example
+se (expressão)
+   // comandos se verdade
+senão
+   // comandos se falso
+#+end_example
 
 * Exemplo em Algoritmo
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula05_slide_18.pdf}{Prof. Edison Pignaton de Freitas}
+Fazer um programa que leia um número natural e
+
+informe se o número lido é par ou ímpar.
+
+#+begin_example
+Algoritmo Par ou Impar
+Entrada: valor informado pelo usuário
+Saída: "Par" ou "Impar"
+
+1. Início
+2. Ler o valor
+3. Se (valor for par)
+      Escrever "Par"
+   Senão
+      Escrever "Impar"
+4. Fim
+#+end_example
 
 * Exemplo em C
 
@@ -69,30 +101,75 @@ int main()
   scanf("%d", &valor);
 
   //analisa resto da divisao inteira
-  if ( 0 == valor%2)
+  if (valor%2 == 0){
     printf("Valor eh par!\n");
-  else
+  } else {
     printf("Valor eh impar!\n");
+  }
   return 0;
 }
 #+end_src
-* Aninhamento com comandos simples
+* Relembrando a venda de livros
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula05_slide_20.pdf}{Prof. Edison Pignaton de Freitas}
+#+BEGIN_SRC C :tangle e/relembrando-exemplo-livros.c
+/* processa uma venda e avisa caso se mais de 10
+unidades vendidas foram vendidas */
+#include<stdio.h>
+int main(void)
+{
+  char codigo;
+  int nro_livros;
+  float valor_total;
+  printf("digite o codigo do produto e número de unidades:\n");
+  scanf(" %c %d", &codigo, &nro_livros);
+  if (codigo == 'a' || codigo == 'A')
+    valor_total = nro_livros*10;
+  if (codigo == 'b' || codigo == 'B')
+    valor_total = nro_livros*20;
+  if (codigo == 'c' || codigo == 'C')
+    valor_total = nro_livros*30;
+  printf("o valor a pagar é de R$ %6.2f.\n", valor_total);
+  if (nro_livros > 10)
+    printf("Foram vendidas mais de 10 unidades do tipo %c.\n", codigo);
+  return 0;
+}
+#+END_SRC
 
-* Revistando a venda de livros
+Há uma "redundância" desnecessária nos testes.
+- As condições lógicas são mutualmente exclusivas
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula05_slide_21.pdf}{Prof. Edison Pignaton de Freitas}
+* Condicional com caminhos múltiplos (=if-else if-else=)
 
-* Algoritmo com aninhamento de ifs
+Empregando condicional com caminhos múltiplos
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula05_slide_22.pdf}{Prof. Edison Pignaton de Freitas}
+#+BEGIN_SRC C :tangle e/revisitando-exemplo-livros.c
+/* processa uma venda e avisa caso se mais de 10
+unidades vendidas foram vendidas */
+#include<stdio.h>
+int main(void)
+{
+  char codigo;
+  int nro_livros;
+  float valor_total;
+  printf("digite o codigo do produto e número de unidades:\n");
+  scanf(" %c %d", &codigo, &nro_livros);
+  if (codigo == 'a' || codigo == 'A')
+    valor_total = nro_livros*10;
+  else if (codigo == 'b' || codigo == 'B')
+    valor_total = nro_livros*20;
+  else if (codigo == 'c' || codigo == 'C')
+    valor_total = nro_livros*30;
+  else
+    printf("Código Inexistente!\n")
+  printf("o valor a pagar é de R$ %6.2f.\n", valor_total);
+  if (nro_livros > 10)
+    printf("Foram vendidas mais de 10 unidades do tipo %c.\n", codigo);
+  return 0;
+}
+#+END_SRC
 
-* Código em C
 
 Veja código em [[./a05-exemplo-livros.c]]
-
-E se o código for inválido com mais de 10 unidades?
 
 #+attr_latex: :options fontsize=\tiny
 #+BEGIN_SRC C :tangle e/a05-exemplo-livros.c
@@ -122,7 +199,10 @@ int main(){
   return 0;
 }
 #+END_SRC
-* Código em C (melhor)
+
+E se o código for inválido com mais de 10 unidades?
+
+* Condicional com caminhos múltiplos, melhor
 
 Veja código em [[./a05-exemplo-livros-melhor.c]]
 
@@ -281,6 +361,104 @@ int main() {
 }
 #+END_SRC
 
+* Comandos condicionais _aninhados_ 1/3
+
+Um comando =if= (e suas variantes) é um comando como qualquer outro
+- Pode portanto aparecer em qualquer lugar dentro de uma função
+
+#+latex: \vfill
+
+#+begin_src C
+if (expressão) {
+  //comandos
+  if (expressão) {
+    // comandos
+    if (expressão) {
+      // comandos
+    }else{
+      // comandos
+    }
+  }
+  // comandos
+}
+#+end_src
+
+* Comandos condicionais _aninhados_ 2/3
+
+Chaves são obrigatórias somente se tivermos vários comandos no bloco
+
+Podemos ``encadear'' expressões com o comando if
+
+#+begin_src C
+if (expressão1)
+  if (expressão2)
+    if (expressão3)
+      //comando condicionado por expressão1, expressão2 e expressão3
+#+end_src
+
+#+latex: \vfill\pause
+
+Forma alternativa (talvez melhor)
+
+#+begin_src C
+if (expressão1 && expressão2 && expressão3)
+  //comando condicionado por expressão1, expressão2 e expressão3
+#+end_src
+
+* Comandos condicionais _aninhados_ 3/3
+
+A ``omissão'' de chaves pode causar confusão
+
+#+begin_src C
+if (expressão1)     // if 1
+  if (expressão2)   // if 2
+    if (expressão3) // if 3
+      //comando
+    else  // -> Com qual if esse "else" se combina?
+      //comando
+#+end_src
+
+#+latex: \vfill\pause
+
+#+begin_center
+Um =else= sempre se combina com o =if= mais
+
+próximo que ainda não se combinou com nenhum =else=.
+#+end_center
+
+* Lembrando a seleção de caminho múltiplo =if-else if-else= (solução #1)
+
+Veja em [[./a05-coordenadas-else.c]]
+
+#+attr_latex: :options fontsize=\tiny
+#+BEGIN_SRC C :tangle e/a05-coordenadas-else.c
+/* Obtem coordenadas e informa localização */
+#include <stdio.h>
+int main() {
+  float x, y; //Entrada
+  printf("Coordenadas: x = ");
+  scanf("%f", &x);
+  printf("e y = ");
+  scanf("%f", &y);
+  if ( x == 0 && y == 0 )
+    printf("\n Ponto na origem");
+  else if ( x > 0 && y > 0 )
+    printf("\n Ponto no quadrante 1");
+  else if ( x < 0 && y > 0 )
+    printf("\n Ponto no quadrante 2");
+  else if ( x < 0 && y < 0 )
+    printf("\n Ponto no quadrante 3");
+  else if ( x > 0 && y < 0 )
+    printf("\n Ponto no quadrante 4");
+  else if ( x == 0 && y != 0 )
+    printf("\n Ponto no eixo dos y");
+  else // ( x != 0 && y == 0 ) nem precisa testar, sobrou
+    printf("\n Ponto no eixo dos x");
+  printf("\n");
+  return 0;
+}
+#+END_SRC
+
 * Empregando =if-else= (solução #2)
 
 Veja em [[./a05-coordenadas-else-v2.c]]
@@ -323,18 +501,51 @@ int main() {
 
 * Exercício para casa #1
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula05-If_Aninhado_slide_37.pdf}{Prof. Mara Abel}
+Fazer o algoritmo e programa C para calcular e informar as raízes de
+uma equação do 2º grau. Os valores das variáveis a, b e c devem ser
+fornecidos via teclado.
 
-* #1: Planejamento
+#+latex: \vfill\pause
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula05-If_Aninhado_slide_38.pdf}{Prof. Mara Abel}
+#+begin_example
+1. Início
+2. Ler A, B, C (os coeficientes)
+3. Se A for 0
+     // Escrever "não é equação do 2o grau"
+   Senão
+     Disc = B^2 - 4ac
+     Se Disc < 0
+       // Escrever "raizes imaginarias"
+     Senão
+       // Calcular R1 e R2
+       // Escrever R1 e R2 para o usuário
+4. Fim
+#+end_example
 
-* Exercício para casa #2
+* Exercício para casa #2 e #3
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula05-If_Aninhado_slide_41.pdf}{Prof. Mara Abel}
+1. Faça o algoritmo e o programa C correspondente que recebe três
+   valores reais, diferentes entre si, e imprime os três valores em
+   ordem crescente.
 
-* Exercício para casa #3
+2. Supondo que a variável =resultado= se inicie com o valor =20=. Fazer o
+   trecho de um programa C que, dependendo do conteúdo de ``codigo'',
+   atribua o conteúdo especificado na tabela abaixo à variável
+   ``resultado''.
 
-Suponha que a variável =resultado= se inicie com o valor =20=.
-
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula05-If_Aninhado_slide_44.pdf}{Prof. Mara Abel}
+   #+latex: {\scriptsize
+   | *codigo* | *resultado*         |
+   |--------+-------------------|
+   |      1 | resultado + 5     |
+   |      2 | inalterado        |
+   |      3 | resultado - 2     |
+   |      4 | inalterado        |
+   |      5 | resultado - 2     |
+   |      6 | 2 * (resultado+1) |
+   |      7 | inalterado        |
+   |      8 | 0                 |
+   |      9 | 0                 |
+   |     10 | 0                 |
+   |     11 | 123               |
+   #+latex: }
+   
