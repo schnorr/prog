@@ -56,17 +56,9 @@
   - Mapeamento da Tabela
   - Ovos de Páscoa
 
-* Relembrando o fluxograma do =if=...
-
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula06-Switch_slide_02.pdf}{Prof. Mara Abel}
-
-* ... e do =if-else=
-
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula06-Switch_slide_03.pdf}{Prof. Mara Abel}
-
 * Dado um problema
 
-Imprimir ma mensagem de acordo com um código recebido
+Imprimir uma mensagem de acordo com um código recebido
 
 | *Código* | *Mensagem a ser impressa* |
 |--------+-------------------------|
@@ -161,17 +153,29 @@ int main ( )
 
 Como fica o *fluxograma*?
 
-* Fluxograma do exemplo
-
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula06-Switch_slide_07.pdf}{Prof. Mara Abel}
-
 * Apresentação do =switch-case=
 
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula06_slide_13.pdf}{Prof. Edison Pignaton de Freitas}
+Na linguagem C
+#+begin_src C
+switch (expressao) {
+  case <constante01>:
+    //comandos;
+  case <constante02>:
+    //comandos;
+  case <constante03>:
+    //comandos;
+  default:
+}
+#+end_src
 
-* Detalhamento do comando =switch-case=
+Notas importantes
+- A expressão deve ser do tipo =int=
+  - Não se aceita coerção a partir de outros tipos
+- Constantes devem ser do tipo =int= (tipicamente literais)
+- Os /cases/ são pontos de entrada
   
-#+latex: \cortesia{../../../Algoritmos/Edison/Teoricas/aula06_slide_14.pdf}{Prof. Edison Pignaton de Freitas}
+Em linguagem de algoritmos:
+- =Desvie= (switch) e =Opção= (case)
 
 * Emprego de =switch-case= para o programa da mensagem
 
@@ -201,13 +205,12 @@ int main () {
 }
 #+END_SRC
 
-* Fluxograma do funcionamento do exemplo anterior
-
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula06-if_ANINHADO_e_switch_slide_16.pdf}{Prof. Claudio Jung}
-
 * Comando de quebra (=break=) dentro do =switch-case=
 
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula06-if_ANINHADO_e_switch_slide_19.pdf}{Prof. Claudio Jung}
+O comando =break= é um comando de quebra
+- Uso limita-se à estrutura =switch/case=
+- Ele ``quebra'' a execução da sequência
+  - Tipicamente utilizado antes de cada opção (/case/)
 
 * Exemplo de uso de =break= no =switch-case=
 
@@ -240,17 +243,17 @@ int main () {
 }
 #+END_SRC
 
-* Fluxograma do funcionamento com =break=
-
-#+latex: \cortesia{../../../Algoritmos/Claudio/Teorica/Aula06-if_ANINHADO_e_switch_slide_20.pdf}{Prof. Claudio Jung}
-
 * Estudo de caso #1: Programa da calculadora
 
-- Fazer um programa que simule uma calculadora que executa as quatro operações aritméticas (soma, subtração, produto e divisão).
-- As operações válidas são '+', '-', '*', '/' (tipo char).
-- O programa deve ler a operação (char) que deverá ser efetuada e os dois valores (operandos-float).
-- Emitir mensagem de erro caso não seja uma operação válida.
-- Após o cálculo, dar a resposta.
+Fazer um programa que simule uma calculadora que executa as quatro operações aritméticas (soma, subtração, produto e divisão).
+
+As operações válidas são '+', '-', '*', '/' (tipo char).
+
+O programa deve ler a operação (char) que deverá ser efetuada e os dois valores (operandos-float).
+
+Emitir mensagem de erro caso não seja uma operação válida.
+
+Após o cálculo, fornecer a resposta na saída padrão.
 
 * 
 
@@ -437,8 +440,8 @@ Mas se a nota não for inteira?
 
 #+latex: \pause\vfill
 
-- Nesse caso, em C, apenas ifs podem ser usados para testar as condições.
-- Switch/case não é mais uma opção, já que só opera com valores inteiros e derivados.
+- Apenas comandos =if= podem ser usados para testar as condições.
+- Switch/case deixa de ser uma alternativa, pois só opera com inteiros
 
 * Vantagens e desvantagens
 
@@ -458,8 +461,45 @@ Mas se a nota não for inteira?
 
 Faça somente usando =switch-case=.
 
-#+latex: \cortesia{../../../Algoritmos/Mara/Teoricas/Aula06-Switch_slide_37.pdf}{Prof. Mara Abel}
+Supondo que a variável =resultado= se inicie com o valor =20=. Fazer o
+trecho de um programa C que, dependendo do conteúdo de ``codigo'',
+atribua o conteúdo especificado na tabela abaixo à variável
+``resultado''.
+
+#+latex:% {\scriptsize
+| *codigo* | *resultado*         |
+|--------+-------------------|
+|      1 | resultado + 5     |
+|      2 | inalterado        |
+|      3 | resultado - 2     |
+|      4 | inalterado        |
+|      5 | resultado - 2     |
+|      6 | 2 * (resultado+1) |
+|      7 | inalterado        |
+|      8 | 0                 |
+|      9 | 0                 |
+|     10 | 0                 |
+|     11 | 123               |
+#+latex: %}
 
 * Exercício #2: Ovos de Páscoa
 
-#+latex: \cortesia{../../../Algoritmos/Marcelo/aulas/aula06/aula06_slide_17.pdf}{Prof. Marcelo Walter}
+Uma indústria de ovos de Páscoa fornece três tipos diferentes de ovos
+de chocolate: tipo A com valor unitário de R$12, tipo B com valor
+unitário de R$ 15.50 e tipo C com valor unitário de R$21.30. Faça um
+programa que leia os dados relativos a um pedido (tipo de Ovo e
+quantidade) e informe:
+- o produto solicitado (Tipo de ovo A, B ou C, verificando se válido);
+- o número de unidades vendidas (validando limites);
+- o total a ser pago, em reais.
+Suponha que em cada pedido somente poderá ser solicitado um tipo de
+ovo. Além disso, com a intenção de satisfazer a um maior número de
+clientes, foi limitado o número de ovos a serem fornecidos por pedido,
+de acordo com o tipo de ovo solicitado: o número máximo de unidades do
+ovo A é 50, do B é 30 e do C é 20.
+
+Caso o pedido supere o número limite de unidades correspondente ao
+tipo de ovo do pedido, o programa deverá emitir uma mensagem indicando
+que não poderá atender o total do pedido, dizendo que serão fornecidas
+apenas as unidades estabelecidas para o tipo.
+
